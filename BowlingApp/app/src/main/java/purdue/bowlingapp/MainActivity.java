@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String EXTRA_MESSAGE = "SUCCESS";
+    public static final String EXTRA_MESSAGE = "Welcome";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -15,10 +15,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void login(View view) {
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
+        Intent success = new Intent(this, LoginMessageActivity.class);
+        Intent failure = new Intent(this, LoginFailureActivity.class);
+        
         EditText editText = (EditText) findViewById(R.id.usernameField);
-        String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
+        String message = editText.getText().toString() + " " + R.id.usernameField;
+        success.putExtra(EXTRA_MESSAGE, message);
+        startActivity(success);
     }
 }
