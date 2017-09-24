@@ -27,21 +27,23 @@
         tools:layout_editor_absoluteY="387dp" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/passwordField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Enter Password"
         android:inputType="textPassword"
-        tools:layout_editor_absoluteY="330dp"
-        tools:layout_editor_absoluteX="85dp" />
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="330dp" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/usernameField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Enter Username"
         android:inputType="textEmailAddress"
-        tools:layout_editor_absoluteY="275dp"
-        tools:layout_editor_absoluteX="85dp" />
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="275dp" />
 
 </android.support.constraint.ConstraintLayout>
