@@ -4,13 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="purdue.bowlingapp.DisplayMessageActivity">
+    tools:context="purdue.bowlingapp.LoginMessageActivity">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="123dp"
         android:layout_height="41dp"
-        android:text="Success!"
         android:textSize="30sp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"

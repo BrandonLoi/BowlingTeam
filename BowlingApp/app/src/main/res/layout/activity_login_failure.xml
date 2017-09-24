@@ -6,4 +6,21 @@
     android:layout_height="match_parent"
     tools:context="purdue.bowlingapp.LoginFailureActivity">
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="36sp"
+        tools:layout_editor_absoluteX="117dp"
+        tools:layout_editor_absoluteY="170dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="returnToLogin"
+        android:text="Back to Login"
+        tools:layout_editor_absoluteX="129dp"
+        tools:layout_editor_absoluteY="332dp" />
 </android.support.constraint.ConstraintLayout>
