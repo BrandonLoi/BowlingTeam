@@ -6,4 +6,12 @@
     android:layout_height="match_parent"
     tools:context="purdue.bowlingapp.DisplayMessageActivity">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="123dp"
+        android:layout_height="41dp"
+        android:text="Success!"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="131dp"
+        tools:layout_editor_absoluteY="235dp" />
 </android.support.constraint.ConstraintLayout>

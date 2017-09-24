@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void login(View view) {
         Intent intent = new Intent(this, DisplayMessageActivity.class);
-        EditText editText = (EditText) findViewById(R.id.editText);
+        EditText editText = (EditText) findViewById(R.id.usernameField);
         String message = editText.getText().toString();
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
