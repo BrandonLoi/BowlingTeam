@@ -12,6 +12,9 @@
         android:layout_height="41dp"
         android:text="Success!"
         android:textSize="30sp"
-        tools:layout_editor_absoluteX="131dp"
-        tools:layout_editor_absoluteY="235dp" />
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
