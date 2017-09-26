@@ -14,8 +14,8 @@ public class LoginFailureActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_failure);
         Intent intent = getIntent();
-        String message = intent.getStringExtra(MainActivity.FAILURE_MESSAGE);
-        TextView textView = (TextView) findViewById(R.id.textView);
+        String message = intent.getStringExtra(MainActivity.failure_message);
+        TextView textView = (TextView) findViewById(R.id.textView4);
         textView.setText(message);
     }
 

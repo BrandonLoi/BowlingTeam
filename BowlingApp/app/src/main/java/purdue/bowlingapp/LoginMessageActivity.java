@@ -14,8 +14,8 @@ public class LoginMessageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_message);
         Intent intent = getIntent();
-        String message = intent.getStringExtra(MainActivity.WELCOME_MESSAGE + " " + R.id.usernameField);
-        TextView textView = (TextView) findViewById(R.id.textView);
+        String message = intent.getStringExtra(MainActivity.welcome_message);
+        TextView textView = (TextView) findViewById(R.id.textView3);
         textView.setText(message);
     }
 }

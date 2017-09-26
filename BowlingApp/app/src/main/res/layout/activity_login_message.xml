@@ -7,13 +7,28 @@
     tools:context="purdue.bowlingapp.LoginMessageActivity">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="123dp"
-        android:layout_height="41dp"
-        android:textSize="30sp"
-        android:visibility="visible"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="Welcome"
+        android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.2"
+        android:layout_marginTop="8dp"
+        android:id="@+id/textView2" />
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="300dp"
+        android:text="temp"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.65"
+        android:layout_marginTop="8dp"
+        android:id="@+id/textView3" />
 </android.support.constraint.ConstraintLayout>

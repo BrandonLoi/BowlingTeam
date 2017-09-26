@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String WELCOME_MESSAGE = "Welcome";
-    public static final String FAILURE_MESSAGE = "Login Information is not valid.";
+    public static String welcome_message = "";
+    public static String failure_message = "Login Information is not valid";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,18 +16,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void login(View view) {
-        EditText editText = (EditText) findViewById(R.id.usernameField);
-        String password = "" + R.id.passwordField;  //TO DO: Need to do something to protect passwords at some point
-        /* Temporary Line **/ boolean sqlResult = password.length() % 2 == 0; //TO DO: Get login info from MySQL database
-        if(sqlResult) {
+        if(isValidPassword()) {
             Intent success = new Intent(this, LoginMessageActivity.class);
-            String message = WELCOME_MESSAGE + " " + editText.getText().toString();
+            EditText editText = (EditText) findViewById(R.id.usernameField);
+            String message = editText.getText().toString() + "!";
+            success.putExtra(welcome_message, message);
             startActivity(success);
         }
         else {
             Intent failure = new Intent(this, LoginFailureActivity.class);
-            String message = FAILURE_MESSAGE + "";
+            EditText editText = (EditText) findViewById(R.id.usernameField);
+            String message = failure_message + "!";
+            failure.putExtra(failure_message, message);
             startActivity(failure);
         }
+    }
+
+    public boolean isValidPassword() {
+        //TO DO: Determine if password is valid
+        return false;
     }
 }
