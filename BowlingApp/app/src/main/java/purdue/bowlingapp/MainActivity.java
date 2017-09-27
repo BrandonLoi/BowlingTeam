@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void login(View view) {
-        if(isValidPassword()) {
+        if(isValidLogin(true)) {
             Intent success = new Intent(this, LoginMessageActivity.class);
             EditText editText = (EditText) findViewById(R.id.usernameField);
             String message = editText.getText().toString() + "!";
@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public boolean isValidPassword() {
-        //TO DO: Determine if password is valid
-        return false;
+    public boolean isValidLogin(boolean bool) {
+        //TO DO: Determine if login credentials are valid
+        return bool;
     }
 }

@@ -16,9 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginMessageActivity"> </activity>
-        <activity android:name=".LoginFailureActivity"> </activity>
-        <activity android:name=".StatisticsActivity"> </activity>
+        <activity android:name=".LoginMessageActivity"></activity>
+        <activity android:name=".LoginFailureActivity"></activity>
+        <activity android:name=".StatisticsActivity"></activity>
+        <activity android:name=".Game"></activity>
     </application>
 
 </manifest>
