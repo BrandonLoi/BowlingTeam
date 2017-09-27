@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public boolean isValidLogin(boolean bool) {
+    public static boolean isValidLogin(boolean bool) {
         //TO DO: Determine if login credentials are valid
         return bool;
     }
