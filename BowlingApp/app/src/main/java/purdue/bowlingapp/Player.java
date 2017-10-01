@@ -19,6 +19,7 @@ public class Player {
         this.password = password;
         this.email = email;
     }
+    Player() {}
 
     public String getUsername() {
         return username;
