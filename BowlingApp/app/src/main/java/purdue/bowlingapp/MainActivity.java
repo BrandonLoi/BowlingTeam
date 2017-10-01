@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     public DatabaseReference mDatabase;
     public static String welcome_message = "";
     public static String failure_message = "Login Information is not valid";
+    public static String createFail_message = "Username already in use";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,6 +96,40 @@ public class MainActivity extends AppCompatActivity {
             startActivity(failure);
         }
         */
+    }
+
+    public void userCreate(View view) {
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        final EditText editText = (EditText) findViewById(R.id.usernameField);
+        final EditText editText2 = (EditText) findViewById(R.id.passwordField);
+        final EditText editText3 = (EditText) findViewById(R.id.emailField);
+
+        final String username = editText.getText().toString();
+        final String password = editText2.getText().toString();
+        final String email = editText3.getText().toString();
+
+        final DatabaseReference myRef = mDatabase.child("users");//.child(editText.toString());
+        ValueEventListener listen = new ValueEventListener() {
+
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChild(username)) {
+                    System.out.println(createFail_message); //Username used
+                }
+                else {
+                    myRef.child(username).child("username").setValue(username);
+                    myRef.child(username).child("password").setValue(password);
+                    myRef.child(username).child("email").setValue(email);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                //Required, but we don't use. Leave blank
+            }
+        };
+        myRef.addListenerForSingleValueEvent(listen);
     }
 
     public static boolean isValidLogin(boolean bool) {
