@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     public DatabaseReference mDatabase;
-    public static String welcome_message = "";
+    public static String welcome_message = "Welcome!";
     public static String failure_message = "Login Information is not valid";
     public static String createFail_message = "Username already in use";
     @Override
@@ -32,11 +32,8 @@ public class MainActivity extends AppCompatActivity {
         final String username = editText.getText().toString();
         final String password = editText2.getText().toString();
 
-        DatabaseReference myRef = mDatabase.child("users");//.child(editText.toString());
+        DatabaseReference myRef = mDatabase.child("users");
         ValueEventListener listen = new ValueEventListener() {
-
-
-
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.hasChild(username)) {
@@ -44,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
                     Player x = dataSnapshot.getValue(Player.class);
                     if (password.equals(x.getPassword())) {
                         System.out.println(welcome_message); //SUCCESSFUL LOGIN
+                        login(username);
+
                     }
                     else {
                         System.out.println(failure_message); //FAILED LOGIN
@@ -61,24 +60,6 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         myRef.addListenerForSingleValueEvent(listen);
-
-
-        /*
-        DatabaseReference myRef = database.getReference("user/" + editText.toString());
-        ValueEventListener userListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                User current = dataSnapshot.getValue(User.class);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                //Do we require something here?
-            }
-        };
-        myRef.addListenerForSingleValueEvent(userListener);
-         */
-
 
     /*
         if(isValidLogin(true)) {
@@ -110,8 +91,6 @@ public class MainActivity extends AppCompatActivity {
 
         final DatabaseReference myRef = mDatabase.child("users");//.child(editText.toString());
         ValueEventListener listen = new ValueEventListener() {
-
-
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.hasChild(username)) {
@@ -135,5 +114,21 @@ public class MainActivity extends AppCompatActivity {
     public static boolean isValidLogin(boolean bool) {
         //TO DO: Determine if login credentials are valid
         return bool;
+    }
+
+
+    public void login(String username) {
+        Intent success = new Intent(this, LoginMessageActivity.class);
+        String message = username + "!";
+        success.putExtra(welcome_message, message);
+        startActivity(success);
+    }
+
+    public void loginFail() {
+        Intent failure = new Intent(this, LoginFailureActivity.class);
+        EditText editText = (EditText) findViewById(R.id.usernameField);
+        String message = failure_message + "!";
+        failure.putExtra(failure_message, message);
+        startActivity(failure);
     }
 }
