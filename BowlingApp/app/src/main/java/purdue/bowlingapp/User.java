@@ -1,7 +1,7 @@
 package purdue.bowlingapp;
 import java.util.ArrayList;
 
-public class Player {
+public class User {
 
     private String username;
     private String password;
@@ -13,13 +13,13 @@ public class Player {
     private double avgSpares;
     // etc...
 
-    Player(String username, String password, String email) {
+    User(String username, String password, String email) {
         games = new ArrayList<>();
         this.username = username;
         this.password = password;
         this.email = email;
     }
-    Player() {}
+    User() {}
 
     public String getUsername() {
         return username;
@@ -50,7 +50,7 @@ public class Player {
     }
 
     /**
-     * Gets an array of the Player's average score, average strikes, average spares, etc.
+     * Gets an array of the User's average score, average strikes, average spares, etc.
      *
      * @return double[] containing an array of the player's statistics
      */

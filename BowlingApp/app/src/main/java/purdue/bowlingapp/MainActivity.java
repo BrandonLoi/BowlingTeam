@@ -12,8 +12,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-
 public class MainActivity extends AppCompatActivity {
     public DatabaseReference mDatabase;
     public static String welcome_message = "Welcome!";
@@ -38,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.hasChild(username)) {
                     dataSnapshot = dataSnapshot.child(username);
-                    Player x = dataSnapshot.getValue(Player.class);
+                    User x = dataSnapshot.getValue(User.class);
                     if (password.equals(x.getPassword())) {
                         System.out.println(welcome_message); //SUCCESSFUL LOGIN
                         login(username);
@@ -46,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else {
                         System.out.println(failure_message); //FAILED LOGIN
+                        loginFail();
                     }
 
                 }
