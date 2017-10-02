@@ -24,6 +24,7 @@ public class LoginMessageActivity extends AppCompatActivity {
         TextView textView = (TextView) findViewById(R.id.textView3);
         textView.setText(message);
         username = textView.getText().toString();
+        username = " " + username.substring(0,username.length()-1);
 
         button = (Button) findViewById(R.id.continueButton);
 
@@ -31,6 +32,7 @@ public class LoginMessageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent statAct = new Intent(LoginMessageActivity.this, StatisticsActivity.class);
+                statAct.putExtra(MainActivity.welcome_message, username);
                 startActivity(statAct);
             }
         });

@@ -17,37 +17,37 @@
             android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="60sp"
-            android:text="TITLE"/>
+            android:text=" TITLE"/>
 
         <TextView
             android:id="@+id/tv_strikePercent"
             android:layout_width="match_parent"
             android:layout_height="60sp"
-            android:text="STRIKE PERCENT"/>
+            android:text=" STRIKE PERCENT"/>
 
         <TextView
             android:id="@+id/tv_singlePinPercent"
             android:layout_width="match_parent"
             android:layout_height="60sp"
-            android:text="SINGLE PIN PERCENT"/>
+            android:text=" SINGLE PIN PERCENT"/>
 
         <TextView
             android:id="@+id/tv_makeablePercent"
             android:layout_width="match_parent"
             android:layout_height="60sp"
-            android:text="MAKEABLE PERCENT"/>
+            android:text=" MAKEABLE PERCENT"/>
 
         <TextView
             android:id="@+id/tv_splitLeave"
             android:layout_width="match_parent"
             android:layout_height="60sp"
-            android:text="SPLIT LEAVE"/>
+            android:text=" SPLIT LEAVE"/>
 
         <TextView
             android:id="@+id/tv_filledFrame"
             android:layout_width="match_parent"
             android:layout_height="60sp"
-            android:text="FILLED FRAME"/>
+            android:text=" FILLED FRAME"/>
         
     </LinearLayout>
 
