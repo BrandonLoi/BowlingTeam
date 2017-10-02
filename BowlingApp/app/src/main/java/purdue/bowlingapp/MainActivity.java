@@ -29,12 +29,12 @@ public class MainActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         final EditText editText = (EditText) findViewById(R.id.usernameField);
         final EditText editText2 = (EditText) findViewById(R.id.passwordField);
-
         final String username = editText.getText().toString();
         final String password = editText2.getText().toString();
 
         DatabaseReference myRef = mDatabase.child("users");
         ValueEventListener listen = new ValueEventListener() {
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.hasChild(username)) {
@@ -43,42 +43,19 @@ public class MainActivity extends AppCompatActivity {
                     if (password.equals(x.getPassword())) {
                         System.out.println(welcome_message); //SUCCESSFUL LOGIN
                         login(username);
-
                     }
                     else {
                         System.out.println(failure_message); //FAILED LOGIN
                         loginFail();
                     }
-
                 }
-                else {
-                    System.out.println(failure_message); //FAILED LOGIN
-                }
+                else System.out.println(failure_message); //FAILED LOGIN
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-                //Required, but we don't use. Leave blank
-            }
+            public void onCancelled(DatabaseError databaseError) {/*Leave blank*/}
         };
         myRef.addListenerForSingleValueEvent(listen);
-
-    /*
-        if(isValidLogin(true)) {
-            Intent success = new Intent(this, LoginMessageActivity.class);
-            EditText editText = (EditText) findViewById(R.id.usernameField);
-            String message = editText.getText().toString() + "!";
-            success.putExtra(welcome_message, message);
-            startActivity(success);
-        }
-        else {
-            Intent failure = new Intent(this, LoginFailureActivity.class);
-            EditText editText = (EditText) findViewById(R.id.usernameField);
-            String message = failure_message + "!";
-            failure.putExtra(failure_message, message);
-            startActivity(failure);
-        }
-        */
     }
 
     public void userCreate(View view) {
@@ -91,13 +68,12 @@ public class MainActivity extends AppCompatActivity {
         final String password = editText2.getText().toString();
         final String email = editText3.getText().toString();
 
-        final DatabaseReference myRef = mDatabase.child("users");//.child(editText.toString());
+        final DatabaseReference myRef = mDatabase.child("users");
         ValueEventListener listen = new ValueEventListener() {
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.hasChild(username)) {
-                    System.out.println(createFail_message); //Username used
-                }
+                if (dataSnapshot.hasChild(username)) System.out.println(createFail_message); //Username used
                 else {
                     myRef.child(username).child("username").setValue(username);
                     myRef.child(username).child("password").setValue(password);
@@ -107,9 +83,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-                //Required, but we don't use. Leave blank
-            }
+            public void onCancelled(DatabaseError databaseError) {/*Leave blank*/}
         };
         myRef.addListenerForSingleValueEvent(listen);
     }
@@ -133,6 +107,5 @@ public class MainActivity extends AppCompatActivity {
         String message = username;
         success.putExtra(create_Success, message);
         startActivity(success);
-
     }
 }
