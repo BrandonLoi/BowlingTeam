@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
     public void login(View view) {
+        clearError();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         final EditText editText = (EditText) findViewById(R.id.usernameField);
         final EditText editText2 = (EditText) findViewById(R.id.passwordField);
@@ -80,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void userCreate(View view) {
+        clearError();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         final EditText editText = (EditText) findViewById(R.id.usernameField);
         final EditText editText2 = (EditText) findViewById(R.id.passwordField);
@@ -94,9 +97,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.hasChild(username)) {
-                    System.out.println(createFail_message); //Username used
+                    System.out.println(createFail_message); //CREATE FAILURE
+                    createFail(username);
                 }
                 else {
+                    //CREATE SUCCESS
                     myRef.child(username).child("username").setValue(username);
                     myRef.child(username).child("password").setValue(password);
                     myRef.child(username).child("email").setValue(email);
@@ -132,5 +137,14 @@ public class MainActivity extends AppCompatActivity {
         success.putExtra(createSuccess, message);
         startActivity(success);
 
+    }
+
+    public void createFail(String username) {
+        TextView textView = (TextView) findViewById(R.id.errorMessage);
+        textView.setText("Error: User already exists.");
+    }
+    public void clearError() {
+        TextView textView = (TextView) findViewById(R.id.errorMessage);
+        textView.setText("");
     }
 }
