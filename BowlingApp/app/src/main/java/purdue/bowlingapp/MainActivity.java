@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else {
                     System.out.println(failure_message); //FAILED LOGIN
+                    loginFail();
                 }
             }
 
