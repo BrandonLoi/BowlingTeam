@@ -19,19 +19,20 @@ public class Game {
     }
 
     private int setScore() {
-        Frame lastFrame = frames.get(0);
-        int score = lastFrame.getBothThrows();
-        for(int i = 1; i < frames.size(); i++) {
-            score += frames.get(i).getBothThrows();
-            if (lastFrame.getBothThrows() == 10) {
-                if (lastFrame.getFirstThrow() == 10) {
-                    score += frames.get(i).getBothThrows();
-                }
-                else {
-                    score += frames.get(i).getFirstThrow();
-                }
+        int score = 0;
+        for(int i = 0; i < frames.size() - 1; i++) {
+            int frameScore = frames.get(i).getBothThrows();
+            if(frameScore == 10) {
+                frameScore += frames.get(i+1).getFirstThrow();
             }
+            else if (frameScore == 11) {
+                int nextFrame = frames.get(i+1).getBothThrows();
+                if(nextFrame == 11 && i < 8) frameScore += nextFrame + frames.get(i+2).getFirstThrow() - 2;
+                else frameScore += nextFrame - 1;
+            }
+            else if (frameScore == -1) return -1;
         }
+        //TO DO: Add tenth frame to this
         return score;
     }
 
@@ -40,25 +41,7 @@ public class Game {
     }
 
     public static void main(String[] args) {
-        ArrayList<Frame> frames = new ArrayList<Frame>();
-        Frame frame = new Frame(10 , 0);
-        Frame frame2 = new Frame(9 , 1);
-        frames.add(frame);
-        frames.add(frame2);
-        frames.add(frame);
-        frames.add(frame2);
-        frames.add(frame);
-        frames.add(new Frame(8 , 0));
-        frames.add(frame);
-        frames.add(frame2);
-        frames.add(frame);
-        frames.add(frame2);
-        frames.add(frame);
-        frames.add(frame2);
 
-        Game game = new Game(frames);
-
-        System.out.println(game.getScore());
     }
 
 
