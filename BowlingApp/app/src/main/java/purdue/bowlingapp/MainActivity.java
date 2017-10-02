@@ -19,12 +19,17 @@ public class MainActivity extends AppCompatActivity {
     public static String failure_message = "Login Information is not valid";
     public static String createSuccess = "User created";
     public static String createFail_message = "Username already in use";
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
     public void login(View view) {
+        final boolean[] loginSuccess = {false};
         clearError();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         final EditText editText = (EditText) findViewById(R.id.usernameField);
@@ -42,18 +47,17 @@ public class MainActivity extends AppCompatActivity {
                     User x = dataSnapshot.getValue(User.class);
                     if (password.equals(x.getPassword())) {
                         System.out.println(welcome_message); //SUCCESSFUL LOGIN
-                        login(username);
+                        loginSuccess[0] = true;
 
                     }
                     else {
                         System.out.println(failure_message); //FAILED LOGIN
-                        loginFail();
+                        loginSuccess[0] = false;
                     }
-
                 }
                 else {
                     System.out.println(failure_message); //FAILED LOGIN
-                    loginFail();
+                    loginSuccess[0] = false;
                 }
             }
 
@@ -63,23 +67,12 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         myRef.addListenerForSingleValueEvent(listen);
-
-    /*
-        if(isValidLogin(true)) {
-            Intent success = new Intent(this, LoginMessageActivity.class);
-            EditText editText = (EditText) findViewById(R.id.usernameField);
-            String message = editText.getText().toString() + "!";
-            success.putExtra(welcome_message, message);
-            startActivity(success);
+        if (loginSuccess[0] = true) {
+            login(username);
         }
         else {
-            Intent failure = new Intent(this, LoginFailureActivity.class);
-            EditText editText = (EditText) findViewById(R.id.usernameField);
-            String message = failure_message + "!";
-            failure.putExtra(failure_message, message);
-            startActivity(failure);
+            loginFail();
         }
-        */
     }
 
     public void userCreate(View view) {

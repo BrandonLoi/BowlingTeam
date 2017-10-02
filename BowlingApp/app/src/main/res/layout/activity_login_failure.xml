@@ -12,8 +12,6 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textSize="36sp"
-        tools:layout_editor_absoluteX="117dp"
-        tools:layout_editor_absoluteY="170dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -26,11 +24,20 @@
         android:layout_height="wrap_content"
         android:onClick="returnToLogin"
         android:text="Back to Login"
-        tools:layout_editor_absoluteX="129dp"
-        tools:layout_editor_absoluteY="332dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/coachButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Button"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@+id/button2"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

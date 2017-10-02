@@ -8,10 +8,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class LoginMessageActivity extends AppCompatActivity {
 
+    boolean isCoach = false;
     String username;
     Button button;
+    Button button2;
 
 
 
@@ -27,6 +35,24 @@ public class LoginMessageActivity extends AppCompatActivity {
         username = " " + username.substring(0,username.length()-1);
 
         button = (Button) findViewById(R.id.continueButton);
+        button2 = (Button) findViewById(R.id.coachButton);
+
+
+
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("coaches");
+        ValueEventListener listen = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //TODO: find if user is coach, set visible to button
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+        mDatabase.addListenerForSingleValueEvent(listen);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
