@@ -16,10 +16,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginMessageActivity"></activity>
-        <activity android:name=".LoginFailureActivity"></activity>
-        <activity android:name=".StatisticsActivity"></activity>
-        <activity android:name=".Game"></activity>
+        <activity android:name=".LoginMessageActivity" />
+        <activity android:name=".LoginFailureActivity" />
+        <activity android:name=".StatisticsActivity" />
+        <activity android:name=".Game" />
+        <activity
+            android:name=".createAccountSuccess"
+            android:label="@string/title_activity_create_account"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".createAccountFailure"
+            android:label="@string/title_activity_create_account_failure"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

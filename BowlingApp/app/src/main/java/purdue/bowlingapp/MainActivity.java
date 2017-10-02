@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     public DatabaseReference mDatabase;
     public static String welcome_message = "Welcome!";
     public static String failure_message = "Login Information is not valid";
+    public static String createSuccess = "User created";
     public static String createFail_message = "Username already in use";
 
     @Override
@@ -101,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
                     myRef.child(username).child("username").setValue(username);
                     myRef.child(username).child("password").setValue(password);
                     myRef.child(username).child("email").setValue(email);
+                    create(username);
                 }
             }
 
@@ -112,12 +114,6 @@ public class MainActivity extends AppCompatActivity {
         myRef.addListenerForSingleValueEvent(listen);
     }
 
-    public static boolean isValidLogin(boolean bool) {
-        //TO DO: Determine if login credentials are valid
-        return bool;
-    }
-
-
     public void login(String username) {
         Intent success = new Intent(this, LoginMessageActivity.class);
         String message = username + "!";
@@ -127,9 +123,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void loginFail() {
         Intent failure = new Intent(this, LoginFailureActivity.class);
-        EditText editText = (EditText) findViewById(R.id.usernameField);
         String message = failure_message + "!";
         failure.putExtra(failure_message, message);
         startActivity(failure);
+    }
+
+    public void create(String username) {
+        Intent success = new Intent(this, createAccountSuccess.class);
+        String message = username;
+        success.putExtra(createSuccess, message);
+        startActivity(success);
+
     }
 }
