@@ -1,25 +1,30 @@
 package purdue.bowlingapp;
 
 /**
- * Created by Jimmy on 9/27/2017.
+ * Created by Aaron on 10/2/2017.
  */
 
-public class Frame {
+public class TenthFrame {
 
     private char firstThrow;
     private char secondThrow;
+    private char thirdThrow;
 
-
-    public Frame(char firstThrow, char secondThrow) {
+    public TenthFrame(char firstThrow, char secondThrow) {
         char first = validateInput(firstThrow);
         char second = validateInput(secondThrow);
         this.firstThrow = (first != ' ' && first != '/') ? firstThrow : ' ';
-        this.secondThrow = (second != ' ' && second != 'X') ? secondThrow : ' ';
+        this.secondThrow = second;
     }
 
-    //TO DO: Add logic somewhere that prevents bad inputs that add to over ten i.e. firstThrow = 8, secondThrow = 4
-    //TO DO: Add tenth frame fill ball support
-    //TO DO: Add support for fouls
+    public TenthFrame(char firstThrow, char secondThrow, char thirdThrow) {
+        char first = validateInput(firstThrow);
+        char second = validateInput(secondThrow);
+        char third = validateInput(thirdThrow);
+        this.firstThrow = (first != ' ' && first != '/') ? firstThrow : ' ';
+        this.secondThrow = second;
+        this.thirdThrow = third;
+    }
 
     private char validateInput(char input) {
         switch (input) {
@@ -53,11 +58,18 @@ public class Frame {
         return -1; //Error Handling, MAY NEED TO CHANGE
     }
 
-    //Called when last frame was a strike
-    public int getBothThrows() {
-        if(this.firstThrow == 'X') return 11; //For double strike case, handled in Game class
-        else if(this.secondThrow == '/') return 10;
-        else if(this.firstThrow == ' ' || this.secondThrow == ' ') return -1; //Error Handling, MAY NEED TO CHANGE
-        else return this.firstThrow + this.secondThrow - 96;
+    public int getSecondThrow() {
+        if(this.secondThrow > 47 && this.secondThrow < 58) return this.secondThrow - 48;
+        else if(this.secondThrow == 'X') return 10;
+        else if (this.secondThrow == '/') return 11;
+        return -1; //Error Handling, MAY NEED TO CHANGE
     }
+    public int getThirdThrow() {
+        if(this.thirdThrow > 47 && this.thirdThrow < 58) return this.thirdThrow - 48;
+        else if(this.thirdThrow == 'X') return 10;
+        else if (this.thirdThrow == '/') return 11;
+        return -1; //Error Handling, MAY NEED TO CHANGE
+    }
+
+
 }
