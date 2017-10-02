@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     public DatabaseReference mDatabase;
     public static String welcome_message = "Welcome!";
     public static String failure_message = "Login Information is not valid";
-    public static String createSuccess = "User created";
+    public static String create_Success = "User created";
     public static String createFail_message = "Username already in use";
 
     @Override
@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
     public void create(String username) {
         Intent success = new Intent(this, createAccountSuccess.class);
         String message = username;
-        success.putExtra(createSuccess, message);
+        success.putExtra(create_Success, message);
         startActivity(success);
 
     }
