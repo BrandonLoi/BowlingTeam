@@ -17,11 +17,13 @@ public class MainActivity extends AppCompatActivity {
     public static String welcome_message = "Welcome!";
     public static String failure_message = "Login Information is not valid";
     public static String createFail_message = "Username already in use";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+
     public void login(View view) {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         final EditText editText = (EditText) findViewById(R.id.usernameField);
