@@ -110,12 +110,6 @@ public class MainActivity extends AppCompatActivity {
         myRef.addListenerForSingleValueEvent(listen);
     }
 
-    public static boolean isValidLogin(boolean bool) {
-        //TO DO: Determine if login credentials are valid
-        return bool;
-    }
-
-
     public void login(String username) {
         Intent success = new Intent(this, LoginMessageActivity.class);
         String message = username + "!";
