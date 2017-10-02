@@ -16,7 +16,7 @@ public class createAccountSuccess extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_create_account);
         Intent intent = getIntent();
-        String message = intent.getStringExtra(MainActivity.create_Success);
+        String message = intent.getStringExtra(MainActivity.createSuccess);
         TextView textView = (TextView) findViewById(R.id.createMessage);
         textView.setText(message + "was created!");
     }
