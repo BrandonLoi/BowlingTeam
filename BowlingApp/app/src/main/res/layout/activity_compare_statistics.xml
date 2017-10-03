@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/averageScore"
+        android:layout_width="112dp"
+        android:layout_height="33dp"
+        android:text="Average Score:"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="49dp" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="112dp"
+        android:layout_height="33dp"
+        android:text="Average Score:"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="49dp" />
+
+    <TextView
+        android:id="@+id/averageStrikes"
+        android:layout_width="112dp"
+        android:layout_height="33dp"
+        android:text="Average Strikes:"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="115dp" />
+
+    <TextView
+        android:id="@+id/averageSpares"
+        android:layout_width="112dp"
+        android:layout_height="33dp"
+        android:text="Average Spares:"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="148dp" />
+
+    <TextView
+        android:id="@+id/bestScore"
+        android:layout_width="112dp"
+        android:layout_height="33dp"
+        android:text="Best Score:"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="82dp" />
+
+    <TextView
+        android:id="@+id/currAverageScore"
+        android:layout_width="120dp"
+        android:layout_height="33dp"
+        android:text="temp"
+        tools:layout_editor_absoluteX="128dp"
+        tools:layout_editor_absoluteY="49dp" />
+
+    <TextView
+        android:id="@+id/currBestScore"
+        android:layout_width="120dp"
+        android:layout_height="33dp"
+        android:text="temp"
+        tools:layout_editor_absoluteX="128dp"
+        tools:layout_editor_absoluteY="82dp" />
+
+    <TextView
+        android:id="@+id/currAverageStrikes"
+        android:layout_width="120dp"
+        android:layout_height="33dp"
+        android:text="temp"
+        tools:layout_editor_absoluteX="128dp"
+        tools:layout_editor_absoluteY="115dp" />
+
+    <TextView
+        android:id="@+id/currAverageSpares"
+        android:layout_width="120dp"
+        android:layout_height="33dp"
+        android:text="temp"
+        tools:layout_editor_absoluteX="128dp"
+        tools:layout_editor_absoluteY="148dp" />
+
+    <TextView
+        android:id="@+id/compAverageSpares"
+        android:layout_width="120dp"
+        android:layout_height="33dp"
+        android:text="temp"
+        tools:layout_editor_absoluteX="248dp"
+        tools:layout_editor_absoluteY="148dp" />
+
+    <TextView
+        android:id="@+id/compAverageScore"
+        android:layout_width="120dp"
+        android:layout_height="33dp"
+        android:text="temp"
+        tools:layout_editor_absoluteX="248dp"
+        tools:layout_editor_absoluteY="49dp" />
+
+    <TextView
+        android:id="@+id/compBestScore"
+        android:layout_width="120dp"
+        android:layout_height="33dp"
+        android:text="temp"
+        tools:layout_editor_absoluteX="248dp"
+        tools:layout_editor_absoluteY="82dp" />
+
+    <TextView
+        android:id="@+id/compAverageStrikes"
+        android:layout_width="120dp"
+        android:layout_height="33dp"
+        android:text="temp"
+        tools:layout_editor_absoluteX="248dp"
+        tools:layout_editor_absoluteY="115dp" />
+
+    <TextView
+        android:id="@+id/currUsername"
+        android:layout_width="120dp"
+        android:layout_height="33dp"
+        android:text="currentUsername"
+        tools:layout_editor_absoluteX="128dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/compUsername"
+        android:layout_width="120dp"
+        android:layout_height="33dp"
+        android:text="comparingUsername"
+        tools:layout_editor_absoluteX="248dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+</android.support.constraint.ConstraintLayout>
