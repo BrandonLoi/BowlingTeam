@@ -12,24 +12,34 @@
         android:layout_width="92dp"
         android:layout_height="24dp"
         android:text="Email:"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="176dp" />
+        app:layout_constraintRight_toLeftOf="@+id/inputEmail"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/usernameButton"
+        app:layout_constraintTop_toBottomOf="@+id/usernameText"
+        app:layout_constraintHorizontal_bias="1.0" />
 
     <TextView
         android:id="@+id/lookupPlayerText"
         android:layout_width="368dp"
         android:layout_height="53dp"
         android:text="Lookup Player"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.117" />
 
     <TextView
         android:id="@+id/usernameText"
         android:layout_width="92dp"
         android:layout_height="24dp"
         android:text="Username:"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="112dp" />
+        app:layout_constraintRight_toLeftOf="@+id/inputUsername"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintBottom_toTopOf="@+id/emailText"
+        app:layout_constraintTop_toBottomOf="@+id/lookupPlayerText"
+        app:layout_constraintVertical_bias="0.433" />
 
     <EditText
         android:id="@+id/inputUsername"
@@ -38,8 +48,11 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
-        tools:layout_editor_absoluteX="128dp"
-        tools:layout_editor_absoluteY="112dp" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/usernameText"
+        app:layout_constraintBottom_toTopOf="@+id/inputEmail"
+        app:layout_constraintTop_toBottomOf="@+id/lookupPlayerText"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/inputEmail"
@@ -48,22 +61,29 @@
         android:ems="10"
         android:inputType="textEmailAddress"
         android:text="Email"
-        tools:layout_editor_absoluteX="128dp"
-        tools:layout_editor_absoluteY="176dp" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/emailText"
+        app:layout_constraintBottom_toTopOf="@+id/usernameButton"
+        app:layout_constraintTop_toBottomOf="@+id/inputUsername" />
 
     <Button
         android:id="@+id/usernameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Search By Username"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="282dp" />
+        app:layout_constraintRight_toLeftOf="@+id/emailButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputEmail"
+        app:layout_constraintHorizontal_bias="1.0" />
 
     <Button
         android:id="@+id/emailButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Search by Email"
-        tools:layout_editor_absoluteX="225dp"
-        tools:layout_editor_absoluteY="282dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputEmail"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/usernameButton" />
 </android.support.constraint.ConstraintLayout>
