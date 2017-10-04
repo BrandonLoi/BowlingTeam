@@ -21,6 +21,8 @@ public class LoginMessageActivity extends AppCompatActivity {
     Button button;
     Button button2;
 
+    Button compareStatsButton;
+
 
 
     @Override
@@ -37,7 +39,7 @@ public class LoginMessageActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.continueButton);
         button2 = (Button) findViewById(R.id.coachButton);
 
-
+        compareStatsButton = (Button) findViewById(R.id.compareStatsButton);
 
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("coaches");
         ValueEventListener listen = new ValueEventListener() {
@@ -60,6 +62,16 @@ public class LoginMessageActivity extends AppCompatActivity {
                 Intent statAct = new Intent(LoginMessageActivity.this, StatisticsActivity.class);
                 statAct.putExtra(MainActivity.welcome_message, username);
                 startActivity(statAct);
+            }
+        });
+
+        compareStatsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent compareStatisticsLookupActivity = new Intent(LoginMessageActivity.this,
+                        CompareStatisticsLookupActivity.class);
+                compareStatisticsLookupActivity.putExtra(MainActivity.welcome_message, username);
+                startActivity(compareStatisticsLookupActivity);
             }
         });
 
