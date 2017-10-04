@@ -7,14 +7,9 @@ public class User {
     private String password;
     private String email;
 
-    private ArrayList<Game> games;
-    private double avgScore;
-    private double avgStrikes;
-    private double avgSpares;
     // etc...
 
     User(String username, String password, String email) {
-        games = new ArrayList<>();
         this.username = username;
         this.password = password;
         this.email = email;
@@ -55,23 +50,9 @@ public class User {
      * @return double[] containing an array of the player's statistics
      */
 
-    public int addGame(Game game) {
-        if (games.add(game)) {
-            return 1;
-        }
-        return 0;
-    }
-
-    public Game getGame(int index) {
-        return games.get(index);
-    }
-
     public int editGame() {
         return 0;
     }
 
-    // TODO: create array of player's stats, with each index being a specific stat, and return
-    public double[] getSelfStats() {
-        return null;
-    }
+
 }

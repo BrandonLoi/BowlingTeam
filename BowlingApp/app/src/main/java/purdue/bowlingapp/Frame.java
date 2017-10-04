@@ -15,6 +15,7 @@ public class Frame {
         char second = validateInput(secondThrow);
         this.firstThrow = (first != ' ' && first != '/') ? firstThrow : ' ';
         this.secondThrow = (second != ' ' && second != 'X') ? secondThrow : ' ';
+        if(this.firstThrow == 'X' && this.secondThrow == '/') this.secondThrow = ' ';
     }
 
     //TO DO: Add logic somewhere that prevents bad inputs that add to over ten i.e. firstThrow = 8, secondThrow = 4

@@ -20,6 +20,17 @@ public class Game {
         this.score = setScore();
     }
 
+    public Frame getFrame(int index) {
+        if (index >= 0 && index < 9) {
+            return frames.get(index);
+        }
+        return null;
+    }
+
+    public TenthFrame getTenth() {
+        return this.tenth;
+    }
+
     private int setScore() {
         int score = 0;
         for(int i = 0; i < frames.size(); i++) {
@@ -70,16 +81,16 @@ public class Game {
     }
 
     public static void main(String[] args) {
-        Frame f1 = new Frame('X','6');
-        Frame f2 = new Frame('X','6');
-        Frame f3 = new Frame('X','6');
-        Frame f4 = new Frame('X','6');
-        Frame f5 = new Frame('X','6');
-        Frame f6 = new Frame('X','6');
-        Frame f7 = new Frame('X','6');
-        Frame f8 = new Frame('X','6');
-        Frame f9 = new Frame('X','6');
-        TenthFrame t1 = new TenthFrame('X','X','X');
+        Frame f1 = new Frame('0','7');
+        Frame f2 = new Frame('0','9');
+        Frame f3 = new Frame('7','2');
+        Frame f4 = new Frame('9','0');
+        Frame f5 = new Frame('0','8');
+        Frame f6 = new Frame('X',' ');
+        Frame f7 = new Frame('8','1');
+        Frame f8 = new Frame('7','/');
+        Frame f9 = new Frame('8','/');
+        TenthFrame t1 = new TenthFrame('X','7','1');
 
         ArrayList<Frame> frames = new ArrayList<>();
         frames.add(f1);
