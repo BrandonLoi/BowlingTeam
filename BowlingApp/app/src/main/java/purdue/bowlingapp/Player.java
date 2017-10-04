@@ -24,7 +24,7 @@ public class Player extends User {
         getPercents();
     }
 
-    public int addGame(Game game) {
+    public int addGame(Game game) { //TO DO: Adjust statistics when adding additional games
         if (games.add(game)) {
             return 1;
         }
