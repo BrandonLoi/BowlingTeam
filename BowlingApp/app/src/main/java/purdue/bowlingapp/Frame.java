@@ -8,6 +8,8 @@ public class Frame {
 
     private char firstThrow;
     private char secondThrow;
+    private boolean makeable;
+    private boolean pocket;
 
 
     public Frame(char firstThrow, char secondThrow) {
@@ -15,7 +17,7 @@ public class Frame {
         char second = validateInput(secondThrow);
         this.firstThrow = (first != ' ' && first != '/') ? firstThrow : ' ';
         this.secondThrow = (second != ' ' && second != 'X') ? secondThrow : ' ';
-        if(this.firstThrow == 'X' && this.secondThrow == '/') this.secondThrow = ' ';
+        if(this.firstThrow == 'X') this.secondThrow = ' ';
     }
 
     //TO DO: Add logic somewhere that prevents bad inputs that add to over ten i.e. firstThrow = 8, secondThrow = 4
