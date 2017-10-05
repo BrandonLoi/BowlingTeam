@@ -14,11 +14,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 public class CoachChangeStatsActivity extends AppCompatActivity {
 
     final String NOT_AVAILABLE = "N/A";
 
     TextView usernameText;
+    TextView errorText;
 
     Button saveChangesButton;
 
@@ -36,6 +39,7 @@ public class CoachChangeStatsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coach_change_stats);
 
+
         saveChangesButton = (Button) findViewById(R.id.saveChangesButton);
 
         usernameText = (TextView) findViewById(R.id.usernameText);
@@ -46,6 +50,8 @@ public class CoachChangeStatsActivity extends AppCompatActivity {
         strikePc = (EditText) findViewById(R.id.strikePercentage);
         sparePc = (EditText) findViewById(R.id.sparePercentage);
         filledPc = (EditText) findViewById(R.id.filledPercentage);
+        errorText = (TextView) findViewById(R.id.errorMessage);
+
         // etc.
 
         Intent intent = getIntent();
@@ -166,10 +172,101 @@ public class CoachChangeStatsActivity extends AppCompatActivity {
                         databaseError.getCode());
             }
         });
+        final DatabaseReference finalDataRef = dataRef;
         saveChangesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: Save statistics to database
+                errorText.setText("");
+                //N/A -> -1
+                //make sure everything is a number 0> if a number < 1 if a percent
+                boolean flag = true;
+                try {
+                    if (Integer.parseInt(averageScore.getText().toString()) < 0) {
+                        flag = false;
+                    }
+                    } catch (NumberFormatException e) {
+                    if (averageScore.getText().toString().equals("N/A")) {
+                        averageScore.setText("-1");
+                    }
+                    else flag = false;
+                }
+                try {
+                    if (Integer.parseInt(highScore.getText().toString()) < 0) {
+                        flag = false;
+                    }
+                } catch (NumberFormatException e) {
+                    if ((highScore.getText().toString()).equals("N/A")) {
+                        highScore.setText("-1");
+                    }
+                    else {
+                        flag = false;
+                    }
+                }
+                try {
+                    if (Integer.parseInt(numGames.getText().toString()) < 0) {
+                        flag = false;
+                    }
+                } catch (NumberFormatException e) {
+                    if (numGames.getText().toString().equals(NOT_AVAILABLE)) {
+                        numGames.setText("-1");
+                    }
+                    else flag = false;
+                }
+                //make sure everything is a number 0> if a number < 1 if a percent
+
+                try {
+                    if (Double.parseDouble(strikePc.getText().toString().substring(0, strikePc.getText().toString().length() - 1))/100 < 0 || Double.parseDouble(strikePc.getText().toString().substring(0, strikePc.getText().toString().length() - 1))/100 > 1 ) {
+                        flag = false;
+                    }
+                } catch (NumberFormatException e) {
+                    if (strikePc.getText().toString().equals(NOT_AVAILABLE)) {
+                        strikePc.setText("-1");
+                    }
+                    else flag = false;
+                }
+                try {
+                    if (Double.parseDouble(sparePc.getText().toString().substring(0, sparePc.getText().toString().length() - 1))/100 < 0 || Double.parseDouble(sparePc.getText().toString().substring(0, sparePc.getText().toString().length() - 1))/100 > 1 ) {
+                        flag = false;
+                    }
+                } catch (NumberFormatException e) {
+                    if (sparePc.getText().toString().equals(NOT_AVAILABLE)) {
+                        sparePc.setText("-1");
+                    }
+                    else flag = false;
+                }
+                try {
+                    if (Double.parseDouble(singlePinPc.getText().toString().substring(0, singlePinPc.getText().toString().length() - 1))/100 < 0 || Double.parseDouble((singlePinPc.getText().toString().substring(0, singlePinPc.getText().toString().length() - 1)))/100 > 1 )
+                    {
+                        flag = false;
+                    }
+                } catch (NumberFormatException e) {
+                    if (singlePinPc.getText().toString().equals(NOT_AVAILABLE)) {
+                        singlePinPc.setText("-1");
+                    }
+                    else flag = false;
+                }
+                try {
+                    if (Double.parseDouble(filledPc.getText().toString().substring(0, filledPc.getText().toString().length() - 1))/100 < 0 || Double.parseDouble(filledPc.getText().toString().substring(0, filledPc.getText().toString().length() - 1))/100 > 1 ) {
+                        flag = false;
+                    }
+                } catch (NumberFormatException e) {
+                    if (filledPc.getText().toString().equals(NOT_AVAILABLE)) {
+                        filledPc.setText("-1");
+                    }
+                    else flag = false;
+                }
+                if (flag) {
+                    finalDataRef.child("avgScore").setValue(averageScore.getText().toString());
+                    finalDataRef.child("highScore").setValue(highScore.getText().toString());
+                    finalDataRef.child("numGames").setValue(numGames.getText().toString());
+                    finalDataRef.child("strikePercentage").setValue(strikePc.getText().toString());
+                    finalDataRef.child("sparePercentage").setValue(sparePc.getText().toString());
+                    finalDataRef.child("singlePinPercentage").setValue(singlePinPc.getText().toString());
+                    finalDataRef.child("filledPercentage").setValue(filledPc.getText().toString());
+                }
+                else {
+                    errorText.setText("Error");
+                }
             }
         });
     }

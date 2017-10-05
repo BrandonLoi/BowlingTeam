@@ -37,7 +37,6 @@ public class LoginMessageActivity extends AppCompatActivity {
         username = "" + username.substring(0, username.length() - 1);
 
         button = (Button) findViewById(R.id.continueButton);
-        button2 = (Button) findViewById(R.id.coachButton);
         editPlayerStats = (Button) findViewById(R.id.editPlayerStats);
 
         compareStatsButton = (Button) findViewById(R.id.compareStatsButton);
@@ -50,6 +49,27 @@ public class LoginMessageActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(LoginMessageActivity.this,
+                        StatisticsActivity.class);
+                i.putExtra("username", username);
+                startActivity(i);
+            }
+        });
+
+        compareStatsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(LoginMessageActivity.this,
+                        CompareStatisticsLookupActivity.class);
+                i.putExtra("username", username);
+                startActivity(i);
+            }
+        });
+
+
         editPlayerStats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
