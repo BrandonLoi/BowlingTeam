@@ -19,6 +19,18 @@ public class Player extends User {
     private double sparePc;
     private double filledPc;
 
+    //Helper Variables
+    private int totalScore;
+    private int numFilled;
+    private int totalFrames;
+    private int numStrikes;
+    private int totalFirstBalls;
+    private int singlePinsMade;
+    private int totalSinglePins;
+    private int numSpares;
+    private int numNonStrikes;
+
+
     public Player(String username, String password, String email, ArrayList<Game> games){
         super(username, password, email);
         this.games = games;
@@ -27,6 +39,111 @@ public class Player extends User {
 
     public int addGame(Game game) { //TO DO: Adjust statistics when adding additional games
         if (games.add(game)) {
+            this.numGames++;
+            int totalScore = 0;
+            //For filled percentage
+            int numFilled = 0;
+            int totalFrames = 0;
+            //For strike percentage, as is totalFrames
+            int numStrikes = 0;
+            int totalFirstBalls = 0;
+            //For single pins
+            int singlePinsMade = 0;
+            int totalSinglePins = 0;
+            //For spare percentage
+            int numSpares = 0;
+            int numNonStrikes = 0;
+            for(int i = 0; i < 9; i++) {
+                Frame curr = game.getFrame(i);
+                if (curr != null) {
+                    int score = curr.getBothThrows();
+                    if(score == 11) {
+                        numStrikes++;
+                        numFilled++;
+                    }
+                    else if (score == 10) {
+                        if(curr.getFirstThrow() == 9){
+                            singlePinsMade++;
+                            totalSinglePins++;
+                        }
+                        numFilled++;
+                        numSpares++;
+                        numNonStrikes++;
+                    }
+                    else{
+                        if(curr.getFirstThrow() == 9) totalSinglePins++;
+                        numNonStrikes++;
+                    }
+                    totalFrames++;
+                    totalFirstBalls++;
+                }
+            }
+            TenthFrame tenth = game.getTenth();
+            int first = tenth.getFirstThrow();
+            int second = tenth.getSecondThrow();
+            int third = tenth.getThirdThrow();
+            if(first == 10){
+                numStrikes++;
+                numFilled++;
+                if(second == 10){ //Strike Strike Fill
+                    numStrikes++;
+                    if(third == 10) { //Strike Strike Strike
+                        numStrikes++;
+                        totalFirstBalls++;
+                    }
+                    else numNonStrikes++;
+                }
+                else if (third == 11){ //Strike Spare
+                    numNonStrikes++;
+                    numSpares++;
+                    if(second == 9) {
+                        singlePinsMade++;
+                        totalSinglePins++;
+                    }
+                }
+                else { //Strike Open
+                    if (second == 9) totalSinglePins++;
+                    numNonStrikes++;
+                }
+                totalFirstBalls+=2;
+            }
+            else {
+                if (second == 11) {
+                    numFilled++;
+                    numNonStrikes++;
+                    numSpares++;
+                    if(first == 9) {
+                        singlePinsMade++;
+                        totalSinglePins++;
+                    }
+                    if(third == 10) numStrikes++; //Spare Strike
+                    else numNonStrikes++; //Spare Fill
+                    totalFirstBalls+=2;
+                }
+                else { //Open
+                    if(first == 9) totalSinglePins++;
+                    numNonStrikes++;
+                    totalFirstBalls++;
+                }
+            }
+            totalFrames++;
+            totalScore += game.getScore();
+            if(game.getScore() > this.highGame) this.highGame = game.getScore();
+
+            this.totalScore += totalScore;
+            this.numFilled += numFilled;
+            this.totalFrames += totalFrames;
+            this.numStrikes += numStrikes;
+            this.totalFirstBalls += totalFirstBalls;
+            this.singlePinsMade += singlePinsMade;
+            this.totalSinglePins += totalSinglePins;
+            this.numSpares += numSpares;
+            this.numNonStrikes += numNonStrikes;
+            this.filledPc = ((double)this.numFilled/(double)this.totalFrames);
+            this.strikePc = ((double)this.numStrikes/(double)this.totalFirstBalls);
+            this.avgScore = ((double)this.totalScore/(double)this.numGames);
+            this.singlePinPc = ((double)this.singlePinsMade/(double)this.totalSinglePins);
+            this.sparePc = ((double)this.numSpares/(double)this.numNonStrikes);
             return 1;
         }
         return 0;
@@ -135,6 +252,15 @@ public class Player extends User {
         this.avgScore = ((double)totalScore/(double)numGames);
         this.singlePinPc = ((double)singlePinsMade/(double)totalSinglePins);
         this.sparePc = ((double)numSpares/(double)numNonStrikes);
+        this.totalScore = totalScore;
+        this.numFilled = numFilled;
+        this.totalFrames = totalFrames;
+        this.numStrikes = numStrikes;
+        this.totalFirstBalls = totalFirstBalls;
+        this.singlePinsMade = singlePinsMade;
+        this.totalSinglePins = totalSinglePins;
+        this.numSpares = numSpares;
+        this.numNonStrikes = numNonStrikes;
     }
 
     public double getFilled() {
@@ -276,12 +402,19 @@ public class Player extends User {
 
         ArrayList<Game> games = new ArrayList<>();
         games.add(g);
-        games.add(g2);
-        games.add(g3);
-        games.add(g4);
 
         Player player = new Player("wow", "sick", "bet", games);
 
+        System.out.println("\n\nAfter Game 1 Added:\n");
+        player.printStats();
+        player.addGame(g2);
+        System.out.println("\n\nAfter Game 2 Added:\n");
+        player.printStats();
+        player.addGame(g3);
+        System.out.println("\n\nAfter Game 3 Added:\n");
+        player.printStats();
+        player.addGame(g4);
+        System.out.println("\n\nAfter Game 4 Added:\n");
         player.printStats();
 
     }
