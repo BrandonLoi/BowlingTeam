@@ -21,6 +21,8 @@
         <activity android:name=".StatisticsActivity" />
         <activity android:name=".CompareStatisticsLookupActivity" />
         <activity android:name=".CompareStatisticsActivity" />
+        <activity android:name=".CoachChangeStatsLookupActivity" />
+        <activity android:name=".CoachChangeStatsActivity" />
         <activity android:name=".Game" />
         <activity
             android:name=".createAccountSuccess"

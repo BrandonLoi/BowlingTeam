@@ -22,6 +22,7 @@ public class LoginMessageActivity extends AppCompatActivity {
     Button button2;
 
     Button compareStatsButton;
+    Button editPlayerStats;
 
 
     @Override
@@ -37,6 +38,7 @@ public class LoginMessageActivity extends AppCompatActivity {
 
         button = (Button) findViewById(R.id.continueButton);
         button2 = (Button) findViewById(R.id.coachButton);
+        editPlayerStats = (Button) findViewById(R.id.editPlayerStats);
 
         compareStatsButton = (Button) findViewById(R.id.compareStatsButton);
         button.setOnClickListener(new View.OnClickListener() {
@@ -48,7 +50,7 @@ public class LoginMessageActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        compareStatsButton.setOnClickListener(new View.OnClickListener() {
+        editPlayerStats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(LoginMessageActivity.this,
