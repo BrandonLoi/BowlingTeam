@@ -21,6 +21,7 @@ public class CompareStatisticsActivity extends AppCompatActivity {
     TextView currAverageScore;
     TextView currHighScore;
     TextView currStrikePc;
+    TextView currNumGames;
     TextView currSinglePinPc;
     TextView currSparePc;
     TextView currFilledPc;
@@ -29,6 +30,7 @@ public class CompareStatisticsActivity extends AppCompatActivity {
     TextView compAverageScore;
     TextView compHighScore;
     TextView compStrikePc;
+    TextView compNumGames;
     TextView compSinglePinPc;
     TextView compSparePc;
     TextView compFilledPc;
@@ -45,6 +47,9 @@ public class CompareStatisticsActivity extends AppCompatActivity {
         currHighScore = (TextView) findViewById(R.id.currHighScore);
         currStrikePc = (TextView) findViewById(R.id.currStrikePercentage);
         currSparePc = (TextView) findViewById(R.id.currSparePercentage);
+        currNumGames = (TextView) findViewById(R.id.currNumGames);
+        currSinglePinPc = (TextView) findViewById(R.id.currSinglePinPercentage);
+        currFilledPc = (TextView) findViewById(R.id.currFilledPercentage);
         // etc.
 
         compUsernameText = (TextView) findViewById(R.id.compUsernameText);
@@ -52,6 +57,9 @@ public class CompareStatisticsActivity extends AppCompatActivity {
         compHighScore = (TextView) findViewById(R.id.compHighScore);
         compStrikePc = (TextView) findViewById(R.id.compStrikePercentage);
         compSparePc = (TextView) findViewById(R.id.compSparePercentage);
+        compNumGames = (TextView) findViewById(R.id.compNumGames);
+        compSinglePinPc = (TextView) findViewById(R.id.compSinglePinPercentage);
+        compFilledPc = (TextView) findViewById(R.id.compFilledPercentage);
         // etc.
 
 
@@ -103,6 +111,24 @@ public class CompareStatisticsActivity extends AppCompatActivity {
                 } else {
                     currSparePc.setText(spareScore);
                 }
+                String numGames = dataSnapshot.child("numGames").getValue().toString();
+                if (numGames.equals("-1")) {
+                    currNumGames.setText(NOT_AVAILABLE);
+                } else {
+                    currNumGames.setText(numGames);
+                }
+                String singlePin = dataSnapshot.child("singlePinPercentage").getValue().toString();
+                if (singlePin.equals("-1")) {
+                    currSinglePinPc.setText(NOT_AVAILABLE);
+                } else {
+                    currSinglePinPc.setText(singlePin);
+                }
+                String filledFrames = dataSnapshot.child("filledFramePercentage").getValue().toString();
+                if (filledFrames.equals("-1")) {
+                    currFilledPc.setText(NOT_AVAILABLE);
+                } else {
+                    currFilledPc.setText(filledFrames);
+                }
             }
 
             @Override
@@ -141,6 +167,24 @@ public class CompareStatisticsActivity extends AppCompatActivity {
                     compSparePc.setText(NOT_AVAILABLE);
                 } else {
                     compSparePc.setText(spareScore);
+                }
+                String numGames = dataSnapshot.child("numGames").getValue().toString();
+                if (numGames.equals("-1")) {
+                    compNumGames.setText(NOT_AVAILABLE);
+                } else {
+                    compNumGames.setText(numGames);
+                }
+                String singlePin = dataSnapshot.child("singlePinPercentage").getValue().toString();
+                if (singlePin.equals("-1")) {
+                    compSinglePinPc.setText(NOT_AVAILABLE);
+                } else {
+                    compSinglePinPc.setText(singlePin);
+                }
+                String filledFrames = dataSnapshot.child("filledFramePercentage").getValue().toString();
+                if (filledFrames.equals("-1")) {
+                    compFilledPc.setText(NOT_AVAILABLE);
+                } else {
+                    compFilledPc.setText(filledFrames);
                 }
             }
 
