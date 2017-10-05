@@ -17,11 +17,19 @@ public class CompareStatisticsActivity extends AppCompatActivity {
     TextView compUsernameText;
 
     TextView currAverageScore;
-    TextView currBestScore;
+    TextView currHighScore;
+    TextView currStrikePc;
+    TextView currSinglePinPc;
+    TextView currSparePc;
+    TextView currFilledPc;
     // etc.
 
     TextView compAverageScore;
-    TextView compBestScore;
+    TextView compHighScore;
+    TextView compStrikePc;
+    TextView compSinglePinPc;
+    TextView compSparePc;
+    TextView compFilledPc;
     // etc.
 
     @Override
@@ -32,12 +40,16 @@ public class CompareStatisticsActivity extends AppCompatActivity {
 
         currUsernameText = (TextView) findViewById(R.id.currUsernameText);
         currAverageScore = (TextView) findViewById(R.id.currAverageScore);
-        currBestScore = (TextView) findViewById(R.id.currBestScore);
+        currHighScore = (TextView) findViewById(R.id.currHighScore);
+        currStrikePc = (TextView) findViewById(R.id.currStrikePercentage);
+        currSparePc = (TextView) findViewById(R.id.currSparePercentage);
         // etc.
 
         compUsernameText = (TextView) findViewById(R.id.compUsernameText);
         compAverageScore = (TextView) findViewById(R.id.compAverageScore);
-        compBestScore = (TextView) findViewById(R.id.compBestScore);
+        compHighScore = (TextView) findViewById(R.id.compHighScore);
+        compStrikePc = (TextView) findViewById(R.id.compStrikePercentage);
+        compSparePc = (TextView) findViewById(R.id.compSparePercentage);
         // etc.
 
 
@@ -67,8 +79,12 @@ public class CompareStatisticsActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String avgScore = dataSnapshot.child("avgScore").getValue().toString();
                 currAverageScore.setText(avgScore);
-                String bestScore = dataSnapshot.child("bestScore").getValue().toString();
-                currBestScore.setText(bestScore);
+                String highScore = dataSnapshot.child("highScore").getValue().toString();
+                currHighScore.setText(highScore);
+                String strikeScore = dataSnapshot.child("strikePercentage").getValue().toString();
+                currStrikePc.setText(strikeScore);
+                String spareScore = dataSnapshot.child("sparePercentage").getValue().toString();
+                currSparePc.setText(spareScore);
             }
 
             @Override
@@ -86,8 +102,12 @@ public class CompareStatisticsActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String avgScore = dataSnapshot.child("avgScore").getValue().toString();
                 compAverageScore.setText(avgScore);
-                String bestScore = dataSnapshot.child("bestScore").getValue().toString();
-                compBestScore.setText(bestScore);
+                String highScore = dataSnapshot.child("highScore").getValue().toString();
+                compHighScore.setText(highScore);
+                String strikeScore = dataSnapshot.child("strikePercentage").getValue().toString();
+                compStrikePc.setText(strikeScore);
+                String spareScore = dataSnapshot.child("sparePercentage").getValue().toString();
+                compSparePc.setText(spareScore);
             }
 
             @Override
