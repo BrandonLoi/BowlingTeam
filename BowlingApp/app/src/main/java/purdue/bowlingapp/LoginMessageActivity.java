@@ -68,10 +68,10 @@ public class LoginMessageActivity extends AppCompatActivity {
         compareStatsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent compareStatisticsLookupActivity = new Intent(LoginMessageActivity.this,
+                Intent i = new Intent(LoginMessageActivity.this,
                         CompareStatisticsLookupActivity.class);
-                compareStatisticsLookupActivity.putExtra(MainActivity.welcome_message, username);
-                startActivity(compareStatisticsLookupActivity);
+                i.putExtra("username", username);
+                startActivity(i);
             }
         });
 
