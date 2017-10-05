@@ -20,6 +20,10 @@ public class Game {
         this.score = setScore();
     }
 
+    public Game() {
+        //default construtor
+    }
+
     public Frame getFrame(int index) {
         if (index >= 0 && index < 9) {
             return frames.get(index);
@@ -36,7 +40,7 @@ public class Game {
         for(int i = 0; i < frames.size(); i++) {
             int frameScore = frames.get(i).getBothThrows();
             if(frameScore == 10 && i < 8) { //handle spare
-                frameScore += frames.get(i+1).getFirstThrow();
+                frameScore += frames.get(i+1).getValFirstThrow();
             }
             if (frameScore == 10 && i == 8) {
                 frameScore += tenth.getFirstThrow();
@@ -51,7 +55,7 @@ public class Game {
                     int nextFrame = frames.get(i + 1).getBothThrows(); //gets throw immediately after strike
                     //if throw after strike is a strike and doesnt have to interact with tenth frame
                     if (nextFrame == 11 && i < 7)
-                        frameScore += nextFrame + frames.get(i + 2).getFirstThrow() - 2;
+                        frameScore += nextFrame + frames.get(i + 2).getValFirstThrow() - 2;
                         //if throw after strike is also a strike, and must get first throw from tenth frame
                     else if (nextFrame == 11 && i == 7)
                         frameScore += nextFrame + tenth.getFirstThrow() - 2;

@@ -13,6 +13,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     public DatabaseReference mDatabase;
     public static String welcome_message = "Welcome!";
@@ -94,6 +97,12 @@ public class MainActivity extends AppCompatActivity {
                     myRef2.child("highScore").setValue("-1");
                     myRef2.child("sparePercentage").setValue("-1");
                     myRef2.child("strikePercentage").setValue("-1");
+
+                    //List<Game> asd = new ArrayList<>();
+                    //Player x = new Player(username,password,email,(ArrayList<Game>)asd);
+                    //Frame f = new Frame('9','0');
+                    //myRef.child(username).child("frame").setValue(f);
+
 
                     create(username);
                 }
