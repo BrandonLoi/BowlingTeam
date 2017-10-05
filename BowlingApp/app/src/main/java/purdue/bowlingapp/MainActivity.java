@@ -20,9 +20,6 @@ public class MainActivity extends AppCompatActivity {
     public static String createSuccess = "User created";
     public static String createFail_message = "Username already in use";
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,19 +45,15 @@ public class MainActivity extends AppCompatActivity {
                     if (password.equals(x.getPassword())) {
                         System.out.println(welcome_message); //SUCCESSFUL LOGIN
                         login(username);
-                        //loginSuccess[0] = true;
-
                     }
                     else {
                         System.out.println(failure_message); //FAILED LOGIN
                         loginFail();
-                        //loginSuccess[0] = false;
                     }
                 }
                 else {
                     System.out.println(failure_message); //FAILED LOGIN
                     loginFail();
-                    //loginSuccess[0] = false;
                 }
             }
 
@@ -70,14 +63,6 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         myRef.addListenerForSingleValueEvent(listen);
-        /*
-        if (loginSuccess[0] == true) {
-            login(username);
-        }
-        else {
-            loginFail();
-        }
-        */
     }
 
     public void userCreate(View view) {
@@ -104,6 +89,12 @@ public class MainActivity extends AppCompatActivity {
                     myRef.child(username).child("username").setValue(username);
                     myRef.child(username).child("password").setValue(password);
                     myRef.child(username).child("email").setValue(email);
+                    final DatabaseReference myRef2 = mDatabase.child("data").child(username);
+                    myRef2.child("avgScore").setValue("-1");
+                    myRef2.child("highScore").setValue("-1");
+                    myRef2.child("sparePercentage").setValue("-1");
+                    myRef2.child("strikePercentage").setValue("-1");
+
                     create(username);
                 }
             }
