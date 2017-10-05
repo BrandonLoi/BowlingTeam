@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
     public void login(View view) {
-        final boolean[] loginSuccess = {false};
+        boolean[] loginSuccess = {false};
         clearError();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         final EditText editText = (EditText) findViewById(R.id.usernameField);
@@ -47,17 +47,20 @@ public class MainActivity extends AppCompatActivity {
                     User x = dataSnapshot.getValue(User.class);
                     if (password.equals(x.getPassword())) {
                         System.out.println(welcome_message); //SUCCESSFUL LOGIN
-                        loginSuccess[0] = true;
+                        login(username);
+                        //loginSuccess[0] = true;
 
                     }
                     else {
                         System.out.println(failure_message); //FAILED LOGIN
-                        loginSuccess[0] = false;
+                        loginFail();
+                        //loginSuccess[0] = false;
                     }
                 }
                 else {
                     System.out.println(failure_message); //FAILED LOGIN
-                    loginSuccess[0] = false;
+                    loginFail();
+                    //loginSuccess[0] = false;
                 }
             }
 
@@ -67,12 +70,14 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         myRef.addListenerForSingleValueEvent(listen);
+        /*
         if (loginSuccess[0] == true) {
             login(username);
         }
         else {
             loginFail();
         }
+        */
     }
 
     public void userCreate(View view) {
