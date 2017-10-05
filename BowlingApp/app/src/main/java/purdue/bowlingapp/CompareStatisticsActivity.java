@@ -103,13 +103,35 @@ public class CompareStatisticsActivity extends AppCompatActivity {
                 if (strikeScore.equals("-1")) {
                     currStrikePc.setText(NOT_AVAILABLE);
                 } else {
-                    currStrikePc.setText(strikeScore);
+                    String percentage = null;
+                    try
+                    {
+                        double d = Double.valueOf(strikeScore.trim());
+                        d *= 100;
+                        percentage = String.valueOf(d);
+                    } catch (NumberFormatException nfe) {
+                        System.err.println("NumberFormatException: " + nfe.getMessage());
+                    }
+                    percentage = percentage.substring(0, Math.min(4, percentage.length()));
+                    String percentageString = percentage + "%";
+                    currStrikePc.setText(percentageString);
                 }
                 String spareScore = dataSnapshot.child("sparePercentage").getValue().toString();
                 if (spareScore.equals("-1")) {
                     currSparePc.setText(NOT_AVAILABLE);
                 } else {
-                    currSparePc.setText(spareScore);
+                    String percentage = null;
+                    try
+                    {
+                        double d = Double.valueOf(spareScore.trim());
+                        d *= 100;
+                        percentage = String.valueOf(d);
+                    } catch (NumberFormatException nfe) {
+                        System.err.println("NumberFormatException: " + nfe.getMessage());
+                    }
+                    percentage = percentage.substring(0, Math.min(4, percentage.length()));
+                    String percentageString = percentage + "%";
+                    currSparePc.setText(percentageString);
                 }
                 String numGames = dataSnapshot.child("numGames").getValue().toString();
                 if (numGames.equals("-1")) {
@@ -160,13 +182,35 @@ public class CompareStatisticsActivity extends AppCompatActivity {
                 if (strikeScore.equals("-1")) {
                     compStrikePc.setText(NOT_AVAILABLE);
                 } else {
-                    compStrikePc.setText(strikeScore);
+                    String percentage = null;
+                    try
+                    {
+                        double d = Double.valueOf(strikeScore.trim());
+                        d *= 100;
+                        percentage = String.valueOf(d);
+                    } catch (NumberFormatException nfe) {
+                        System.err.println("NumberFormatException: " + nfe.getMessage());
+                    }
+                    percentage = percentage.substring(0, Math.min(4, percentage.length()));
+                    String percentageString = percentage + "%";
+                    compStrikePc.setText(percentageString);
                 }
                 String spareScore = dataSnapshot.child("sparePercentage").getValue().toString();
                 if (spareScore.equals("-1")) {
                     compSparePc.setText(NOT_AVAILABLE);
                 } else {
-                    compSparePc.setText(spareScore);
+                    String percentage = null;
+                    try
+                    {
+                        double d = Double.valueOf(spareScore.trim());
+                        d *= 100;
+                        percentage = String.valueOf(d);
+                    } catch (NumberFormatException nfe) {
+                        System.err.println("NumberFormatException: " + nfe.getMessage());
+                    }
+                    percentage = percentage.substring(0, Math.min(4, percentage.length()));
+                    String percentageString = percentage + "%";
+                    compSparePc.setText(percentageString);
                 }
                 String numGames = dataSnapshot.child("numGames").getValue().toString();
                 if (numGames.equals("-1")) {
