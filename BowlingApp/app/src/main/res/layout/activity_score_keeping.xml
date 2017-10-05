@@ -424,7 +424,7 @@
                 <Button
                     android:layout_columnSpan="2"
                     android:gravity="center"
-                    android:text="<-"
+                    android:text="LEFT"
                     android:textAlignment="center"
                     android:visibility="visible" />
 
