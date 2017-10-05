@@ -8,9 +8,9 @@ public class Frame {
 
     private char firstThrow;
     private char secondThrow;
-    private boolean makeable;
-    private boolean pocket;
-    private boolean split;
+    private boolean makeable = true;
+    private boolean pocket = true;
+    private boolean split = true;
 
 
     public Frame(char firstThrow, char secondThrow) {
@@ -19,6 +19,18 @@ public class Frame {
         this.firstThrow = (first != ' ' && first != '/') ? firstThrow : ' ';
         this.secondThrow = (second != ' ' && second != 'X') ? secondThrow : ' ';
         if(this.firstThrow == 'X') this.secondThrow = ' ';
+    }
+
+    public Frame() {
+        //default constructor for database
+    }
+
+    public void setFirstThrow(char c) {
+        this.firstThrow = c;
+    }
+
+    public void setSecondThrow(char c) {
+        this.secondThrow = c;
     }
 
     //TO DO: Add logic somewhere that prevents bad inputs that add to over ten i.e. firstThrow = 8, secondThrow = 4
@@ -50,7 +62,7 @@ public class Frame {
     }
 
     //Called when last Frame was a spare
-    public int getFirstThrow() {
+    public int getValFirstThrow() {
         if(this.firstThrow > 47 && this.firstThrow < 58) return this.firstThrow - 48;
         else if(this.firstThrow == 'X') return 10;
         return -1; //Error Handling, MAY NEED TO CHANGE
@@ -68,7 +80,23 @@ public class Frame {
         this.split = !this.split;
     }
 
-    public boolean getSplit() {
-        return this.split;
+    public char getFirstThrow() {
+        return firstThrow;
+    }
+
+    public char getSecondThrow() {
+        return secondThrow;
+    }
+
+    public boolean isMakeable() {
+        return makeable;
+    }
+
+    public boolean isPocket() {
+        return pocket;
+    }
+
+    public boolean isSplit() {
+        return split;
     }
 }

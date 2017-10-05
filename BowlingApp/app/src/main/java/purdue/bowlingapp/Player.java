@@ -30,6 +30,9 @@ public class Player extends User {
     private int numSpares;
     private int numNonStrikes;
 
+    public Player() {
+        //default constructor to store in database
+    }
 
     public Player(String username, String password, String email, ArrayList<Game> games){
         super(username, password, email);
@@ -62,7 +65,7 @@ public class Player extends User {
                         numFilled++;
                     }
                     else if (score == 10) {
-                        if(curr.getFirstThrow() == 9){
+                        if(curr.getValFirstThrow() == 9){
                             singlePinsMade++;
                             totalSinglePins++;
                         }
@@ -71,7 +74,7 @@ public class Player extends User {
                         numNonStrikes++;
                     }
                     else{
-                        if(curr.getFirstThrow() == 9) totalSinglePins++;
+                        if(curr.getValFirstThrow() == 9) totalSinglePins++;
                         numNonStrikes++;
                     }
                     totalFrames++;
@@ -178,7 +181,7 @@ public class Player extends User {
                         numFilled++;
                     }
                     else if (score == 10) {
-                        if(curr.getFirstThrow() == 9){
+                        if(curr.getValFirstThrow() == 9){
                             singlePinsMade++;
                             totalSinglePins++;
                         }
@@ -187,7 +190,7 @@ public class Player extends User {
                         numNonStrikes++;
                     }
                     else{
-                        if(curr.getFirstThrow() == 9) totalSinglePins++;
+                        if(curr.getValFirstThrow() == 9) totalSinglePins++;
                         numNonStrikes++;
                     }
                     totalFrames++;
@@ -263,24 +266,80 @@ public class Player extends User {
         this.numNonStrikes = numNonStrikes;
     }
 
-    public double getFilled() {
-        return this.filledPc;
+    public ArrayList<Game> getGames() {
+        return games;
     }
 
-    public double getStrike(){
-        return this.strikePc;
+    public int getHighGame() {
+        return highGame;
     }
 
-    public double getAvg (){
-        return this.avgScore;
+    public int getNumGames() {
+        return numGames;
     }
 
-    public double getSinglePc (){
-        return this.singlePinPc;
+    public double getAvgScore() {
+        return avgScore;
     }
 
-    public double getSpare() {
-        return this.sparePc;
+    public double getStrikePc() {
+        return strikePc;
+    }
+
+    public double getPocketPc() {
+        return pocketPc;
+    }
+
+    public double getMakeablePc() {
+        return makeablePc;
+    }
+
+    public double getSinglePinPc() {
+        return singlePinPc;
+    }
+
+    public double getSparePc() {
+        return sparePc;
+    }
+
+    public double getFilledPc() {
+        return filledPc;
+    }
+
+    public int getTotalScore() {
+        return totalScore;
+    }
+
+    public int getNumFilled() {
+        return numFilled;
+    }
+
+    public int getTotalFrames() {
+        return totalFrames;
+    }
+
+    public int getNumStrikes() {
+        return numStrikes;
+    }
+
+    public int getTotalFirstBalls() {
+        return totalFirstBalls;
+    }
+
+    public int getSinglePinsMade() {
+        return singlePinsMade;
+    }
+
+    public int getTotalSinglePins() {
+        return totalSinglePins;
+    }
+
+    public int getNumSpares() {
+        return numSpares;
+    }
+
+    public int getNumNonStrikes() {
+        return numNonStrikes;
     }
 
     private void printStats() {
