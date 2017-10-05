@@ -23,6 +23,7 @@ public class LoginMessageActivity extends AppCompatActivity {
 
     Button compareStatsButton;
     Button editPlayerStats;
+    Button rankingsButton;
 
 
     @Override
@@ -41,12 +42,20 @@ public class LoginMessageActivity extends AppCompatActivity {
         editPlayerStats = (Button) findViewById(R.id.editPlayerStats);
 
         compareStatsButton = (Button) findViewById(R.id.compareStatsButton);
+        rankingsButton = (Button) findViewById(R.id.ranking);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(LoginMessageActivity.this,
                         StatisticsActivity.class);
                 i.putExtra("username", username);
+                startActivity(i);
+            }
+        });
+        rankingsButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(LoginMessageActivity.this, RankedList.class);
                 startActivity(i);
             }
         });

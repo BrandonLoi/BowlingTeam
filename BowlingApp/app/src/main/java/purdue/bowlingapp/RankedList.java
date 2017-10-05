@@ -48,10 +48,10 @@ public class RankedList extends AppCompatActivity {
                     for(DataSnapshot x : d) {
                         if (x.child("highScore").toString().equals(temp)) {
                             // Puts users name, 3 tabs and then their high score
-                            String out = x.toString() + "           " + temp;
+                            String out = i + ": " + x.toString() + "           " + temp;
                             tv.setText(out); //sets text of TextView to add to the output
                             linear.addView(tv); //adds TextView to the top of LinearLayout
-                            continue;
+                            break;
                         }
                     }
                 }
