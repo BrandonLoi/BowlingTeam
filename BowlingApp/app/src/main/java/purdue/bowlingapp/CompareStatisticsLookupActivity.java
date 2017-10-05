@@ -46,7 +46,7 @@ public class CompareStatisticsLookupActivity extends AppCompatActivity {
                 final FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference usersRef = database.getReference("users");
 
-                usersRef.addValueEventListener(new ValueEventListener() {
+                usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if (dataSnapshot.hasChild(usernameLookUp)) {
@@ -82,31 +82,25 @@ public class CompareStatisticsLookupActivity extends AppCompatActivity {
                 usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        TextView foo = (TextView) findViewById(R.id.lookupPlayerText);
                         Intent i = null;
-                        boolean flag = false;
 
                         for (DataSnapshot user : dataSnapshot.getChildren()) {
                             if (user.hasChild("email") ) {
-                                String getEmail = user.child("email").getValue().toString();
-                                System.out.println(getEmail+ "\n" );
-                                System.out.println(getEmail+ "\n" );
-                                if (getEmail.equals(email)) {
-                                    foo.setText(email);
-                                    flag = true;
+                                if (user.child("email").getValue().toString().equals(email)) {
                                     i = new Intent(CompareStatisticsLookupActivity.this,
                                             CompareStatisticsActivity.class);
+                                    i.putExtra("currUsername", username);
+                                    i.putExtra("compUsername", user.child("username").getValue().toString());
+                                    break;
                                 }
                             }
                         }
-                        if (flag = true) {
-                            foo.setText(email);
-                            if (i != null) {
-                                startActivity(i);
-                            }
+                        if (i != null) {
+                            startActivity(i);
+                        } else {
+                            String error = "Error! Could not find email: " + email;
+                            errorText.setText(error);
                         }
-                        String error = "Error! Could not find email: " + email;
-                        errorText.setText(error);
                     }
 
                     @Override
