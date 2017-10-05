@@ -13,6 +13,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class StatisticsActivity extends AppCompatActivity {
 
+    final String NOT_AVAILABLE = "N/A";
+
     TextView usernameText;
 
     TextView averageScore;
@@ -53,13 +55,29 @@ public class StatisticsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String avgScore = dataSnapshot.child("avgScore").getValue().toString();
-                averageScore.setText(avgScore);
+                if (avgScore.equals("-1")) {
+                    averageScore.setText(NOT_AVAILABLE);
+                } else {
+                    averageScore.setText(avgScore);
+                }
                 String bestScore = dataSnapshot.child("highScore").getValue().toString();
-                highScore.setText(bestScore);
+                if (bestScore.equals("-1")) {
+                    highScore.setText(NOT_AVAILABLE);
+                } else {
+                    highScore.setText(bestScore);
+                }
                 String strikeScore = dataSnapshot.child("strikePercentage").getValue().toString();
-                strikePc.setText(strikeScore);
+                if (strikeScore.equals("-1")) {
+                    strikePc.setText(NOT_AVAILABLE);
+                } else {
+                    strikePc.setText(strikeScore);
+                }
                 String spareScore = dataSnapshot.child("sparePercentage").getValue().toString();
-                sparePc.setText(spareScore);
+                if (spareScore.equals("-1")) {
+                    sparePc.setText(NOT_AVAILABLE);
+                } else {
+                    sparePc.setText(spareScore);
+                }
             }
 
             @Override

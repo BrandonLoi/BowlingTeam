@@ -43,71 +43,81 @@ public class CompareStatisticsLookupActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final String usernameLookUp = usernameText.getText().toString();
-                final FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference usersRef = database.getReference("users");
+                if (usernameLookUp.matches("")) {
+                    String error = "Must enter a username!";
+                    errorText.setText(error);
+                } else {
+                    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference usersRef = database.getReference("users");
 
-                usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.hasChild(usernameLookUp)) {
-                            Intent i = new Intent(CompareStatisticsLookupActivity.this,
-                                    CompareStatisticsActivity.class);
-                            i.putExtra("currUsername", username);
-                            i.putExtra("compUsername", usernameLookUp);
-                            startActivity(i);
-                        } else {
-                            String error = "Error! Could not find username: " + usernameLookUp;
-                            errorText.setText(error);
+                    usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.hasChild(usernameLookUp)) {
+                                Intent i = new Intent(CompareStatisticsLookupActivity.this,
+                                        CompareStatisticsActivity.class);
+                                i.putExtra("currUsername", username);
+                                i.putExtra("compUsername", usernameLookUp);
+                                startActivity(i);
+                            } else {
+                                String error = "Error! Could not find username: " + usernameLookUp;
+                                errorText.setText(error);
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        System.out.println("The lookup failed: " + databaseError.getCode());
-                    }
-                });
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            System.out.println("The lookup failed: " + databaseError.getCode());
+                        }
+                    });
+                }
             }
         });
 
         /*
-         * Search by email TODO: searching for '.' char breaks app
+         * Search by email
          */
         emailButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final String email = emailText.getText().toString();
-                final FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference usersRef = database.getReference("users");
+                if (email.matches("")) {
+                    String error = "Must enter an email!";
+                    errorText.setText(error);
+                } else {
+                    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference usersRef = database.getReference("users");
 
-                usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        Intent i = null;
+                    usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            Intent i = null;
 
-                        for (DataSnapshot user : dataSnapshot.getChildren()) {
-                            if (user.hasChild("email") ) {
-                                if (user.child("email").getValue().toString().equals(email)) {
-                                    i = new Intent(CompareStatisticsLookupActivity.this,
-                                            CompareStatisticsActivity.class);
-                                    i.putExtra("currUsername", username);
-                                    i.putExtra("compUsername", user.child("username").getValue().toString());
-                                    break;
+                            for (DataSnapshot user : dataSnapshot.getChildren()) {
+                                if (user.hasChild("email")) {
+                                    if (user.child("email").getValue().toString().equals(email)) {
+                                        i = new Intent(CompareStatisticsLookupActivity.this,
+                                                CompareStatisticsActivity.class);
+                                        i.putExtra("currUsername", username);
+                                        i.putExtra("compUsername", user.child("username").getValue().toString());
+                                        break;
+                                    }
                                 }
                             }
+                            if (i != null) {
+                                startActivity(i);
+                            } else {
+                                String error = "Error! Could not find email: " + email;
+                                errorText.setText(error);
+                            }
                         }
-                        if (i != null) {
-                            startActivity(i);
-                        } else {
-                            String error = "Error! Could not find email: " + email;
-                            errorText.setText(error);
-                        }
-                    }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        System.out.println("The lookup failed: " + databaseError.getCode());
-                    }
-                });
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            System.out.println("The lookup failed: " + databaseError.getCode());
+                        }
+                    });
+                }
             }
         });
     }
