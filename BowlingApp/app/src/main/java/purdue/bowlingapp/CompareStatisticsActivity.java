@@ -93,12 +93,21 @@ public class CompareStatisticsActivity extends AppCompatActivity {
                 } else {
                     currAverageScore.setText(avgScore);
                 }
+
                 String highScore = dataSnapshot.child("highScore").getValue().toString();
                 if (highScore.equals("-1")) {
                     currHighScore.setText(NOT_AVAILABLE);
                 } else {
                     currHighScore.setText(highScore);
                 }
+
+                String numGames = dataSnapshot.child("numGames").getValue().toString();
+                if (numGames.equals("-1")) {
+                    currNumGames.setText(NOT_AVAILABLE);
+                } else {
+                    currNumGames.setText(numGames);
+                }
+
                 String strikeScore = dataSnapshot.child("strikePercentage").getValue().toString();
                 if (strikeScore.equals("-1")) {
                     currStrikePc.setText(NOT_AVAILABLE);
@@ -116,6 +125,7 @@ public class CompareStatisticsActivity extends AppCompatActivity {
                     String percentageString = percentage + "%";
                     currStrikePc.setText(percentageString);
                 }
+
                 String spareScore = dataSnapshot.child("sparePercentage").getValue().toString();
                 if (spareScore.equals("-1")) {
                     currSparePc.setText(NOT_AVAILABLE);
@@ -133,23 +143,41 @@ public class CompareStatisticsActivity extends AppCompatActivity {
                     String percentageString = percentage + "%";
                     currSparePc.setText(percentageString);
                 }
-                String numGames = dataSnapshot.child("numGames").getValue().toString();
-                if (numGames.equals("-1")) {
-                    currNumGames.setText(NOT_AVAILABLE);
-                } else {
-                    currNumGames.setText(numGames);
-                }
+
                 String singlePin = dataSnapshot.child("singlePinPercentage").getValue().toString();
                 if (singlePin.equals("-1")) {
                     currSinglePinPc.setText(NOT_AVAILABLE);
                 } else {
-                    currSinglePinPc.setText(singlePin);
+                    String percentage = null;
+                    try
+                    {
+                        double d = Double.valueOf(singlePin.trim());
+                        d *= 100;
+                        percentage = String.valueOf(d);
+                    } catch (NumberFormatException nfe) {
+                        System.err.println("NumberFormatException: " + nfe.getMessage());
+                    }
+                    percentage = percentage.substring(0, Math.min(4, percentage.length()));
+                    String percentageString = percentage + "%";
+                    currSinglePinPc.setText(percentageString);
                 }
-                String filledFrames = dataSnapshot.child("filledFramePercentage").getValue().toString();
+
+                String filledFrames = dataSnapshot.child("filledPercentage").getValue().toString();
                 if (filledFrames.equals("-1")) {
                     currFilledPc.setText(NOT_AVAILABLE);
                 } else {
-                    currFilledPc.setText(filledFrames);
+                    String percentage = null;
+                    try
+                    {
+                        double d = Double.valueOf(filledFrames.trim());
+                        d *= 100;
+                        percentage = String.valueOf(d);
+                    } catch (NumberFormatException nfe) {
+                        System.err.println("NumberFormatException: " + nfe.getMessage());
+                    }
+                    percentage = percentage.substring(0, Math.min(4, percentage.length()));
+                    String percentageString = percentage + "%";
+                    currFilledPc.setText(percentageString);
                 }
             }
 
@@ -172,12 +200,21 @@ public class CompareStatisticsActivity extends AppCompatActivity {
                 } else {
                     compAverageScore.setText(avgScore);
                 }
+
                 String highScore = dataSnapshot.child("highScore").getValue().toString();
                 if (highScore.equals("-1")) {
                     compHighScore.setText(NOT_AVAILABLE);
                 } else {
                     compHighScore.setText(highScore);
                 }
+
+                String numGames = dataSnapshot.child("numGames").getValue().toString();
+                if (numGames.equals("-1")) {
+                    compNumGames.setText(NOT_AVAILABLE);
+                } else {
+                    compNumGames.setText(numGames);
+                }
+
                 String strikeScore = dataSnapshot.child("strikePercentage").getValue().toString();
                 if (strikeScore.equals("-1")) {
                     compStrikePc.setText(NOT_AVAILABLE);
@@ -195,6 +232,7 @@ public class CompareStatisticsActivity extends AppCompatActivity {
                     String percentageString = percentage + "%";
                     compStrikePc.setText(percentageString);
                 }
+
                 String spareScore = dataSnapshot.child("sparePercentage").getValue().toString();
                 if (spareScore.equals("-1")) {
                     compSparePc.setText(NOT_AVAILABLE);
@@ -212,23 +250,41 @@ public class CompareStatisticsActivity extends AppCompatActivity {
                     String percentageString = percentage + "%";
                     compSparePc.setText(percentageString);
                 }
-                String numGames = dataSnapshot.child("numGames").getValue().toString();
-                if (numGames.equals("-1")) {
-                    compNumGames.setText(NOT_AVAILABLE);
-                } else {
-                    compNumGames.setText(numGames);
-                }
+
                 String singlePin = dataSnapshot.child("singlePinPercentage").getValue().toString();
                 if (singlePin.equals("-1")) {
                     compSinglePinPc.setText(NOT_AVAILABLE);
                 } else {
-                    compSinglePinPc.setText(singlePin);
+                    String percentage = null;
+                    try
+                    {
+                        double d = Double.valueOf(singlePin.trim());
+                        d *= 100;
+                        percentage = String.valueOf(d);
+                    } catch (NumberFormatException nfe) {
+                        System.err.println("NumberFormatException: " + nfe.getMessage());
+                    }
+                    percentage = percentage.substring(0, Math.min(4, percentage.length()));
+                    String percentageString = percentage + "%";
+                    compSinglePinPc.setText(percentageString);
                 }
-                String filledFrames = dataSnapshot.child("filledFramePercentage").getValue().toString();
+
+                String filledFrames = dataSnapshot.child("filledPercentage").getValue().toString();
                 if (filledFrames.equals("-1")) {
                     compFilledPc.setText(NOT_AVAILABLE);
                 } else {
-                    compFilledPc.setText(filledFrames);
+                    String percentage = null;
+                    try
+                    {
+                        double d = Double.valueOf(filledFrames.trim());
+                        d *= 100;
+                        percentage = String.valueOf(d);
+                    } catch (NumberFormatException nfe) {
+                        System.err.println("NumberFormatException: " + nfe.getMessage());
+                    }
+                    percentage = percentage.substring(0, Math.min(4, percentage.length()));
+                    String percentageString = percentage + "%";
+                    compFilledPc.setText(percentageString);
                 }
             }
 

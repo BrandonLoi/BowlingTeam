@@ -20,7 +20,10 @@ public class StatisticsActivity extends AppCompatActivity {
     TextView averageScore;
     TextView highScore;
     TextView strikePc;
+    TextView numGames;
+    TextView singlePinPc;
     TextView sparePc;
+    TextView filledPc;
     // etc.
 
     @Override
@@ -32,8 +35,11 @@ public class StatisticsActivity extends AppCompatActivity {
         usernameText = (TextView) findViewById(R.id.usernameText);
         averageScore = (TextView) findViewById(R.id.averageScore);
         highScore = (TextView) findViewById(R.id.highScore);
+        numGames = (TextView) findViewById(R.id.numGames);
+        singlePinPc = (TextView) findViewById(R.id.singlePinPercentage);
         strikePc = (TextView) findViewById(R.id.strikePercentage);
         sparePc = (TextView) findViewById(R.id.sparePercentage);
+        filledPc = (TextView) findViewById(R.id.filledPercentage);
         // etc.
 
         Intent intent = getIntent();
@@ -60,12 +66,21 @@ public class StatisticsActivity extends AppCompatActivity {
                 } else {
                     averageScore.setText(avgScore);
                 }
+
                 String bestScore = dataSnapshot.child("highScore").getValue().toString();
                 if (bestScore.equals("-1")) {
                     highScore.setText(NOT_AVAILABLE);
                 } else {
                     highScore.setText(bestScore);
                 }
+
+                String numberOfGames = dataSnapshot.child("numGames").getValue().toString();
+                if (numberOfGames.equals("-1")) {
+                    numGames.setText(NOT_AVAILABLE);
+                } else {
+                    numGames.setText(numberOfGames);
+                }
+
                 String strikeScore = dataSnapshot.child("strikePercentage").getValue().toString();
                 if (strikeScore.equals("-1")) {
                     strikePc.setText(NOT_AVAILABLE);
@@ -83,6 +98,7 @@ public class StatisticsActivity extends AppCompatActivity {
                     String percentageString = percentage + "%";
                     strikePc.setText(percentageString);
                 }
+
                 String spareScore = dataSnapshot.child("sparePercentage").getValue().toString();
                 if (spareScore.equals("-1")) {
                     sparePc.setText(NOT_AVAILABLE);
@@ -99,6 +115,42 @@ public class StatisticsActivity extends AppCompatActivity {
                     percentage = percentage.substring(0, Math.min(4, percentage.length()));
                     String percentageString = percentage + "%";
                     sparePc.setText(percentageString);
+                }
+
+                String singlePin = dataSnapshot.child("singlePinPercentage").getValue().toString();
+                if (singlePin.equals("-1")) {
+                    singlePinPc.setText(NOT_AVAILABLE);
+                } else {
+                    String percentage = null;
+                    try
+                    {
+                        double d = Double.valueOf(singlePin.trim());
+                        d *= 100;
+                        percentage = String.valueOf(d);
+                    } catch (NumberFormatException nfe) {
+                        System.err.println("NumberFormatException: " + nfe.getMessage());
+                    }
+                    percentage = percentage.substring(0, Math.min(4, percentage.length()));
+                    String percentageString = percentage + "%";
+                    singlePinPc.setText(percentageString);
+                }
+
+                String filledFrames = dataSnapshot.child("filledPercentage").getValue().toString();
+                if (filledFrames.equals("-1")) {
+                    filledPc.setText(NOT_AVAILABLE);
+                } else {
+                    String percentage = null;
+                    try
+                    {
+                        double d = Double.valueOf(filledFrames.trim());
+                        d *= 100;
+                        percentage = String.valueOf(d);
+                    } catch (NumberFormatException nfe) {
+                        System.err.println("NumberFormatException: " + nfe.getMessage());
+                    }
+                    percentage = percentage.substring(0, Math.min(4, percentage.length()));
+                    String percentageString = percentage + "%";
+                    filledPc.setText(percentageString);
                 }
             }
 
