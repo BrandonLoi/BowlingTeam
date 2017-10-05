@@ -9,20 +9,22 @@
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="8dp"
-        tools:layout_constraintLeft_creator="1"
         android:layout_marginBottom="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp">
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,272 +32,418 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/game"
                 android:layout_width="match_parent"
                 android:layout_height="70sp"
                 android:orientation="horizontal"
-                android:id = "@+id/game"
                 android:weightSum="21">
 
                 <LinearLayout
+                    android:id="@+id/firstFrame"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:id = "@+id/firstFrame"
-                    android:orientation="horizontal"
                     android:gravity="top"
+                    android:orientation="horizontal"
                     android:weightSum="2">
+
                     <TextView
                         android:id="@+id/f1FirstBall"
                         android:layout_width="0dp"
                         android:layout_height="35dp"
                         android:layout_weight="1"
                         android:text="9"
-                        android:textAlignment="center"/>
+                        android:textAlignment="center" />
 
                     <TextView
+                        android:id="@+id/f1SecondBall"
                         android:layout_width="0dp"
                         android:layout_height="35dp"
                         android:layout_weight="1"
-                        android:id="@+id/f1SecondBall"
                         android:text="/"
-                        android:textAlignment="center"
-                        />
+                        android:textAlignment="center" />
                 </LinearLayout>
+
                 <LinearLayout
+                    android:id="@+id/secondFrame"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:id = "@+id/secondFrame"
-                    android:orientation="horizontal"
                     android:gravity="top"
+                    android:orientation="horizontal"
                     android:weightSum="2">
+
                     <TextView
                         android:id="@+id/f2FirstBall"
                         android:layout_width="0dp"
                         android:layout_height="35dp"
                         android:layout_weight="1"
                         android:text="9"
-                        android:textAlignment="center"/>
+                        android:textAlignment="center" />
 
                     <TextView
+                        android:id="@+id/f2SecondBall"
                         android:layout_width="0dp"
                         android:layout_height="35dp"
                         android:layout_weight="1"
-                        android:id="@+id/f2SecondBall"
                         android:text="/"
-                        android:textAlignment="center"
-                        />
+                        android:textAlignment="center" />
                 </LinearLayout>
+
                 <LinearLayout
+                    android:id="@+id/thirdFrame"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:id = "@+id/thirdFrame"
-                    android:orientation="horizontal"
                     android:gravity="top"
+                    android:orientation="horizontal"
                     android:weightSum="2">
+
                     <TextView
                         android:id="@+id/f3FirstBall"
                         android:layout_width="0dp"
                         android:layout_height="35dp"
                         android:layout_weight="1"
                         android:text="9"
-                        android:textAlignment="center"/>
+                        android:textAlignment="center" />
 
                     <TextView
+                        android:id="@+id/f3SecondBall"
                         android:layout_width="0dp"
                         android:layout_height="35dp"
                         android:layout_weight="1"
-                        android:id="@+id/f3SecondBall"
                         android:text="/"
-                        android:textAlignment="center"
-                        />
+                        android:textAlignment="center" />
                 </LinearLayout>
+
                 <LinearLayout
+                    android:id="@+id/fourthFrame"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:id = "@+id/fourthFrame"
-                    android:orientation="horizontal"
                     android:gravity="top"
+                    android:orientation="horizontal"
                     android:weightSum="2">
+
                     <TextView
                         android:id="@+id/f4FirstBall"
                         android:layout_width="0dp"
                         android:layout_height="35dp"
                         android:layout_weight="1"
                         android:text="9"
-                        android:textAlignment="center"/>
+                        android:textAlignment="center" />
 
                     <TextView
+                        android:id="@+id/f4SecondBall"
                         android:layout_width="0dp"
                         android:layout_height="35dp"
                         android:layout_weight="1"
-                        android:id="@+id/f4SecondBall"
                         android:text="/"
-                        android:textAlignment="center"
-                        />
+                        android:textAlignment="center" />
                 </LinearLayout>
+
                 <LinearLayout
+                    android:id="@+id/fifthFrame"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:id = "@+id/fifthFrame"
-                    android:orientation="horizontal"
                     android:gravity="top"
+                    android:orientation="horizontal"
                     android:weightSum="2">
+
                     <TextView
                         android:id="@+id/f5FirstBall"
                         android:layout_width="0dp"
                         android:layout_height="35dp"
                         android:layout_weight="1"
                         android:text="9"
-                        android:textAlignment="center"/>
+                        android:textAlignment="center" />
 
                     <TextView
+                        android:id="@+id/f5SecondBall"
                         android:layout_width="0dp"
                         android:layout_height="35dp"
                         android:layout_weight="1"
-                        android:id="@+id/f5SecondBall"
                         android:text="/"
-                        android:textAlignment="center"
-                        />
+                        android:textAlignment="center" />
                 </LinearLayout>
+
                 <LinearLayout
+                    android:id="@+id/sixthFrame"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:id = "@+id/sixthFrame"
-                    android:orientation="horizontal"
                     android:gravity="top"
+                    android:orientation="horizontal"
                     android:weightSum="2">
+
                     <TextView
                         android:id="@+id/f6FirstBall"
                         android:layout_width="0dp"
                         android:layout_height="35dp"
                         android:layout_weight="1"
                         android:text="9"
-                        android:textAlignment="center"/>
+                        android:textAlignment="center" />
 
                     <TextView
+                        android:id="@+id/f6SecondBall"
                         android:layout_width="0dp"
                         android:layout_height="35dp"
                         android:layout_weight="1"
-                        android:id="@+id/f6SecondBall"
                         android:text="/"
-                        android:textAlignment="center"
-                        />
+                        android:textAlignment="center" />
                 </LinearLayout>
+
                 <LinearLayout
+                    android:id="@+id/seventhFrame"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:id = "@+id/seventhFrame"
-                    android:orientation="horizontal"
                     android:gravity="top"
+                    android:orientation="horizontal"
                     android:weightSum="2">
+
                     <TextView
                         android:id="@+id/f7FirstBall"
                         android:layout_width="0dp"
                         android:layout_height="35dp"
                         android:layout_weight="1"
                         android:text="9"
-                        android:textAlignment="center"/>
+                        android:textAlignment="center" />
 
                     <TextView
+                        android:id="@+id/f7SecondBall"
                         android:layout_width="0dp"
                         android:layout_height="35dp"
                         android:layout_weight="1"
-                        android:id="@+id/f7SecondBall"
                         android:text="/"
-                        android:textAlignment="center"
-                        />
+                        android:textAlignment="center" />
                 </LinearLayout>
+
                 <LinearLayout
+                    android:id="@+id/eighthFrame"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:id = "@+id/eighthFrame"
-                    android:orientation="horizontal"
                     android:gravity="top"
+                    android:orientation="horizontal"
                     android:weightSum="2">
+
                     <TextView
                         android:id="@+id/f8FirstBall"
                         android:layout_width="0dp"
                         android:layout_height="35dp"
                         android:layout_weight="1"
                         android:text="9"
-                        android:textAlignment="center"/>
+                        android:textAlignment="center" />
 
                     <TextView
+                        android:id="@+id/f8SecondBall"
                         android:layout_width="0dp"
                         android:layout_height="35dp"
                         android:layout_weight="1"
-                        android:id="@+id/f8SecondBall"
                         android:text="/"
-                        android:textAlignment="center"
-                        />
+                        android:textAlignment="center" />
                 </LinearLayout>
+
                 <LinearLayout
+                    android:id="@+id/ninthFrame"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:id = "@+id/ninthFrame"
-                    android:orientation="horizontal"
                     android:gravity="top"
+                    android:orientation="horizontal"
                     android:weightSum="2">
+
                     <TextView
                         android:id="@+id/f9FirstBall"
                         android:layout_width="0dp"
                         android:layout_height="35dp"
                         android:layout_weight="1"
                         android:text="9"
-                        android:textAlignment="center"/>
+                        android:textAlignment="center" />
 
                     <TextView
+                        android:id="@+id/f9SecondBall"
                         android:layout_width="0dp"
                         android:layout_height="35dp"
                         android:layout_weight="1"
-                        android:id="@+id/f9SecondBall"
                         android:text="/"
-                        android:textAlignment="center"
-                        />
+                        android:textAlignment="center" />
                 </LinearLayout>
+
                 <LinearLayout
+                    android:id="@+id/tenthFrame"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
-                    android:id = "@+id/tenthFrame"
-                    android:orientation="horizontal"
                     android:gravity="top"
+                    android:orientation="horizontal"
                     android:weightSum="3">
+
                     <TextView
                         android:id="@+id/f10FirstBall"
                         android:layout_width="0dp"
                         android:layout_height="35dp"
                         android:layout_weight="1"
                         android:text="9"
-                        android:textAlignment="center"/>
+                        android:textAlignment="center" />
 
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="35dp"
-                        android:layout_weight="1"
                         android:id="@+id/f10SecondBall"
-                        android:text="/"
-                        android:textAlignment="center"
-                        />
-                    <TextView
                         android:layout_width="0dp"
                         android:layout_height="35dp"
                         android:layout_weight="1"
+                        android:text="/"
+                        android:textAlignment="center" />
+
+                    <TextView
                         android:id="@+id/f10ThirdBall"
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
                         android:text="X"
-                        android:textAlignment="center"
-                        />
+                        android:textAlignment="center" />
                 </LinearLayout>
 
             </LinearLayout>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="fill"
+                android:columnCount="6"
+                android:rowCount="8"
+                android:visibility="visible">
+
+                <Button
+                    android:layout_columnSpan="2"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textAlignment="center"
+                    android:visibility="visible" />
+
+                <Button
+                    android:layout_columnSpan="2"
+                    android:gravity="center"
+                    android:text="2"
+                    android:textAlignment="center"
+                    android:visibility="visible" />
+
+                <Button
+                    android:layout_columnSpan="2"
+                    android:gravity="center"
+                    android:text="3"
+                    android:textAlignment="center"
+                    android:visibility="visible" />
+
+                <Button
+                    android:layout_columnSpan="2"
+                    android:gravity="center"
+                    android:text="4"
+                    android:textAlignment="center"
+                    android:visibility="visible" />
+
+                <Button
+                    android:layout_columnSpan="2"
+                    android:gravity="center"
+                    android:text="5"
+                    android:textAlignment="center"
+                    android:visibility="visible" />
+
+                <Button
+                    android:layout_columnSpan="2"
+                    android:gravity="center"
+                    android:text="6"
+                    android:textAlignment="center"
+                    android:visibility="visible" />
+
+                <Button
+                    android:layout_columnSpan="2"
+                    android:gravity="center"
+                    android:text="7"
+                    android:textAlignment="center"
+                    android:visibility="visible" />
+
+                <Button
+                    android:layout_columnSpan="2"
+                    android:gravity="center"
+                    android:text="8"
+                    android:textAlignment="center"
+                    android:visibility="visible" />
+
+                <Button
+                    android:layout_columnSpan="2"
+                    android:gravity="center"
+                    android:text="9"
+                    android:textAlignment="center"
+                    android:visibility="visible" />
+
+                <Button
+                    android:layout_columnSpan="2"
+                    android:gravity="center"
+                    android:text="X"
+                    android:textAlignment="center"
+                    android:visibility="visible" />
+
+                <Button
+                    android:layout_columnSpan="2"
+                    android:gravity="center"
+                    android:text="-"
+                    android:textAlignment="center"
+                    android:visibility="visible" />
+
+                <Button
+                    android:layout_columnSpan="2"
+                    android:gravity="center"
+                    android:text="/"
+                    android:textAlignment="center"
+                    android:visibility="visible" />
+
+
+                <TextView android:layout_columnSpan="6" />
+
+                <Button
+                    android:layout_width="136dp"
+                    android:layout_columnSpan="3"
+                    android:gravity="center"
+                    android:text="SPLIT"
+                    android:textAlignment="center"
+                    android:visibility="visible" />
+
+                <Button
+                    android:layout_width="129dp"
+                    android:layout_columnSpan="3"
+                    android:gravity="center"
+                    android:text="MAKEABLE"
+                    android:textAlignment="center"
+                    android:visibility="visible" />
+
+                <TextView android:layout_columnSpan="6" />
+
+                <Button
+                    android:layout_columnSpan="2"
+                    android:gravity="center"
+                    android:text="<-"
+                    android:textAlignment="center"
+                    android:visibility="visible" />
+
+                <Button
+                    android:layout_columnSpan="2"
+                    android:gravity="center"
+                    android:text="P"
+                    android:textAlignment="center"
+                    android:visibility="visible" />
+
+                <Button
+                    android:layout_columnSpan="2"
+                    android:gravity="center"
+                    android:text="->"
+                    android:textAlignment="center"
+                    android:visibility="visible" />
+
+
+            </GridLayout>
 
         </LinearLayout>
 
