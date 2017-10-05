@@ -16,7 +16,9 @@ public class StatisticsActivity extends AppCompatActivity {
     TextView usernameText;
 
     TextView averageScore;
-    TextView bestScore;
+    TextView highScore;
+    TextView strikePc;
+    TextView sparePc;
     // etc.
 
     @Override
@@ -27,9 +29,10 @@ public class StatisticsActivity extends AppCompatActivity {
 
         usernameText = (TextView) findViewById(R.id.usernameText);
         averageScore = (TextView) findViewById(R.id.averageScore);
-        bestScore = (TextView) findViewById(R.id.bestScore);
+        highScore = (TextView) findViewById(R.id.highScore);
+        strikePc = (TextView) findViewById(R.id.strikePercentage);
+        sparePc = (TextView) findViewById(R.id.sparePercentage);
         // etc.
-
 
         Intent intent = getIntent();
         final String username = intent.getStringExtra("username");
@@ -51,8 +54,12 @@ public class StatisticsActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String avgScore = dataSnapshot.child("avgScore").getValue().toString();
                 averageScore.setText(avgScore);
-                String best = dataSnapshot.child("bestScore").getValue().toString();
-                bestScore.setText(best);
+                String bestScore = dataSnapshot.child("highScore").getValue().toString();
+                highScore.setText(bestScore);
+                String strikeScore = dataSnapshot.child("strikePercentage").getValue().toString();
+                strikePc.setText(strikeScore);
+                String spareScore = dataSnapshot.child("sparePercentage").getValue().toString();
+                sparePc.setText(spareScore);
             }
 
             @Override
