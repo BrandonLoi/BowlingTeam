@@ -79,17 +79,29 @@ public class CompareStatisticsLookupActivity extends AppCompatActivity {
                 final FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference usersRef = database.getReference("users");
 
-                usersRef.addValueEventListener(new ValueEventListener() {
+                usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         TextView foo = (TextView) findViewById(R.id.lookupPlayerText);
+                        Intent i = null;
+                        boolean flag = false;
 
                         for (DataSnapshot user : dataSnapshot.getChildren()) {
-                            foo.setText("nope");
-                            if (user.hasChild(email)) {
-                                foo.setText(email);
-                                Intent i = new Intent(CompareStatisticsLookupActivity.this,
-                                        CompareStatisticsActivity.class);
+                            if (user.hasChild("email") ) {
+                                String getEmail = user.child("email").getValue().toString();
+                                System.out.println(getEmail+ "\n" );
+                                System.out.println(getEmail+ "\n" );
+                                if (getEmail.equals(email)) {
+                                    foo.setText(email);
+                                    flag = true;
+                                    i = new Intent(CompareStatisticsLookupActivity.this,
+                                            CompareStatisticsActivity.class);
+                                }
+                            }
+                        }
+                        if (flag = true) {
+                            foo.setText(email);
+                            if (i != null) {
                                 startActivity(i);
                             }
                         }
