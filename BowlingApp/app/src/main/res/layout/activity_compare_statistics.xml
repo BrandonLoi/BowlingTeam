@@ -13,18 +13,18 @@
         android:layout_width="112dp"
         android:layout_height="33dp"
         android:text="Average Score:"
-        app:layout_constraintBottom_toTopOf="@+id/bestScore"
-        app:layout_constraintTop_toBottomOf="@+id/emptyTextBox"
         app:layout_constraintRight_toLeftOf="@+id/currAverageScore"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bestScore"
+        app:layout_constraintTop_toBottomOf="@+id/emptyTextBox" />
 
     <TextView
         android:id="@+id/emptyTextBox"
         android:layout_width="112dp"
         android:layout_height="33dp"
-        app:layout_constraintBottom_toTopOf="@+id/averageScore"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/currUsernameText"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/averageScore"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -32,129 +32,129 @@
         android:layout_width="112dp"
         android:layout_height="33dp"
         android:text="Average Strikes:"
-        app:layout_constraintBottom_toTopOf="@+id/averageSpares"
-        app:layout_constraintTop_toBottomOf="@+id/bestScore"
         app:layout_constraintRight_toLeftOf="@+id/currAverageStrikes"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/averageSpares"
+        app:layout_constraintTop_toBottomOf="@+id/bestScore" />
 
     <TextView
         android:id="@+id/averageSpares"
         android:layout_width="112dp"
         android:layout_height="33dp"
         android:text="Average Spares:"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/averageStrikes"
         app:layout_constraintRight_toLeftOf="@+id/currAverageSpares"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/averageStrikes" />
 
     <TextView
         android:id="@+id/bestScore"
         android:layout_width="112dp"
         android:layout_height="33dp"
         android:text="Best Score:"
-        app:layout_constraintBottom_toTopOf="@+id/averageStrikes"
-        app:layout_constraintTop_toBottomOf="@+id/averageScore"
         app:layout_constraintRight_toLeftOf="@+id/currBestScore"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/averageStrikes"
+        app:layout_constraintTop_toBottomOf="@+id/averageScore" />
 
     <TextView
         android:id="@+id/currAverageScore"
         android:layout_width="120dp"
         android:layout_height="33dp"
         android:text="temp"
-        app:layout_constraintBottom_toTopOf="@+id/currBestScore"
-        app:layout_constraintTop_toBottomOf="@+id/currUsernameText"
         app:layout_constraintRight_toLeftOf="@+id/compAverageScore"
-        app:layout_constraintLeft_toRightOf="@+id/averageScore" />
+        app:layout_constraintLeft_toRightOf="@+id/averageScore"
+        app:layout_constraintBottom_toTopOf="@+id/currBestScore"
+        app:layout_constraintTop_toBottomOf="@+id/currUsernameText" />
 
     <TextView
         android:id="@+id/currBestScore"
         android:layout_width="120dp"
         android:layout_height="33dp"
         android:text="temp"
-        app:layout_constraintBottom_toTopOf="@+id/currAverageStrikes"
-        app:layout_constraintTop_toBottomOf="@+id/currAverageScore"
         app:layout_constraintRight_toLeftOf="@+id/compBestScore"
-        app:layout_constraintLeft_toRightOf="@+id/bestScore" />
+        app:layout_constraintLeft_toRightOf="@+id/bestScore"
+        app:layout_constraintBottom_toTopOf="@+id/currAverageStrikes"
+        app:layout_constraintTop_toBottomOf="@+id/currAverageScore" />
 
     <TextView
         android:id="@+id/currAverageStrikes"
         android:layout_width="120dp"
         android:layout_height="33dp"
         android:text="temp"
-        app:layout_constraintBottom_toTopOf="@+id/currAverageSpares"
-        app:layout_constraintTop_toBottomOf="@+id/currBestScore"
         app:layout_constraintRight_toLeftOf="@+id/compAverageStrikes"
-        app:layout_constraintLeft_toRightOf="@+id/averageStrikes" />
+        app:layout_constraintLeft_toRightOf="@+id/averageStrikes"
+        app:layout_constraintBottom_toTopOf="@+id/currAverageSpares"
+        app:layout_constraintTop_toBottomOf="@+id/currBestScore" />
 
     <TextView
         android:id="@+id/currAverageSpares"
         android:layout_width="120dp"
         android:layout_height="33dp"
         android:text="temp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/currAverageStrikes"
         app:layout_constraintRight_toLeftOf="@+id/compAverageSpares"
-        app:layout_constraintLeft_toRightOf="@+id/averageSpares" />
+        app:layout_constraintLeft_toRightOf="@+id/averageSpares"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currAverageStrikes" />
 
     <TextView
         android:id="@+id/compAverageSpares"
         android:layout_width="120dp"
         android:layout_height="33dp"
         android:text="temp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/compAverageStrikes"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/currAverageSpares" />
+        app:layout_constraintLeft_toRightOf="@+id/currAverageSpares"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/compAverageStrikes" />
 
     <TextView
         android:id="@+id/compAverageScore"
         android:layout_width="120dp"
         android:layout_height="33dp"
         android:text="temp"
-        app:layout_constraintBottom_toTopOf="@+id/compBestScore"
-        app:layout_constraintTop_toBottomOf="@+id/compUsernameText"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/currAverageScore" />
+        app:layout_constraintLeft_toRightOf="@+id/currAverageScore"
+        app:layout_constraintBottom_toTopOf="@+id/compBestScore"
+        app:layout_constraintTop_toBottomOf="@+id/compUsernameText" />
 
     <TextView
         android:id="@+id/compBestScore"
         android:layout_width="120dp"
         android:layout_height="33dp"
         android:text="temp"
-        app:layout_constraintBottom_toTopOf="@+id/compAverageStrikes"
-        app:layout_constraintTop_toBottomOf="@+id/compAverageScore"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/currBestScore" />
+        app:layout_constraintLeft_toRightOf="@+id/currBestScore"
+        app:layout_constraintBottom_toTopOf="@+id/compAverageStrikes"
+        app:layout_constraintTop_toBottomOf="@+id/compAverageScore" />
 
     <TextView
         android:id="@+id/compAverageStrikes"
         android:layout_width="120dp"
         android:layout_height="33dp"
         android:text="temp"
-        app:layout_constraintBottom_toTopOf="@+id/compAverageSpares"
-        app:layout_constraintTop_toBottomOf="@+id/compBestScore"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/currAverageStrikes" />
+        app:layout_constraintLeft_toRightOf="@+id/currAverageStrikes"
+        app:layout_constraintBottom_toTopOf="@+id/compAverageSpares"
+        app:layout_constraintTop_toBottomOf="@+id/compBestScore" />
 
     <TextView
         android:id="@+id/currUsernameText"
         android:layout_width="120dp"
         android:layout_height="33dp"
         android:text="currentUsername"
-        app:layout_constraintBottom_toTopOf="@+id/currAverageScore"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/compUsernameText"
-        app:layout_constraintLeft_toRightOf="@+id/emptyTextBox" />
+        app:layout_constraintLeft_toRightOf="@+id/emptyTextBox"
+        app:layout_constraintBottom_toTopOf="@+id/currAverageScore"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/compUsernameText"
         android:layout_width="120dp"
         android:layout_height="33dp"
         android:text="comparingUsername"
-        app:layout_constraintBottom_toTopOf="@+id/compAverageScore"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/currUsernameText" />
+        app:layout_constraintLeft_toRightOf="@+id/currUsernameText"
+        app:layout_constraintBottom_toTopOf="@+id/compAverageScore"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
