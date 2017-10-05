@@ -70,13 +70,35 @@ public class StatisticsActivity extends AppCompatActivity {
                 if (strikeScore.equals("-1")) {
                     strikePc.setText(NOT_AVAILABLE);
                 } else {
-                    strikePc.setText(strikeScore);
+                    String percentage = null;
+                    try
+                    {
+                        double d = Double.valueOf(strikeScore.trim());
+                        d *= 100;
+                        percentage = String.valueOf(d);
+                    } catch (NumberFormatException nfe) {
+                        System.err.println("NumberFormatException: " + nfe.getMessage());
+                    }
+                    percentage = percentage.substring(0, Math.min(4, percentage.length()));
+                    String percentageString = percentage + "%";
+                    strikePc.setText(percentageString);
                 }
                 String spareScore = dataSnapshot.child("sparePercentage").getValue().toString();
                 if (spareScore.equals("-1")) {
                     sparePc.setText(NOT_AVAILABLE);
                 } else {
-                    sparePc.setText(spareScore);
+                    String percentage = null;
+                    try
+                    {
+                        double d = Double.valueOf(spareScore.trim());
+                        d *= 100;
+                        percentage = String.valueOf(d);
+                    } catch (NumberFormatException nfe) {
+                        System.err.println("NumberFormatException: " + nfe.getMessage());
+                    }
+                    percentage = percentage.substring(0, Math.min(4, percentage.length()));
+                    String percentageString = percentage + "%";
+                    sparePc.setText(percentageString);
                 }
             }
 
