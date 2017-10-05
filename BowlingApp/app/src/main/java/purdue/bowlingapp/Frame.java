@@ -10,6 +10,7 @@ public class Frame {
     private char secondThrow;
     private boolean makeable;
     private boolean pocket;
+    private boolean split;
 
 
     public Frame(char firstThrow, char secondThrow) {
@@ -21,7 +22,6 @@ public class Frame {
     }
 
     //TO DO: Add logic somewhere that prevents bad inputs that add to over ten i.e. firstThrow = 8, secondThrow = 4
-    //TO DO: Add tenth frame fill ball support
     //TO DO: Add support for fouls
 
     private char validateInput(char input) {
@@ -62,5 +62,13 @@ public class Frame {
         else if(this.secondThrow == '/') return 10;
         else if(this.firstThrow == ' ' || this.secondThrow == ' ') return -1; //Error Handling, MAY NEED TO CHANGE
         else return this.firstThrow + this.secondThrow - 96;
+    }
+
+    public void toggleSplit() {
+        this.split = !this.split;
+    }
+
+    public boolean getSplit() {
+        return this.split;
     }
 }

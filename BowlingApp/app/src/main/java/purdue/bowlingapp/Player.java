@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class Player extends User {
 
     private ArrayList<Game> games;
+    private int highGame = -1;
     private int numGames;
     private double avgScore;
     private double strikePc;
@@ -126,6 +127,8 @@ public class Player extends User {
             }
             totalFrames++;
             totalScore += games.get(i).getScore();
+            if (games.get(i).getScore() > this.highGame)
+                this.highGame = games.get(i).getScore();
         }
         this.filledPc = ((double)numFilled/(double)totalFrames);
         this.strikePc = ((double)numStrikes/(double)totalFirstBalls);
@@ -134,7 +137,28 @@ public class Player extends User {
         this.sparePc = ((double)numSpares/(double)numNonStrikes);
     }
 
+    public double getFilled() {
+        return this.filledPc;
+    }
+
+    public double getStrike(){
+        return this.strikePc;
+    }
+
+    public double getAvg (){
+        return this.avgScore;
+    }
+
+    public double getSinglePc (){
+        return this.singlePinPc;
+    }
+
+    public double getSpare() {
+        return this.sparePc;
+    }
+
     private void printStats() {
+        System.out.println("High Game:                        " + this.highGame);
         System.out.println("Average Score:                    " + this.avgScore);
         System.out.println("Percentage of Frames filled:      " + this.filledPc);
         System.out.println("Strike Percentage:                " + this.strikePc);
@@ -200,9 +224,61 @@ public class Player extends User {
         Game g2 = new Game(frames2, t2);
         System.out.println("Game 2 score: " + g2.getScore());
 
+        Frame f20 = new Frame('7','/');
+        Frame f21 = new Frame('9','0');
+        Frame f22 = new Frame('X',' ');
+        Frame f23 = new Frame('X',' ');
+        Frame f24 = new Frame('X',' ');
+        Frame f25 = new Frame('X',' ');
+        Frame f26 = new Frame('8','1');
+        Frame f27 = new Frame('7','/');
+        Frame f28 = new Frame('8','/');
+        TenthFrame t3 = new TenthFrame('X','7','1');
+
+        ArrayList<Frame> frames3 = new ArrayList<>();
+        frames3.add(f20);
+        frames3.add(f21);
+        frames3.add(f22);
+        frames3.add(f23);
+        frames3.add(f24);
+        frames3.add(f25);
+        frames3.add(f26);
+        frames3.add(f27);
+        frames3.add(f28);
+
+        Game g3 = new Game(frames3, t3);
+        System.out.println("Game 3 score: " + g3.getScore());
+
+        Frame f30 = new Frame('X','4');
+        Frame f31 = new Frame('X','8');
+        Frame f32 = new Frame('X',' ');
+        Frame f33 = new Frame('X',' ');
+        Frame f34 = new Frame('X','a');
+        Frame f35 = new Frame('X',' ');
+        Frame f36 = new Frame('X',' ');
+        Frame f37 = new Frame('X',' ');
+        Frame f38 = new Frame('X',' ');
+        TenthFrame t4 = new TenthFrame('X','X','X');
+
+        ArrayList<Frame> frames4 = new ArrayList<>();
+        frames4.add(f30);
+        frames4.add(f31);
+        frames4.add(f32);
+        frames4.add(f33);
+        frames4.add(f34);
+        frames4.add(f35);
+        frames4.add(f36);
+        frames4.add(f37);
+        frames4.add(f38);
+
+        Game g4 = new Game(frames4, t4);
+        System.out.println("Game 4 score: " + g4.getScore());
+
         ArrayList<Game> games = new ArrayList<>();
         games.add(g);
         games.add(g2);
+        games.add(g3);
+        games.add(g4);
 
         Player player = new Player("wow", "sick", "bet", games);
 

@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         myRef.addListenerForSingleValueEvent(listen);
-        if (loginSuccess[0] = true) {
+        if (loginSuccess[0] == true) {
             login(username);
         }
         else {
