@@ -13,6 +13,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class CompareStatisticsActivity extends AppCompatActivity {
 
+    final String NOT_AVAILABLE = "N/A";
+
     TextView currUsernameText;
     TextView compUsernameText;
 
@@ -78,13 +80,29 @@ public class CompareStatisticsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String avgScore = dataSnapshot.child("avgScore").getValue().toString();
-                currAverageScore.setText(avgScore);
+                if (avgScore.equals("-1")) {
+                    currAverageScore.setText(NOT_AVAILABLE);
+                } else {
+                    currAverageScore.setText(avgScore);
+                }
                 String highScore = dataSnapshot.child("highScore").getValue().toString();
-                currHighScore.setText(highScore);
+                if (highScore.equals("-1")) {
+                    currHighScore.setText(NOT_AVAILABLE);
+                } else {
+                    currHighScore.setText(highScore);
+                }
                 String strikeScore = dataSnapshot.child("strikePercentage").getValue().toString();
-                currStrikePc.setText(strikeScore);
+                if (strikeScore.equals("-1")) {
+                    currStrikePc.setText(NOT_AVAILABLE);
+                } else {
+                    currStrikePc.setText(strikeScore);
+                }
                 String spareScore = dataSnapshot.child("sparePercentage").getValue().toString();
-                currSparePc.setText(spareScore);
+                if (spareScore.equals("-1")) {
+                    currSparePc.setText(NOT_AVAILABLE);
+                } else {
+                    currSparePc.setText(spareScore);
+                }
             }
 
             @Override
@@ -101,13 +119,29 @@ public class CompareStatisticsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String avgScore = dataSnapshot.child("avgScore").getValue().toString();
-                compAverageScore.setText(avgScore);
+                if (avgScore.equals("-1")) {
+                    compAverageScore.setText(NOT_AVAILABLE);
+                } else {
+                    compAverageScore.setText(avgScore);
+                }
                 String highScore = dataSnapshot.child("highScore").getValue().toString();
-                compHighScore.setText(highScore);
+                if (highScore.equals("-1")) {
+                    compHighScore.setText(NOT_AVAILABLE);
+                } else {
+                    compHighScore.setText(highScore);
+                }
                 String strikeScore = dataSnapshot.child("strikePercentage").getValue().toString();
-                compStrikePc.setText(strikeScore);
+                if (strikeScore.equals("-1")) {
+                    compStrikePc.setText(NOT_AVAILABLE);
+                } else {
+                    compStrikePc.setText(strikeScore);
+                }
                 String spareScore = dataSnapshot.child("sparePercentage").getValue().toString();
-                compSparePc.setText(spareScore);
+                if (spareScore.equals("-1")) {
+                    compSparePc.setText(NOT_AVAILABLE);
+                } else {
+                    compSparePc.setText(spareScore);
+                }
             }
 
             @Override
