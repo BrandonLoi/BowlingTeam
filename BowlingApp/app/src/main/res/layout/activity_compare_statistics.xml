@@ -10,51 +10,52 @@
 
     <TextView
         android:id="@+id/averageScore"
-        android:layout_width="112dp"
+        android:layout_width="120dp"
         android:layout_height="33dp"
         android:text="Average Score:"
         app:layout_constraintRight_toLeftOf="@+id/currAverageScore"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/highScore"
-        app:layout_constraintTop_toBottomOf="@+id/emptyTextBox" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/emptyTextBox"
-        android:layout_width="112dp"
+        android:layout_width="120dp"
         android:layout_height="33dp"
         app:layout_constraintRight_toLeftOf="@+id/currUsernameText"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/averageScore"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/strikePercentage"
-        android:layout_width="112dp"
+        android:layout_width="120dp"
         android:layout_height="33dp"
         android:text="Strike Percentage:"
-        app:layout_constraintRight_toLeftOf="@+id/currStrikePercentage"
+        app:layout_constraintRight_toLeftOf="@+id/currSparePercentage"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/sparePercentage"
-        app:layout_constraintTop_toBottomOf="@+id/highScore" />
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <TextView
         android:id="@+id/sparePercentage"
-        android:layout_width="112dp"
+        android:layout_width="120dp"
         android:layout_height="33dp"
         android:text="Spare Percentage:"
-        app:layout_constraintRight_toLeftOf="@+id/currSparePercentage"
+        app:layout_constraintRight_toLeftOf="@+id/textView6"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/strikePercentage" />
 
     <TextView
         android:id="@+id/highScore"
-        android:layout_width="112dp"
+        android:layout_width="120dp"
         android:layout_height="33dp"
         android:text="High Score:"
         app:layout_constraintRight_toLeftOf="@+id/currHighScore"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/strikePercentage"
+        app:layout_constraintBottom_toTopOf="@+id/textView11"
         app:layout_constraintTop_toBottomOf="@+id/averageScore" />
 
     <TextView
@@ -65,7 +66,7 @@
         app:layout_constraintRight_toLeftOf="@+id/compAverageScore"
         app:layout_constraintLeft_toRightOf="@+id/averageScore"
         app:layout_constraintBottom_toTopOf="@+id/currHighScore"
-        app:layout_constraintTop_toBottomOf="@+id/currUsernameText" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/currHighScore"
@@ -83,7 +84,7 @@
         android:layout_height="33dp"
         android:text="temp"
         app:layout_constraintRight_toLeftOf="@+id/compStrikePercentage"
-        app:layout_constraintLeft_toRightOf="@+id/strikePercentage"
+        app:layout_constraintLeft_toRightOf="@+id/textView11"
         app:layout_constraintBottom_toTopOf="@+id/currSparePercentage"
         app:layout_constraintTop_toBottomOf="@+id/currHighScore" />
 
@@ -93,8 +94,8 @@
         android:layout_height="33dp"
         android:text="temp"
         app:layout_constraintRight_toLeftOf="@+id/compSparePercentage"
-        app:layout_constraintLeft_toRightOf="@+id/sparePercentage"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/strikePercentage"
+        app:layout_constraintBottom_toTopOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/currStrikePercentage" />
 
     <TextView
@@ -104,7 +105,7 @@
         android:text="temp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/currSparePercentage"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/textView13"
         app:layout_constraintTop_toBottomOf="@+id/compStrikePercentage" />
 
     <TextView
@@ -115,7 +116,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/currAverageScore"
         app:layout_constraintBottom_toTopOf="@+id/compHighScore"
-        app:layout_constraintTop_toBottomOf="@+id/compUsernameText" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/compHighScore"
@@ -145,7 +146,8 @@
         app:layout_constraintRight_toLeftOf="@+id/compUsernameText"
         app:layout_constraintLeft_toRightOf="@+id/emptyTextBox"
         app:layout_constraintBottom_toTopOf="@+id/currAverageScore"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/compUsernameText"
@@ -155,6 +157,97 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/currUsernameText"
         app:layout_constraintBottom_toTopOf="@+id/compAverageScore"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="120dp"
+        android:layout_height="33dp"
+        android:text="Single Pin Percentage:"
+        app:layout_constraintRight_toLeftOf="@+id/textView10"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/sparePercentage" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="120dp"
+        android:layout_height="33dp"
+        android:text="temp"
+        app:layout_constraintRight_toLeftOf="@+id/textView13"
+        app:layout_constraintLeft_toRightOf="@+id/sparePercentage"
+        app:layout_constraintBottom_toTopOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/currSparePercentage" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="120dp"
+        android:layout_height="33dp"
+        android:text="temp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/textView10"
+        app:layout_constraintBottom_toTopOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="120dp"
+        android:layout_height="33dp"
+        android:text="Filled Percentage:"
+        app:layout_constraintRight_toLeftOf="@+id/textView12"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="120dp"
+        android:layout_height="33dp"
+        android:text="temp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/textView12"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="120dp"
+        android:layout_height="33dp"
+        android:text="temp"
+        app:layout_constraintRight_toLeftOf="@+id/textView7"
+        app:layout_constraintLeft_toRightOf="@+id/textView5"
+        app:layout_constraintBottom_toTopOf="@+id/textView12"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="120dp"
+        android:layout_height="33dp"
+        android:text="Number of Games:"
+        app:layout_constraintRight_toLeftOf="@+id/currStrikePercentage"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/strikePercentage"
+        app:layout_constraintTop_toBottomOf="@+id/highScore" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="120dp"
+        android:layout_height="33dp"
+        android:text="temp"
+        app:layout_constraintRight_toLeftOf="@+id/textView9"
+        app:layout_constraintLeft_toRightOf="@+id/textView8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="120dp"
+        android:layout_height="33dp"
+        android:text="temp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/textView6"
+        app:layout_constraintBottom_toTopOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/compSparePercentage" />
 
 </android.support.constraint.ConstraintLayout>
