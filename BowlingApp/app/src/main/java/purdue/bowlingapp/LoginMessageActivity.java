@@ -24,7 +24,6 @@ public class LoginMessageActivity extends AppCompatActivity {
     Button compareStatsButton;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,28 +33,12 @@ public class LoginMessageActivity extends AppCompatActivity {
         TextView textView = (TextView) findViewById(R.id.textView3);
         textView.setText(message);
         username = textView.getText().toString();
-        username = "" + username.substring(0,username.length()-1);
+        username = "" + username.substring(0, username.length() - 1);
 
         button = (Button) findViewById(R.id.continueButton);
         button2 = (Button) findViewById(R.id.coachButton);
 
         compareStatsButton = (Button) findViewById(R.id.compareStatsButton);
-
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("coaches");
-        ValueEventListener listen = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                //TODO: find if user is coach, set visible to button
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        };
-        mDatabase.addListenerForSingleValueEvent(listen);
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,16 +48,13 @@ public class LoginMessageActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
         compareStatsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(LoginMessageActivity.this,
-                        CompareStatisticsLookupActivity.class);
-                i.putExtra("username", username);
+                        CoachChangeStatsLookupActivity.class);
                 startActivity(i);
             }
         });
-
     }
 }

@@ -14,16 +14,18 @@
         android:layout_height="wrap_content"
         android:text="Test"
         android:textSize="24sp"
-        tools:layout_editor_absoluteX="162dp"
-        tools:layout_editor_absoluteY="186dp" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="140dp" />
 
     <Button
         android:id="@+id/button7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="returnToLogin"
-        android:text="Button"
-        tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="328dp" />
+        android:text="back "
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="276dp" />
 
 </android.support.constraint.ConstraintLayout>
