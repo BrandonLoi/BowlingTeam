@@ -69,7 +69,7 @@ public class CoachChangeStatsActivity extends AppCompatActivity {
         /*
          * Retrieve current user's stats
          */
-        dataRef.addValueEventListener(new ValueEventListener() {
+        dataRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String avgScore = dataSnapshot.child("avgScore").getValue().toString();
@@ -101,13 +101,13 @@ public class CoachChangeStatsActivity extends AppCompatActivity {
                     try
                     {
                         double d = Double.valueOf(strikeScore.trim());
-                        d *= 100;
+                        //d *= 100;
                         percentage = String.valueOf(d);
                     } catch (NumberFormatException nfe) {
                         System.err.println("NumberFormatException: " + nfe.getMessage());
                     }
                     percentage = percentage.substring(0, Math.min(4, percentage.length()));
-                    String percentageString = percentage + "%";
+                    String percentageString = percentage; // + "%";
                     strikePc.setText(percentageString);
                 }
 
@@ -119,13 +119,13 @@ public class CoachChangeStatsActivity extends AppCompatActivity {
                     try
                     {
                         double d = Double.valueOf(spareScore.trim());
-                        d *= 100;
+                        //d *= 100;
                         percentage = String.valueOf(d);
                     } catch (NumberFormatException nfe) {
                         System.err.println("NumberFormatException: " + nfe.getMessage());
                     }
-                    percentage = percentage.substring(0, Math.min(4, percentage.length()));
-                    String percentageString = percentage + "%";
+                    //percentage = percentage.substring(0, Math.min(4, percentage.length()));
+                    String percentageString = percentage;  //+ "%";
                     sparePc.setText(percentageString);
                 }
 
@@ -137,13 +137,13 @@ public class CoachChangeStatsActivity extends AppCompatActivity {
                     try
                     {
                         double d = Double.valueOf(singlePin.trim());
-                        d *= 100;
+                        //d *= 100;
                         percentage = String.valueOf(d);
                     } catch (NumberFormatException nfe) {
                         System.err.println("NumberFormatException: " + nfe.getMessage());
                     }
                     percentage = percentage.substring(0, Math.min(4, percentage.length()));
-                    String percentageString = percentage + "%";
+                    String percentageString = percentage;// + "%";
                     singlePinPc.setText(percentageString);
                 }
 
@@ -155,13 +155,13 @@ public class CoachChangeStatsActivity extends AppCompatActivity {
                     try
                     {
                         double d = Double.valueOf(filledFrames.trim());
-                        d *= 100;
+                        //d *= 100;
                         percentage = String.valueOf(d);
                     } catch (NumberFormatException nfe) {
                         System.err.println("NumberFormatException: " + nfe.getMessage());
                     }
                     percentage = percentage.substring(0, Math.min(4, percentage.length()));
-                    String percentageString = percentage + "%";
+                    String percentageString = percentage; //+ "%";
                     filledPc.setText(percentageString);
                 }
             }
@@ -215,7 +215,7 @@ public class CoachChangeStatsActivity extends AppCompatActivity {
                 //make sure everything is a number 0> if a number < 1 if a percent
 
                 try {
-                    if (Double.parseDouble(strikePc.getText().toString().substring(0, strikePc.getText().toString().length() - 1))/100 < 0 || Double.parseDouble(strikePc.getText().toString().substring(0, strikePc.getText().toString().length() - 1))/100 > 1 ) {
+                    if (Double.parseDouble(strikePc.getText().toString()) < 0 || Double.parseDouble(strikePc.getText().toString()) > 100 ) {
                         flag = false;
                     }
                 } catch (NumberFormatException e) {
@@ -225,7 +225,7 @@ public class CoachChangeStatsActivity extends AppCompatActivity {
                     else flag = false;
                 }
                 try {
-                    if (Double.parseDouble(sparePc.getText().toString().substring(0, sparePc.getText().toString().length() - 1))/100 < 0 || Double.parseDouble(sparePc.getText().toString().substring(0, sparePc.getText().toString().length() - 1))/100 > 1 ) {
+                    if (Double.parseDouble(sparePc.getText().toString()) < 0 || Double.parseDouble(sparePc.getText().toString()) > 100 ) {
                         flag = false;
                     }
                 } catch (NumberFormatException e) {
@@ -235,7 +235,7 @@ public class CoachChangeStatsActivity extends AppCompatActivity {
                     else flag = false;
                 }
                 try {
-                    if (Double.parseDouble(singlePinPc.getText().toString().substring(0, singlePinPc.getText().toString().length() - 1))/100 < 0 || Double.parseDouble((singlePinPc.getText().toString().substring(0, singlePinPc.getText().toString().length() - 1)))/100 > 1 )
+                    if (Double.parseDouble(singlePinPc.getText().toString()) < 0 || Double.parseDouble(singlePinPc.getText().toString()) > 100 )
                     {
                         flag = false;
                     }
@@ -246,7 +246,7 @@ public class CoachChangeStatsActivity extends AppCompatActivity {
                     else flag = false;
                 }
                 try {
-                    if (Double.parseDouble(filledPc.getText().toString().substring(0, filledPc.getText().toString().length() - 1))/100 < 0 || Double.parseDouble(filledPc.getText().toString().substring(0, filledPc.getText().toString().length() - 1))/100 > 1 ) {
+                    if (Double.parseDouble(filledPc.getText().toString()) < 0 || Double.parseDouble(filledPc.getText().toString()) > 100 ) {
                         flag = false;
                     }
                 } catch (NumberFormatException e) {

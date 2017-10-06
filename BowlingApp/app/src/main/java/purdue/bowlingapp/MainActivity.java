@@ -97,12 +97,9 @@ public class MainActivity extends AppCompatActivity {
                     myRef2.child("highScore").setValue("-1");
                     myRef2.child("sparePercentage").setValue("-1");
                     myRef2.child("strikePercentage").setValue("-1");
-
-                    //List<Game> asd = new ArrayList<>();
-                    //Player x = new Player(username,password,email,(ArrayList<Game>)asd);
-                    //Frame f = new Frame('9','0');
-                    //myRef.child(username).child("frame").setValue(f);
-
+                    myRef2.child("filledPercentage").setValue("-1");
+                    myRef2.child("singlePinPercentage").setValue("-1");
+                    myRef2.child("strikePercentage").setValue("-1");
 
                     create(username);
                 }
