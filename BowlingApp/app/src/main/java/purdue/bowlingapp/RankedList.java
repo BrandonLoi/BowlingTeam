@@ -25,7 +25,7 @@ public class RankedList extends AppCompatActivity {
         setContentView(R.layout.activity_ranked_list);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         DatabaseReference data = mDatabase.child("data"); // points reference to data in DB
-        final LinearLayout linear = (LinearLayout) findViewById(R.id.llayout);
+        final LinearLayout linear = (LinearLayout) findViewById(R.id.layout);
         final TextView tv = new TextView(this); // TextView to add to layout
         tv.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
                 LayoutParams.WRAP_CONTENT));
