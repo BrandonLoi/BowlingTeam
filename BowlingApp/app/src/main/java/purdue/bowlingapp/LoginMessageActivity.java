@@ -94,6 +94,7 @@ public class LoginMessageActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(LoginMessageActivity.this,
                         createGroupActivity.class);
+                i.putExtra("username", username);
                 startActivity(i);
             }
         });

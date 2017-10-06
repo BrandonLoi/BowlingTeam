@@ -16,21 +16,22 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class createGroupActivity extends AppCompatActivity {
+   
+    public DatabaseReference mDatabase;
+    String username;
+    public static String createSuccess = "Group created";
+    public static String createFail_message = "Group already exists";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_group);
+        Intent intent = getIntent();
+        username = intent.getStringExtra("username");
     }
-
-    public DatabaseReference mDatabase;
-    TextView currUsernameText;
-    public static String createSuccess = "Group created";
-    public static String createFail_message = "Group already exists";
-
+    
     public void createUserGroup(View view) {
         //clearError();
-        currUsernameText = (TextView) findViewById(R.id.currUsernameText);
         final EditText editText = (EditText) findViewById(R.id.groupNameField);
         final String groupName = editText.getText().toString();
 
@@ -45,7 +46,7 @@ public class createGroupActivity extends AppCompatActivity {
                     createFail(groupName);
                 } else {
                     //CREATE SUCCESS
-                    myRef.child(groupName).child("hunter"/*currUsernameText.getText().toString()*/).setValue("1");
+                    myRef.child(groupName).child(username).setValue("1");
                     create(groupName);
                 }
             }
