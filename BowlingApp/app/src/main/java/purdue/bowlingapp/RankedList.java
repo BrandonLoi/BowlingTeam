@@ -2,9 +2,10 @@ package purdue.bowlingapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutCompat;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.LinearLayout.LayoutParams;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -17,7 +18,6 @@ import java.util.Arrays;
 
 public class RankedList extends AppCompatActivity {
     public DatabaseReference mDatabase;
-    LinearLayout linear = (LinearLayout) findViewById(R.id.layout);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +25,18 @@ public class RankedList extends AppCompatActivity {
         setContentView(R.layout.activity_ranked_list);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         DatabaseReference data = mDatabase.child("data"); // points reference to data in DB
+        final LinearLayout linear = (LinearLayout) findViewById(R.id.llayout);
         final TextView tv = new TextView(this); // TextView to add to layout
+        tv.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
+                LayoutParams.WRAP_CONTENT));
         ValueEventListener listen = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Iterable<DataSnapshot> d = dataSnapshot.getChildren(); // all children of data
+                //ArrayList<DataSnapshot> d = (ArrayList<DataSnapshot>) dataSnapshot.getChildren(); // all children of data
+                //tv.setText("" + d.size());
+                //linear.addView(tv);
+
+                /*
                 ArrayList<String> s = new ArrayList<>();
                 //converts every person in data's high scores to Strings
                 for (DataSnapshot x : d) {
@@ -50,11 +57,11 @@ public class RankedList extends AppCompatActivity {
                             // Puts users name, 3 tabs and then their high score
                             String out = i + ": " + x.toString() + "           " + temp;
                             tv.setText(out); //sets text of TextView to add to the output
-                            linear.addView(tv); //adds TextView to the top of LinearLayout
+                            linear.addView(tv); //adds TextView to the bottom of LinearLayout
                             break;
                         }
                     }
-                }
+                } */
             }
 
             @Override
@@ -62,5 +69,6 @@ public class RankedList extends AppCompatActivity {
 
             }
         };
+        data.addListenerForSingleValueEvent(listen);
     }
 }
