@@ -26,7 +26,7 @@
         android:layout_marginRight="8dp" />
 
     <LinearLayout
-        android:id="@+id/layout"
+        android:id="@+id/llayout"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         app:layout_constraintRight_toLeftOf="@+id/textView5"
@@ -41,8 +41,8 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="70sp"
-            android:text="Player            Value"/>
+            android:layout_height="wrap_content"
+            android:text="Player                  Value"/>
 
     </LinearLayout>
 

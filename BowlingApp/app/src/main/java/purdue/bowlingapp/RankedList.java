@@ -1,5 +1,6 @@
 package purdue.bowlingapp;
 
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +19,7 @@ import java.util.Arrays;
 
 public class RankedList extends AppCompatActivity {
     public DatabaseReference mDatabase;
+    final String highScore = "highScore";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,43 +27,46 @@ public class RankedList extends AppCompatActivity {
         setContentView(R.layout.activity_ranked_list);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         DatabaseReference data = mDatabase.child("data"); // points reference to data in DB
-        final LinearLayout linear = (LinearLayout) findViewById(R.id.layout);
+        final LinearLayout linear = (LinearLayout) findViewById(R.id.llayout);
         final TextView tv = new TextView(this); // TextView to add to layout
         tv.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
                 LayoutParams.WRAP_CONTENT));
         ValueEventListener listen = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //ArrayList<DataSnapshot> d = (ArrayList<DataSnapshot>) dataSnapshot.getChildren(); // all children of data
-                //tv.setText("" + d.size());
-                //linear.addView(tv);
-
-                /*
-                ArrayList<String> s = new ArrayList<>();
+                Iterable<DataSnapshot> d = dataSnapshot.getChildren(); // all children of data
+                ArrayList<String> scores = new ArrayList<>();
+                ArrayList<String> names = new ArrayList<>();
                 //converts every person in data's high scores to Strings
                 for (DataSnapshot x : d) {
-                    s.add(x.child("highScore").toString());
+                    scores.add(x.child(highScore).getValue().toString());
+                    names.add(x.getKey());
                 }
-                int[] arr = new int[s.size()];
+                int[] arr = new int[scores.size()];
                 //converts string high scores to ints
-                for(int i = 0; i < s.size(); i++) {
-                    arr[i] = Integer.parseInt(s.get(i));
+                for(int i = 0; i < scores.size(); i++) {
+                    arr[i] = Integer.parseInt(scores.get(i));
                 }
                 Arrays.sort(arr); //sort array to get correct ranking order
-                for(int i = 0; i < arr.length; i++) {
+                String out = "";
+                for(int i = arr.length-1; i >= 0; i--) {
                     String temp = "";
                     temp += arr[i];
                     //loops through all data to find the user who corresponds with the score
-                    for(DataSnapshot x : d) {
-                        if (x.child("highScore").toString().equals(temp)) {
+                    for(int j = 0; j < scores.size(); j++) {
+                        if (scores.get(j).equals(temp)) {
+                            if (arr[i] == -1)
+                                temp = "No Data";
                             // Puts users name, 3 tabs and then their high score
-                            String out = i + ": " + x.toString() + "           " + temp;
-                            tv.setText(out); //sets text of TextView to add to the output
-                            linear.addView(tv); //adds TextView to the bottom of LinearLayout
+                            out += arr.length - i + ": " + names.get(j) + "\t\t\t\t\t\t\t" + temp + "\n";
+                            names.remove(j);
+                            scores.remove(j);
                             break;
                         }
                     }
-                } */
+                }
+                tv.setText(out); //sets text of TextView to add to the output
+                linear.addView(tv); //adds TextView to the bottom of LinearLayout
             }
 
             @Override
