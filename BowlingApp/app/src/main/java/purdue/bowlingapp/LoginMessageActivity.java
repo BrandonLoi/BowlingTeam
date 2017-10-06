@@ -19,7 +19,6 @@ public class LoginMessageActivity extends AppCompatActivity {
     boolean isCoach = false;
     String username;
     Button button;
-    Button button2;
 
     Button compareStatsButton;
     Button editPlayerStats;
