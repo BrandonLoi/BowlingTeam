@@ -80,7 +80,7 @@ public class RankingSelectionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(!valid) {
-                    //display.setText("Option currently under development!");
+                    display.setText("Option currently under development!");
                     return;
                 }
                 if (!selection.equals("")) {
