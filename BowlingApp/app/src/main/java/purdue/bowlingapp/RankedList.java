@@ -1,5 +1,6 @@
 package purdue.bowlingapp;
 
+import android.content.Intent;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,13 +20,16 @@ import java.util.Arrays;
 
 public class RankedList extends AppCompatActivity {
     public DatabaseReference mDatabase;
-    final String highScore = "highScore";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranked_list);
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        Intent intent = getIntent();
+        final String selection = intent.getStringExtra("selection");
+        TextView header = (TextView) findViewById(R.id.header);
+        header.setText("Showing ranking for " + selection);
         DatabaseReference data = mDatabase.child("data"); // points reference to data in DB
         final LinearLayout linear = (LinearLayout) findViewById(R.id.llayout);
         final TextView tv = new TextView(this); // TextView to add to layout
@@ -39,7 +43,7 @@ public class RankedList extends AppCompatActivity {
                 ArrayList<String> names = new ArrayList<>();
                 //converts every person in data's high scores to Strings
                 for (DataSnapshot x : d) {
-                    scores.add(x.child(highScore).getValue().toString());
+                    scores.add(x.child(selection).getValue().toString());
                     names.add(x.getKey());
                 }
                 int[] arr = new int[scores.size()];
@@ -55,7 +59,7 @@ public class RankedList extends AppCompatActivity {
                     //loops through all data to find the user who corresponds with the score
                     for(int j = 0; j < scores.size(); j++) {
                         if (scores.get(j).equals(temp)) {
-                            if (arr[i] == -1)
+                            if (arr[i] < 0)
                                 temp = "No Data";
                             // Puts users name, 3 tabs and then their high score
                             out += arr.length - i + ": " + names.get(j) + "\t\t\t\t\t\t\t" + temp + "\n";

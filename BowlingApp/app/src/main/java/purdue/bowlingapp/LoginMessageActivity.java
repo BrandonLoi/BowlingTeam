@@ -57,7 +57,7 @@ public class LoginMessageActivity extends AppCompatActivity {
         rankingsButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(LoginMessageActivity.this, RankedList.class);
+                Intent i = new Intent(LoginMessageActivity.this, RankingSelectionActivity.class);
                 i.putExtra("username", username);
                 startActivity(i);
             }

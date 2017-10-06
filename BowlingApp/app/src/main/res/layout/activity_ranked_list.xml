@@ -40,6 +40,12 @@
         app:layout_constraintHorizontal_bias="0.02">
 
         <TextView
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"/>
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Player                  Value"/>
