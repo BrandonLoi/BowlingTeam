@@ -79,10 +79,6 @@ public class RankingSelectionActivity extends AppCompatActivity {
         goBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!valid) {
-                    display.setText("Option currently under development!");
-                    return;
-                }
                 if (!selection.equals("")) {
                     Intent i = new Intent(RankingSelectionActivity.this,
                             RankedList.class);

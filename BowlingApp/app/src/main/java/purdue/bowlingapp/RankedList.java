@@ -28,8 +28,31 @@ public class RankedList extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         Intent intent = getIntent();
         final String selection = intent.getStringExtra("selection");
+        String headerString = "";
+        switch(selection) {
+            case "highScore":
+                headerString = "High Score";
+                break;
+            case "avgScore":
+                headerString = "Average Score";
+                break;
+            case "filledPercentage":
+                headerString = "Filled Frame Percentage";
+                break;
+            case "strikePercentage":
+                headerString = "Strike Percentage";
+                break;
+            case "sparePercentage":
+                headerString = "Spare Percentage";
+                break;
+            case "singlePinPercentage":
+                headerString = "Single Pin Spare Percentage";
+                break;
+            default:
+                headerString = " ";
+        }
         TextView header = (TextView) findViewById(R.id.header);
-        header.setText("Showing ranking for " + selection);
+        header.setText("Showing ranking for " + headerString);
         DatabaseReference data = mDatabase.child("data"); // points reference to data in DB
         final LinearLayout linear = (LinearLayout) findViewById(R.id.llayout);
         final TextView tv = new TextView(this); // TextView to add to layout
@@ -46,16 +69,21 @@ public class RankedList extends AppCompatActivity {
                     scores.add(x.child(selection).getValue().toString());
                     names.add(x.getKey());
                 }
-                int[] arr = new int[scores.size()];
+                double[] arr = new double[scores.size()];
                 //converts string high scores to ints
                 for(int i = 0; i < scores.size(); i++) {
-                    arr[i] = Integer.parseInt(scores.get(i));
+                    if (selection.equals("highScore") || selection.equals("avgScore"))
+                        arr[i] = (double) Integer.parseInt(scores.get(i));
+                    else
+                        arr[i] = Double.parseDouble(scores.get(i));
                 }
                 Arrays.sort(arr); //sort array to get correct ranking order
                 String out = "";
                 for(int i = arr.length-1; i >= 0; i--) {
                     String temp = "";
                     temp += arr[i];
+                    if(selection.equals("highScore") || selection.equals("avgScore"))
+                        temp = temp.substring(0,temp.length()-2);
                     //loops through all data to find the user who corresponds with the score
                     for(int j = 0; j < scores.size(); j++) {
                         if (scores.get(j).equals(temp)) {
