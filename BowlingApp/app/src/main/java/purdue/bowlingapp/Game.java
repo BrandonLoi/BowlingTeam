@@ -35,7 +35,7 @@ public class Game {
         return this.tenth;
     }
 
-    private int setScore() {
+    public int setScore() {
         int score = 0;
         for(int i = 0; i < frames.size(); i++) {
             int frameScore = frames.get(i).getBothThrows();

@@ -107,4 +107,13 @@
         app:layout_constraintTop_toBottomOf="@+id/compareStatsButton"
         android:layout_marginTop="-18dp" />
 
+    <Button
+        android:id="@+id/scoreKeepingButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add a game"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/continueButton"/>
+
 </android.support.constraint.ConstraintLayout>

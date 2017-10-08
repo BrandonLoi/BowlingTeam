@@ -25,6 +25,7 @@ public class LoginMessageActivity extends AppCompatActivity {
     Button createGroupButton;
     Button editGroupButton;
     Button rankingsButton;
+    Button scoreKeepingButton;
 
 
     @Override
@@ -42,6 +43,7 @@ public class LoginMessageActivity extends AppCompatActivity {
         editPlayerStats = (Button) findViewById(R.id.editPlayerStats);
         createGroupButton = (Button) findViewById(R.id.createGroupButton);
         editGroupButton = (Button) findViewById(R.id.editGroupButton);
+        scoreKeepingButton = (Button) findViewById(R.id.scoreKeepingButton);
 
         compareStatsButton = (Button) findViewById(R.id.compareStatsButton);
         rankingsButton = (Button) findViewById(R.id.ranking);
@@ -78,6 +80,15 @@ public class LoginMessageActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(LoginMessageActivity.this,
                         CompareStatisticsLookupActivity.class);
+                i.putExtra("username", username);
+                startActivity(i);
+            }
+        });
+        scoreKeepingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(LoginMessageActivity.this,
+                        ScoreKeeping.class);
                 i.putExtra("username", username);
                 startActivity(i);
             }

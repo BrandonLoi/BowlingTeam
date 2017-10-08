@@ -314,6 +314,12 @@
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+
             <GridLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -439,7 +445,6 @@
                     android:textAlignment="center"
                     android:visibility="visible" />
 
-                <TextView android:layout_columnSpan="6" />
 
                 <Button
                     android:id="@+id/bLeft"
@@ -453,7 +458,7 @@
                     android:id="@+id/bPocket"
                     android:layout_columnSpan="2"
                     android:gravity="center"
-                    android:text="P"
+                    android:text="POCKET"
                     android:textAlignment="center"
                     android:visibility="visible" />
 
@@ -461,7 +466,23 @@
                     android:id="@+id/bRight"
                     android:layout_columnSpan="2"
                     android:gravity="center"
-                    android:text="->"
+                    android:text="RIGHT"
+                    android:textAlignment="center"
+                    android:visibility="visible" />
+
+                <Button
+                    android:id="@+id/done"
+                    android:layout_columnSpan="4"
+                    android:gravity="center"
+                    android:text="DONE!"
+                    android:textAlignment="center"
+                    android:visibility="visible" />
+
+                <Button
+                    android:id="@+id/backspace"
+                    android:layout_columnSpan="2"
+                    android:gravity="center"
+                    android:text="BKSP"
                     android:textAlignment="center"
                     android:visibility="visible" />
 
