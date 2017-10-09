@@ -3,9 +3,11 @@ package purdue.bowlingapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -62,6 +64,10 @@ public class ScoreKeeping extends AppCompatActivity {
         Button bRight = (Button) findViewById(R.id.bRight);
         Button done = (Button) findViewById(R.id.done);
         Button backspace = (Button) findViewById(R.id.backspace);
+        Button clear = (Button) findViewById(R.id.clear);
+
+        final Toast toast = Toast.makeText(getApplicationContext(),"Please fill all frames",Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM,0,0);
 
         final TextView[] tvs = {f1b1,f1b2,f2b1,f2b2,f3b1,f3b2,f4b1,f4b2,f5b1,f5b2,f6b1,f6b2,f7b1,f7b2,f8b1,f8b2,f9b1,f9b2,f10b1,f10b2,f10b3};
 
@@ -296,6 +302,8 @@ public class ScoreKeeping extends AppCompatActivity {
             public void onClick(View view) {
                 if (frameCount >= tvs.length)
                     return;
+                if (frameCount == 20 && !(tvs[18].getText().equals("X") || tvs[19].getText().equals("/")))
+                    return;
                 if (frameCount < tvs.length - 3 && frameCount%2 == 0) {
                     tvs[frameCount++].setText("X");
                     tvs[frameCount++].setText(" ");
@@ -331,6 +339,16 @@ public class ScoreKeeping extends AppCompatActivity {
             }
         });
 
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                frameCount = 0;
+                for (TextView t : tvs)
+                    t.setText(" ");
+                score.setText(" ");
+            }
+        });
+
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -347,7 +365,7 @@ public class ScoreKeeping extends AppCompatActivity {
                 TenthFrame f10 = null;
 
                 if (frameCount < tvs.length - 1) {
-                    score.setText("Please fill all frames!");
+                    toast.show();
                     return;
                 }
                 if (frameCount == tvs.length - 1) {
@@ -355,7 +373,7 @@ public class ScoreKeeping extends AppCompatActivity {
                         f10 = new TenthFrame(tvs[tvs.length - 3].getText().charAt(0),tvs[tvs.length - 2].getText().charAt(0));
                         setTenth = true;
                     } else {
-                        score.setText("Please fill all frames!");
+                        toast.show();
                         return;
                     }
                 }

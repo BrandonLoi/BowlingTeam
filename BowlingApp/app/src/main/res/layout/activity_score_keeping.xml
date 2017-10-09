@@ -472,11 +472,18 @@
 
                 <Button
                     android:id="@+id/done"
-                    android:layout_columnSpan="4"
+                    android:layout_columnSpan="2"
                     android:gravity="center"
                     android:text="DONE!"
                     android:textAlignment="center"
                     android:visibility="visible" />
+
+                <Button
+                    android:id="@+id/clear"
+                    android:layout_columnSpan="2"
+                    android:gravity="center"
+                    android:text="CLEAR"
+                    android:textAlignment="center" />
 
                 <Button
                     android:id="@+id/backspace"
