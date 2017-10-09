@@ -84,6 +84,7 @@ public class LoginMessageActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
         scoreKeepingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

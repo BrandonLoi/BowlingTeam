@@ -19,6 +19,11 @@ public class ScoreKeeping extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score_keeping);
 
+        TextView header = (TextView) findViewById(R.id.header);
+        Intent i = getIntent();
+        String headerText = "New game for: " + i.getStringExtra("username");
+        header.setText(headerText);
+
         //Access all TextViews in the scorekeeping activity
         // NAMING CONVENTIONS: fXbY = frame X, ball Y
         TextView f1b1 = (TextView) findViewById(R.id.f1FirstBall);
