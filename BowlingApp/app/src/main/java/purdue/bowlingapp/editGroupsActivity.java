@@ -50,7 +50,7 @@ public class editGroupsActivity extends AppCompatActivity {
                     else if (dataSnapshot.child("users").hasChild(userAddName)) {
                         dataSnapshot = dataSnapshot.child("groups").child(groupName);
                         if (dataSnapshot.hasChild(username)) {
-                            if (dataSnapshot.child(username).getValue().equals("1")) {
+                            if (dataSnapshot.child(username).getValue().equals("1")  || dataSnapshot.child(username).getValue().equals("2")) {
                                 if (!(dataSnapshot.hasChild(userAddName))) {
                                     myRef.child("groups").child(groupName).child(userAddName).setValue("0");
                                 }
@@ -101,7 +101,7 @@ public class editGroupsActivity extends AppCompatActivity {
                     else if (!(userAddName.matches(username))) {
                         dataSnapshot = dataSnapshot.child(groupName);
                         if (dataSnapshot.hasChild(username)) {
-                            if (dataSnapshot.child(username).getValue().equals("1")) {
+                            if (dataSnapshot.child(username).getValue().equals("1") || dataSnapshot.child(username).getValue().equals("2")) {
                                 dataSnapshot = dataSnapshot.child(userAddName);
                                 dataSnapshot.getRef().setValue(null);
                             }
