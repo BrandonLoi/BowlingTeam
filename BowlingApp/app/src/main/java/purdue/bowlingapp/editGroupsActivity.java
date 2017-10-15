@@ -47,11 +47,16 @@ public class editGroupsActivity extends AppCompatActivity {
                     if (userAddName.matches("")) {
                         createFail("1");
                     }
-                    if (dataSnapshot.child("users").hasChild(userAddName)) {
+                    else if (dataSnapshot.child("users").hasChild(userAddName)) {
                         dataSnapshot = dataSnapshot.child("groups").child(groupName);
                         if (dataSnapshot.hasChild(username)) {
                             if (dataSnapshot.child(username).getValue().equals("1")) {
-                                myRef.child("groups").child(groupName).child(userAddName).setValue("0");
+                                if (!(dataSnapshot.hasChild(userAddName))) {
+                                    myRef.child("groups").child(groupName).child(userAddName).setValue("0");
+                                }
+                                else {
+                                    createFail("4");
+                                }
                             }
                         }
                         else {
@@ -86,7 +91,6 @@ public class editGroupsActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         final DatabaseReference myRef = mDatabase.child("groups");
-        final DatabaseReference myRef2 = mDatabase.child("users");
         ValueEventListener listen = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -94,15 +98,20 @@ public class editGroupsActivity extends AppCompatActivity {
                     if (userAddName.matches("")) {
                         createFail("1");
                     }
-                    dataSnapshot = dataSnapshot.child(groupName);
-                    if (dataSnapshot.hasChild(username)) {
-                        if (dataSnapshot.child(username).getValue().equals("1")) {
-                            dataSnapshot = dataSnapshot.child(userAddName);
-                            dataSnapshot.getRef().setValue(null);
+                    else if (!(userAddName.matches(username))) {
+                        dataSnapshot = dataSnapshot.child(groupName);
+                        if (dataSnapshot.hasChild(username)) {
+                            if (dataSnapshot.child(username).getValue().equals("1")) {
+                                dataSnapshot = dataSnapshot.child(userAddName);
+                                dataSnapshot.getRef().setValue(null);
+                            }
+                        }
+                        else {
+                            createFail("2");
                         }
                     }
                     else {
-                        createFail("2");
+                        createFail("5");
                     }
                 }
                 else {
@@ -124,11 +133,17 @@ public class editGroupsActivity extends AppCompatActivity {
         if (groupName.matches("1")) {
             textView.setText("Error: No username input.");
         }
-        if (groupName.matches("2")) {
+        else if (groupName.matches("2")) {
             textView.setText("Error: You are not the group's owner.");
         }
-        if (groupName.matches("3")) {
-            textView.setText("Error: Usename does not exist.");
+        else if (groupName.matches("3")) {
+            textView.setText("Error: Username does not exist.");
+        }
+        else if (groupName.matches("4")) {
+            textView.setText("Error: User already in group.");
+        }
+        else if (groupName.matches("5")) {
+            textView.setText("Error: Cannot remove yourself from group.");
         }
         else {
             textView.setText("Error: Group does not exist.");
