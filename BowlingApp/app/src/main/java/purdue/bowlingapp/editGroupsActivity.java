@@ -39,23 +39,27 @@ public class editGroupsActivity extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        final DatabaseReference myRef = mDatabase.child("groups");
-        final DatabaseReference myRef2 = mDatabase.child("users");
+        final DatabaseReference myRef = mDatabase;
         ValueEventListener listen = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.hasChild(groupName) && !(groupName.matches(""))) {
+                if (dataSnapshot.child("groups").hasChild(groupName) && !(groupName.matches(""))) {
                     if (userAddName.matches("")) {
                         createFail("1");
                     }
-                    dataSnapshot = dataSnapshot.child(groupName);
-                    if (dataSnapshot.hasChild(username)) {
-                        if (dataSnapshot.child(username).getValue().equals("1")) {
-                                myRef.child(groupName).child(userAddName).setValue("0");
+                    if (dataSnapshot.child("users").hasChild(userAddName)) {
+                        dataSnapshot = dataSnapshot.child("groups").child(groupName);
+                        if (dataSnapshot.hasChild(username)) {
+                            if (dataSnapshot.child(username).getValue().equals("1")) {
+                                myRef.child("groups").child(groupName).child(userAddName).setValue("0");
+                            }
+                        }
+                        else {
+                            createFail("2");
                         }
                     }
                     else {
-                        createFail("2");
+                        createFail("3");
                     }
                 }
                 else {
