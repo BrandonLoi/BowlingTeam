@@ -24,6 +24,10 @@ public class Game {
         //default construtor
     }
 
+    public ArrayList<Frame> getFrames() {
+        return this.frames;
+    }
+
     public Frame getFrame(int index) {
         if (index >= 0 && index < 9) {
             return frames.get(index);
