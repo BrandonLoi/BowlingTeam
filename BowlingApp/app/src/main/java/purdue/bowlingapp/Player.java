@@ -116,110 +116,42 @@ public class Player extends User {
                 totalFirstBalls++;
             }
         }
+        totalFrames++;
     }
 
     public int addGame(Game game) { //TODO: Adjust statistics when adding additional games
         if (games.add(game)) {
             this.numGames++;
-            int totalScore = 0;
-            //For filled percentage
-            int numFilled = 0;
-            int totalFrames = 0;
-            //For strike percentage, as is totalFrames
-            int numStrikes = 0;
-            int totalFirstBalls = 0;
-            //For single pins
-            int singlePinsMade = 0;
-            int totalSinglePins = 0;
-            //For spare percentage
-            int numSpares = 0;
-            int numNonStrikes = 0;
             for(int i = 0; i < 9; i++) {
                 Frame curr = game.getFrame(i);
                 if (curr != null) {
                     int score = curr.getBothThrows();
                     if(score == 11) {
-                        numStrikes++;
-                        numFilled++;
+                        this.numStrikes++;
+                        this.numFilled++;
                     }
                     else if (score == 10) {
                         if(curr.getValFirstThrow() == 9){
-                            singlePinsMade++;
-                            totalSinglePins++;
+                            this.singlePinsMade++;
+                            this.totalSinglePins++;
                         }
-                        numFilled++;
-                        numSpares++;
-                        numNonStrikes++;
+                        this.numFilled++;
+                        this.numSpares++;
+                        this.numNonStrikes++;
                     }
                     else{
                         if(curr.getValFirstThrow() == 9) totalSinglePins++;
-                        numNonStrikes++;
+                        this.numNonStrikes++;
                     }
-                    totalFrames++;
-                    totalFirstBalls++;
+                    this.totalFrames++;
+                    this.totalFirstBalls++;
                 }
             }
             TenthFrame tenth = game.getTenth();
-            int first = tenth.getFirstThrow();
-            int second = tenth.getSecondThrow();
-            int third = tenth.getThirdThrow();
-            if(first == 10){
-                numStrikes++;
-                numFilled++;
-                if(second == 10){ //Strike Strike Fill
-                    numStrikes++;
-                    if(third == 10) { //Strike Strike Strike
-                        numStrikes++;
-                        totalFirstBalls++;
-                    }
-                    else numNonStrikes++;
-                }
-                else if (third == 11){ //Strike Spare
-                    numNonStrikes++;
-                    numSpares++;
-                    if(second == 9) {
-                        singlePinsMade++;
-                        totalSinglePins++;
-                    }
-                }
-                else { //Strike Open
-                    if (second == 9) totalSinglePins++;
-                    numNonStrikes++;
-                }
-                totalFirstBalls+=2;
-            }
-            else {
-                if (second == 11) {
-                    numFilled++;
-                    numNonStrikes++;
-                    numSpares++;
-                    if(first == 9) {
-                        singlePinsMade++;
-                        totalSinglePins++;
-                    }
-                    if(third == 10) numStrikes++; //Spare Strike
-                    else numNonStrikes++; //Spare Fill
-                    totalFirstBalls+=2;
-                }
-                else { //Open
-                    if(first == 9) totalSinglePins++;
-                    numNonStrikes++;
-                    totalFirstBalls++;
-                }
-            }
-            totalFrames++;
-            totalScore += game.getScore();
+            addFrame(tenth);
+            this.totalScore += game.getScore();
             if(game.getScore() > this.highGame) this.highGame = game.getScore();
 
-            this.totalScore += totalScore;
-            this.numFilled += numFilled;
-            this.totalFrames += totalFrames;
-            this.numStrikes += numStrikes;
-            this.totalFirstBalls += totalFirstBalls;
-            this.singlePinsMade += singlePinsMade;
-            this.totalSinglePins += totalSinglePins;
-            this.numSpares += numSpares;
-            this.numNonStrikes += numNonStrikes;
             this.filledPc = ((double)this.numFilled/(double)this.totalFrames);
             this.strikePc = ((double)this.numStrikes/(double)this.totalFirstBalls);
             this.avgScore = ((double)this.totalScore/(double)this.numGames);
