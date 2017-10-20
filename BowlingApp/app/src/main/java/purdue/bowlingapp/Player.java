@@ -40,7 +40,85 @@ public class Player extends User {
         getPercents();
     }
 
-    public int addGame(Game game) { //TO DO: Adjust statistics when adding additional games
+    public void addFrame(Frame frame) {
+        int firstThrow = frame.getValFirstThrow();
+        if(firstThrow == -1) {
+            return;
+        }
+        totalFrames++;
+        totalFirstBalls++;
+        if(firstThrow == 10) {
+            numStrikes++;
+            numFilled++;
+        }
+        else {
+            numNonStrikes++;
+            if (firstThrow == 9) {
+                    totalSinglePins++;
+                    if (frame.getSecondThrow() == '/') {
+                        singlePinsMade++;
+                        numFilled++;
+                        numSpares++;
+                    }
+            }
+            else if (frame.getSecondThrow() == '/') {
+                    numFilled++;
+                    numSpares++;
+            }
+        }
+    }
+
+    public void addFrame(TenthFrame tenthFrame) {
+        int first = tenthFrame.getFirstThrow();
+        int second = tenthFrame.getSecondThrow();
+        int third = tenthFrame.getThirdThrow();
+        if(first == 10){
+            numStrikes++;
+            numFilled++;
+            if(second == 10){ //Strike Strike Fill
+                numStrikes++;
+                if(third == 10) { //Strike Strike Strike
+                    numStrikes++;
+                    totalFirstBalls++;
+                }
+                else numNonStrikes++;
+            }
+            else if (third == 11){ //Strike Spare
+                numNonStrikes++;
+                numSpares++;
+                if(second == 9) {
+                    singlePinsMade++;
+                    totalSinglePins++;
+                }
+            }
+            else { //Strike Open
+                if (second == 9) totalSinglePins++;
+                numNonStrikes++;
+            }
+            totalFirstBalls+=2;
+        }
+        else {
+            if (second == 11) {
+                numFilled++;
+                numNonStrikes++;
+                numSpares++;
+                if(first == 9) {
+                    singlePinsMade++;
+                    totalSinglePins++;
+                }
+                if(third == 10) numStrikes++; //Spare Strike
+                else numNonStrikes++; //Spare Fill
+                totalFirstBalls+=2;
+            }
+            else { //Open
+                if(first == 9) totalSinglePins++;
+                numNonStrikes++;
+                totalFirstBalls++;
+            }
+        }
+    }
+
+    public int addGame(Game game) { //TODO: Adjust statistics when adding additional games
         if (games.add(game)) {
             this.numGames++;
             int totalScore = 0;
