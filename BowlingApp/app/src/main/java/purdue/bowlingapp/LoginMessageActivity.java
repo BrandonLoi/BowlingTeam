@@ -84,8 +84,7 @@ public class LoginMessageActivity extends AppCompatActivity {
         scoreKeepingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(LoginMessageActivity.this,
-                        ScoreKeeping.class);
+                Intent i = new Intent(LoginMessageActivity.this, ScoreKeeping.class);
                 i.putExtra("username", username);
                 startActivity(i);
             }
@@ -103,8 +102,7 @@ public class LoginMessageActivity extends AppCompatActivity {
         createGroupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(LoginMessageActivity.this,
-                        createGroupActivity.class);
+                Intent i = new Intent(LoginMessageActivity.this, createGroupActivity.class);
                 i.putExtra("username", username);
                 startActivity(i);
             }
@@ -113,8 +111,7 @@ public class LoginMessageActivity extends AppCompatActivity {
         editGroupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(LoginMessageActivity.this,
-                        editGroupsActivity.class);
+                Intent i = new Intent(LoginMessageActivity.this, editGroupsActivity.class);
                 i.putExtra("username", username);
                 startActivity(i);
             }

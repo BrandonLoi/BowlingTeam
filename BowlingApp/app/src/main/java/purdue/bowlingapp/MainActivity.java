@@ -94,13 +94,12 @@ public class MainActivity extends AppCompatActivity {
                     final DatabaseReference myRef2 = mDatabase.child("data").child(username);
                     myRef2.child("avgScore").setValue("-1");
                     myRef2.child("highScore").setValue("-1");
-                    myRef2.child("numGames").setValue("-1");
                     myRef2.child("sparePercentage").setValue("-1");
                     myRef2.child("strikePercentage").setValue("-1");
                     myRef2.child("filledPercentage").setValue("-1");
                     myRef2.child("singlePinPercentage").setValue("-1");
                     myRef2.child("strikePercentage").setValue("-1");
-                    myRef2.child("numGames").setValue("0");
+                    myRef2.child("numGames").setValue("-1");
 
                     create(username);
                 }
