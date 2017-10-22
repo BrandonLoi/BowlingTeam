@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
     public void login(View view) {
-        boolean[] loginSuccess = {false};
         clearError();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         final EditText editText = (EditText) findViewById(R.id.usernameField);
@@ -95,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
                     final DatabaseReference myRef2 = mDatabase.child("data").child(username);
                     myRef2.child("avgScore").setValue("-1");
                     myRef2.child("highScore").setValue("-1");
+                    myRef2.child("numGames").setValue("-1");
                     myRef2.child("sparePercentage").setValue("-1");
                     myRef2.child("strikePercentage").setValue("-1");
                     myRef2.child("filledPercentage").setValue("-1");

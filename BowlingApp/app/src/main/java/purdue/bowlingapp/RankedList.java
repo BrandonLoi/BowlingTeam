@@ -26,6 +26,7 @@ public class RankedList extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         DatabaseReference data = mDatabase.child("data"); // points reference to data in DB
         final TextView tv = new TextView(this); // TextView to add to layout
+
         ValueEventListener listen = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

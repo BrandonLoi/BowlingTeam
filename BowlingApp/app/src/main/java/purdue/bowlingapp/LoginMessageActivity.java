@@ -15,8 +15,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class LoginMessageActivity extends AppCompatActivity {
-
-    boolean isCoach = false;
     String username;
     Button button;
 
@@ -43,6 +41,7 @@ public class LoginMessageActivity extends AppCompatActivity {
 
         compareStatsButton = (Button) findViewById(R.id.compareStatsButton);
         rankingsButton = (Button) findViewById(R.id.ranking);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,8 +61,7 @@ public class LoginMessageActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(LoginMessageActivity.this,
-                        StatisticsActivity.class);
+                Intent i = new Intent(LoginMessageActivity.this, StatisticsActivity.class);
                 i.putExtra("username", username);
                 startActivity(i);
             }
@@ -72,8 +70,7 @@ public class LoginMessageActivity extends AppCompatActivity {
         compareStatsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(LoginMessageActivity.this,
-                        CompareStatisticsLookupActivity.class);
+                Intent i = new Intent(LoginMessageActivity.this, CompareStatisticsLookupActivity.class);
                 i.putExtra("username", username);
                 startActivity(i);
             }
@@ -83,16 +80,14 @@ public class LoginMessageActivity extends AppCompatActivity {
         editPlayerStats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(LoginMessageActivity.this,
-                        CoachChangeStatsLookupActivity.class);
+                Intent i = new Intent(LoginMessageActivity.this, CoachChangeStatsLookupActivity.class);
                 startActivity(i);
             }
         });
         createGroupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(LoginMessageActivity.this,
-                        createGroupActivity.class);
+                Intent i = new Intent(LoginMessageActivity.this, createGroupActivity.class);
                 startActivity(i);
             }
         });

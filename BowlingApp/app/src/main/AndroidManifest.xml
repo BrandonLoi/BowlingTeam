@@ -30,7 +30,6 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ScoreKeeping" />
         <activity android:name=".RankedList"></activity>
-        <activity android:name=".ScoreKeeping" />
         <activity android:name=".createGroupActivity" />
         <activity android:name=".createGroupSuccess"></activity>
     </application>
