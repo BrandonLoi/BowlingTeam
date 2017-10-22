@@ -24,6 +24,10 @@ public class Game {
         //default construtor
     }
 
+    public ArrayList<Frame> getFrames() {
+        return this.frames;
+    }
+
     public Frame getFrame(int index) {
         if (index >= 0 && index < 9) {
             return frames.get(index);
@@ -35,7 +39,7 @@ public class Game {
         return this.tenth;
     }
 
-    private int setScore() {
+    public int setScore() {
         int score = 0;
         for(int i = 0; i < frames.size(); i++) {
             int frameScore = frames.get(i).getBothThrows();

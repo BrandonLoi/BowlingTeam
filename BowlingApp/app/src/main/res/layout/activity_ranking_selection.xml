@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="purdue.bowlingapp.RankingSelectionActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/highScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="High Score"/>
+
+        <Button
+            android:id="@+id/averageScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Average Score"/>
+
+        <Button
+            android:id="@+id/strikePercent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Strike Percentage"/>
+
+        <Button
+            android:id="@+id/sparePercent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Spare Percentage"/>
+
+        <Button
+            android:id="@+id/singlePercent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Single Pin Percentage"/>
+
+        <Button
+            android:id="@+id/filledFramePercent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filled Frame Percentage"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="Statistic to Display:"/>
+
+        <TextView
+            android:id="@+id/currentSelection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"/>
+
+        <Button
+            android:id="@+id/goBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Go!"/>
+
+    </LinearLayout>
+
+
+
+</android.support.constraint.ConstraintLayout>

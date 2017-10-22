@@ -21,7 +21,9 @@ public class LoginMessageActivity extends AppCompatActivity {
     Button compareStatsButton;
     Button editPlayerStats;
     Button createGroupButton;
+    Button editGroupButton;
     Button rankingsButton;
+    Button scoreKeepingButton;
 
 
     @Override
@@ -38,10 +40,11 @@ public class LoginMessageActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.continueButton);
         editPlayerStats = (Button) findViewById(R.id.editPlayerStats);
         createGroupButton = (Button) findViewById(R.id.createGroupButton);
+        editGroupButton = (Button) findViewById(R.id.editGroupButton);
+        scoreKeepingButton = (Button) findViewById(R.id.scoreKeepingButton);
 
         compareStatsButton = (Button) findViewById(R.id.compareStatsButton);
         rankingsButton = (Button) findViewById(R.id.ranking);
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,7 +57,9 @@ public class LoginMessageActivity extends AppCompatActivity {
         rankingsButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(LoginMessageActivity.this, RankedList.class);
+                Intent i = new Intent(LoginMessageActivity.this, RankingSelectionActivity.class);
+                i.putExtra("selection", "highScore");
+                i.putExtra("username", username);
                 startActivity(i);
             }
         });
@@ -76,6 +81,16 @@ public class LoginMessageActivity extends AppCompatActivity {
             }
         });
 
+        scoreKeepingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(LoginMessageActivity.this,
+                        ScoreKeeping.class);
+                i.putExtra("username", username);
+                startActivity(i);
+            }
+        });
+
 
         editPlayerStats.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,10 +99,23 @@ public class LoginMessageActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
         createGroupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(LoginMessageActivity.this, createGroupActivity.class);
+                Intent i = new Intent(LoginMessageActivity.this,
+                        createGroupActivity.class);
+                i.putExtra("username", username);
+                startActivity(i);
+            }
+        });
+
+        editGroupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(LoginMessageActivity.this,
+                        editGroupsActivity.class);
+                i.putExtra("username", username);
                 startActivity(i);
             }
         });

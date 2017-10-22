@@ -33,7 +33,8 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="70sp"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
                 android:textAlignment="center"
                 android:id="@+id/header"/>
 
@@ -314,159 +315,194 @@
 
             </LinearLayout>
 
-            <GridLayout
+            <TextView
+                android:id="@+id/score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="fill"
-                android:columnCount="6"
-                android:rowCount="8"
-                android:visibility="visible">
+                android:text="" />
 
-                <Button
-                    android:id="@+id/b1"
-                    android:layout_columnSpan="2"
-                    android:gravity="center"
-                    android:text="1"
-                    android:textAlignment="center"
-                    android:visibility="visible" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal">
 
-                <Button
-                    android:id="@+id/b2"
-                    android:layout_columnSpan="2"
-                    android:gravity="center"
-                    android:text="2"
-                    android:textAlignment="center"
-                    android:visibility="visible" />
+                <GridLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill"
+                    android:columnCount="6"
+                    android:rowCount="8"
+                    android:visibility="visible">
 
-                <Button
-                    android:id="@+id/b3"
-                    android:layout_columnSpan="2"
-                    android:gravity="center"
-                    android:text="3"
-                    android:textAlignment="center"
-                    android:visibility="visible" />
+                    <Button
+                        android:id="@+id/b1"
+                        android:layout_columnSpan="2"
+                        android:gravity="center"
+                        android:text="1"
+                        android:textAlignment="center"
+                        android:visibility="visible" />
 
-                <Button
-                    android:id="@+id/b4"
-                    android:layout_columnSpan="2"
-                    android:gravity="center"
-                    android:text="4"
-                    android:textAlignment="center"
-                    android:visibility="visible" />
+                    <Button
+                        android:id="@+id/b2"
+                        android:layout_columnSpan="2"
+                        android:gravity="center"
+                        android:text="2"
+                        android:textAlignment="center"
+                        android:visibility="visible" />
 
-                <Button
-                    android:id="@+id/b5"
-                    android:layout_columnSpan="2"
-                    android:gravity="center"
-                    android:text="5"
-                    android:textAlignment="center"
-                    android:visibility="visible" />
+                    <Button
+                        android:id="@+id/b3"
+                        android:layout_columnSpan="2"
+                        android:gravity="center"
+                        android:text="3"
+                        android:textAlignment="center"
+                        android:visibility="visible" />
 
-                <Button
-                    android:id="@+id/b6"
-                    android:layout_columnSpan="2"
-                    android:gravity="center"
-                    android:text="6"
-                    android:textAlignment="center"
-                    android:visibility="visible" />
+                    <Button
+                        android:id="@+id/b4"
+                        android:layout_columnSpan="2"
+                        android:gravity="center"
+                        android:text="4"
+                        android:textAlignment="center"
+                        android:visibility="visible" />
 
-                <Button
-                    android:id="@+id/b7"
-                    android:layout_columnSpan="2"
-                    android:gravity="center"
-                    android:text="7"
-                    android:textAlignment="center"
-                    android:visibility="visible" />
+                    <Button
+                        android:id="@+id/b5"
+                        android:layout_columnSpan="2"
+                        android:gravity="center"
+                        android:text="5"
+                        android:textAlignment="center"
+                        android:visibility="visible" />
 
-                <Button
-                    android:id="@+id/b8"
-                    android:layout_columnSpan="2"
-                    android:gravity="center"
-                    android:text="8"
-                    android:textAlignment="center"
-                    android:visibility="visible" />
+                    <Button
+                        android:id="@+id/b6"
+                        android:layout_columnSpan="2"
+                        android:gravity="center"
+                        android:text="6"
+                        android:textAlignment="center"
+                        android:visibility="visible" />
 
-                <Button
-                    android:id="@+id/b9"
-                    android:layout_columnSpan="2"
-                    android:gravity="center"
-                    android:text="9"
-                    android:textAlignment="center"
-                    android:visibility="visible" />
+                    <Button
+                        android:id="@+id/b7"
+                        android:layout_columnSpan="2"
+                        android:gravity="center"
+                        android:text="7"
+                        android:textAlignment="center"
+                        android:visibility="visible" />
 
-                <Button
-                    android:id="@+id/bX"
-                    android:layout_columnSpan="2"
-                    android:gravity="center"
-                    android:text="X"
-                    android:textAlignment="center"
-                    android:visibility="visible" />
+                    <Button
+                        android:id="@+id/b8"
+                        android:layout_columnSpan="2"
+                        android:gravity="center"
+                        android:text="8"
+                        android:textAlignment="center"
+                        android:visibility="visible" />
 
-                <Button
-                    android:id="@+id/b0"
-                    android:layout_columnSpan="2"
-                    android:gravity="center"
-                    android:text="-"
-                    android:textAlignment="center"
-                    android:visibility="visible" />
+                    <Button
+                        android:id="@+id/b9"
+                        android:layout_columnSpan="2"
+                        android:gravity="center"
+                        android:text="9"
+                        android:textAlignment="center"
+                        android:visibility="visible" />
 
-                <Button
-                    android:id="@+id/bSpare"
-                    android:layout_columnSpan="2"
-                    android:gravity="center"
-                    android:text="/"
-                    android:textAlignment="center"
-                    android:visibility="visible" />
+                    <Button
+                        android:id="@+id/bX"
+                        android:layout_columnSpan="2"
+                        android:gravity="center"
+                        android:text="X"
+                        android:textAlignment="center"
+                        android:visibility="visible" />
 
+                    <Button
+                        android:id="@+id/b0"
+                        android:layout_columnSpan="2"
+                        android:gravity="center"
+                        android:text="-"
+                        android:textAlignment="center"
+                        android:visibility="visible" />
 
-                <TextView android:layout_columnSpan="6" />
-
-                <Button
-                    android:id="@+id/bSplit"
-                    android:layout_width="136dp"
-                    android:layout_columnSpan="3"
-                    android:gravity="center"
-                    android:text="SPLIT"
-                    android:textAlignment="center"
-                    android:visibility="visible" />
-
-                <Button
-                    android:id="@+id/bMakeable"
-                    android:layout_width="129dp"
-                    android:layout_columnSpan="3"
-                    android:gravity="center"
-                    android:text="MAKEABLE"
-                    android:textAlignment="center"
-                    android:visibility="visible" />
-
-                <TextView android:layout_columnSpan="6" />
-
-                <Button
-                    android:id="@+id/bLeft"
-                    android:layout_columnSpan="2"
-                    android:gravity="center"
-                    android:text="LEFT"
-                    android:textAlignment="center"
-                    android:visibility="visible" />
-
-                <Button
-                    android:id="@+id/bPocket"
-                    android:layout_columnSpan="2"
-                    android:gravity="center"
-                    android:text="P"
-                    android:textAlignment="center"
-                    android:visibility="visible" />
-
-                <Button
-                    android:id="@+id/bRight"
-                    android:layout_columnSpan="2"
-                    android:gravity="center"
-                    android:text="->"
-                    android:textAlignment="center"
-                    android:visibility="visible" />
+                    <Button
+                        android:id="@+id/bSpare"
+                        android:layout_columnSpan="2"
+                        android:gravity="center"
+                        android:text="/"
+                        android:textAlignment="center"
+                        android:visibility="visible" />
 
 
-            </GridLayout>
+                    <TextView android:layout_columnSpan="6" />
+
+                    <Button
+                        android:id="@+id/bSplit"
+                        android:layout_width="136dp"
+                        android:layout_columnSpan="3"
+                        android:gravity="center"
+                        android:text="SPLIT"
+                        android:textAlignment="center"
+                        android:visibility="visible" />
+
+                    <Button
+                        android:id="@+id/bMakeable"
+                        android:layout_width="129dp"
+                        android:layout_columnSpan="3"
+                        android:gravity="center"
+                        android:text="MAKEABLE"
+                        android:textAlignment="center"
+                        android:visibility="visible" />
+
+
+                    <Button
+                        android:id="@+id/bLeft"
+                        android:layout_columnSpan="2"
+                        android:gravity="center"
+                        android:text="LEFT"
+                        android:textAlignment="center"
+                        android:visibility="visible" />
+
+                    <Button
+                        android:id="@+id/bPocket"
+                        android:layout_columnSpan="2"
+                        android:gravity="center"
+                        android:text="POCKET"
+                        android:textAlignment="center"
+                        android:visibility="visible" />
+
+                    <Button
+                        android:id="@+id/bRight"
+                        android:layout_columnSpan="2"
+                        android:gravity="center"
+                        android:text="RIGHT"
+                        android:textAlignment="center"
+                        android:visibility="visible" />
+
+                    <Button
+                        android:id="@+id/done"
+                        android:layout_columnSpan="2"
+                        android:gravity="center"
+                        android:text="DONE!"
+                        android:textAlignment="center"
+                        android:visibility="visible" />
+
+                    <Button
+                        android:id="@+id/clear"
+                        android:layout_columnSpan="2"
+                        android:gravity="center"
+                        android:text="CLEAR"
+                        android:textAlignment="center" />
+
+                    <Button
+                        android:id="@+id/backspace"
+                        android:layout_columnSpan="2"
+                        android:gravity="center"
+                        android:text="BKSP"
+                        android:textAlignment="center"
+                        android:visibility="visible" />
+
+
+                </GridLayout>
+
+            </RelativeLayout>
 
         </LinearLayout>
 

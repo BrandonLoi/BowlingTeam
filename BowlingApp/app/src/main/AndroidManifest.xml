@@ -23,15 +23,16 @@
         <activity android:name=".CompareStatisticsActivity" />
         <activity android:name=".CoachChangeStatsLookupActivity" />
         <activity android:name=".CoachChangeStatsActivity" />
-        <activity android:name=".Game" />
         <activity
             android:name=".createAccountSuccess"
             android:label="@string/title_activity_create_account"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ScoreKeeping" />
-        <activity android:name=".RankedList"></activity>
+        <activity android:name=".RankedList" />
+        <activity android:name=".RankingSelectionActivity" />
         <activity android:name=".createGroupActivity" />
-        <activity android:name=".createGroupSuccess"></activity>
+        <activity android:name=".createGroupSuccess" />
+        <activity android:name=".editGroupsActivity"></activity>
     </application>
 
 </manifest>

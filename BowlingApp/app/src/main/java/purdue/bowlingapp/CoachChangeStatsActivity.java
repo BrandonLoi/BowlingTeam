@@ -16,6 +16,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
+import java.util.concurrent.TimeUnit;
+
 public class CoachChangeStatsActivity extends AppCompatActivity {
 
     final String NOT_AVAILABLE = "N/A";
@@ -263,10 +265,15 @@ public class CoachChangeStatsActivity extends AppCompatActivity {
                     finalDataRef.child("sparePercentage").setValue(sparePc.getText().toString());
                     finalDataRef.child("singlePinPercentage").setValue(singlePinPc.getText().toString());
                     finalDataRef.child("filledPercentage").setValue(filledPc.getText().toString());
+                    errorText.setText("Saved!");
                 }
                 else {
                     errorText.setText("Error");
                 }
+                Intent i = new Intent(CoachChangeStatsActivity.this,
+                        CoachChangeStatsLookupActivity.class);
+                i.putExtra("username", username);
+                startActivity(i);
             }
         });
     }

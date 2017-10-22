@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                     myRef2.child("filledPercentage").setValue("-1");
                     myRef2.child("singlePinPercentage").setValue("-1");
                     myRef2.child("strikePercentage").setValue("-1");
+                    myRef2.child("numGames").setValue("0");
 
                     create(username);
                 }

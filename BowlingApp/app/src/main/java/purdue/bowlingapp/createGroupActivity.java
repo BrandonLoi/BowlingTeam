@@ -16,37 +16,44 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class createGroupActivity extends AppCompatActivity {
+   
+    public DatabaseReference mDatabase;
+    String username;
+    public static String createSuccess = "Group created";
+    public static String createFail_message = "Group already exists";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_group);
+        Intent intent = getIntent();
+        username = intent.getStringExtra("username");
     }
-
-    public DatabaseReference mDatabase;
-    TextView currUsernameText;
-    public static String createSuccess = "Group created";
-    public static String createFail_message = "Group already exists";
-
+    
     public void createUserGroup(View view) {
         //clearError();
-        currUsernameText = (TextView) findViewById(R.id.currUsernameText);
         final EditText editText = (EditText) findViewById(R.id.groupNameField);
         final String groupName = editText.getText().toString();
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        final DatabaseReference myRef = mDatabase.child("groups");
+        final DatabaseReference myRef = mDatabase;
         ValueEventListener listen = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.hasChild(groupName)) {
+                if (dataSnapshot.child("groups").hasChild(groupName)) {
                     System.out.println(createFail_message); //CREATE FAILURE
                     createFail(groupName);
                 } else {
                     //CREATE SUCCESS
-                    myRef.child(groupName).child("hunter"/*currUsernameText.getText().toString()*/).setValue("1");
-                    create(groupName);
+                    if (dataSnapshot.child("coaches").hasChild(username)) {
+                        myRef.child("groups").child(groupName).child(username).setValue("2");
+                        create(groupName);
+                    }
+                    else {
+                        myRef.child("groups").child(groupName).child(username).setValue("1");
+                        create(groupName);
+                    }
                 }
             }
 
