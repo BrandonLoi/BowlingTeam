@@ -32,7 +32,9 @@
         <activity android:name=".RankingSelectionActivity" />
         <activity android:name=".createGroupActivity" />
         <activity android:name=".createGroupSuccess" />
-        <activity android:name=".editGroupsActivity"></activity>
+        <activity android:name=".editGroupsActivity" />
+        <activity android:name=".mergeGroupActivity" />
+        <activity android:name=".groupStatisticsActivity"></activity>
     </application>
 
 </manifest>
