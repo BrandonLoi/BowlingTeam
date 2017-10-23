@@ -24,7 +24,8 @@ public class mergeGroupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_merge_group);
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
-    }
+        
 
-    
+
+    }
 }
