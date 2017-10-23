@@ -21,26 +21,12 @@ public class userCreateTest {
     public void userCreateTest() {
         final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         final DatabaseReference myRef = mDatabase.child("users");//.child(editText.toString());
+
         ValueEventListener listen = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.hasChild("testUser")) {
-                    myRef.child("testUser").setValue(null);
-                }
-                myRef.child("testUser").child("username").setValue("testUser");
-                myRef.child("testUser").child("password").setValue("123456789");
-                myRef.child("testUser").child("email").setValue("test@email.com");
-                final DatabaseReference myRef2 = mDatabase.child("data").child("testUser");
-                myRef2.child("avgScore").setValue("-1");
-                myRef2.child("highScore").setValue("-1");
-                myRef2.child("sparePercentage").setValue("-1");
-                myRef2.child("strikePercentage").setValue("-1");
-                myRef2.child("filledPercentage").setValue("-1");
-                myRef2.child("singlePinPercentage").setValue("-1");
-                myRef2.child("strikePercentage").setValue("-1");
-                myRef2.child("numGames").setValue("-1");
+                boolean x = dataSnapshot.hasChild("testUser");
                 assertTrue("user not added to users directory correctly", dataSnapshot.hasChild("testUser"));
-                myRef.child("testUser").setValue(null);
             }
 
             @Override
@@ -49,7 +35,36 @@ public class userCreateTest {
             }
 
         };
-        myRef.addListenerForSingleValueEvent(listen);
 
+        myRef.child("testUser").child("username").setValue("testUser");
+        myRef.child("testUser").child("password").setValue("123456789");
+        myRef.child("testUser").child("email").setValue("test@email.com");
+        final DatabaseReference myRef2 = mDatabase.child("data").child("testUser");
+        myRef2.child("avgScore").setValue("-1");
+        myRef2.child("highScore").setValue("-1");
+        myRef2.child("sparePercentage").setValue("-1");
+        myRef2.child("strikePercentage").setValue("-1");
+        myRef2.child("filledPercentage").setValue("-1");
+        myRef2.child("singlePinPercentage").setValue("-1");
+        myRef2.child("strikePercentage").setValue("-1");
+        myRef2.child("numGames").setValue("-1");
+        try {
+            Thread.sleep(1000);
+        } catch (Exception e) {
+            assertTrue("connection failure in test",false);
+        }
+        myRef.addListenerForSingleValueEvent(listen);
+        try {
+            Thread.sleep(1000);
+        } catch (Exception e) {
+            assertTrue("connection failure in test",false);
+        }
+        myRef.removeEventListener(listen);
+        myRef.child("testUser").setValue(null);
+        mDatabase.child("data").child("testUser").setValue(null);
     }
 }
+/*
+NOTE: This test will fail when debugging due to the listener mistakenly checking data AGAIN after deleting test data
+
+ */
