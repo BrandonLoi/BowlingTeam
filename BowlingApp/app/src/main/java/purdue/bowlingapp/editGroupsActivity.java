@@ -58,6 +58,14 @@ public class editGroupsActivity extends AppCompatActivity {
                                     createFail("4");
                                 }
                             }
+                            else if (dataSnapshot.child(username).getValue().equals("13")  || dataSnapshot.child(username).getValue().equals("23") || dataSnapshot.child(username).getValue().equals("03")) {
+                                if (!(dataSnapshot.hasChild(userAddName))) {
+                                    myRef.child("groups").child(groupName).child(userAddName).setValue("03");
+                                }
+                                else {
+                                    createFail("4");
+                                }
+                            }
                         }
                         else {
                             createFail("2");
@@ -101,7 +109,7 @@ public class editGroupsActivity extends AppCompatActivity {
                     else if (!(userAddName.matches(username))) {
                         dataSnapshot = dataSnapshot.child(groupName);
                         if (dataSnapshot.hasChild(username)) {
-                            if (dataSnapshot.child(username).getValue().equals("1") || dataSnapshot.child(username).getValue().equals("2")) {
+                            if (dataSnapshot.child(username).getValue().equals("1") || dataSnapshot.child(username).getValue().equals("2") || dataSnapshot.child(username).getValue().equals("13") || dataSnapshot.child(username).getValue().equals("23")) {
                                 dataSnapshot = dataSnapshot.child(userAddName);
                                 dataSnapshot.getRef().setValue(null);
                             }

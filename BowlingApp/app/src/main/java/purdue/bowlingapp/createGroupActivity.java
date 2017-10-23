@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -34,7 +35,7 @@ public class createGroupActivity extends AppCompatActivity {
         //clearError();
         final EditText editText = (EditText) findViewById(R.id.groupNameField);
         final String groupName = editText.getText().toString();
-
+        final CheckBox checked = (CheckBox) findViewById(R.id.publicCheck);
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         final DatabaseReference myRef = mDatabase;
@@ -47,12 +48,24 @@ public class createGroupActivity extends AppCompatActivity {
                 } else {
                     //CREATE SUCCESS
                     if (dataSnapshot.child("coaches").hasChild(username)) {
-                        myRef.child("groups").child(groupName).child(username).setValue("2");
-                        create(groupName);
+                        if (checked.isChecked()) {
+                            myRef.child("groups").child(groupName).child(username).setValue("23");
+                            create(groupName);
+                        }
+                        else {
+                            myRef.child("groups").child(groupName).child(username).setValue("2");
+                            create(groupName);
+                        }
                     }
                     else {
-                        myRef.child("groups").child(groupName).child(username).setValue("1");
-                        create(groupName);
+                        if (checked.isChecked()) {
+                            myRef.child("groups").child(groupName).child(username).setValue("13");
+                            create(groupName);
+                        }
+                        else {
+                            myRef.child("groups").child(groupName).child(username).setValue("1");
+                            create(groupName);
+                        }
                     }
                 }
             }
