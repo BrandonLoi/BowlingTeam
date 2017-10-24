@@ -31,6 +31,7 @@ public class CoachChangeStatsLookupActivity extends AppCompatActivity {
         emailButton = (Button) findViewById(R.id.emailButton);
         usernameText = (EditText) findViewById(R.id.inputUsername);
         emailText = (EditText) findViewById(R.id.inputEmail);
+        errorText = (TextView) findViewById(R.id.errorTextCoach);
 
         /*
          * Search by username
