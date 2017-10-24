@@ -24,7 +24,7 @@ public class LoginMessageActivity extends AppCompatActivity {
     Button editGroupButton;
     Button rankingsButton;
     Button scoreKeepingButton;
-
+    Button groupStatsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +42,7 @@ public class LoginMessageActivity extends AppCompatActivity {
         createGroupButton = (Button) findViewById(R.id.createGroupButton);
         editGroupButton = (Button) findViewById(R.id.editGroupButton);
         scoreKeepingButton = (Button) findViewById(R.id.scoreKeepingButton);
+        groupStatsButton = (Button) findViewById(R.id.groupStatsButton);
 
         compareStatsButton = (Button) findViewById(R.id.compareStatsButton);
         rankingsButton = (Button) findViewById(R.id.ranking);
@@ -112,6 +113,15 @@ public class LoginMessageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(LoginMessageActivity.this, editGroupsActivity.class);
+                i.putExtra("username", username);
+                startActivity(i);
+            }
+        });
+
+        groupStatsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(LoginMessageActivity.this, groupStatisticsActivity.class);
                 i.putExtra("username", username);
                 startActivity(i);
             }
