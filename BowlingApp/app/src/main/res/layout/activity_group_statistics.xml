@@ -40,210 +40,239 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/groupInput"
-        app:layout_constraintVertical_bias="0.029" />
+        app:layout_constraintVertical_bias="0.029"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <TextView
         android:id="@+id/playerNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Number of Players"
-        android:layout_marginBottom="18dp"
-        app:layout_constraintBottom_toTopOf="@+id/avgScore"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintTop_toTopOf="@+id/guideline5"
+        android:layout_marginTop="21dp"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.011"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"
-        app:layout_constraintVertical_bias="0.964"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        app:layout_constraintHorizontal_bias="0.0" />
 
     <TextView
         android:id="@+id/nop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/avg"
+        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.912"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.757" />
+        app:layout_constraintTop_toTopOf="@+id/guideline5"
+        android:layout_marginTop="14dp"
+        app:layout_constraintLeft_toRightOf="@+id/playerNum"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintHorizontal_bias="0.709" />
 
     <TextView
         android:id="@+id/avg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="291dp"
-        android:layout_marginBottom="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/hs" />
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toRightOf="@+id/avgScore"
+        app:layout_constraintHorizontal_bias="0.736"
+        app:layout_constraintTop_toTopOf="@+id/guideline5"
+        android:layout_marginTop="55dp" />
 
     <TextView
         android:id="@+id/hs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/gameNum"
+        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.754" />
+        app:layout_constraintLeft_toRightOf="@+id/groupHighScore"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintHorizontal_bias="0.758"
+        app:layout_constraintTop_toTopOf="@+id/guideline5"
+        android:layout_marginTop="95dp" />
 
     <TextView
         android:id="@+id/nog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="23dp"
-        app:layout_constraintBottom_toTopOf="@+id/strikePer"
+        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.754" />
+        app:layout_constraintLeft_toRightOf="@+id/gameNum"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintHorizontal_bias="0.706"
+        app:layout_constraintTop_toTopOf="@+id/guideline5"
+        android:layout_marginTop="136dp" />
 
     <TextView
         android:id="@+id/stp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/sparePer"
+        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.751" />
+        app:layout_constraintLeft_toRightOf="@+id/strikePer"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintHorizontal_bias="0.712"
+        app:layout_constraintTop_toTopOf="@+id/guideline5"
+        android:layout_marginTop="176dp" />
 
     <TextView
         android:id="@+id/spp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="22dp"
-        app:layout_constraintBottom_toTopOf="@+id/singlePinPer"
+        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.754" />
+        app:layout_constraintLeft_toRightOf="@+id/sparePer"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintHorizontal_bias="0.712"
+        app:layout_constraintTop_toTopOf="@+id/guideline5"
+        android:layout_marginTop="217dp" />
 
     <TextView
         android:id="@+id/sinp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/filledPer"
+        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.754" />
+        app:layout_constraintLeft_toRightOf="@+id/singlePinPer"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintHorizontal_bias="0.673"
+        app:layout_constraintTop_toTopOf="@+id/guideline5"
+        android:layout_marginTop="258dp" />
 
     <TextView
         android:id="@+id/fp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="35dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.754" />
+        app:layout_constraintLeft_toRightOf="@+id/filledPer"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintHorizontal_bias="0.716"
+        app:layout_constraintTop_toTopOf="@+id/guideline5"
+        android:layout_marginTop="298dp" />
 
     <TextView
         android:id="@+id/filledPer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Filled Percentage"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="36dp"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.03"
+        app:layout_constraintHorizontal_bias="0.0"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginEnd="8dp"
+        app:layout_constraintTop_toTopOf="@+id/guideline5"
+        android:layout_marginTop="298dp" />
 
     <TextView
         android:id="@+id/singlePinPer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Single Pin Percentage"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/filledPer"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.034"
+        app:layout_constraintHorizontal_bias="0.0"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginEnd="8dp"
+        app:layout_constraintTop_toTopOf="@+id/guideline5"
+        android:layout_marginTop="258dp" />
 
     <TextView
         android:id="@+id/sparePer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Spare Percentage"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/singlePinPer"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.031"
+        app:layout_constraintHorizontal_bias="0.0"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginEnd="8dp"
+        app:layout_constraintTop_toTopOf="@+id/guideline5"
+        android:layout_marginTop="224dp" />
 
     <TextView
         android:id="@+id/strikePer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Strike Percentage"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/sparePer"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.031"
+        app:layout_constraintHorizontal_bias="0.0"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginEnd="8dp"
+        app:layout_constraintTop_toTopOf="@+id/guideline5"
+        android:layout_marginTop="176dp" />
 
     <TextView
         android:id="@+id/gameNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Number of Games"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/strikePer"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.031"
+        app:layout_constraintHorizontal_bias="0.0"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginEnd="8dp"
+        app:layout_constraintTop_toTopOf="@+id/guideline5"
+        android:layout_marginTop="136dp" />
 
     <TextView
         android:id="@+id/groupHighScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:text="High Score"
-        app:layout_constraintBottom_toTopOf="@+id/gameNum"
-        app:layout_constraintHorizontal_bias="0.026"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline5"
+        android:layout_marginTop="95dp" />
 
     <TextView
         android:id="@+id/avgScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Average Score"
-        android:layout_marginBottom="23dp"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.028"
+        app:layout_constraintHorizontal_bias="0.0"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="215dp" />
+        app:layout_constraintTop_toTopOf="@+id/guideline5"
+        android:layout_marginTop="55dp" />
+
+    <TextView
+        android:id="@+id/errorMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        app:layout_constraintTop_toBottomOf="@+id/lookup"
+        tools:layout_editor_absoluteX="151dp" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline5"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="160dp" />
 </android.support.constraint.ConstraintLayout>

@@ -26,24 +26,26 @@ public class groupStatisticsActivity extends AppCompatActivity {
     TextView gameNum;
     TextView singlePinPer;
     TextView filledPer;
-
+    TextView errorMessage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_statistics);
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
-        playerNum = (TextView) findViewById(R.id.playerNum);
-        avgScore = (TextView) findViewById(R.id.avgScore);
-        highScore = (TextView) findViewById(R.id.groupHighScore);
-        gameNum = (TextView) findViewById(R.id.gameNum);
-        singlePinPer = (TextView) findViewById(R.id.singlePinPer);
-        strikePer = (TextView) findViewById(R.id.strikePer);
-        sparePer = (TextView) findViewById(R.id.sparePer);
-        filledPer = (TextView) findViewById(R.id.filledPer);
+        playerNum = (TextView) findViewById(R.id.nop);
+        avgScore = (TextView) findViewById(R.id.avg);
+        highScore = (TextView) findViewById(R.id.hs);
+        gameNum = (TextView) findViewById(R.id.nog);
+        singlePinPer = (TextView) findViewById(R.id.sinp);
+        strikePer = (TextView) findViewById(R.id.stp);
+        sparePer = (TextView) findViewById(R.id.spp);
+        filledPer = (TextView) findViewById(R.id.fp);
+        errorMessage = (TextView) findViewById(R.id.errorMsg);
     }
 
     public void lookupGroupStats(View view) {
+        clearScreen();
         final EditText editText = (EditText) findViewById(R.id.groupInput);
         final String groupName = editText.getText().toString();
 
@@ -75,47 +77,48 @@ public class groupStatisticsActivity extends AppCompatActivity {
                     playerNum.setText(playerN);
 
                     for (DataSnapshot iterator : dataSnapshot.child("groups").child(groupName).getChildren()) {
-                        if (dataSnapshot.child("data").child(iterator.getKey()).child("avgScore").getValue().equals("-1")) {
+                        DataSnapshot x = (dataSnapshot.child("data").child(iterator.getKey()));
+                        if (x.child("avgScore").getValue().equals("-1")) {
 
                         }
                         else {
-                            avgSL = avgSL + Long.parseLong(dataSnapshot.child("data").child(iterator.getKey()).child("avgScore").getValue().toString());
+                            avgSL = avgSL + Long.parseLong(x.child("avgScore").getValue().toString());
                         }
-                        if (dataSnapshot.child("data").child(iterator.getKey()).child("highScore").getValue().equals("-1")) {
+                        if (x.child("highScore").getValue().equals("-1")) {
 
                         }
                         else {
-                            highSL = highSL + Long.parseLong(dataSnapshot.child("data").child(iterator.getKey()).child("highScore").getValue().toString());
+                            highSL = highSL + Long.parseLong(x.child("highScore").getValue().toString());
                         }
-                        if (dataSnapshot.child("data").child(iterator.getKey()).child("numGames").getValue().equals("-1")) {
+                        if (x.child("numGames").getValue().equals("-1")) {
 
                         }
                         else {
-                            gameNL = gameNL + Long.parseLong(dataSnapshot.child("data").child(iterator.getKey()).child("numGames").getValue().toString());
+                            gameNL = gameNL + Long.parseLong(x.child("numGames").getValue().toString());
                         }
-                        if (dataSnapshot.child("data").child(iterator.getKey()).child("singlePinPercentage").getValue().equals("-1")) {
-
-                        }
-                        else { //TODO Find out why this part doesn't work
-                            singlePPL = singlePPL + Long.parseLong(dataSnapshot.child("data").child(iterator.getKey()).child("singlePinPercentage").getValue().toString());
-                        }
-                        if (dataSnapshot.child("data").child(iterator.getKey()).child("strikePercentage").getValue().equals("-1")) {
+                        if (x.child("singlePinPercentage").getValue().equals("-1")) {
 
                         }
                         else {
-                            strikePrL = strikePrL + Long.parseLong(dataSnapshot.child("data").child(iterator.getKey()).child("strikePercentage").getValue().toString());
+                            singlePPL = singlePPL + Long.parseLong(x.child("singlePinPercentage").getValue().toString());
                         }
-                        if (dataSnapshot.child("data").child(iterator.getKey()).child("sparePercentage").getValue().equals("-1")) {
+                        if (x.child("strikePercentage").getValue().equals("-1")) {
 
                         }
                         else {
-                            sparePrL = sparePrL + Long.parseLong(dataSnapshot.child("data").child(iterator.getKey()).child("sparePercentage").getValue().toString());
+                            strikePrL = strikePrL + Long.parseLong(x.child("strikePercentage").getValue().toString());
                         }
-                        if (dataSnapshot.child("data").child(iterator.getKey()).child("filledPercentage").getValue().equals("-1")) {
+                        if (x.child("sparePercentage").getValue().equals("-1")) {
+
+                        }
+                        else { //TODO: ERROR HERE
+                            sparePrL = sparePrL + Long.parseLong(x.child("sparePercentage").getValue().toString());
+                        }
+                        if (x.child("filledPercentage").getValue().equals("-1")) {
 
                         }
                         else {
-                            filledPrL = filledPrL + Long.parseLong(dataSnapshot.child("data").child(iterator.getKey()).child("filledPercentage").getValue().toString());
+                            filledPrL = filledPrL + Long.parseLong(x.child("filledPercentage").getValue().toString());
                         }
                     }
                     avgSL = avgSL / divisor;
@@ -143,7 +146,7 @@ public class groupStatisticsActivity extends AppCompatActivity {
                     filledPer.setText(filledPr);
                 }
                 else {
-                    createFail("groupname");
+                    createFail(groupName);
                 }
             }
 
@@ -157,24 +160,34 @@ public class groupStatisticsActivity extends AppCompatActivity {
     }
 
     public void createFail(String groupName) {
-        TextView textView = (TextView) findViewById(R.id.errorMessage);
         if (groupName.matches("1")) {
-            textView.setText("Error: No username input.");
+            errorMessage.setText("Error: No username input.");
         }
         else if (groupName.matches("2")) {
-            textView.setText("Error: You are not the group's owner.");
+            errorMessage.setText("Error: You are not the group's owner.");
         }
         else if (groupName.matches("3")) {
-            textView.setText("Error: Username does not exist.");
+            errorMessage.setText("Error: Username does not exist.");
         }
         else if (groupName.matches("4")) {
-            textView.setText("Error: User already in group.");
+            errorMessage.setText("Error: User already in group.");
         }
         else if (groupName.matches("5")) {
-            textView.setText("Error: Cannot remove yourself from group.");
+            errorMessage.setText("Error: Cannot remove yourself from group.");
         }
         else {
-            textView.setText("Error: Group does not exist.");
+            errorMessage.setText("Error: Group does not exist.");
         }
+    }
+    public void clearScreen() {
+        playerNum.setText("");
+        avgScore.setText("");
+        highScore.setText("");
+        gameNum.setText("");
+        singlePinPer.setText("");
+        strikePer.setText("");
+        sparePer.setText("");
+        filledPer.setText("");
+        errorMessage.setText("");
     }
 }
