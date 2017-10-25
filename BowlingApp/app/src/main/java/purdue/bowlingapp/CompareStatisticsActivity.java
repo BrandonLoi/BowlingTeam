@@ -116,7 +116,6 @@ public class CompareStatisticsActivity extends AppCompatActivity {
                     try
                     {
                         double d = Double.valueOf(strikeScore.trim());
-                        d *= 100;
                         percentage = String.valueOf(d);
                     } catch (NumberFormatException nfe) {
                         System.err.println("NumberFormatException: " + nfe.getMessage());
@@ -134,7 +133,6 @@ public class CompareStatisticsActivity extends AppCompatActivity {
                     try
                     {
                         double d = Double.valueOf(spareScore.trim());
-                        d *= 100;
                         percentage = String.valueOf(d);
                     } catch (NumberFormatException nfe) {
                         System.err.println("NumberFormatException: " + nfe.getMessage());
@@ -152,7 +150,6 @@ public class CompareStatisticsActivity extends AppCompatActivity {
                     try
                     {
                         double d = Double.valueOf(singlePin.trim());
-                        d *= 100;
                         percentage = String.valueOf(d);
                     } catch (NumberFormatException nfe) {
                         System.err.println("NumberFormatException: " + nfe.getMessage());
@@ -170,7 +167,6 @@ public class CompareStatisticsActivity extends AppCompatActivity {
                     try
                     {
                         double d = Double.valueOf(filledFrames.trim());
-                        d *= 100;
                         percentage = String.valueOf(d);
                     } catch (NumberFormatException nfe) {
                         System.err.println("NumberFormatException: " + nfe.getMessage());
@@ -223,7 +219,6 @@ public class CompareStatisticsActivity extends AppCompatActivity {
                     try
                     {
                         double d = Double.valueOf(strikeScore.trim());
-                        d *= 100;
                         percentage = String.valueOf(d);
                     } catch (NumberFormatException nfe) {
                         System.err.println("NumberFormatException: " + nfe.getMessage());
@@ -241,7 +236,6 @@ public class CompareStatisticsActivity extends AppCompatActivity {
                     try
                     {
                         double d = Double.valueOf(spareScore.trim());
-                        d *= 100;
                         percentage = String.valueOf(d);
                     } catch (NumberFormatException nfe) {
                         System.err.println("NumberFormatException: " + nfe.getMessage());
@@ -259,7 +253,6 @@ public class CompareStatisticsActivity extends AppCompatActivity {
                     try
                     {
                         double d = Double.valueOf(singlePin.trim());
-                        d *= 100;
                         percentage = String.valueOf(d);
                     } catch (NumberFormatException nfe) {
                         System.err.println("NumberFormatException: " + nfe.getMessage());
@@ -277,7 +270,6 @@ public class CompareStatisticsActivity extends AppCompatActivity {
                     try
                     {
                         double d = Double.valueOf(filledFrames.trim());
-                        d *= 100;
                         percentage = String.valueOf(d);
                     } catch (NumberFormatException nfe) {
                         System.err.println("NumberFormatException: " + nfe.getMessage());
