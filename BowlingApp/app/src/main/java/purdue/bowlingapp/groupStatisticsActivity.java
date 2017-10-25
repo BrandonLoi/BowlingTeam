@@ -64,16 +64,16 @@ public class groupStatisticsActivity extends AppCompatActivity {
                 String sparePr;
                 String filledPr;
 
-                long avgSL = 0;
-                long highSL = 0;
-                long gameNL = 0;
-                long singlePPL = 0;
-                long strikePrL = 0;
-                long sparePrL = 0;
-                long filledPrL = 0;
+                double avgSL = 0;
+                double highSL = 0;
+                double gameNL = 0;
+                double singlePPL = 0;
+                double strikePrL = 0;
+                double sparePrL = 0;
+                double filledPrL = 0;
                 if (dataSnapshot.child("groups").hasChild(groupName) && !(groupName.matches(""))) {
-                    long divisor = dataSnapshot.child("groups").child(groupName).getChildrenCount();
-                    playerN = Long.toString(dataSnapshot.child("groups").child(groupName).getChildrenCount());
+                    double divisor = dataSnapshot.child("groups").child(groupName).getChildrenCount();
+                    playerN = Double.toString(dataSnapshot.child("groups").child(groupName).getChildrenCount());
                     playerNum.setText(playerN);
 
                     for (DataSnapshot iterator : dataSnapshot.child("groups").child(groupName).getChildren()) {
@@ -82,43 +82,43 @@ public class groupStatisticsActivity extends AppCompatActivity {
 
                         }
                         else {
-                            avgSL = avgSL + Long.parseLong(x.child("avgScore").getValue().toString());
+                            avgSL = avgSL + Double.valueOf(x.child("avgScore").getValue().toString())  ;
                         }
                         if (x.child("highScore").getValue().equals("-1")) {
 
                         }
                         else {
-                            highSL = highSL + Long.parseLong(x.child("highScore").getValue().toString());
+                            highSL = highSL + Double.valueOf(x.child("highScore").getValue().toString());
                         }
                         if (x.child("numGames").getValue().equals("-1")) {
 
                         }
                         else {
-                            gameNL = gameNL + Long.parseLong(x.child("numGames").getValue().toString());
+                            gameNL = gameNL + Double.valueOf(x.child("numGames").getValue().toString());
                         }
                         if (x.child("singlePinPercentage").getValue().equals("-1")) {
 
                         }
                         else {
-                            singlePPL = singlePPL + Long.parseLong(x.child("singlePinPercentage").getValue().toString());
+                            singlePPL = singlePPL + Double.valueOf(x.child("singlePinPercentage").getValue().toString());
                         }
                         if (x.child("strikePercentage").getValue().equals("-1")) {
 
                         }
                         else {
-                            strikePrL = strikePrL + Long.parseLong(x.child("strikePercentage").getValue().toString());
+                            strikePrL = strikePrL + Double.valueOf(x.child("strikePercentage").getValue().toString());
                         }
                         if (x.child("sparePercentage").getValue().equals("-1")) {
 
                         }
-                        else { //TODO: ERROR HERE
-                            sparePrL = sparePrL + Long.parseLong(x.child("sparePercentage").getValue().toString());
+                        else {
+                            sparePrL = sparePrL + Double.valueOf(x.child("sparePercentage").getValue().toString());
                         }
                         if (x.child("filledPercentage").getValue().equals("-1")) {
 
                         }
                         else {
-                            filledPrL = filledPrL + Long.parseLong(x.child("filledPercentage").getValue().toString());
+                            filledPrL = filledPrL + Double.valueOf(x.child("filledPercentage").getValue().toString());
                         }
                     }
                     avgSL = avgSL / divisor;
@@ -129,13 +129,13 @@ public class groupStatisticsActivity extends AppCompatActivity {
                     sparePrL = sparePrL / divisor;
                     filledPrL = filledPrL / divisor;
 
-                    avgS = Long.toString(avgSL);
-                    highS = Long.toString(highSL);
-                    gameN = Long.toString(gameNL);
-                    singlePP = Long.toString(singlePPL);
-                    strikePr = Long.toString(strikePrL);
-                    sparePr = Long.toString(sparePrL);
-                    filledPr = Long.toString(filledPrL);
+                    avgS = Double.toString(avgSL);
+                    highS = Double.toString(highSL);
+                    gameN = Double.toString(gameNL);
+                    singlePP = Double.toString(singlePPL);
+                    strikePr = Double.toString(strikePrL);
+                    sparePr = Double.toString(sparePrL);
+                    filledPr = Double.toString(filledPrL);
 
                     avgScore.setText(avgS);
                     highScore.setText(highS);
