@@ -39,6 +39,105 @@ public class Game {
         return this.tenth;
     }
 
+    public int getSinglePinLeft() {
+        int count = 0;
+        for(Frame f : frames) {
+            if(f.getFirstThrow() == '9')
+                count++;
+        }
+        if(tenth.getFirstThrowC() == '9' || tenth.getSecondThrowC() == '9')
+            count++;
+        return count;
+    }
+
+    public int getSinglePinMade() {
+        int count = 0;
+        for(Frame f : frames) {
+            if(f.getFirstThrow() == '9' && f.getSecondThrow() == '/')
+                count++;
+        }
+        if(tenth.getFirstThrowC() == '9' && tenth.getSecondThrowC() == '/'
+                || tenth.getSecondThrowC() == '9' && tenth.getThirdThrowC() == '/')
+            count++;
+        return count;
+    }
+
+    public int getSplitLeft() {
+        int count = 0;
+        for(Frame f : frames)
+            if(f.isSplit())
+                count++;
+        if(tenth.isSplit())
+            count++;
+        return count;
+    }
+
+    public int getMultiLeft() {
+        int count = 0;
+        for(Frame f : frames)
+            if(f.isMakeable() && f.getFirstThrow() != 'X' && f.getFirstThrow() != '9')
+                count++;
+        if(tenth.isMakeable())
+            count++;
+        return count;
+    }
+
+    public int getMultiMade() {
+        int count = 0;
+        for(Frame f : frames)
+            if(f.isMakeable() && f.getSecondThrow() == '/' && f.getFirstThrow() != '9')
+                count++;
+        if(tenth.isMakeable() && (tenth.getSecondThrowC() == '/' || tenth.getThirdThrowC() == '/'))
+            count++;
+        return count;
+    }
+
+    public int getFilledFrame() {
+        int count = 0;
+        for(Frame f : frames)
+            if(f.getFirstThrow() == 'X' || f.getSecondThrow() == '/')
+                count++;
+        if(tenth.getFirstThrowC() == 'X' || tenth.getSecondThrowC() == '/')
+            count++;
+        return count;
+    }
+
+    public int getStrike() {
+        int count = 0;
+        for (Frame f : frames) {
+            if (f.getFirstThrow() == 'X')
+                count++;
+        }
+        if (tenth.getFirstThrowC() == 'X')
+            count++;
+        if (tenth.getSecondThrowC() == 'X')
+            count++;
+        if(tenth.getThirdThrowC() == 'X')
+            count++;
+        return count;
+    }
+
+    public int getSplitMade() {
+        int count = 0;
+        for(Frame f : frames)
+            if(f.isSplit() && f.getSecondThrow() == '/')
+                count++;
+        if (tenth.isSplit() && (tenth.getFirstThrowC() == '/' || tenth.getSecondThrowC() =='/'))
+            count++;
+        return count;
+    }
+
+    public int getBallsThrown() {
+        int count = 9;
+        if (tenth.getSecondThrowC() == 'X')
+            count += 3;
+        else if (!(tenth.getFirstThrowC() == 'X' || tenth.getSecondThrowC() == '/'))
+            count += 1;
+        else
+            count += 2;
+        return count;
+    }
+
     public int setScore() {
         int score = 0;
         for(int i = 0; i < frames.size(); i++) {

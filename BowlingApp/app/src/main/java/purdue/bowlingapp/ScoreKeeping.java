@@ -9,15 +9,57 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 public class ScoreKeeping extends AppCompatActivity {
     private int frameCount = 0;
+    Integer prevSingleMade = 0;
+    Integer prevSingleLeft = 0;
+    Integer prevSplitMade = 0;
+    Integer prevSplitLeft = 0;
+    Integer prevMultiMade = 0;
+    Integer prevMultiLeft = 0;
+    Integer prevStrikes = 0;
+    Integer prevTotal = 0;
+    Integer numGames = 0;
+    Integer ballsThrown = 0;
+    Integer highScore = 0;
+    boolean[] split = {false,false,false,false,false,false,false,false,false,false};
+
+    public DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score_keeping);
+        DatabaseReference ref = mDatabase.child("data").child(getIntent().getStringExtra("username"));
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                prevSingleMade = Integer.parseInt(dataSnapshot.child("singleMade").getValue().toString());
+                prevSingleLeft = Integer.parseInt(dataSnapshot.child("singleLeft").getValue().toString());
+                prevSplitMade = Integer.parseInt(dataSnapshot.child("splitMade").getValue().toString());
+                prevSplitLeft = Integer.parseInt(dataSnapshot.child("splitLeft").getValue().toString());
+                prevMultiMade = Integer.parseInt(dataSnapshot.child("multiMade").getValue().toString());
+                prevMultiLeft = Integer.parseInt(dataSnapshot.child("multiLeft").getValue().toString());
+                prevStrikes = Integer.parseInt(dataSnapshot.child("numStrikes").getValue().toString());
+                prevTotal = Integer.parseInt(dataSnapshot.child("cumulativeScore").getValue().toString());
+                numGames = Integer.parseInt(dataSnapshot.child("numGames").getValue().toString());
+                ballsThrown = Integer.parseInt(dataSnapshot.child("ballsThrown").getValue().toString());
+                highScore = Integer.parseInt(dataSnapshot.child("highScore").getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         TextView header = (TextView) findViewById(R.id.header);
         Intent i = getIntent();
@@ -307,6 +349,8 @@ public class ScoreKeeping extends AppCompatActivity {
             public void onClick(View view) {
                 if (frameCount >= tvs.length)
                     return;
+                if(frameCount == 19 && !(tvs[18].getText().equals("X")))
+                    return;
                 if (frameCount == 20 && !(tvs[18].getText().equals("X") || tvs[19].getText().equals("/")))
                     return;
                 if (frameCount < tvs.length - 3 && frameCount%2 == 0) {
@@ -351,6 +395,13 @@ public class ScoreKeeping extends AppCompatActivity {
                 for (TextView t : tvs)
                     t.setText(" ");
                 score.setText(" ");
+            }
+        });
+
+        bSplit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                split[frameCount/2] = !split[frameCount/2];
             }
         });
 
@@ -408,12 +459,46 @@ public class ScoreKeeping extends AppCompatActivity {
                     return;
                 }
                 Game g = new Game(frames, f10);
+                final int singleLeft = g.getSinglePinLeft();
+                final int singleMade = g.getSinglePinMade();
+                final int splitLeft = g.getSplitLeft();
+                final int splitMade = g.getSplitMade();
+                final int multiLeft = g.getMultiLeft();
+                final int multiMade = g.getMultiMade();
+                final int newBallsThrown = g.getBallsThrown();
+                final int strike = g.getStrike();
+                final int scoreTemp = g.setScore();
 
-                int scoreTemp = g.setScore();
+                prevSingleLeft += singleLeft;
+                prevSingleMade += singleMade;
+                prevSplitLeft += splitLeft;
+                prevSplitMade += splitMade;
+                prevMultiLeft += multiLeft;
+                prevMultiMade += multiMade;
+                prevStrikes += strike;
+                prevTotal += scoreTemp;
+                numGames++;
+                ballsThrown += newBallsThrown;
+                if (scoreTemp > highScore)
+                    highScore = scoreTemp;
+
+                DatabaseReference ref = mDatabase.child("data").child(getIntent().getStringExtra("username"));
+
+                ref.child("singleLeft").setValue(prevSingleLeft.toString());
+                ref.child("singleMade").setValue(prevSingleMade.toString());
+                ref.child("splitLeft").setValue(prevSplitLeft.toString());
+                ref.child("splitMade").setValue(prevSplitMade.toString());
+                ref.child("multiLeft").setValue(prevMultiLeft.toString());
+                ref.child("multiMade").setValue(prevMultiMade.toString());
+                ref.child("numStrikes").setValue(prevStrikes.toString());
+                ref.child("cumulativeScore").setValue(prevTotal.toString());
+                ref.child("numGames").setValue(numGames.toString());
+                ref.child("ballsThrown").setValue(ballsThrown.toString());
+                ref.child("highScore").setValue(highScore.toString());
+
                 String out = scoreTemp + "";
 
                 score.setText(out);
-
             }
         });
 

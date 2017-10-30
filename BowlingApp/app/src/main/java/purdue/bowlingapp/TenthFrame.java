@@ -9,6 +9,8 @@ public class TenthFrame {
     private char firstThrow;
     private char secondThrow;
     private char thirdThrow;
+    private boolean split = false;
+    private boolean makeable = false;
 
     public TenthFrame(char firstThrow, char secondThrow) {
         char first = validateInput(firstThrow);
@@ -24,6 +26,22 @@ public class TenthFrame {
         this.firstThrow = (first != ' ' && first != '/') ? firstThrow : ' ';
         this.secondThrow = second;
         this.thirdThrow = third;
+    }
+
+    public void toggleSplit() {
+        this.split = !this.split;
+    }
+
+    public boolean isSplit() {
+        return this.split;
+    }
+
+    public boolean isMakeable() {
+        return this.makeable;
+    }
+
+    public void toggleMakebale() {
+        this.makeable = !this.makeable;
     }
 
     private char validateInput(char input) {
@@ -49,6 +67,18 @@ public class TenthFrame {
                 return ' ';
 
         }
+    }
+
+    public char getFirstThrowC() {
+        return this.firstThrow;
+    }
+
+    public char getSecondThrowC() {
+        return this.secondThrow;
+    }
+
+    public char getThirdThrowC() {
+        return this.thirdThrow;
     }
 
     //Called when last Frame was a spare

@@ -99,7 +99,16 @@ public class MainActivity extends AppCompatActivity {
                     myRef2.child("filledPercentage").setValue("-1");
                     myRef2.child("singlePinPercentage").setValue("-1");
                     myRef2.child("strikePercentage").setValue("-1");
-                    myRef2.child("numGames").setValue("-1");
+                    myRef2.child("numGames").setValue("0");
+                    myRef2.child("singleMade").setValue("0");
+                    myRef2.child("singleLeft").setValue("0");
+                    myRef2.child("splitMade").setValue("0");
+                    myRef2.child("splitLeft").setValue("0");
+                    myRef2.child("multiMade").setValue("0");
+                    myRef2.child("multiLeft").setValue("0");
+                    myRef2.child("numStrikes").setValue("0");
+                    myRef2.child("ballsThrown").setValue("0");
+                    myRef2.child("cumulativeScore").setValue("0");
 
                     create(username);
                 }

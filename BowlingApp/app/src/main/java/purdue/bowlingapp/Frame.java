@@ -10,7 +10,7 @@ public class Frame {
     private char secondThrow;
     private boolean makeable = true;
     private boolean pocket = true;
-    private boolean split = true;
+    private boolean split = false;
 
 
     public Frame(char firstThrow, char secondThrow) {
@@ -33,7 +33,6 @@ public class Frame {
         this.secondThrow = c;
     }
 
-    //TO DO: Add logic somewhere that prevents bad inputs that add to over ten i.e. firstThrow = 8, secondThrow = 4
     //TO DO: Add support for fouls
 
     private char validateInput(char input) {
@@ -79,6 +78,8 @@ public class Frame {
     public void toggleSplit() {
         this.split = !this.split;
     }
+
+    public void toggleMakeable() { this.makeable = !this.makeable; }
 
     public char getFirstThrow() {
         return firstThrow;
