@@ -26,6 +26,7 @@ public class LoginMessageActivity extends AppCompatActivity {
     Button scoreKeepingButton;
     Button groupStatsButton;
     Button mergeGroupsButton;
+    Button liveTournamentButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class LoginMessageActivity extends AppCompatActivity {
         scoreKeepingButton = (Button) findViewById(R.id.scoreKeepingButton);
         groupStatsButton = (Button) findViewById(R.id.groupStatsButton);
         mergeGroupsButton = (Button) findViewById(R.id.mergeGroupsButton);
+        liveTournamentButton = (Button) findViewById(R.id.liveTournamentButton);
 
         compareStatsButton = (Button) findViewById(R.id.compareStatsButton);
         rankingsButton = (Button) findViewById(R.id.ranking);
@@ -133,6 +135,15 @@ public class LoginMessageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(LoginMessageActivity.this, mergeGroupActivity.class);
+                i.putExtra("username", username);
+                startActivity(i);
+            }
+        });
+
+        liveTournamentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(LoginMessageActivity.this, LiveTournamentActivity.class);
                 i.putExtra("username", username);
                 startActivity(i);
             }
