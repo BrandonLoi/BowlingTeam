@@ -50,7 +50,7 @@ public class editGroupsActivity extends AppCompatActivity {
                     else if (dataSnapshot.child("users").hasChild(userAddName)) {
                         dataSnapshot = dataSnapshot.child("groups").child(groupName);
                         if (dataSnapshot.hasChild(username)) {
-                            if (dataSnapshot.child(username).getValue().equals("1")  || dataSnapshot.child(username).getValue().equals("2")) {
+                            if (dataSnapshot.child(username).getValue().equals("1")  || dataSnapshot.child(username).getValue().equals("2") || dataSnapshot.child(username).getValue().equals("4")) {
                                 if (!(dataSnapshot.hasChild(userAddName))) {
                                     myRef.child("groups").child(groupName).child(userAddName).setValue("0");
                                 }
@@ -58,7 +58,7 @@ public class editGroupsActivity extends AppCompatActivity {
                                     createFail("4");
                                 }
                             }
-                            else if (dataSnapshot.child(username).getValue().equals("13")  || dataSnapshot.child(username).getValue().equals("23") || dataSnapshot.child(username).getValue().equals("03")) {
+                            else if (dataSnapshot.child(username).getValue().equals("13")  || dataSnapshot.child(username).getValue().equals("23") || dataSnapshot.child(username).getValue().equals("03") || dataSnapshot.child(username).getValue().equals("43")) {
                                 if (!(dataSnapshot.hasChild(userAddName))) {
                                     myRef.child("groups").child(groupName).child(userAddName).setValue("03");
                                 }
@@ -109,7 +109,7 @@ public class editGroupsActivity extends AppCompatActivity {
                     else if (!(userAddName.matches(username))) {
                         dataSnapshot = dataSnapshot.child(groupName);
                         if (dataSnapshot.hasChild(username)) {
-                            if (dataSnapshot.child(username).getValue().equals("1") || dataSnapshot.child(username).getValue().equals("2") || dataSnapshot.child(username).getValue().equals("13") || dataSnapshot.child(username).getValue().equals("23")) {
+                            if (dataSnapshot.child(username).getValue().equals("1") || dataSnapshot.child(username).getValue().equals("2") || dataSnapshot.child(username).getValue().equals("13") || dataSnapshot.child(username).getValue().equals("23") || dataSnapshot.child(username).getValue().equals("4") || dataSnapshot.child(username).getValue().equals("43")) {
                                 dataSnapshot = dataSnapshot.child(userAddName);
                                 dataSnapshot.getRef().setValue(null);
                             }
@@ -120,6 +120,65 @@ public class editGroupsActivity extends AppCompatActivity {
                     }
                     else {
                         createFail("5");
+                    }
+                }
+                else {
+                    System.out.println(createFail_message); //CREATE FAILURE
+                    createFail(groupName);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                //Required, but we don't use. Leave blank
+            }
+        };
+        myRef.addListenerForSingleValueEvent(listen);
+    }
+
+    public void editPerm(View view) {
+        clearError();
+        final EditText editText = (EditText) findViewById(R.id.groupName);
+        final String groupName = editText.getText().toString();
+        final EditText editText2 = (EditText) findViewById(R.id.userName);
+        final String userAddName = editText2.getText().toString();
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        final DatabaseReference myRef = mDatabase;
+        ValueEventListener listen = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.child("groups").hasChild(groupName) && !(groupName.matches(""))) {
+                    if (userAddName.matches("")) {
+                        createFail("1");
+                    }
+                    else if (dataSnapshot.child("users").hasChild(userAddName)) {
+                        dataSnapshot = dataSnapshot.child("groups").child(groupName);
+                        if (dataSnapshot.hasChild(username)) {
+                            if (dataSnapshot.child(username).getValue().equals("1") || dataSnapshot.child(username).getValue().equals("2") || dataSnapshot.child(username).getValue().equals("13") || dataSnapshot.child(username).getValue().equals("23")) {
+                                if (dataSnapshot.hasChild(userAddName)) {
+                                    myRef.child("groups").child(groupName).child(userAddName).setValue("4");
+                                }
+                                else {
+                                    createFail("4");
+                                }
+                            }
+                            else if (dataSnapshot.child(username).getValue().equals("13")  || dataSnapshot.child(username).getValue().equals("23")) {
+                                if (!(dataSnapshot.hasChild(userAddName))) {
+                                    myRef.child("groups").child(groupName).child(userAddName).setValue("43");
+                                }
+                                else {
+                                    createFail("4");
+                                }
+                            }
+                        }
+                        else {
+                            createFail("2");
+                        }
+                    }
+                    else {
+                        createFail("3");
                     }
                 }
                 else {
