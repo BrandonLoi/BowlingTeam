@@ -13,6 +13,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -121,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         myRef.addListenerForSingleValueEvent(listen);
+
     }
 
     public void login(String username) {
@@ -129,14 +131,12 @@ public class MainActivity extends AppCompatActivity {
         success.putExtra(welcome_message, message);
         startActivity(success);
     }
-
     public void loginFail() {
         Intent failure = new Intent(this, LoginFailureActivity.class);
         String message = failure_message + "!";
         failure.putExtra(failure_message, message);
         startActivity(failure);
     }
-
     public void create(String username) {
         Intent success = new Intent(this, createAccountSuccess.class);
         String message = username;
@@ -144,7 +144,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(success);
 
     }
-
     public void createFail(String username) {
         TextView textView = (TextView) findViewById(R.id.errorMessage);
         textView.setText("Error: User already exists.");
@@ -153,4 +152,56 @@ public class MainActivity extends AppCompatActivity {
         TextView textView = (TextView) findViewById(R.id.errorMessage);
         textView.setText("");
     }
+    public void resetPassword(View view) {
+        clearError();
+
+        clearError();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        final EditText editText = (EditText) findViewById(R.id.usernameField);
+        final EditText editText2 = (EditText) findViewById(R.id.passwordField);
+        final EditText editText3 = (EditText) findViewById(R.id.emailField);
+
+
+        final String username = editText.getText().toString();
+        final String password = editText2.getText().toString();
+        final String email = editText3.getText().toString();
+
+        //malformed input
+        if (username.equals("") || password.equals("") || email.equals("")) {
+            return;
+        }
+
+
+        DatabaseReference myRef = mDatabase.child("users");
+        ValueEventListener listen = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChild(username)) {
+                    //success!
+                    String storedEmail = dataSnapshot.child(username).child("email").getValue().toString();
+                    if (storedEmail.equals(email)) {
+                        dataSnapshot.child(username).child("password").getRef().setValue(password);
+                        System.out.println("successful change");
+                    }
+                    else {
+                        System.out.println("incorrect email");
+                    }
+                }
+                else {
+                    System.out.println("user does not exist");
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                //Required, but we don't use. Leave blank
+            }
+        };
+        myRef.addListenerForSingleValueEvent(listen);
+
+
+
+
+    }
+
 }
