@@ -47,7 +47,17 @@ public class createUserTest {
         myRef2.child("filledPercentage").setValue("-1");
         myRef2.child("singlePinPercentage").setValue("-1");
         myRef2.child("strikePercentage").setValue("-1");
-        myRef2.child("numGames").setValue("-1");
+        myRef2.child("numGames").setValue("0");
+        myRef2.child("singleMade").setValue("0");
+        myRef2.child("singleLeft").setValue("0");
+        myRef2.child("splitMade").setValue("0");
+        myRef2.child("splitLeft").setValue("0");
+        myRef2.child("multiMade").setValue("0");
+        myRef2.child("multiLeft").setValue("0");
+        myRef2.child("numStrikes").setValue("0");
+        myRef2.child("ballsThrown").setValue("0");
+        myRef2.child("cumulativeScore").setValue("0");
+        myRef2.child("filledFrames").setValue("0");
         try {
             Thread.sleep(1000);
         } catch (Exception e) {

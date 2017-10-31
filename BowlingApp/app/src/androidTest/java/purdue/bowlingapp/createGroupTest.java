@@ -32,6 +32,7 @@ public class createGroupTest {
                 //Required, but we don't use. Leave blank
             }
         };
+
         myRef.child("testUser").child("username").setValue("testUser");
         myRef.child("testUser").child("password").setValue("123456789");
         myRef.child("testUser").child("email").setValue("test@email.com");
@@ -43,7 +44,17 @@ public class createGroupTest {
         myRef2.child("filledPercentage").setValue("-1");
         myRef2.child("singlePinPercentage").setValue("-1");
         myRef2.child("strikePercentage").setValue("-1");
-        myRef2.child("numGames").setValue("-1");
+        myRef2.child("numGames").setValue("0");
+        myRef2.child("singleMade").setValue("0");
+        myRef2.child("singleLeft").setValue("0");
+        myRef2.child("splitMade").setValue("0");
+        myRef2.child("splitLeft").setValue("0");
+        myRef2.child("multiMade").setValue("0");
+        myRef2.child("multiLeft").setValue("0");
+        myRef2.child("numStrikes").setValue("0");
+        myRef2.child("ballsThrown").setValue("0");
+        myRef2.child("cumulativeScore").setValue("0");
+        myRef2.child("filledFrames").setValue("0");
         DatabaseReference myRef3 = mDatabase.child("groups");
 
 
