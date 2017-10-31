@@ -140,12 +140,36 @@ public class LoginMessageActivity extends AppCompatActivity {
             }
         });
 
+        /*
+        Checks if the current user has coach privileges
+         */
         liveTournamentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(LoginMessageActivity.this, LiveTournamentActivity.class);
-                i.putExtra("username", username);
-                startActivity(i);
+
+                final FirebaseDatabase database = FirebaseDatabase.getInstance();
+                String currDataPath = "coaches";
+                final DatabaseReference coach = database.getReference(currDataPath);
+
+                coach.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.hasChild(username)) {
+                            Intent i = new Intent(LoginMessageActivity.this, LiveTournamentActivity.class);
+                            i.putExtra("username", username);
+                            startActivity(i);
+                        } else {
+                            Intent i = new Intent(LoginMessageActivity.this, NotCoachFailureActivity.class);
+                            i.putExtra("username", username);
+                            startActivity(i);
+                        }
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        System.out.println("Retrieving coach status failed: " +
+                                databaseError.getCode());
+                    }
+                });
             }
         });
     }

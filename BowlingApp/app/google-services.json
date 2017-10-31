@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "1075240038525",
+    "firebase_url": "https://bowlingapp-a80bd.firebaseio.com",
+    "project_id": "bowlingapp-a80bd",
+    "storage_bucket": "bowlingapp-a80bd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1075240038525:android:c12507030a8687ea",
+        "android_client_info": {
+          "package_name": "purdue.bowlingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1075240038525-i1pbl031qpcc82s7frij9cnp093l4duj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "purdue.bowlingapp",
+            "certificate_hash": "2aeb96b1a6a69621d5ea4d8a81567f98852fb76f"
+          }
+        },
+        {
+          "client_id": "1075240038525-l3nkt2cb9j2jljis89q7nak1rcq19jlf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "purdue.bowlingapp",
+            "certificate_hash": "4aa8ef51dbb90f19824c90dd006cb56d78ed4fd0"
+          }
+        },
+        {
+          "client_id": "1075240038525-95k850805rdtu5smfkgbdslqe59mp470.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "purdue.bowlingapp",
+            "certificate_hash": "1328a408332ddad5748ae8a3e223f1be986bc5fe"
+          }
+        },
+        {
+          "client_id": "1075240038525-6726klohlmd831mdlfpksamoc6k4pntt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "purdue.bowlingapp",
+            "certificate_hash": "f175551348326e09e6ea0754070044bf62c18a73"
+          }
+        },
+        {
+          "client_id": "1075240038525-9s1drk3qigedfdjh373cfpdh03dqe89l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7kZgbmvRTMEjboHVtQdzOy5_9b7bkaNk"
+        },
+        {
+          "current_key": "AIzaSyBPWgtSm6ijhan6KA5kqTvQGUj0CnmVhOI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1075240038525-9s1drk3qigedfdjh373cfpdh03dqe89l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
