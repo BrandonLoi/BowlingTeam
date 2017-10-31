@@ -60,25 +60,16 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="50sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Statistic to Display:"
-            android:textAlignment="center" />
+            android:layout_height="50sp"
+            android:text="Select the Group Stat to display"
+            android:textAlignment="center"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/currentSelection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/goBtnGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Go!" />
 
     </LinearLayout>
 
