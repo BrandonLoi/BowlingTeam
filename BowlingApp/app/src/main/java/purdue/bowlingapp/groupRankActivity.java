@@ -43,7 +43,6 @@ public class groupRankActivity extends AppCompatActivity {
         });
 
         avgScore = (Button) findViewById(R.id.averageScore);
-
         avgScore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

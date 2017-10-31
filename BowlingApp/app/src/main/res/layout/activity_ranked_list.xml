@@ -27,8 +27,8 @@
 
     <LinearLayout
         android:id="@+id/llayout"
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintRight_toLeftOf="@+id/textView5"
         tools:layout_constraintTop_creator="1"
         tools:layout_constraintRight_creator="1"
@@ -40,10 +40,10 @@
         app:layout_constraintHorizontal_bias="0.02">
 
         <TextView
-            android:id="@+id/header"
+            android:id="@+id/headerGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"/>
+            android:textAlignment="center" />
 
         <TextView
             android:layout_width="match_parent"
