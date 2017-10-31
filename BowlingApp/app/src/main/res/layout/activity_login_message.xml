@@ -59,7 +59,9 @@
         app:layout_constraintRight_toLeftOf="@+id/guideline4"
         android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <Button
         android:id="@+id/createGroupButton"
@@ -72,7 +74,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <Button
         android:id="@+id/groupStatsButton"
@@ -85,7 +89,9 @@
         app:layout_constraintRight_toLeftOf="@+id/guideline4"
         android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <Button
         android:id="@+id/editGroupButton"
@@ -96,7 +102,6 @@
         android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
-        android:layout_marginLeft="0dp"
         app:layout_constraintLeft_toLeftOf="@+id/guideline4"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent" />
@@ -108,7 +113,6 @@
         android:text="Edit a Player's Stats"
         android:visibility="visible"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="0dp"
         app:layout_constraintLeft_toLeftOf="@+id/guideline4"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/ranking"
@@ -139,26 +143,40 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/editPlayerStats"
         android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="@+id/guideline4" />
+        app:layout_constraintLeft_toLeftOf="@+id/guideline4"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/guideline4"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="180dp" />
+        app:layout_constraintGuide_end="180dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="204dp" />
 
     <Button
         android:id="@+id/mergeGroupsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:text="Merge Groups"
         app:layout_constraintBottom_toTopOf="@+id/continueButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteX="39dp" />
+
+    <Button
+        android:id="@+id/liveTournamentButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Live Tournament"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/mergeGroupsButton"
+        app:layout_constraintHorizontal_bias="0.757"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/scoreKeepingButton" />
 
 </android.support.constraint.ConstraintLayout>
