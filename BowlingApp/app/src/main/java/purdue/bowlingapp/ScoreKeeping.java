@@ -487,7 +487,7 @@ public class ScoreKeeping extends AppCompatActivity {
                 if (scoreTemp > highScore)
                     highScore = scoreTemp;
                 //update average score
-                Double avg = (double)prevTotal/(double)numGames;
+                Integer avg = (int)((double)prevTotal/(double)numGames);
                 String avgTemp = avg.toString();
                 avgTemp = avgTemp.substring(0,Math.min(5,avgTemp.length()));
                 //update filled frame percentage
