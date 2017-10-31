@@ -36,7 +36,15 @@
         <activity android:name=".mergeGroupActivity" />
         <activity android:name=".NotCoachFailureActivity" />
         <activity android:name=".LiveTournamentActivity" />
-        <activity android:name=".groupStatisticsActivity"></activity>
+        <activity android:name=".groupStatisticsActivity" />
+        <activity
+            android:name=".groupRankActivity"
+            android:label="@string/title_activity_group_rank"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".groupRankedList"
+            android:label="@string/title_activity_group_ranked_list"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
