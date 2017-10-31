@@ -30,6 +30,7 @@ public class ScoreKeeping extends AppCompatActivity {
     Integer numGames = 0;
     Integer ballsThrown = 0;
     Integer highScore = 0;
+    Integer prevFilled = 0;
     boolean[] split = {false,false,false,false,false,false,false,false,false,false};
 
     public DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -53,6 +54,7 @@ public class ScoreKeeping extends AppCompatActivity {
                 numGames = Integer.parseInt(dataSnapshot.child("numGames").getValue().toString());
                 ballsThrown = Integer.parseInt(dataSnapshot.child("ballsThrown").getValue().toString());
                 highScore = Integer.parseInt(dataSnapshot.child("highScore").getValue().toString());
+                prevFilled = Integer.parseInt(dataSnapshot.child("filledFrames").getValue().toString());
             }
 
             @Override
@@ -468,6 +470,7 @@ public class ScoreKeeping extends AppCompatActivity {
                 final int newBallsThrown = g.getBallsThrown();
                 final int strike = g.getStrike();
                 final int scoreTemp = g.setScore();
+                final int filledFrames = g.getFilledFrame();
 
                 prevSingleLeft += singleLeft;
                 prevSingleMade += singleMade;
@@ -477,10 +480,31 @@ public class ScoreKeeping extends AppCompatActivity {
                 prevMultiMade += multiMade;
                 prevStrikes += strike;
                 prevTotal += scoreTemp;
+                prevFilled += filledFrames;
                 numGames++;
                 ballsThrown += newBallsThrown;
+                //update high score
                 if (scoreTemp > highScore)
                     highScore = scoreTemp;
+                //update average score
+                Double avg = (double)prevTotal/(double)numGames;
+                String avgTemp = avg.toString();
+                avgTemp = avgTemp.substring(0,Math.min(5,avgTemp.length()));
+                //update filled frame percentage
+                Double filledpct = (double)prevFilled/(double)(numGames*10);
+                filledpct *= 100;
+                String filledpctTemp = filledpct.toString();
+                filledpctTemp = filledpctTemp.substring(0,Math.min(5,filledpctTemp.length()));
+                //update single pin percentage
+                Double singlePct = (double)prevSingleMade/(double)prevSingleLeft;
+                singlePct *= 100;
+                String singleTemp = singlePct.toString();
+                singleTemp = singleTemp.substring(0,Math.min(5,singleTemp.length()));
+                //update strike percentage
+                Double strikePct = (double)prevStrikes/(double)ballsThrown;
+                strikePct *= 100;
+                String strikeTemp = strikePct.toString();
+                strikeTemp = strikeTemp.substring(0,Math.min(5,strikeTemp.length()));
 
                 DatabaseReference ref = mDatabase.child("data").child(getIntent().getStringExtra("username"));
 
@@ -494,11 +518,20 @@ public class ScoreKeeping extends AppCompatActivity {
                 ref.child("cumulativeScore").setValue(prevTotal.toString());
                 ref.child("numGames").setValue(numGames.toString());
                 ref.child("ballsThrown").setValue(ballsThrown.toString());
+                ref.child("filledFrames").setValue(prevFilled.toString());
                 ref.child("highScore").setValue(highScore.toString());
+                ref.child("avgScore").setValue(avgTemp);
+                ref.child("filledPercentage").setValue(filledpctTemp);
+                ref.child("singlePinPercentage").setValue(singleTemp);
+                ref.child("strikePercentage").setValue(strikeTemp);
+
+
 
                 String out = scoreTemp + "";
-
                 score.setText(out);
+                final Toast toast2 = Toast.makeText(getApplicationContext(),"Statistics added",Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM,0,0);
+                toast2.show();
             }
         });
 

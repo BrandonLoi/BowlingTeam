@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
                     myRef2.child("numStrikes").setValue("0");
                     myRef2.child("ballsThrown").setValue("0");
                     myRef2.child("cumulativeScore").setValue("0");
+                    myRef2.child("filledFrames").setValue("0");
 
                     create(username);
                 }
