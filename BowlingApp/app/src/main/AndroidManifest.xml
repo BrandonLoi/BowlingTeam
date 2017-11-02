@@ -47,7 +47,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".requestActivity" />
         <activity android:name=".groupHubActivity" />
-        <activity android:name=".requestResponseActivity"></activity>
+        <activity android:name=".requestResponseActivity" />
+        <activity android:name=".eventCreateActivity"></activity>
     </application>
 
 </manifest>

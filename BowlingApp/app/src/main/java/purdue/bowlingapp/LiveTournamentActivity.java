@@ -85,8 +85,7 @@ public class LiveTournamentActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                System.out.println("Retrieving currentlyLive variable failed: " +
-                        databaseError.getCode());
+                System.out.println("Retrieving currentlyLive variable failed: " + databaseError.getCode());
             }
         });
     }
