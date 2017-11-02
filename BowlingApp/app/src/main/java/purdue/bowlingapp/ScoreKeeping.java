@@ -500,6 +500,8 @@ public class ScoreKeeping extends AppCompatActivity {
                 singlePct *= 100;
                 String singleTemp = singlePct.toString();
                 singleTemp = singleTemp.substring(0,Math.min(5,singleTemp.length()));
+                if(prevSingleLeft == 0)
+                    singleTemp = "-1";
                 //update strike percentage
                 Double strikePct = (double)prevStrikes/(double)ballsThrown;
                 strikePct *= 100;
