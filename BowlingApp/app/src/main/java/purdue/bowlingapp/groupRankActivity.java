@@ -35,7 +35,7 @@ public class groupRankActivity extends AppCompatActivity {
             public void onClick(View view) {
                 selection = "highScore";
                 valid = true;
-                Intent i = new Intent(groupRankActivity.this, RankedList.class);
+                Intent i = new Intent(groupRankActivity.this, groupRankedList.class);
                 i.putExtra("selection", selection);
                 startActivity(i);
             }
@@ -48,7 +48,7 @@ public class groupRankActivity extends AppCompatActivity {
             public void onClick(View view) {
                 selection = "avgScore";
                 valid = true;
-                Intent i = new Intent(groupRankActivity.this, RankedList.class);
+                Intent i = new Intent(groupRankActivity.this, groupRankedList.class);
                 i.putExtra("selection", selection);
                 startActivity(i);
             }
@@ -60,7 +60,7 @@ public class groupRankActivity extends AppCompatActivity {
             public void onClick(View view) {
                 selection = "strikePct";
                 valid = true;
-                Intent i = new Intent(groupRankActivity.this, RankedList.class);
+                Intent i = new Intent(groupRankActivity.this, groupRankedList.class);
                 i.putExtra("selection", selection);
                 startActivity(i);
             }
@@ -71,7 +71,7 @@ public class groupRankActivity extends AppCompatActivity {
             public void onClick(View view) {
                 selection = "sparePct";
                 valid = true;
-                Intent i = new Intent(groupRankActivity.this, RankedList.class);
+                Intent i = new Intent(groupRankActivity.this, groupRankedList.class);
                 i.putExtra("selection", selection);
                 startActivity(i);
             }
@@ -82,7 +82,7 @@ public class groupRankActivity extends AppCompatActivity {
             public void onClick(View view) {
                 selection = "singlePct";
                 valid = true;
-                Intent i = new Intent(groupRankActivity.this, RankedList.class);
+                Intent i = new Intent(groupRankActivity.this, groupRankedList.class);
                 i.putExtra("selection", selection);
                 startActivity(i);
             }
@@ -93,7 +93,7 @@ public class groupRankActivity extends AppCompatActivity {
             public void onClick(View view) {
                 selection = "filledPct";
                 valid = true;
-                Intent i = new Intent(groupRankActivity.this, RankedList.class);
+                Intent i = new Intent(groupRankActivity.this, groupRankedList.class);
                 i.putExtra("selection", selection);
                 startActivity(i);
             }
