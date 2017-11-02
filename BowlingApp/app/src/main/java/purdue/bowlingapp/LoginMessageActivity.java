@@ -20,13 +20,14 @@ public class LoginMessageActivity extends AppCompatActivity {
 
     Button compareStatsButton;
     Button editPlayerStats;
-    Button createGroupButton;
-    Button editGroupButton;
+//    Button createGroupButton;
+//    Button editGroupButton;
     Button rankingsButton;
     Button scoreKeepingButton;
-    Button groupStatsButton;
-    Button mergeGroupsButton;
+//    Button groupStatsButton;
+//    Button mergeGroupsButton;
     Button liveTournamentButton;
+    Button groupsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +42,14 @@ public class LoginMessageActivity extends AppCompatActivity {
 
         button = (Button) findViewById(R.id.continueButton);
         editPlayerStats = (Button) findViewById(R.id.editPlayerStats);
-        createGroupButton = (Button) findViewById(R.id.createGroupButton);
-        editGroupButton = (Button) findViewById(R.id.editGroupButton);
+//        createGroupButton = (Button) findViewById(R.id.createGroupButton);
+//        editGroupButton = (Button) findViewById(R.id.editGroupButton);
         scoreKeepingButton = (Button) findViewById(R.id.scoreKeepingButton);
-        groupStatsButton = (Button) findViewById(R.id.groupStatsButton);
-        mergeGroupsButton = (Button) findViewById(R.id.mergeGroupsButton);
+//        groupStatsButton = (Button) findViewById(R.id.groupStatsButton);
+//        mergeGroupsButton = (Button) findViewById(R.id.mergeGroupsButton);
         liveTournamentButton = (Button) findViewById(R.id.liveTournamentButton);
+        groupsButton = (Button) findViewById(R.id.groupsButton);
+
 
         compareStatsButton = (Button) findViewById(R.id.compareStatsButton);
         rankingsButton = (Button) findViewById(R.id.ranking);
@@ -103,7 +106,7 @@ public class LoginMessageActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
+/*
         createGroupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,7 +142,16 @@ public class LoginMessageActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
+        THIS HAS BEEN MOVED TO THE GROUPS HUB ACTIVITY
+*/
+        groupsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(LoginMessageActivity.this, groupHubActivity.class);
+                i.putExtra("username", username);
+                startActivity(i);
+            }
+        });
         /*
         Checks if the current user has coach privileges
          */

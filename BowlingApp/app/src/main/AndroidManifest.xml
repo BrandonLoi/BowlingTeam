@@ -44,7 +44,9 @@
         <activity
             android:name=".groupRankedList"
             android:label="@string/title_activity_group_ranked_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".requestActivity" />
+        <activity android:name=".groupHubActivity"></activity>
     </application>
 
 </manifest>
