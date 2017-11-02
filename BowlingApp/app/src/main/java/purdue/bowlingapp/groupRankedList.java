@@ -22,9 +22,9 @@ import java.util.Map;
 
 
 public class groupRankedList extends AppCompatActivity {
-    Map<String, Double> groupStat = new HashMap<String, Double>();
-    String output = "";
-    TextView outputText = (TextView) findViewById(R.id.outputText);
+    Map<String, Double> groupStat;
+    String output;
+    TextView outputText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,9 @@ public class groupRankedList extends AppCompatActivity {
 
         Intent intent = getIntent();
         String headerString = "";
+        outputText = (TextView) findViewById(R.id.outputText);
+        groupStat  = new HashMap<String, Double>();
+        output = "";
 
         final String selection = intent.getStringExtra("selection");
         switch(selection) {
@@ -80,6 +83,9 @@ public class groupRankedList extends AppCompatActivity {
                     double divisor = group.getChildrenCount();
                     for (DataSnapshot playerName : group.getChildren()) {
                         String name = playerName.getKey();
+                        playerName = dataSnapshot.child("data").child(name);
+
+
                         if (playerName.child("avgScore").getValue().equals("-1")) {
 
                         } else {
@@ -125,23 +131,23 @@ public class groupRankedList extends AppCompatActivity {
                     filledPrL = filledPrL / divisor;
                     switch(selection) {
                         case "highScore":
-                            groupStat.put(groupName, highSL);
-                            break;
+                        groupStat.put(groupName, highSL);
+                        break;
                         case "avgScore":
-                            groupStat.put(groupName, avgSL);
-                            break;
+                        groupStat.put(groupName, avgSL);
+                        break;
                         case "filledPercentage":
-                            groupStat.put(groupName, filledPrL);
-                            break;
+                        groupStat.put(groupName, filledPrL);
+                        break;
                         case "strikePercentage":
-                            groupStat.put(groupName, strikePrL);
-                            break;
+                        groupStat.put(groupName, strikePrL);
+                        break;
                         case "sparePercentage":
-                            groupStat.put(groupName, sparePrL);
-                            break;
+                        groupStat.put(groupName, sparePrL);
+                        break;
                         case "singlePinPercentage":
-                            groupStat.put(groupName, singlePPL);
-                            break;
+                        groupStat.put(groupName, singlePPL);
+                        break;
                     }
                 }
                 //All group stats found, print in order
@@ -156,7 +162,7 @@ public class groupRankedList extends AppCompatActivity {
                             key = entry.getKey();
                         }
                     }
-                    output += rank++ + key + " " + groupStat.get(key);
+                    output += rank++ + key + " " + groupStat.get(key) + "\n";
                     groupStat.remove(key);
                 }
                 outputText.setText(output);
@@ -167,5 +173,6 @@ public class groupRankedList extends AppCompatActivity {
 
             }
         };
+        mDatabase.addListenerForSingleValueEvent(listen);
     }
 }

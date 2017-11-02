@@ -100,10 +100,8 @@ public class groupHubActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(groupHubActivity.this, groupRankActivity.class);
-                i.putExtra("username", username);
                 startActivity(i);
             }
         });
-
     }
 }

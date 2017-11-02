@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 
 public class groupRankActivity extends AppCompatActivity {
-    boolean valid = false;
     String selection;
     Button highScore;
     Button avgScore;
@@ -41,7 +40,6 @@ public class groupRankActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 selection = "highScore";
-                valid = true;
                 Intent i = new Intent(groupRankActivity.this, groupRankedList.class);
                 i.putExtra("selection", selection);
                 startActivity(i);
@@ -52,7 +50,6 @@ public class groupRankActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 selection = "avgScore";
-                valid = true;
                 Intent i = new Intent(groupRankActivity.this, groupRankedList.class);
                 i.putExtra("selection", selection);
                 startActivity(i);
@@ -62,7 +59,6 @@ public class groupRankActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 selection = "strikePct";
-                valid = true;
                 Intent i = new Intent(groupRankActivity.this, groupRankedList.class);
                 i.putExtra("selection", selection);
                 startActivity(i);
@@ -72,7 +68,6 @@ public class groupRankActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 selection = "sparePct";
-                valid = true;
                 Intent i = new Intent(groupRankActivity.this, groupRankedList.class);
                 i.putExtra("selection", selection);
                 startActivity(i);
@@ -82,7 +77,6 @@ public class groupRankActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 selection = "singlePct";
-                valid = true;
                 Intent i = new Intent(groupRankActivity.this, groupRankedList.class);
                 i.putExtra("selection", selection);
                 startActivity(i);
@@ -92,7 +86,6 @@ public class groupRankActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 selection = "filledPct";
-                valid = true;
                 Intent i = new Intent(groupRankActivity.this, groupRankedList.class);
                 i.putExtra("selection", selection);
                 startActivity(i);
