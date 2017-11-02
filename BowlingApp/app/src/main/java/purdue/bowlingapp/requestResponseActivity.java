@@ -115,29 +115,36 @@ public class requestResponseActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dropCheck.isChecked()) {
-                    String group = dataSnapshot.child("messages").child(username).child("req").child("drop").child("GROUP").child(user).getValue().toString();
-                    if (denyCheck.isChecked()) {
-                        dataSnapshot.child("messages").child(username).child("req").child("drop").child("GROUP").child(user).getRef().setValue(null);
+                    if (dataSnapshot.child("messages").child(username).child("req").child("drop").child("GROUP").hasChild(user)) {
+                        String group = dataSnapshot.child("messages").child(username).child("req").child("drop").child("GROUP").child(user).getValue().toString();
+                        if (denyCheck.isChecked()) {
+                            dataSnapshot.child("messages").child(username).child("req").child("drop").child("GROUP").child(user).getRef().setValue(null);
+                        } else {
+                            dataSnapshot.child("groups").child(group).child(user).getRef().setValue(null);
+                            dataSnapshot.child("messages").child(username).child("req").child("drop").child("GROUP").child(user).getRef().setValue(null);
+                        }
                     }
                     else {
-                        dataSnapshot.child("groups").child(group).child(user).getRef().setValue(null);
-                        dataSnapshot.child("messages").child(username).child("req").child("drop").child("GROUP").child(user).getRef().setValue(null);
+                        createFail("1");
                     }
                 }
                 else {
-                    String group = dataSnapshot.child("messages").child(username).child("req").child("join").child("GROUP").child(user).getValue().toString();
-                    if (denyCheck.isChecked()) {
-                        dataSnapshot.child("messages").child(username).child("req").child("join").child("GROUP").child(user).getRef().setValue(null);
+                    if (dataSnapshot.child("messages").child(username).child("req").child("join").child("GROUP").hasChild(user)) {
+                        String group = dataSnapshot.child("messages").child(username).child("req").child("join").child("GROUP").child(user).getValue().toString();
+                        if (denyCheck.isChecked()) {
+                            dataSnapshot.child("messages").child(username).child("req").child("join").child("GROUP").child(user).getRef().setValue(null);
+                        } else {
+                            if (dataSnapshot.child("groups").child(group).child(username).getValue().equals("1") || dataSnapshot.child("groups").child(group).child(username).getValue().equals("2")) {
+                                myRef.child("groups").child(group).child(user).setValue("0");
+                                dataSnapshot.child("messages").child(username).child("req").child("join").child("GROUP").child(user).getRef().setValue(null);
+                            } else {
+                                myRef.child("groups").child(group).child(user).setValue("03");
+                                dataSnapshot.child("messages").child(username).child("req").child("join").child("GROUP").child(user).getRef().setValue(null);
+                            }
+                        }
                     }
                     else {
-                        if (dataSnapshot.child("groups").child(group).child(username).getValue().equals("1") || dataSnapshot.child("groups").child(group).child(username).getValue().equals("2")) {
-                            myRef.child("groups").child(group).child(user).setValue("0");
-                            dataSnapshot.child("messages").child(username).child("req").child("join").child("GROUP").child(user).getRef().setValue(null);
-                        }
-                        else {
-                            myRef.child("groups").child(group).child(user).setValue("03");
-                            dataSnapshot.child("messages").child(username).child("req").child("join").child("GROUP").child(user).getRef().setValue(null);
-                        }
+                        createFail("1");
                     }
                 }
             }
@@ -222,9 +229,9 @@ public class requestResponseActivity extends AppCompatActivity {
     Made event stuff before realizing that was gonna be somewhere else
 */
     public void createFail(String groupName) {
-        TextView textView = (TextView) findViewById(R.id.errorMessage);
+        TextView textView = (TextView) findViewById(R.id.output);
         if (groupName.matches("1")) {
-            textView.setText("Error: Not in group.");
+            textView.setText("Error: User does not have a pending request.");
         }
         else if (groupName.matches("2")) {
             textView.setText("Error: Already in group.");
