@@ -24,6 +24,8 @@ public class groupHubActivity extends AppCompatActivity {
     Button mergeGroupsButton;
     Button requestButton;
     Button checkReqButton;
+    Button groupRankingButton;
+
 
 
     @Override
@@ -39,6 +41,7 @@ public class groupHubActivity extends AppCompatActivity {
         mergeGroupsButton = (Button) findViewById(R.id.mergeGroupsButton);
         requestButton = (Button) findViewById(R.id.requestButton);
         checkReqButton = (Button) findViewById(R.id.checkReqsButton);
+        groupRankingButton = (Button) findViewById(R.id.groupRankButton);
 
         createGroupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,5 +96,14 @@ public class groupHubActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        groupRankingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(groupHubActivity.this, RankingSelectionActivity.class);
+                i.putExtra("username", username);
+                startActivity(i);
+            }
+        });
+
     }
 }
