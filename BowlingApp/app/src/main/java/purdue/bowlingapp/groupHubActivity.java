@@ -99,7 +99,7 @@ public class groupHubActivity extends AppCompatActivity {
         groupRankingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(groupHubActivity.this, RankingSelectionActivity.class);
+                Intent i = new Intent(groupHubActivity.this, groupRankActivity.class);
                 i.putExtra("username", username);
                 startActivity(i);
             }
