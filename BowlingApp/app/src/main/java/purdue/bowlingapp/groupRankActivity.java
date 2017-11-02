@@ -24,11 +24,18 @@ public class groupRankActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_rank);
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("username");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         selection = "";
 
         highScore = (Button) findViewById(R.id.highScore);
+        avgScore = (Button) findViewById(R.id.averageScore);
+        strikePct = (Button) findViewById(R.id.strikePercent);
+        sparePct = (Button) findViewById(R.id.sparePercent);
+        singlePct = (Button) findViewById(R.id.singlePercent);
+        filledPct = (Button) findViewById(R.id.filledFramePercent);
 
         highScore.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,8 +48,6 @@ public class groupRankActivity extends AppCompatActivity {
             }
 
         });
-
-        avgScore = (Button) findViewById(R.id.averageScore);
         avgScore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,8 +58,6 @@ public class groupRankActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-        strikePct = (Button) findViewById(R.id.strikePercent);
         strikePct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,7 +68,6 @@ public class groupRankActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        sparePct = (Button) findViewById(R.id.sparePercent);
         sparePct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,7 +78,6 @@ public class groupRankActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        singlePct = (Button) findViewById(R.id.singlePercent);
         singlePct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,7 +88,6 @@ public class groupRankActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        filledPct = (Button) findViewById(R.id.filledFramePercent);
         filledPct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
