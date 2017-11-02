@@ -23,6 +23,8 @@ public class groupHubActivity extends AppCompatActivity {
     Button groupStatsButton;
     Button mergeGroupsButton;
     Button requestButton;
+    Button checkReqButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,7 @@ public class groupHubActivity extends AppCompatActivity {
         groupStatsButton = (Button) findViewById(R.id.groupStatsButton);
         mergeGroupsButton = (Button) findViewById(R.id.mergeGroupsButton);
         requestButton = (Button) findViewById(R.id.requestButton);
+        checkReqButton = (Button) findViewById(R.id.checkReqsButton);
 
         createGroupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +80,15 @@ public class groupHubActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(groupHubActivity.this, requestActivity.class);
+                i.putExtra("username", username);
+                startActivity(i);
+            }
+        });
+
+        checkReqButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(groupHubActivity.this, requestResponseActivity.class);
                 i.putExtra("username", username);
                 startActivity(i);
             }
