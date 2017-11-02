@@ -30,12 +30,12 @@ public class groupRankActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         selection = "";
 
-        highScore = (Button) findViewById(R.id.highScore);
-        avgScore = (Button) findViewById(R.id.averageScore);
-        strikePct = (Button) findViewById(R.id.strikePercent);
-        sparePct = (Button) findViewById(R.id.sparePercent);
-        singlePct = (Button) findViewById(R.id.singlePercent);
-        filledPct = (Button) findViewById(R.id.filledFramePercent);
+        highScore = (Button) findViewById(R.id.highScoreGroup);
+        avgScore = (Button) findViewById(R.id.averageScoreGroup);
+        strikePct = (Button) findViewById(R.id.strikePercentGroup);
+        sparePct = (Button) findViewById(R.id.sparePercentGroup);
+        singlePct = (Button) findViewById(R.id.singlePercentGroup);
+        filledPct = (Button) findViewById(R.id.filledFramePercentGroup);
 
         highScore.setOnClickListener(new View.OnClickListener() {
             @Override
