@@ -1,5 +1,6 @@
 package purdue.bowlingapp;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -15,12 +16,37 @@ public class BakerGame {
         private int score;
         private ArrayList<Frame> frames;
         private TenthFrame tenth;
+        private ArrayList<Player> players;
 
-
-        public BakerGame(ArrayList<Frame> frames, TenthFrame tenth) {
+        public BakerGame(ArrayList<Frame> frames, TenthFrame tenth, ArrayList<Player> players) {
             this.frames = frames;
             this.tenth = tenth;
             this.score = setScore();
+            this.players = initialize(players);
+        }
+
+        private ArrayList<Player> initialize(ArrayList<Player> players) {
+            if(players.size() == 1) {
+                ArrayList<Player> players2 = new ArrayList<Player>();
+                for (int i = 0; i < 10; i++) {
+                    players2.add(players.get(0));
+                }
+                return players2;
+            }
+            else if(players.size() == 5) {
+                ArrayList<Player> players2 = new ArrayList<Player>();
+                for (int i = 0; i < 2; i++) {
+                    players2.add(players.get(0));
+                    players2.add(players.get(1));
+                    players2.add(players.get(2));
+                    players2.add(players.get(3));
+                    players2.add(players.get(4));
+                }
+                return players2;
+            }
+            else {
+                return null; //BAD
+            }
         }
 
         public BakerGame() {
