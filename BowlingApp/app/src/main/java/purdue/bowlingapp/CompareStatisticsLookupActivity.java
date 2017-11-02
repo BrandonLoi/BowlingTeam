@@ -36,6 +36,9 @@ public class CompareStatisticsLookupActivity extends AppCompatActivity {
         Intent intent = getIntent();
         final String username = intent.getStringExtra("username");
 
+        String blankText = "";
+        errorText.setText(blankText);
+
         /*
          * Search by username
          */
