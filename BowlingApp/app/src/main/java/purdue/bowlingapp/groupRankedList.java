@@ -47,16 +47,16 @@ public class groupRankedList extends AppCompatActivity {
             case "avgScore":
                 headerString = "Average Score";
                 break;
-            case "filledPercentage":
+            case "filledPct":
                 headerString = "Filled Frame Percentage";
                 break;
-            case "strikePercentage":
+            case "strikePct":
                 headerString = "Strike Percentage";
                 break;
-            case "sparePercentage":
+            case "sparePct":
                 headerString = "Spare Percentage";
                 break;
-            case "singlePinPercentage":
+            case "singlePct":
                 headerString = "Single Pin Spare Percentage";
                 break;
             default:
@@ -136,16 +136,16 @@ public class groupRankedList extends AppCompatActivity {
                         case "avgScore":
                         groupStat.put(groupName, avgSL);
                         break;
-                        case "filledPercentage":
+                        case "filledPct":
                         groupStat.put(groupName, filledPrL);
                         break;
-                        case "strikePercentage":
+                        case "strikePct":
                         groupStat.put(groupName, strikePrL);
                         break;
-                        case "sparePercentage":
+                        case "sparePct":
                         groupStat.put(groupName, sparePrL);
                         break;
-                        case "singlePinPercentage":
+                        case "singlePct":
                         groupStat.put(groupName, singlePPL);
                         break;
                     }
@@ -162,7 +162,7 @@ public class groupRankedList extends AppCompatActivity {
                             key = entry.getKey();
                         }
                     }
-                    output += rank++ + key + " " + groupStat.get(key) + "\n";
+                    output += rank++ + " " + key + " " + groupStat.get(key) + "\n";
                     groupStat.remove(key);
                 }
                 outputText.setText(output);
