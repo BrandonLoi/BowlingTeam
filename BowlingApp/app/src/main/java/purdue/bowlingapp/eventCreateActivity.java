@@ -35,7 +35,7 @@ public class eventCreateActivity extends AppCompatActivity {
         final String eventName = editText.getText().toString();
         final EditText editText2 = (EditText) findViewById(R.id.date);
         final String date = editText2.getText().toString();
-
+/*
 
         final DatabaseReference myRef = mDatabase;
         ValueEventListener listen = new ValueEventListener() {
@@ -63,5 +63,6 @@ public class eventCreateActivity extends AppCompatActivity {
             }
         };
         myRef.addListenerForSingleValueEvent(listen);
+        */
     }
 }
