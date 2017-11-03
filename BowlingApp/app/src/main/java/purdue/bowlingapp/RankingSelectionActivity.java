@@ -80,8 +80,7 @@ public class RankingSelectionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (!selection.equals("")) {
-                    Intent i = new Intent(RankingSelectionActivity.this,
-                            RankedList.class);
+                    Intent i = new Intent(RankingSelectionActivity.this, RankedList.class);
                     i.putExtra("selection", selection);
                     startActivity(i);
                 }
