@@ -678,5 +678,18 @@ public class ScoreKeeping extends AppCompatActivity {
             }
         });
 
+        Button sub = (Button) findViewById(R.id.sub);
+
+        sub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ScoreKeeping.this,
+                        SubstituteActivity.class);
+                i.putExtra("username", "username");
+                startActivity(i);
+            }
+        });
+
     }
+
 }
