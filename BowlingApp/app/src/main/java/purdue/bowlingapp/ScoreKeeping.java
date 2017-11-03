@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ScoreKeeping extends AppCompatActivity {
     private int frameCount = 0;
@@ -33,6 +35,8 @@ public class ScoreKeeping extends AppCompatActivity {
     Integer highScore = 0;
     Integer prevFilled = 0;
     boolean[] split = {false,false,false,false,false,false,false,false,false,false};
+    Player player;
+    ArrayList<Player> players;
 
     public DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
@@ -618,47 +622,47 @@ public class ScoreKeeping extends AppCompatActivity {
                 String strikeTemp = strikePct.toString();
                 strikeTemp = strikeTemp.substring(0,Math.min(5,strikeTemp.length()));
 
-              //  DatabaseReference ref = mDatabase.child("data").child(getIntent().getStringExtra("username"));
-                ArrayList<DatabaseReference> refs = new ArrayList<DatabaseReference>();
-                for(int i = 0; i < players.size(); i++) {
-                    refs.add(mDatabase.child("data").child(players.get(i).getUsername()));
-                }
-                for(int i = 0; i < refs.size(); i++) {
-                    DatabaseReference ref = refs.get(i);
-                    ref.child("singleLeft").setValue(prevSingleLeft.toString());
-                    ref.child("singleMade").setValue(prevSingleMade.toString());
-                    ref.child("splitLeft").setValue(prevSplitLeft.toString());
-                    ref.child("splitMade").setValue(prevSplitMade.toString());
-                    ref.child("multiLeft").setValue(prevMultiLeft.toString());
-                    ref.child("multiMade").setValue(prevMultiMade.toString());
-                    ref.child("numStrikes").setValue(prevStrikes.toString());
-                    ref.child("cumulativeScore").setValue(prevTotal.toString());
-                    ref.child("numGames").setValue(numGames.toString());
-                    ref.child("ballsThrown").setValue(ballsThrown.toString());
-                    ref.child("filledFrames").setValue(prevFilled.toString());
-                    ref.child("highScore").setValue(highScore.toString());
-                    ref.child("avgScore").setValue(avgTemp);
-                    ref.child("filledPercentage").setValue(filledpctTemp);
-                    ref.child("singlePinPercentage").setValue(singleTemp);
-                    ref.child("strikePercentage").setValue(strikeTemp);
-                }
+                DatabaseReference ref = mDatabase.child("data").child(getIntent().getStringExtra("username"));
+          //      ArrayList<DatabaseReference> refs = new ArrayList<DatabaseReference>();
+         //       for(int i = 0; i < players.size(); i++) {
+         //           refs.add(mDatabase.child("data").child(players.get(i).getUsername()));
+          //      }
+         //       for(int i = 0; i < refs.size(); i++) {
+          //          DatabaseReference ref = refs.get(i);
+          //          ref.child("singleLeft").setValue(prevSingleLeft.toString());
+          //          ref.child("singleMade").setValue(prevSingleMade.toString());
+          //          ref.child("splitLeft").setValue(prevSplitLeft.toString());
+          //          ref.child("splitMade").setValue(prevSplitMade.toString());
+          //          ref.child("multiLeft").setValue(prevMultiLeft.toString());
+           //         ref.child("multiMade").setValue(prevMultiMade.toString());
+          //          ref.child("numStrikes").setValue(prevStrikes.toString());
+          //          ref.child("cumulativeScore").setValue(prevTotal.toString());
+          //          ref.child("numGames").setValue(numGames.toString());
+          //          ref.child("ballsThrown").setValue(ballsThrown.toString());
+         //           ref.child("filledFrames").setValue(prevFilled.toString());
+         //           ref.child("highScore").setValue(highScore.toString());
+          //          ref.child("avgScore").setValue(avgTemp);
+         //           ref.child("filledPercentage").setValue(filledpctTemp);
+         //           ref.child("singlePinPercentage").setValue(singleTemp);
+         //           ref.child("strikePercentage").setValue(strikeTemp);
+         //       }
 
-           //     ref.child("singleLeft").setValue(prevSingleLeft.toString());
-           //     ref.child("singleMade").setValue(prevSingleMade.toString());
-           //     ref.child("splitLeft").setValue(prevSplitLeft.toString());
-           //     ref.child("splitMade").setValue(prevSplitMade.toString());
-           //     ref.child("multiLeft").setValue(prevMultiLeft.toString());
-            //    ref.child("multiMade").setValue(prevMultiMade.toString());
-           //     ref.child("numStrikes").setValue(prevStrikes.toString());
-           //     ref.child("cumulativeScore").setValue(prevTotal.toString());
-           //     ref.child("numGames").setValue(numGames.toString());
-            //    ref.child("ballsThrown").setValue(ballsThrown.toString());
-           //     ref.child("filledFrames").setValue(prevFilled.toString());
-          ////      ref.child("highScore").setValue(highScore.toString());
-            ///    ref.child("avgScore").setValue(avgTemp);
-          //      ref.child("filledPercentage").setValue(filledpctTemp);
-          //      ref.child("singlePinPercentage").setValue(singleTemp);
-           //     ref.child("strikePercentage").setValue(strikeTemp);
+                ref.child("singleLeft").setValue(prevSingleLeft.toString());
+                ref.child("singleMade").setValue(prevSingleMade.toString());
+                ref.child("splitLeft").setValue(prevSplitLeft.toString());
+                ref.child("splitMade").setValue(prevSplitMade.toString());
+                ref.child("multiLeft").setValue(prevMultiLeft.toString());
+               ref.child("multiMade").setValue(prevMultiMade.toString());
+                ref.child("numStrikes").setValue(prevStrikes.toString());
+                ref.child("cumulativeScore").setValue(prevTotal.toString());
+                ref.child("numGames").setValue(numGames.toString());
+                ref.child("ballsThrown").setValue(ballsThrown.toString());
+                ref.child("filledFrames").setValue(prevFilled.toString());
+                ref.child("highScore").setValue(highScore.toString());
+                ref.child("avgScore").setValue(avgTemp);
+                ref.child("filledPercentage").setValue(filledpctTemp);
+                ref.child("singlePinPercentage").setValue(singleTemp);
+                ref.child("strikePercentage").setValue(strikeTemp);
 
 
                 /*
@@ -746,15 +750,41 @@ public class ScoreKeeping extends AppCompatActivity {
 
         Button sub = (Button) findViewById(R.id.sub);
 
-
-
-        //This is currently not working
         sub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(ScoreKeeping.this, SubstituteActivity.class);
-                i.putExtra("username", "username");
-                startActivity(i);
+                final Toast toast = Toast.makeText(getApplicationContext(),"Please input a valid user",Toast.LENGTH_SHORT);;
+                toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM,0,0);
+                DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                final EditText editText = (EditText) findViewById(R.id.editText2);
+                final String newusername = editText.getText().toString();
+
+                if(newusername.equals("")) {
+                    toast.show();
+                }
+                else {
+                    DatabaseReference myRef = mDatabase.child("users");
+                    ValueEventListener listen = new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if (!dataSnapshot.hasChild(newusername)) {
+                                toast.show();
+                            }
+                            else {
+                                TextView header = (TextView) findViewById(R.id.header);
+                                String headerText = "New game for: " + newusername;
+                                header.setText(headerText);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            //Required, but we don't use. Leave blank
+                        }
+                    };
+                    myRef.addListenerForSingleValueEvent(listen);
+                }
+
             }
         });
 
