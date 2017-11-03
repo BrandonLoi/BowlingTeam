@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -182,6 +183,8 @@ public class ScoreKeeping extends AppCompatActivity {
         Button done = (Button) findViewById(R.id.done);
         Button backspace = (Button) findViewById(R.id.backspace);
         Button clear = (Button) findViewById(R.id.clear);
+
+        final CheckBox practice = (CheckBox) findViewById(R.id.practice);
 
         final Toast toast = Toast.makeText(getApplicationContext(),"Please fill all frames",Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM,0,0);
@@ -529,6 +532,14 @@ public class ScoreKeeping extends AppCompatActivity {
                     return;
                 }
                 Game g = new Game(frames, f10);
+                if (practice.isChecked()) {
+                    final int scoreTemp = g.setScore();
+                    String out = scoreTemp + "";
+                    score.setText(out);
+                    return;
+                }
+
+
                 final int singleLeft = g.getSinglePinLeft();
                 final int singleMade = g.getSinglePinMade();
                 final int splitLeft = g.getSplitLeft();
@@ -731,6 +742,7 @@ public class ScoreKeeping extends AppCompatActivity {
                 toast2.show();
             }
         });
+
 
         Button sub = (Button) findViewById(R.id.sub);
 
