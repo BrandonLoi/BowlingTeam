@@ -35,8 +35,8 @@ public class ScoreKeeping extends AppCompatActivity {
     Integer highScore = 0;
     Integer prevFilled = 0;
     boolean[] split = {false,false,false,false,false,false,false,false,false,false};
- //   Player player;
- //   ArrayList<Player> players;
+    String player;
+    String[] players;
 
     public DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
@@ -141,8 +141,11 @@ public class ScoreKeeping extends AppCompatActivity {
         String headerText = "New game for: " + i.getStringExtra("username");
         header.setText(headerText);
 
-    //    player = new Player(i.getStringExtra("username"), null, null, null);
-     //   players = new ArrayList<Player>(Arrays.asList(player, player, player, player, player, player, player, player, player, player));
+        player = i.getStringExtra("username");
+        players = new String[10];
+        for(int j = 0; j < players.length; j++) {
+            players[j] = player;
+        }
 
         //Access all TextViews in the scorekeeping activity
         // NAMING CONVENTIONS: fXbY = frame X, ball Y
@@ -777,17 +780,12 @@ public class ScoreKeeping extends AppCompatActivity {
                                 TextView header = (TextView) findViewById(R.id.header);
                                 String headerText = "New game for: " + newusername;
                                 header.setText(headerText);
-                                int temp = frameCount / 2;
-                                int temp2 = 0;
-                            //    player = new Player(newusername, null, null, null);
-                                for(int i = 0; i < 10 - frameCount / 2; i++) {
-                             //       players.remove(temp - 1);
-                                    temp--;
-                                    temp2++;
+                                System.out.println(players);
+                                player = newusername;
+                                for(int i = 0; i < 10 - (frameCount / 2); i++) {
+                                    players[i] = player;
                                 }
-                               for(int i = 0; i < temp2; i++) {
-                             //       players.add(player);
-                                }
+                                System.out.println(players);
                             }
                         }
 
