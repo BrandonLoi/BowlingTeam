@@ -49,7 +49,8 @@
         <activity android:name=".groupHubActivity" />
         <activity android:name=".requestResponseActivity" />
         <activity android:name=".eventCreateActivity" />
-        <activity android:name=".EventHubActivity"></activity>
+        <activity android:name=".EventHubActivity" />
+        <activity android:name=".editEventsActivity"></activity>
     </application>
 
 </manifest>

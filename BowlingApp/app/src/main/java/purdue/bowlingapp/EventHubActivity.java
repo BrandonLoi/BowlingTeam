@@ -19,6 +19,7 @@ public class EventHubActivity extends AppCompatActivity {
     String username;
 
     Button createEventButton;
+    Button editEventButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +29,21 @@ public class EventHubActivity extends AppCompatActivity {
         username = intent.getStringExtra("username");
 
         createEventButton = (Button) findViewById(R.id.createEventButton);
+        editEventButton = (Button) findViewById(R.id.editEventButton);
 
         createEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(EventHubActivity.this, eventCreateActivity.class);
+                i.putExtra("username", username);
+                startActivity(i);
+            }
+        });
+
+        editEventButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(EventHubActivity.this, editEventsActivity.class);
                 i.putExtra("username", username);
                 startActivity(i);
             }
