@@ -14,24 +14,23 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class requestActivity extends AppCompatActivity {
+public class requestsEventsActivity extends AppCompatActivity {
 
     public DatabaseReference mDatabase;
     String username;
-    String reciever;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_request);
+        setContentView(R.layout.activity_requests_events);
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
     }
 
     public void request(View view) {
         clearError();
-        final EditText editText = (EditText) findViewById(R.id.groupName);
-        final String groupName = editText.getText().toString();
+        final EditText editText = (EditText) findViewById(R.id.eventName);
+        final String eventName = editText.getText().toString();
         final CheckBox checked = (CheckBox) findViewById(R.id.dropCheck);
 
 
@@ -41,25 +40,18 @@ public class requestActivity extends AppCompatActivity {
         ValueEventListener listen = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child("groups").hasChild(groupName) && !(groupName.matches(""))) {
-                    for (DataSnapshot iterator : dataSnapshot.child("groups").child(groupName).getChildren()) {
-                        String name = iterator.getKey();
-                        String val = iterator.getValue().toString();
-                        if (val.equals("1") || val.equals("2") || val.equals("13") || val.equals("23")) {
-                            reciever = name;
-                        }
-                    }
+                if (dataSnapshot.child("events").hasChild(eventName) && !(eventName.matches(""))) {
                     if (checked.isChecked()) {
-                        if (dataSnapshot.child("groups").child(groupName).hasChild(username)) {
-                            myRef.child("messages").child(reciever).child("req").child("drop").child("GROUP").child(username).setValue(groupName);
+                        if (dataSnapshot.child("events").child(eventName).child("players").hasChild(username)) {
+                            myRef.child("messages").child("Coach").child("req").child("drop").child("EVENT").child(username).setValue(eventName);
                         }
                         else {
                             createFail("1");
                         }
                     }
                     else {
-                        if (!dataSnapshot.child("groups").child(groupName).hasChild(username)) {
-                            myRef.child("messages").child(reciever).child("req").child("join").child("GROUP").child(username).setValue(groupName);
+                        if (!dataSnapshot.child("events").child(eventName).child("players").hasChild(username)) {
+                            myRef.child("messages").child("Coach").child("req").child("join").child("EVENT").child(username).setValue(eventName);
                         }
                         else {
                             createFail("2");
@@ -67,7 +59,7 @@ public class requestActivity extends AppCompatActivity {
                     }
                 }
                 else {
-                    createFail(groupName);
+                    createFail(eventName);
                 }
             }
 
@@ -79,16 +71,16 @@ public class requestActivity extends AppCompatActivity {
         myRef.addListenerForSingleValueEvent(listen);
     }
 
-    public void createFail(String groupName) {
+    public void createFail(String eventName) {
         TextView textView = (TextView) findViewById(R.id.errorMessage);
-        if (groupName.matches("1")) {
-            textView.setText("Error: Not in group.");
+        if (eventName.matches("1")) {
+            textView.setText("Error: Not in event.");
         }
-        else if (groupName.matches("2")) {
-            textView.setText("Error: Already in group.");
+        else if (eventName.matches("2")) {
+            textView.setText("Error: Already in event.");
         }
         else {
-            textView.setText("Error: Group does not exist.");
+            textView.setText("Error: Event does not exist.");
         }
     }
     public void clearError() {
