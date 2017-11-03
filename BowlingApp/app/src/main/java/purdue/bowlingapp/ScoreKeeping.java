@@ -141,7 +141,7 @@ public class ScoreKeeping extends AppCompatActivity {
         String headerText = "New game for: " + i.getStringExtra("username");
         header.setText(headerText);
 
-        String type = i.getType();
+        String type = i.getStringExtra("type");
         if(type.equals("0")) {
             player = i.getStringExtra("username");
             players = new String[10];
