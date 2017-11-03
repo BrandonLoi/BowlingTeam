@@ -24,6 +24,7 @@ public class GameTypeSelection extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(GameTypeSelection.this, ScoreKeeping.class);
                 i.putExtra("username", getIntent().getStringExtra("username"));
+                i.putExtra("type", "0");
                 startActivity(i);
             }
         });

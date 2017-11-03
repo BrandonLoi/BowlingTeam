@@ -141,10 +141,31 @@ public class ScoreKeeping extends AppCompatActivity {
         String headerText = "New game for: " + i.getStringExtra("username");
         header.setText(headerText);
 
-        player = i.getStringExtra("username");
-        players = new String[10];
-        for(int j = 0; j < players.length; j++) {
-            players[j] = player;
+        String type = i.getType();
+        if(type.equals("0")) {
+            player = i.getStringExtra("username");
+            players = new String[10];
+            for (int j = 0; j < players.length; j++) {
+                players[j] = player;
+            }
+        }
+        else {
+            player = i.getStringExtra("username");
+            String player2 = i.getStringExtra("username2");
+            String player3 = i.getStringExtra("username3");
+            String player4 = i.getStringExtra("username4");
+            String player5 = i.getStringExtra("username5");
+            players = new String[10];
+            players[0] = player;
+            players[1] = player2;
+            players[2] = player3;
+            players[3] = player4;
+            players[4] = player5;
+            players[5] = player;
+            players[6] = player2;
+            players[7] = player3;
+            players[8] = player4;
+            players[9] = player5;
         }
 
         //Access all TextViews in the scorekeeping activity

@@ -65,6 +65,7 @@ public class BakerTeamSelection extends AppCompatActivity{
                                 i.putExtra("username3", username3);
                                 i.putExtra("username4", username4);
                                 i.putExtra("username5", username5);
+                                i.putExtra("type", "1");
                                 startActivity(i);
                             }
                         }
