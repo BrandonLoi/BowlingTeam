@@ -11,7 +11,6 @@ import android.widget.Button;
  */
 
 public class GameTypeSelection extends AppCompatActivity {
-    String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +23,7 @@ public class GameTypeSelection extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(GameTypeSelection.this, ScoreKeeping.class);
-                i.putExtra("username", "username");
+                i.putExtra("username", getIntent().getStringExtra("username"));
                 startActivity(i);
             }
         });
@@ -33,8 +32,8 @@ public class GameTypeSelection extends AppCompatActivity {
         baker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(GameTypeSelection.this, ScoreKeeping.class);
-                i.putExtra("username", "username");
+                Intent i = new Intent(GameTypeSelection.this, BakerTeamSelection.class);
+                i.putExtra("username", getIntent().getStringExtra("username"));
                 startActivity(i);
             }
         });

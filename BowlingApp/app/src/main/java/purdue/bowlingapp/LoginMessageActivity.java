@@ -96,7 +96,7 @@ public class LoginMessageActivity extends AppCompatActivity {
         scoreKeepingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(LoginMessageActivity.this, ScoreKeeping.class);
+                Intent i = new Intent(LoginMessageActivity.this, GameTypeSelection.class);
                 i.putExtra("username", username);
                 startActivity(i);
             }

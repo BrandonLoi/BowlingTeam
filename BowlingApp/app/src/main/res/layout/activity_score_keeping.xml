@@ -529,8 +529,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Name of Person to Substitute"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:inputType="textPersonName" />
 
         </LinearLayout>
 

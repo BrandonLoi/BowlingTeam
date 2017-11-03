@@ -35,8 +35,8 @@ public class ScoreKeeping extends AppCompatActivity {
     Integer highScore = 0;
     Integer prevFilled = 0;
     boolean[] split = {false,false,false,false,false,false,false,false,false,false};
-    Player player;
-    ArrayList<Player> players;
+ //   Player player;
+ //   ArrayList<Player> players;
 
     public DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
@@ -140,6 +140,9 @@ public class ScoreKeeping extends AppCompatActivity {
         Intent i = getIntent();
         String headerText = "New game for: " + i.getStringExtra("username");
         header.setText(headerText);
+
+    //    player = new Player(i.getStringExtra("username"), null, null, null);
+     //   players = new ArrayList<Player>(Arrays.asList(player, player, player, player, player, player, player, player, player, player));
 
         //Access all TextViews in the scorekeeping activity
         // NAMING CONVENTIONS: fXbY = frame X, ball Y
@@ -751,7 +754,7 @@ public class ScoreKeeping extends AppCompatActivity {
         Button sub = (Button) findViewById(R.id.sub);
 
         sub.setOnClickListener(new View.OnClickListener() {
-            @Override
+           @Override
             public void onClick(View view) {
                 final Toast toast = Toast.makeText(getApplicationContext(),"Please input a valid user",Toast.LENGTH_SHORT);;
                 toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM,0,0);
@@ -774,11 +777,22 @@ public class ScoreKeeping extends AppCompatActivity {
                                 TextView header = (TextView) findViewById(R.id.header);
                                 String headerText = "New game for: " + newusername;
                                 header.setText(headerText);
+                                int temp = frameCount / 2;
+                                int temp2 = 0;
+                            //    player = new Player(newusername, null, null, null);
+                                for(int i = 0; i < 10 - frameCount / 2; i++) {
+                             //       players.remove(temp - 1);
+                                    temp--;
+                                    temp2++;
+                                }
+                               for(int i = 0; i < temp2; i++) {
+                             //       players.add(player);
+                                }
                             }
                         }
 
                         @Override
-                        public void onCancelled(DatabaseError databaseError) {
+                      public void onCancelled(DatabaseError databaseError) {
                             //Required, but we don't use. Leave blank
                         }
                     };
