@@ -157,7 +157,7 @@ public class editGroupsActivity extends AppCompatActivity {
                         dataSnapshot = dataSnapshot.child("groups").child(groupName);
                         if (dataSnapshot.hasChild(username)) {
                             if (dataSnapshot.child(username).getValue().equals("1") || dataSnapshot.child(username).getValue().equals("2") || dataSnapshot.child(username).getValue().equals("13") || dataSnapshot.child(username).getValue().equals("23")) {
-                                if (dataSnapshot.hasChild(userAddName)) {
+                                if (dataSnapshot.hasChild(userAddName) && (!dataSnapshot.child(userAddName).getKey().equals("1") || !dataSnapshot.child(userAddName).getKey().equals("2") || !dataSnapshot.child(userAddName).getKey().equals("13") || !dataSnapshot.child(userAddName).getKey().equals("23") )) {
                                     myRef.child("groups").child(groupName).child(userAddName).setValue("4");
                                 }
                                 else {
