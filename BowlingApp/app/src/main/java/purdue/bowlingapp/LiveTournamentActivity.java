@@ -60,6 +60,25 @@ public class LiveTournamentActivity extends AppCompatActivity {
                         if (live.equals("0")) {
                             String blankText = "";
                             liveTournament.child("currentlyLive").setValue("1");
+
+                            liveTournament.child("totalStatistics").child("singleLeft").setValue("-1");
+                            liveTournament.child("totalStatistics").child("singleMade").setValue("-1");
+                            liveTournament.child("totalStatistics").child("splitLeft").setValue("-1");
+                            liveTournament.child("totalStatistics").child("splitMade").setValue("-1");
+                            liveTournament.child("totalStatistics").child("multiLeft").setValue("-1");
+                            liveTournament.child("totalStatistics").child("multiMade").setValue("-1");
+                            liveTournament.child("totalStatistics").child("numStrikes").setValue("-1");
+                            liveTournament.child("totalStatistics").child("cumulativeScore").setValue("-1");
+                            liveTournament.child("totalStatistics").child("numGames").setValue("-1");
+                            liveTournament.child("totalStatistics").child("ballsThrown").setValue("-1");
+                            liveTournament.child("totalStatistics").child("filledFrames").setValue("-1");
+                            liveTournament.child("totalStatistics").child("highScore").setValue("-1");
+                            liveTournament.child("totalStatistics").child("avgScore").setValue("-1");
+                            liveTournament.child("totalStatistics").child("filledPercentage").setValue("-1");
+                            liveTournament.child("totalStatistics").child("singlePinPercentage").setValue("-1");
+                            liveTournament.child("totalStatistics").child("sparePercentage").setValue("-1");
+                            liveTournament.child("totalStatistics").child("strikePercentage").setValue("-1");
+
                             errorText.setText(blankText);
                         } else {
                             String error = "Error: Tournament already live!";

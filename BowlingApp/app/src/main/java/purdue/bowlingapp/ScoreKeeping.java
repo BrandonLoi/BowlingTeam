@@ -35,10 +35,78 @@ public class ScoreKeeping extends AppCompatActivity {
 
     public DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
+
+    // Variables used in updating live tournament stats
+    String live = "0";
+    Integer tournamentPrevSingleMade;
+    Integer tournamentPrevSingleLeft;
+    Integer tournamentPrevSplitMade;
+    Integer tournamentPrevSplitLeft;
+    Integer tournamentPrevMultiMade;
+    Integer tournamentPrevMultiLeft;
+    Integer tournamentPrevStrikes;
+    Integer tournamentPrevTotal;
+    Integer tournamentNumGames;
+    Integer tournamentBallsThrown;
+    Integer tournamentHighScore;
+    Integer tournamentPrevFilled;
+
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    String currDataPath = "liveTournament";
+    final DatabaseReference liveTournament = database.getReference(currDataPath);
+    final DatabaseReference tournamentStats = liveTournament.child("totalStatistics");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score_keeping);
+
+
+        /*
+           Load live tournament statistics
+         */
+        tournamentStats.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(final DataSnapshot dataSnapshot) {
+                // Determine if a live tournament is in progress, and if so, update live tournament stats
+                liveTournament.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot liveTourney) {
+                        // Set variable "live" to either 1 or 0
+                        live = liveTourney.child("currentlyLive").getValue().toString();
+
+                        if (live.equals("1")) {
+                            // Initialize statistics variables
+                            tournamentPrevSingleMade = Integer.parseInt(dataSnapshot.child("singleMade").getValue().toString());
+                            tournamentPrevSingleLeft = Integer.parseInt(dataSnapshot.child("singleLeft").getValue().toString());
+                            tournamentPrevSplitMade = Integer.parseInt(dataSnapshot.child("splitMade").getValue().toString());
+                            tournamentPrevSplitLeft = Integer.parseInt(dataSnapshot.child("splitLeft").getValue().toString());
+                            tournamentPrevMultiMade = Integer.parseInt(dataSnapshot.child("multiMade").getValue().toString());
+                            tournamentPrevMultiLeft = Integer.parseInt(dataSnapshot.child("multiLeft").getValue().toString());
+                            tournamentPrevStrikes = Integer.parseInt(dataSnapshot.child("numStrikes").getValue().toString());
+                            tournamentPrevTotal = Integer.parseInt(dataSnapshot.child("cumulativeScore").getValue().toString());
+                            tournamentNumGames = Integer.parseInt(dataSnapshot.child("numGames").getValue().toString());
+                            tournamentBallsThrown = Integer.parseInt(dataSnapshot.child("ballsThrown").getValue().toString());
+                            tournamentHighScore = Integer.parseInt(dataSnapshot.child("highScore").getValue().toString());
+                            tournamentPrevFilled = Integer.parseInt(dataSnapshot.child("filledFrames").getValue().toString());
+                        }
+                    }
+
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        System.out.println("Retrieving currentlyLive variable failed: " + databaseError.getCode());
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("Retrieving totalStats variable(s) failed: " + databaseError.getCode());
+            }
+        });
+
+
         DatabaseReference ref = mDatabase.child("data").child(getIntent().getStringExtra("username"));
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -527,6 +595,79 @@ public class ScoreKeeping extends AppCompatActivity {
                 ref.child("singlePinPercentage").setValue(singleTemp);
                 ref.child("strikePercentage").setValue(strikeTemp);
 
+
+                /*
+                   Update live tournament stats
+                */
+                final DatabaseReference tournamentRef = mDatabase.child("liveTournament").child("totalStatistics");
+
+                liveTournament.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot liveTourney) {
+                        // Set variable "live" to either 1 or 0
+                        live = liveTourney.child("currentlyLive").getValue().toString();
+
+                        if (live.equals("1")) {
+                            tournamentPrevSingleLeft += singleLeft;
+                            tournamentPrevSingleMade += singleMade;
+                            tournamentPrevSplitLeft += splitLeft;
+                            tournamentPrevSplitMade += splitMade;
+                            tournamentPrevMultiLeft += multiLeft;
+                            tournamentPrevMultiMade += multiMade;
+                            tournamentPrevStrikes += strike;
+                            tournamentPrevTotal += scoreTemp;
+                            tournamentPrevFilled += filledFrames;
+                            tournamentNumGames++;
+                            tournamentBallsThrown += newBallsThrown;
+                            //update high score
+                            if (scoreTemp > tournamentHighScore)
+                                tournamentHighScore = scoreTemp;
+                            //update average score
+                            Integer tournamentAvg = (int)((double)tournamentPrevTotal/(double)tournamentNumGames);
+                            String tournamentAvgTemp = tournamentAvg.toString();
+                            tournamentAvgTemp = tournamentAvgTemp.substring(0,Math.min(5,tournamentAvgTemp.length()));
+                            //update filled frame percentage
+                            Double tournamentFilledpct = (double)tournamentPrevFilled/(double)(tournamentNumGames*10);
+                            tournamentFilledpct *= 100;
+                            String tournamentFilledpctTemp = tournamentFilledpct.toString();
+                            tournamentFilledpctTemp = tournamentFilledpctTemp.substring(0,Math.min(5,tournamentFilledpctTemp.length()));
+                            //update single pin percentage
+                            Double tournamentSinglePct = (double)tournamentPrevSingleMade/(double)tournamentPrevSingleLeft;
+                            tournamentSinglePct *= 100;
+                            String tournamentSingleTemp = tournamentSinglePct.toString();
+                            tournamentSingleTemp = tournamentSingleTemp.substring(0,Math.min(5,tournamentSingleTemp.length()));
+                            if(tournamentPrevSingleLeft == 0)
+                                tournamentSingleTemp = "-1";
+                            //update strike percentage
+                            Double tournamentStrikePct = (double)tournamentPrevStrikes/(double)tournamentBallsThrown;
+                            tournamentStrikePct *= 100;
+                            String tournamentStrikeTemp = tournamentStrikePct.toString();
+                            tournamentStrikeTemp = tournamentStrikeTemp.substring(0,Math.min(5,tournamentStrikeTemp.length()));
+
+                            tournamentRef.child("singleLeft").setValue(tournamentPrevSingleLeft.toString());
+                            tournamentRef.child("singleMade").setValue(tournamentPrevSingleMade.toString());
+                            tournamentRef.child("splitLeft").setValue(tournamentPrevSplitLeft.toString());
+                            tournamentRef.child("splitMade").setValue(tournamentPrevSplitMade.toString());
+                            tournamentRef.child("multiLeft").setValue(tournamentPrevMultiLeft.toString());
+                            tournamentRef.child("multiMade").setValue(tournamentPrevMultiMade.toString());
+                            tournamentRef.child("numStrikes").setValue(tournamentPrevStrikes.toString());
+                            tournamentRef.child("cumulativeScore").setValue(tournamentPrevTotal.toString());
+                            tournamentRef.child("numGames").setValue(tournamentNumGames.toString());
+                            tournamentRef.child("ballsThrown").setValue(tournamentBallsThrown.toString());
+                            tournamentRef.child("filledFrames").setValue(tournamentPrevFilled.toString());
+                            tournamentRef.child("highScore").setValue(tournamentHighScore.toString());
+                            tournamentRef.child("avgScore").setValue(tournamentAvgTemp);
+                            tournamentRef.child("filledPercentage").setValue(tournamentFilledpctTemp);
+                            tournamentRef.child("singlePinPercentage").setValue(tournamentSingleTemp);
+                            tournamentRef.child("strikePercentage").setValue(tournamentStrikeTemp);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        System.out.println("Retrieving currentlyLive variable failed: " + databaseError.getCode());
+                    }
+                });
 
 
                 String out = scoreTemp + "";
