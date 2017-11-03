@@ -17,6 +17,7 @@ public class BakerGame {
         private ArrayList<Frame> frames;
         private TenthFrame tenth;
         private ArrayList<Player> players;
+        private int type;
 
         public BakerGame(ArrayList<Frame> frames, TenthFrame tenth, ArrayList<Player> players) {
             this.frames = frames;
@@ -25,15 +26,30 @@ public class BakerGame {
             this.players = initialize(players);
         }
 
+        public void substitute(Player player, int framesLeft) {
+            if(this.type == 0) {
+                int temp = framesLeft;
+                while(temp > 0) {
+                    players.remove(players.size() - 1);
+                    temp--;
+                }
+                for(int i = 0; i < framesLeft; i++) {
+                    players.add(player);
+                }
+            }
+        }
+
         private ArrayList<Player> initialize(ArrayList<Player> players) {
             if(players.size() == 1) {
+                type = 0;
                 ArrayList<Player> players2 = new ArrayList<Player>();
-                for (int i = 0; i < 10; i++) {
+                for (int i = 0; i < 12; i++) {
                     players2.add(players.get(0));
                 }
                 return players2;
             }
             else if(players.size() == 5) {
+                type = 1;
                 ArrayList<Player> players2 = new ArrayList<Player>();
                 for (int i = 0; i < 2; i++) {
                     players2.add(players.get(0));
@@ -42,6 +58,8 @@ public class BakerGame {
                     players2.add(players.get(3));
                     players2.add(players.get(4));
                 }
+                players2.add(players.get(4));
+                players2.add(players.get(4));
                 return players2;
             }
             else {
@@ -68,7 +86,11 @@ public class BakerGame {
             return this.tenth;
         }
 
-        public int getSinglePinLeft() {
+    public ArrayList<Player> getPlayers() {
+        return this.players;
+    }
+
+    public int getSinglePinLeft() {
             int count = 0;
             for(Frame f : frames) {
                 if(f.getFirstThrow() == '9')
@@ -239,9 +261,15 @@ public class BakerGame {
             frames.add(f8);
             frames.add(f9);
 
-            purdue.bowlingapp.Game g = new purdue.bowlingapp.Game(frames, t1);
+            ArrayList<Player> players = new ArrayList<>();
+            Player player = new Player("jimber", "123", "no", new ArrayList<Game>());
+            players.add(player);
 
-            System.out.println(g.getScore());
+            purdue.bowlingapp.BakerGame g = new purdue.bowlingapp.BakerGame(frames, t1, players);
+            System.out.println(g.getPlayers());
+            Player player2 = new Player("jimbersadasdad", "123", "no", new ArrayList<Game>());
+            g.substitute(player2, 6);
+            System.out.println(g.getPlayers());
 
         }
 }

@@ -15,6 +15,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -55,9 +57,8 @@ public class RankedList extends AppCompatActivity {
         header.setText("Showing ranking for " + headerString);
         DatabaseReference data = mDatabase.child("data"); // points reference to data in DB
         final LinearLayout linear = (LinearLayout) findViewById(R.id.llayout);
-        final TextView tv = new TextView(this); // TextView to add to layout
-        tv.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
-                LayoutParams.WRAP_CONTENT));
+        final TextView tv = (TextView) findViewById(R.id.output); // TextView to add to layout
+
         ValueEventListener listen = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -98,7 +99,6 @@ public class RankedList extends AppCompatActivity {
                     }
                 }
                 tv.setText(out); //sets text of TextView to add to the output
-                linear.addView(tv); //adds TextView to the bottom of LinearLayout
             }
 
             @Override

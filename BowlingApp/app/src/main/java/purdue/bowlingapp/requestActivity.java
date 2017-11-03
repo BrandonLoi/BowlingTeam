@@ -29,7 +29,7 @@ public class requestActivity extends AppCompatActivity {
     }
 
     public void request(View view) {
-//        clearError();
+        clearError();
         final EditText editText = (EditText) findViewById(R.id.groupName);
         final String groupName = editText.getText().toString();
         final CheckBox checked = (CheckBox) findViewById(R.id.dropCheck);

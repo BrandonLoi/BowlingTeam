@@ -14,51 +14,52 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-
-public class eventCreateActivity extends AppCompatActivity {
+public class requestsEventsActivity extends AppCompatActivity {
 
     public DatabaseReference mDatabase;
     String username;
-    TextView errorMessage;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event_create);
+        setContentView(R.layout.activity_requests_events);
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
-        errorMessage = (TextView) findViewById(R.id.errorMessage);
-        mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
-    public void createEvent(View view) {
+    public void request(View view) {
         clearError();
         final EditText editText = (EditText) findViewById(R.id.eventName);
         final String eventName = editText.getText().toString();
-        final EditText editText2 = (EditText) findViewById(R.id.date);
-        final String date = editText2.getText().toString();
+        final CheckBox checked = (CheckBox) findViewById(R.id.dropCheck);
+
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         final DatabaseReference myRef = mDatabase;
         ValueEventListener listen = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (eventName.equals("") || date.equals("")) {
-                    createFail("4");
-                }
-                else if (dataSnapshot.child("events").hasChild(eventName)) {
-                    createFail("1");
-                }
-                else {
-                    //CREATE SUCCESS
-                    if (dataSnapshot.child("coaches").hasChild(username)) {
-                        myRef.child("events").child(eventName).child("date").setValue(date);
-                        createFail("3");
+                if (dataSnapshot.child("events").hasChild(eventName) && !(eventName.matches(""))) {
+                    if (checked.isChecked()) {
+                        if (dataSnapshot.child("events").child(eventName).child("players").hasChild(username)) {
+                            myRef.child("messages").child("Coach").child("req").child("drop").child("EVENT").child(username).setValue(eventName);
+                        }
+                        else {
+                            createFail("1");
+                        }
                     }
                     else {
+                        if (!dataSnapshot.child("events").child(eventName).child("players").hasChild(username)) {
+                            myRef.child("messages").child("Coach").child("req").child("join").child("EVENT").child(username).setValue(eventName);
+                        }
+                        else {
                             createFail("2");
+                        }
                     }
+                }
+                else {
+                    createFail(eventName);
                 }
             }
 
@@ -68,27 +69,20 @@ public class eventCreateActivity extends AppCompatActivity {
             }
         };
         myRef.addListenerForSingleValueEvent(listen);
-
     }
 
-    public void createFail(String groupName) {
-        if (groupName.matches("1")) {
-            errorMessage.setText("Error: Event already exists");
+    public void createFail(String eventName) {
+        TextView textView = (TextView) findViewById(R.id.errorMessage);
+        if (eventName.matches("1")) {
+            textView.setText("Error: Not in event.");
         }
-        else if (groupName.matches("2")) {
-            errorMessage.setText("Error: You do not have permission to create events.");
-        }
-        else if (groupName.matches("3")) {
-            errorMessage.setText("Event created.");
-        }
-        else if (groupName.matches("4")) {
-            errorMessage.setText("Error: Please input an event name and date.");
+        else if (eventName.matches("2")) {
+            textView.setText("Error: Already in event.");
         }
         else {
-            errorMessage.setText("Blah");
+            textView.setText("Error: Event does not exist.");
         }
     }
-
     public void clearError() {
         TextView textView = (TextView) findViewById(R.id.errorMessage);
         textView.setText("");
