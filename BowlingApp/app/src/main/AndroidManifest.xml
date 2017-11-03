@@ -37,6 +37,8 @@
         <activity android:name=".NotCoachFailureActivity" />
         <activity android:name=".LiveTournamentActivity" />
         <activity android:name=".groupStatisticsActivity" />
+        <activity android:name=".AllowPlayerEditsActivity" />
+        <activity android:name=".AllowPlayerEditsLookupActivity" />
         <activity
             android:name=".groupRankActivity"
             android:label="@string/title_activity_group_rank"

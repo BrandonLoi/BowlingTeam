@@ -270,10 +270,14 @@ public class CoachChangeStatsActivity extends AppCompatActivity {
                 else {
                     errorText.setText("Error");
                 }
-                Intent i = new Intent(CoachChangeStatsActivity.this,
-                        CoachChangeStatsLookupActivity.class);
-                i.putExtra("username", username);
-                startActivity(i);
+
+                /* Removed in order to prevent sercurity flaw allowing players with edit privileges
+                   to access the CoachChangeStatsLookupActivity
+                 */
+                //  Intent i = new Intent(CoachChangeStatsActivity.this,
+                //         CoachChangeStatsLookupActivity.class);
+                //  i.putExtra("username", username);
+                //  startActivity(i);
             }
         });
     }

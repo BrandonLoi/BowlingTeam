@@ -28,6 +28,7 @@ public class LoginMessageActivity extends AppCompatActivity {
 //    Button mergeGroupsButton;
     Button liveTournamentButton;
     Button groupsButton;
+    Button allowPlayerEditsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,7 @@ public class LoginMessageActivity extends AppCompatActivity {
 //        mergeGroupsButton = (Button) findViewById(R.id.mergeGroupsButton);
         liveTournamentButton = (Button) findViewById(R.id.liveTournamentButton);
         groupsButton = (Button) findViewById(R.id.groupsButton);
+        allowPlayerEditsButton = (Button) findViewById(R.id.allowPlayerEditsButton);
 
 
         compareStatsButton = (Button) findViewById(R.id.compareStatsButton);
@@ -102,8 +104,63 @@ public class LoginMessageActivity extends AppCompatActivity {
         editPlayerStats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*
                 Intent i = new Intent(LoginMessageActivity.this, CoachChangeStatsLookupActivity.class);
                 startActivity(i);
+                */
+
+                final FirebaseDatabase database = FirebaseDatabase.getInstance();
+                String currDataPath = "coaches";
+                final DatabaseReference coach = database.getReference(currDataPath);
+
+                coach.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        // Check if the current user is a coach
+                        if (dataSnapshot.hasChild(username)) {
+                            Intent i = new Intent(LoginMessageActivity.this, CoachChangeStatsLookupActivity.class);
+                            startActivity(i);
+                        } else {
+
+                            // Check if the current user is a player with edit privileges
+                            FirebaseDatabase db = FirebaseDatabase.getInstance();
+                            String currDP = "users";
+                            DatabaseReference userRef = database.getReference(currDP);
+                            userRef = userRef.child(username);
+
+                            userRef.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot db) {
+                                    String canEdit = db.child("canEdit").getValue().toString();
+                                    if (canEdit.equals("1")) {
+
+                                        // If player has edit privileges, allow editing of own stats
+                                        Intent i = new Intent(LoginMessageActivity.this, CoachChangeStatsActivity.class);
+                                        i.putExtra("username", username);
+                                        startActivity(i);
+                                    } else {
+
+                                        // If player does not have edit privileges, tell them
+                                        Intent i = new Intent(LoginMessageActivity.this, NotCoachFailureActivity.class);
+                                        i.putExtra("username", username);
+                                        startActivity(i);
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError dbError) {
+                                    System.out.println("Retrieving user edit stats failed: " + dbError.getCode());
+                                }
+                            });
+
+                        }
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        System.out.println("Retrieving coach status failed: " + databaseError.getCode());
+                    }
+                });
             }
         });
 /*
@@ -168,6 +225,36 @@ public class LoginMessageActivity extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if (dataSnapshot.hasChild(username)) {
                             Intent i = new Intent(LoginMessageActivity.this, LiveTournamentActivity.class);
+                            i.putExtra("username", username);
+                            startActivity(i);
+                        } else {
+                            Intent i = new Intent(LoginMessageActivity.this, NotCoachFailureActivity.class);
+                            i.putExtra("username", username);
+                            startActivity(i);
+                        }
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        System.out.println("Retrieving coach status failed: " +
+                                databaseError.getCode());
+                    }
+                });
+            }
+        });
+
+        allowPlayerEditsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                final FirebaseDatabase database = FirebaseDatabase.getInstance();
+                String currDataPath = "coaches";
+                final DatabaseReference coach = database.getReference(currDataPath);
+
+                coach.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.hasChild(username)) {
+                            Intent i = new Intent(LoginMessageActivity.this, AllowPlayerEditsLookupActivity.class);
                             i.putExtra("username", username);
                             startActivity(i);
                         } else {

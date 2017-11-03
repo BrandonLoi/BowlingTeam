@@ -10,10 +10,11 @@
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Error: You must be a coach to access this feature!"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="Error: You must be a coach or have special privileges to access this feature!"
+        android:textSize="21sp"
         app:layout_constraintBottom_toTopOf="@+id/returnButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button

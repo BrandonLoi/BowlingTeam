@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
                     myRef.child(username).child("username").setValue(username);
                     myRef.child(username).child("password").setValue(password);
                     myRef.child(username).child("email").setValue(email);
+                    myRef.child(username).child("canEdit").setValue("0");
                     final DatabaseReference myRef2 = mDatabase.child("data").child(username);
                     myRef2.child("avgScore").setValue("-1");
                     myRef2.child("highScore").setValue("-1");
