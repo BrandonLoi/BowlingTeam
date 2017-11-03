@@ -20,6 +20,8 @@ public class eventCreateActivity extends AppCompatActivity {
 
     public DatabaseReference mDatabase;
     String username;
+    TextView errorMessage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,32 +29,35 @@ public class eventCreateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_event_create);
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
+        errorMessage = (TextView) findViewById(R.id.errorMessage);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
     public void createEvent(View view) {
-        //clearError();
+        clearError();
         final EditText editText = (EditText) findViewById(R.id.eventName);
         final String eventName = editText.getText().toString();
         final EditText editText2 = (EditText) findViewById(R.id.date);
         final String date = editText2.getText().toString();
-/*
 
         final DatabaseReference myRef = mDatabase;
         ValueEventListener listen = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child("groups").hasChild(eventName)) {
-                    System.out.println(createFail_message); //CREATE FAILURE
-                    createFail(groupName);
-                } else {
+                if (eventName.equals("") || date.equals("")) {
+                    createFail("4");
+                }
+                else if (dataSnapshot.child("events").hasChild(eventName)) {
+                    createFail("1");
+                }
+                else {
                     //CREATE SUCCESS
                     if (dataSnapshot.child("coaches").hasChild(username)) {
-                        myRef.child("groups").child(groupName).child(username).setValue("23");
-                        create(groupName);
+                        myRef.child("events").child(eventName).child("date").setValue(date);
+                        createFail("3");
                     }
                     else {
-                            myRef.child("groups").child(groupName).child(username).setValue("13");
-                            create(groupName);
+                            createFail("2");
                     }
                 }
             }
@@ -63,6 +68,29 @@ public class eventCreateActivity extends AppCompatActivity {
             }
         };
         myRef.addListenerForSingleValueEvent(listen);
-        */
+
+    }
+
+    public void createFail(String groupName) {
+        if (groupName.matches("1")) {
+            errorMessage.setText("Error: Event already exists");
+        }
+        else if (groupName.matches("2")) {
+            errorMessage.setText("Error: You do not have permission to create events.");
+        }
+        else if (groupName.matches("3")) {
+            errorMessage.setText("Event created.");
+        }
+        else if (groupName.matches("4")) {
+            errorMessage.setText("Error: Please input an event name and date.");
+        }
+        else {
+            errorMessage.setText("Blah");
+        }
+    }
+
+    public void clearError() {
+        TextView textView = (TextView) findViewById(R.id.errorMessage);
+        textView.setText("");
     }
 }
