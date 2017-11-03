@@ -16,8 +16,8 @@ public class Frame {
     public Frame(char firstThrow, char secondThrow) {
         char first = validateInput(firstThrow);
         char second = validateInput(secondThrow);
-        this.firstThrow = (first != ' ' && first != '/') ? firstThrow : ' ';
-        this.secondThrow = (second != ' ' && second != 'X') ? secondThrow : ' ';
+        this.firstThrow = (first != ' ' && first != '/') ? firstThrow : '0';
+        this.secondThrow = (second != ' ' && second != 'X') ? secondThrow : '0';
         if(this.firstThrow == 'X') this.secondThrow = ' ';
     }
 
@@ -55,7 +55,7 @@ public class Frame {
             case '-':
                 return '0';
             default:        //Error Handling, MAY NEED TO CHANGE
-                return ' ';
+                return '0';
 
         }
     }
