@@ -61,17 +61,17 @@ public class LiveTournamentActivity extends AppCompatActivity {
                             String blankText = "";
                             liveTournament.child("currentlyLive").setValue("1");
 
-                            liveTournament.child("totalStatistics").child("singleLeft").setValue("-1");
-                            liveTournament.child("totalStatistics").child("singleMade").setValue("-1");
-                            liveTournament.child("totalStatistics").child("splitLeft").setValue("-1");
-                            liveTournament.child("totalStatistics").child("splitMade").setValue("-1");
-                            liveTournament.child("totalStatistics").child("multiLeft").setValue("-1");
-                            liveTournament.child("totalStatistics").child("multiMade").setValue("-1");
-                            liveTournament.child("totalStatistics").child("numStrikes").setValue("-1");
-                            liveTournament.child("totalStatistics").child("cumulativeScore").setValue("-1");
-                            liveTournament.child("totalStatistics").child("numGames").setValue("-1");
-                            liveTournament.child("totalStatistics").child("ballsThrown").setValue("-1");
-                            liveTournament.child("totalStatistics").child("filledFrames").setValue("-1");
+                            liveTournament.child("totalStatistics").child("singleLeft").setValue("0");
+                            liveTournament.child("totalStatistics").child("singleMade").setValue("0");
+                            liveTournament.child("totalStatistics").child("splitLeft").setValue("0");
+                            liveTournament.child("totalStatistics").child("splitMade").setValue("0");
+                            liveTournament.child("totalStatistics").child("multiLeft").setValue("0");
+                            liveTournament.child("totalStatistics").child("multiMade").setValue("0");
+                            liveTournament.child("totalStatistics").child("numStrikes").setValue("0");
+                            liveTournament.child("totalStatistics").child("cumulativeScore").setValue("0");
+                            liveTournament.child("totalStatistics").child("numGames").setValue("0");
+                            liveTournament.child("totalStatistics").child("ballsThrown").setValue("0");
+                            liveTournament.child("totalStatistics").child("filledFrames").setValue("0");
                             liveTournament.child("totalStatistics").child("highScore").setValue("-1");
                             liveTournament.child("totalStatistics").child("avgScore").setValue("-1");
                             liveTournament.child("totalStatistics").child("filledPercentage").setValue("-1");
