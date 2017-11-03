@@ -25,8 +25,22 @@ public class Player extends User {
     private int totalFrames;
     private int numStrikes;
     private int totalFirstBalls;
+
+    public int multiPinsLeft;
+    public int multiPinsMade;
+    public int splitsLeft;
+    public int splitsMade;
+    public int singlePinMade;
+    public int singlePinLeft;
+    public int newBallsThrown;
+    public int strikes;
+    public int filledFramesCount;
+    public int scoreTemp;
+    public int tempHigh;
+
     private int singlePinsMade;
     private int totalSinglePins;
+
     private int numSpares;
     private int numNonStrikes;
 

@@ -1,5 +1,6 @@
 package purdue.bowlingapp;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
@@ -12,12 +13,58 @@ public class Game {
     private int score;
     private ArrayList<Frame> frames;
     private TenthFrame tenth;
-
+    private ArrayList<Player> players;
+    private int type;
 
     public Game(ArrayList<Frame> frames, TenthFrame tenth) {
         this.frames = frames;
         this.tenth = tenth;
         this.score = setScore();
+    }
+
+    public void substitute(Player player, int framesLeft) {
+        if(this.type == 0) {
+            int temp = framesLeft;
+            while(temp > 0) {
+                players.remove(players.size() - 1);
+                temp--;
+            }
+            for(int i = 0; i < framesLeft; i++) {
+                players.add(player);
+            }
+        }
+    }
+
+    private ArrayList<Player> initialize(ArrayList<Player> players) {
+        if(players.size() == 1) {
+            type = 0;
+            ArrayList<Player> players2 = new ArrayList<Player>();
+            for (int i = 0; i < 12; i++) {
+                players2.add(players.get(0));
+            }
+            return players2;
+        }
+        else if(players.size() == 5) {
+            type = 1;
+            ArrayList<Player> players2 = new ArrayList<Player>();
+            for (int i = 0; i < 2; i++) {
+                players2.add(players.get(0));
+                players2.add(players.get(1));
+                players2.add(players.get(2));
+                players2.add(players.get(3));
+                players2.add(players.get(4));
+            }
+            players2.add(players.get(4));
+            players2.add(players.get(4));
+            return players2;
+        }
+        else {
+            return null; //BAD
+        }
+    }
+
+    public ArrayList<Player> getPlayers() {
+        return this.players;
     }
 
     public Game() {
@@ -40,90 +87,151 @@ public class Game {
     }
 
     public int getSinglePinLeft() {
+       // int[] singlePins = new int[10];
         int count = 0;
         for(Frame f : frames) {
             if(f.getFirstThrow() == '9')
-                count++;
+          //      singlePins[count] = 1;
+          //  else
+          //      singlePins[count] = 0;
+            count++;
         }
         if(tenth.getFirstThrowC() == '9' || tenth.getSecondThrowC() == '9')
-            count++;
+       //     singlePins[count] = 1;
+       // else
+        //    singlePins[count] = 0;
+        count++;
         return count;
     }
 
     public int getSinglePinMade() {
+       // int[] singlePins = new int[10];
         int count = 0;
         for(Frame f : frames) {
             if(f.getFirstThrow() == '9' && f.getSecondThrow() == '/')
+       //         singlePins[count] = 1;
+      //      else
+      //          singlePins[count] = 0;
                 count++;
         }
         if(tenth.getFirstThrowC() == '9' && tenth.getSecondThrowC() == '/'
                 || tenth.getSecondThrowC() == '9' && tenth.getThirdThrowC() == '/')
-            count++;
+        //    singlePins[count] = 1;
+       // else
+        //    singlePins[count] = 0;
+        count++;
         return count;
     }
 
     public int getSplitLeft() {
+       // int[] splits = new int[10];
         int count = 0;
-        for(Frame f : frames)
-            if(f.isSplit())
-                count++;
-        if(tenth.isSplit())
+        for(Frame f : frames) {
+            if (f.isSplit())
+       //         splits[count] = 1;
+       //     else
+       //         splits[count] = 0;
             count++;
+        }
+        if(tenth.isSplit())
+       //     splits[count] = 1;
+       // else
+       //     splits[count] = 0;
+        count++;
         return count;
     }
 
     public int getMultiLeft() {
+      //  int[] multi = new int[10];
         int count = 0;
-        for(Frame f : frames)
-            if(f.isMakeable() && f.getFirstThrow() != 'X' && f.getFirstThrow() != '9')
-                count++;
-        if(tenth.isMakeable())
+        for(Frame f : frames) {
+            if (f.isMakeable() && f.getFirstThrow() != 'X' && f.getFirstThrow() != '9')
+        //        multi[count] = 1;
+        //    else
+        //        multi[count] = 0;
             count++;
+        }
+        if(tenth.isMakeable())
+        //    multi[count] = 1;
+       // else
+        //    multi[count] = 0;
+        count++;
         return count;
     }
 
     public int getMultiMade() {
+     //   int[] multi = new int[10];
         int count = 0;
-        for(Frame f : frames)
-            if(f.isMakeable() && f.getSecondThrow() == '/' && f.getFirstThrow() != '9')
-                count++;
-        if(tenth.isMakeable() && (tenth.getSecondThrowC() == '/' || tenth.getThirdThrowC() == '/'))
+        for(Frame f : frames) {
+            if (f.isMakeable() && f.getSecondThrow() == '/' && f.getFirstThrow() != '9')
+       //         multi[count] = 1;
+       //     else
+       //         multi[count] = 0;
             count++;
+        }
+        if(tenth.isMakeable() && (tenth.getSecondThrowC() == '/' || tenth.getThirdThrowC() == '/'))
+       //     multi[count] = 1;
+      //  else
+      //      multi[count] = 0;
+        count++;
         return count;
     }
 
     public int getFilledFrame() {
+      //  int[] filled = new int[10];
         int count = 0;
-        for(Frame f : frames)
-            if(f.getFirstThrow() == 'X' || f.getSecondThrow() == '/')
+        for(Frame f : frames) {
+            if (f.getFirstThrow() == 'X' || f.getSecondThrow() == '/')
+      //          filled[count] = 1;
+      //      else
+       //         filled[count] = 0;
                 count++;
+        }
         if(tenth.getFirstThrowC() == 'X' || tenth.getSecondThrowC() == '/')
-            count++;
+       //     filled[count] = 1;
+       // else
+       //    filled[count] = 0;
+        count++;
         return count;
     }
 
     public int getStrike() {
+     //   int[] strike = new int[10];
         int count = 0;
         for (Frame f : frames) {
             if (f.getFirstThrow() == 'X')
+         //       strike[count] = 1;
+       //     else
+        //        strike[count] = 1;
                 count++;
         }
         if (tenth.getFirstThrowC() == 'X')
-            count++;
+       //     strike[count] = 1;
+        count++;
         if (tenth.getSecondThrowC() == 'X')
-            count++;
+        //    strike[count] = 1;
+        count++;
         if(tenth.getThirdThrowC() == 'X')
-            count++;
+         //   strike[count] = 1;
+        count++;
         return count;
     }
 
     public int getSplitMade() {
+    //    int[] split = new int[10];
         int count = 0;
-        for(Frame f : frames)
-            if(f.isSplit() && f.getSecondThrow() == '/')
-                count++;
-        if (tenth.isSplit() && (tenth.getFirstThrowC() == '/' || tenth.getSecondThrowC() =='/'))
+        for(Frame f : frames) {
+            if (f.isSplit() && f.getSecondThrow() == '/')
+    //            split[count] = 1;
+    //        else
+     //           split[count] = 0;
             count++;
+        }
+        if (tenth.isSplit() && (tenth.getFirstThrowC() == '/' || tenth.getSecondThrowC() =='/'))
+     //       split[count] = 1;
+     //   else
+     //       split[count] = 0;
+        count++;
         return count;
     }
 

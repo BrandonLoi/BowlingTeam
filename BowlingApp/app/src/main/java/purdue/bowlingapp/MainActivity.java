@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+
     public void login(View view) {
         clearError();
         mDatabase = FirebaseDatabase.getInstance().getReference();

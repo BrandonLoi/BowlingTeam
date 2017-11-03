@@ -540,6 +540,37 @@ public class ScoreKeeping extends AppCompatActivity {
                 final int scoreTemp = g.setScore();
                 final int filledFrames = g.getFilledFrame();
 
+                ArrayList<Player> players = g.getPlayers();
+
+        //        for(int i = 0; i < singleLeft.length; i++) {
+          //          if(singleLeft[i] == 1) players.get(i).singlePinLeft++;
+            //    }
+        //        for(int i = 0; i < singleMade.length; i++) {
+         //           if(singleMade[i] == 1) players.get(i).singlePinMade++;
+         //       }
+         //       for(int i = 0; i < splitLeft.length; i++) {
+         //           if(splitLeft[i] == 1) players.get(i).splitsLeft++;
+         //       }
+         //       for(int i = 0; i < splitMade.length; i++) {
+         //           if(splitMade[i] == 1) players.get(i).splitsMade++;
+         //       }
+         //       for(int i = 0; i < splitMade.length; i++) {
+         //           if(splitMade[i] == 1) players.get(i).multiPinsMade++;
+         //       }
+         //       for(int i = 0; i < multiLeft.length; i++) {
+         //           if(multiLeft[i] == 1) players.get(i).multiPinsLeft++;
+         //       }
+         //       for(int i = 0; i < strike.length; i++) {
+         //           if(strike[i] == 1) players.get(i).strikes++;
+         //       }
+          //      for(int i = 0; i < filledFrames.length; i++) {
+         //           if(filledFrames[i] == 1) players.get(i).filledFramesCount++;
+         //       }
+          //      for(int i = 0; i < players.size(); i++) {
+         //           players.get(i).newBallsThrown++;
+         //       }
+         //       players.get(0).scoreTemp = scoreTemp;
+
                 prevSingleLeft += singleLeft;
                 prevSingleMade += singleMade;
                 prevSplitLeft += splitLeft;
@@ -576,24 +607,47 @@ public class ScoreKeeping extends AppCompatActivity {
                 String strikeTemp = strikePct.toString();
                 strikeTemp = strikeTemp.substring(0,Math.min(5,strikeTemp.length()));
 
-                DatabaseReference ref = mDatabase.child("data").child(getIntent().getStringExtra("username"));
+              //  DatabaseReference ref = mDatabase.child("data").child(getIntent().getStringExtra("username"));
+                ArrayList<DatabaseReference> refs = new ArrayList<DatabaseReference>();
+                for(int i = 0; i < players.size(); i++) {
+                    refs.add(mDatabase.child("data").child(players.get(i).getUsername()));
+                }
+                for(int i = 0; i < refs.size(); i++) {
+                    DatabaseReference ref = refs.get(i);
+                    ref.child("singleLeft").setValue(prevSingleLeft.toString());
+                    ref.child("singleMade").setValue(prevSingleMade.toString());
+                    ref.child("splitLeft").setValue(prevSplitLeft.toString());
+                    ref.child("splitMade").setValue(prevSplitMade.toString());
+                    ref.child("multiLeft").setValue(prevMultiLeft.toString());
+                    ref.child("multiMade").setValue(prevMultiMade.toString());
+                    ref.child("numStrikes").setValue(prevStrikes.toString());
+                    ref.child("cumulativeScore").setValue(prevTotal.toString());
+                    ref.child("numGames").setValue(numGames.toString());
+                    ref.child("ballsThrown").setValue(ballsThrown.toString());
+                    ref.child("filledFrames").setValue(prevFilled.toString());
+                    ref.child("highScore").setValue(highScore.toString());
+                    ref.child("avgScore").setValue(avgTemp);
+                    ref.child("filledPercentage").setValue(filledpctTemp);
+                    ref.child("singlePinPercentage").setValue(singleTemp);
+                    ref.child("strikePercentage").setValue(strikeTemp);
+                }
 
-                ref.child("singleLeft").setValue(prevSingleLeft.toString());
-                ref.child("singleMade").setValue(prevSingleMade.toString());
-                ref.child("splitLeft").setValue(prevSplitLeft.toString());
-                ref.child("splitMade").setValue(prevSplitMade.toString());
-                ref.child("multiLeft").setValue(prevMultiLeft.toString());
-                ref.child("multiMade").setValue(prevMultiMade.toString());
-                ref.child("numStrikes").setValue(prevStrikes.toString());
-                ref.child("cumulativeScore").setValue(prevTotal.toString());
-                ref.child("numGames").setValue(numGames.toString());
-                ref.child("ballsThrown").setValue(ballsThrown.toString());
-                ref.child("filledFrames").setValue(prevFilled.toString());
-                ref.child("highScore").setValue(highScore.toString());
-                ref.child("avgScore").setValue(avgTemp);
-                ref.child("filledPercentage").setValue(filledpctTemp);
-                ref.child("singlePinPercentage").setValue(singleTemp);
-                ref.child("strikePercentage").setValue(strikeTemp);
+           //     ref.child("singleLeft").setValue(prevSingleLeft.toString());
+           //     ref.child("singleMade").setValue(prevSingleMade.toString());
+           //     ref.child("splitLeft").setValue(prevSplitLeft.toString());
+           //     ref.child("splitMade").setValue(prevSplitMade.toString());
+           //     ref.child("multiLeft").setValue(prevMultiLeft.toString());
+            //    ref.child("multiMade").setValue(prevMultiMade.toString());
+           //     ref.child("numStrikes").setValue(prevStrikes.toString());
+           //     ref.child("cumulativeScore").setValue(prevTotal.toString());
+           //     ref.child("numGames").setValue(numGames.toString());
+            //    ref.child("ballsThrown").setValue(ballsThrown.toString());
+           //     ref.child("filledFrames").setValue(prevFilled.toString());
+          ////      ref.child("highScore").setValue(highScore.toString());
+            ///    ref.child("avgScore").setValue(avgTemp);
+          //      ref.child("filledPercentage").setValue(filledpctTemp);
+          //      ref.child("singlePinPercentage").setValue(singleTemp);
+           //     ref.child("strikePercentage").setValue(strikeTemp);
 
 
                 /*
@@ -680,11 +734,13 @@ public class ScoreKeeping extends AppCompatActivity {
 
         Button sub = (Button) findViewById(R.id.sub);
 
+
+
+        //This is currently not working
         sub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(ScoreKeeping.this,
-                        SubstituteActivity.class);
+                Intent i = new Intent(ScoreKeeping.this, SubstituteActivity.class);
                 i.putExtra("username", "username");
                 startActivity(i);
             }
