@@ -706,7 +706,7 @@ public class ScoreKeeping extends AppCompatActivity {
                 */
                 final DatabaseReference tournamentRef = mDatabase.child("liveTournament").child("totalStatistics");
 
-                liveTournament.addValueEventListener(new ValueEventListener() {
+                liveTournament.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot liveTourney) {
                         // Set variable "live" to either 1 or 0
