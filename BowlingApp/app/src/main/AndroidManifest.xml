@@ -54,10 +54,14 @@
         <activity android:name=".EventHubActivity" />
         <activity android:name=".editEventsActivity" />
         <activity android:name=".requestsEventsActivity" />
-        <activity android:name=".requestEventResponseActivity"></activity>
+        <activity android:name=".requestEventResponseActivity" />
         <activity android:name=".GameTypeSelection" />
         <activity android:name=".SubstituteActivity" />
         <activity android:name=".BakerTeamSelection" />
+        <activity
+            android:name=".playerMessaging"
+            android:label="@string/title_activity_player_messaging"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
