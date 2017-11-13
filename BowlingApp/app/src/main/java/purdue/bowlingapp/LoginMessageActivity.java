@@ -30,6 +30,8 @@ public class LoginMessageActivity extends AppCompatActivity {
     Button groupsButton;
     Button allowPlayerEditsButton;
     Button eventHubButton;
+    Button messagesButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,8 @@ public class LoginMessageActivity extends AppCompatActivity {
         groupsButton = (Button) findViewById(R.id.groupsButton);
         allowPlayerEditsButton = (Button) findViewById(R.id.allowPlayerEditsButton);
         eventHubButton = (Button) findViewById(R.id.eventHubButton);
+        messagesButton = (Button) findViewById(R.id.messagesButton);
+
 
 
         compareStatsButton = (Button) findViewById(R.id.compareStatsButton);
@@ -97,6 +101,15 @@ public class LoginMessageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(LoginMessageActivity.this, GameTypeSelection.class);
+                i.putExtra("username", username);
+                startActivity(i);
+            }
+        });
+
+        messagesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(LoginMessageActivity.this, playerMessaging.class);
                 i.putExtra("username", username);
                 startActivity(i);
             }
