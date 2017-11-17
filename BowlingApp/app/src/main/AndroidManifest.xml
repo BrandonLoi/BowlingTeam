@@ -62,6 +62,9 @@
             android:name=".playerMessaging"
             android:label="@string/title_activity_player_messaging"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".inboxActivity" />
+        <activity android:name=".sendMessagesActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".announcementActivity"
             android:label="@string/title_activity_announcement"
