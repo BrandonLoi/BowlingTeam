@@ -30,6 +30,7 @@ public class LoginMessageActivity extends AppCompatActivity {
     Button groupsButton;
     Button allowPlayerEditsButton;
     Button eventHubButton;
+    Button annoucementButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,7 @@ public class LoginMessageActivity extends AppCompatActivity {
         groupsButton = (Button) findViewById(R.id.groupsButton);
         allowPlayerEditsButton = (Button) findViewById(R.id.allowPlayerEditsButton);
         eventHubButton = (Button) findViewById(R.id.eventHubButton);
+        annoucementButton = (Button) findViewById(R.id.annouceButton);
 
 
         compareStatsButton = (Button) findViewById(R.id.compareStatsButton);
@@ -165,44 +167,6 @@ public class LoginMessageActivity extends AppCompatActivity {
                 });
             }
         });
-/*
-        createGroupButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(LoginMessageActivity.this, createGroupActivity.class);
-                i.putExtra("username", username);
-                startActivity(i);
-            }
-        });
-
-        editGroupButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(LoginMessageActivity.this, editGroupsActivity.class);
-                i.putExtra("username", username);
-                startActivity(i);
-            }
-        });
-
-        groupStatsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(LoginMessageActivity.this, groupStatisticsActivity.class);
-                i.putExtra("username", username);
-                startActivity(i);
-            }
-        });
-
-        mergeGroupsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(LoginMessageActivity.this, mergeGroupActivity.class);
-                i.putExtra("username", username);
-                startActivity(i);
-            }
-        });
-        THIS HAS BEEN MOVED TO THE GROUPS HUB ACTIVITY
-*/
         groupsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -279,6 +243,13 @@ public class LoginMessageActivity extends AppCompatActivity {
                                 databaseError.getCode());
                     }
                 });
+            }
+        });
+        annoucementButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(LoginMessageActivity.this, announcementActivity.class);
+                startActivity(i);
             }
         });
     }
