@@ -15,6 +15,8 @@ public class playerMessaging extends AppCompatActivity {
 
     Button inbox;
     Button sendMessage;
+    Button coachMessaging;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,8 @@ public class playerMessaging extends AppCompatActivity {
 
         inbox = (Button) findViewById(R.id.inbox);
         sendMessage = (Button) findViewById(R.id.sendMessage);
+        coachMessaging = (Button) findViewById(R.id.coachMessage);
+
 
         inbox.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,6 +45,15 @@ public class playerMessaging extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(playerMessaging.this, sendMessagesActivity.class);
+                i.putExtra("username", username);
+                startActivity(i);
+            }
+        });
+
+        coachMessaging.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(playerMessaging.this, coachMessageActivity.class);
                 i.putExtra("username", username);
                 startActivity(i);
             }
