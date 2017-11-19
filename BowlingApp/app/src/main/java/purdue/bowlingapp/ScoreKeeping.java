@@ -1,6 +1,7 @@
 package purdue.bowlingapp;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -17,26 +18,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.AbstractCollection;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
 
 public class ScoreKeeping extends AppCompatActivity {
     private int frameCount = 0;
-    Integer prevSingleMade = 0;
-    Integer prevSingleLeft = 0;
-    Integer prevSplitMade = 0;
-    Integer prevSplitLeft = 0;
-    Integer prevMultiMade = 0;
-    Integer prevMultiLeft = 0;
-    Integer prevStrikes = 0;
-    Integer prevTotal = 0;
-    Integer numGames = 0;
-    Integer ballsThrown = 0;
-    Integer highScore = 0;
-    Integer prevFilled = 0;
     boolean[] split = {false,false,false,false,false,false,false,false,false,false};
     String player;
-    String[] players;
+    ArrayList<Player> players;
 
     public DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
@@ -65,7 +57,6 @@ public class ScoreKeeping extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score_keeping);
-
 
         /*
            Load live tournament statistics
@@ -111,7 +102,48 @@ public class ScoreKeeping extends AppCompatActivity {
             }
         });
 
+        TextView header = (TextView) findViewById(R.id.header);
+        Intent i = getIntent();
+        String headerText = "New game for: " + i.getStringExtra("username");
+        header.setText(headerText);
 
+        String type = i.getStringExtra("type");
+        if(type.equals("0")) {
+            player = i.getStringExtra("username");
+            players = new ArrayList<Player>();
+            for (int j = 0; j < 12; j++) {
+                players.add(new Player(player, null));
+            }
+        }
+        else {
+            player = i.getStringExtra("username");
+            String player2 = i.getStringExtra("username2");
+            String player3 = i.getStringExtra("username3");
+            String player4 = i.getStringExtra("username4");
+            String player5 = i.getStringExtra("username5");
+            players = new ArrayList<Player>();
+            Player p1 = new Player(player, null);
+            Player p2 = new Player(player2, null);
+            Player p3 = new Player(player3, null);
+            Player p4 = new Player(player4, null);
+            Player p5 = new Player(player5, null);
+            players.add(p1);
+            players.add(p2);
+            players.add(p3);
+            players.add(p4);
+            players.add(p5);
+            players.add(p1);
+            players.add(p2);
+            players.add(p3);
+            players.add(p4);
+            players.add(p5);
+        }
+
+
+
+
+
+        /**
         DatabaseReference ref = mDatabase.child("data").child(getIntent().getStringExtra("username"));
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -135,38 +167,10 @@ public class ScoreKeeping extends AppCompatActivity {
 
             }
         });
+**/
 
-        TextView header = (TextView) findViewById(R.id.header);
-        Intent i = getIntent();
-        String headerText = "New game for: " + i.getStringExtra("username");
-        header.setText(headerText);
 
-        String type = i.getStringExtra("type");
-        if(type.equals("0")) {
-            player = i.getStringExtra("username");
-            players = new String[10];
-            for (int j = 0; j < players.length; j++) {
-                players[j] = player;
-            }
-        }
-        else {
-            player = i.getStringExtra("username");
-            String player2 = i.getStringExtra("username2");
-            String player3 = i.getStringExtra("username3");
-            String player4 = i.getStringExtra("username4");
-            String player5 = i.getStringExtra("username5");
-            players = new String[10];
-            players[0] = player;
-            players[1] = player2;
-            players[2] = player3;
-            players[3] = player4;
-            players[4] = player5;
-            players[5] = player;
-            players[6] = player2;
-            players[7] = player3;
-            players[8] = player4;
-            players[9] = player5;
-        }
+
 
         //Access all TextViews in the scorekeeping activity
         // NAMING CONVENTIONS: fXbY = frame X, ball Y
@@ -615,7 +619,12 @@ public class ScoreKeeping extends AppCompatActivity {
          //       }
          //       players.get(0).scoreTemp = scoreTemp;
 
-                prevSingleLeft += singleLeft;
+
+
+
+
+
+    /**            prevSingleLeft += singleLeft;
                 prevSingleMade += singleMade;
                 prevSplitLeft += splitLeft;
                 prevSplitMade += splitMade;
@@ -675,6 +684,8 @@ public class ScoreKeeping extends AppCompatActivity {
          //           ref.child("singlePinPercentage").setValue(singleTemp);
          //           ref.child("strikePercentage").setValue(strikeTemp);
          //       }
+
+
                 ArrayList<String> truePlayers = new ArrayList<>();
                 for(String p : players) {
                     if(!truePlayers.contains(p))
@@ -700,6 +711,10 @@ public class ScoreKeeping extends AppCompatActivity {
                     ref.child("singlePinPercentage").setValue(singleTemp);
                     ref.child("strikePercentage").setValue(strikeTemp);
                 }
+
+
+     **/
+
 
                 /*
                    Update live tournament stats
@@ -813,7 +828,7 @@ public class ScoreKeeping extends AppCompatActivity {
                                 System.out.println(players);
                                 player = newusername;
                                 for(int i = 0; i < 10 - (frameCount / 2); i++) {
-                                    players[i] = player;
+                              //      players[i] = player;
                                 }
                                 System.out.println(players);
                             }

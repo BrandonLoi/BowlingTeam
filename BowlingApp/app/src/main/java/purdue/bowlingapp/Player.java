@@ -6,7 +6,9 @@ import java.util.ArrayList;
  * Created by Jimmy on 10/3/2017.
  */
 
-public class Player extends User {
+public class Player {
+
+    private String username;
 
     private ArrayList<Game> games;
     private int highGame = -1;
@@ -26,17 +28,30 @@ public class Player extends User {
     private int numStrikes;
     private int totalFirstBalls;
 
-    public int multiPinsLeft;
-    public int multiPinsMade;
-    public int splitsLeft;
-    public int splitsMade;
-    public int singlePinMade;
-    public int singlePinLeft;
-    public int newBallsThrown;
-    public int strikes;
-    public int filledFramesCount;
-    public int scoreTemp;
-    public int tempHigh;
+    Integer prevSingleMade;
+    Integer prevSingleLeft;
+    Integer prevSplitMade;
+    Integer prevSplitLeft;
+    Integer prevMultiMade;
+    Integer prevMultiLeft;
+    Integer prevStrikes;
+    Integer prevTotal;
+    Integer numberGames;
+    Integer ballsThrown;
+    Integer highestScore;
+    Integer prevFilled;
+
+//    public int multiPinsLeft;
+ //   public int multiPinsMade;
+ //   public int splitsLeft;
+ //   public int splitsMade;
+ //   public int singlePinMade;
+ //   public int singlePinLeft;
+ //   public int newBallsThrown;
+ //   public int strikes;
+//    public int filledFramesCount;
+//    public int scoreTemp;
+ //   public int tempHigh;
 
     private int singlePinsMade;
     private int totalSinglePins;
@@ -48,10 +63,12 @@ public class Player extends User {
         //default constructor to store in database
     }
 
-    public Player(String username, String password, String email, ArrayList<Game> games){
-        super(username, password, email);
+    public Player(String username, ArrayList<Game> games){
+        this.username = username;
         this.games = games;
-        getPercents();
+        if(this.games != null) {
+            getPercents();
+        }
     }
 
     public void addFrame(Frame frame) {
@@ -486,7 +503,7 @@ public class Player extends User {
         ArrayList<Game> games = new ArrayList<>();
         games.add(g);
 
-        Player player = new Player("wow", "sick", "bet", games);
+        Player player = new Player("wow", games);
 
         System.out.println("\n\nAfter Game 1 Added:\n");
         player.printStats();
