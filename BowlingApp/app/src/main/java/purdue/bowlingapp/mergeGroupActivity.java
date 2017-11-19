@@ -43,36 +43,37 @@ public class mergeGroupActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 clearScreen();
-                if (dataSnapshot.child("groups").hasChild(groupName) && dataSnapshot.child("groups").hasChild(groupName2) && !(groupName.matches("")) && !(groupName2.matches(""))) {
-                    if (dataSnapshot.child("groups").child(groupName).hasChild(username) && dataSnapshot.child("groups").child(groupName2).hasChild(username)) {
-                        if ((!dataSnapshot.child("groups").child(groupName).child(username).getValue().equals("0")  || !dataSnapshot.child("groups").child(groupName).child(username).getValue().equals("03")) && (!dataSnapshot.child("groups").child(groupName2).child(username).getValue().equals("0")  || !dataSnapshot.child("groups").child(groupName2).child(username).getValue().equals("03"))) {
-                            for (DataSnapshot iterator : dataSnapshot.child("groups").child(groupName2).getChildren()) {
-                                String name = iterator.getKey();
-                                String val = iterator.getValue().toString();
-                                if (name.equals(username)) {
-                                    //Makes sure the owner's value isn't written over
-                                }
-                                else {
-                                    if (dataSnapshot.child("groups").child(groupName).child(username).getValue().equals("13") || dataSnapshot.child("groups").child(groupName).child(username).getValue().equals("23")) {
-                                        myRef.child("groups").child(groupName).child(name).setValue("03");
+                if (!(groupName.equals(groupName2))) {
+                    if (dataSnapshot.child("groups").hasChild(groupName) && dataSnapshot.child("groups").hasChild(groupName2) && !(groupName.matches("")) && !(groupName2.matches(""))) {
+                        if (dataSnapshot.child("groups").child(groupName).hasChild(username) && dataSnapshot.child("groups").child(groupName2).hasChild(username)) {
+                            if ((!dataSnapshot.child("groups").child(groupName).child(username).getValue().equals("0") || !dataSnapshot.child("groups").child(groupName).child(username).getValue().equals("03")) && (!dataSnapshot.child("groups").child(groupName2).child(username).getValue().equals("0") || !dataSnapshot.child("groups").child(groupName2).child(username).getValue().equals("03"))) {
+                                for (DataSnapshot iterator : dataSnapshot.child("groups").child(groupName2).getChildren()) {
+                                    String name = iterator.getKey();
+                                    String val = iterator.getValue().toString();
+                                    if (name.equals(username)) {
+                                        //Makes sure the owner's value isn't written over
                                     } else {
-                                        myRef.child("groups").child(groupName).child(name).setValue("0");
+                                        if (dataSnapshot.child("groups").child(groupName).child(username).getValue().equals("13") || dataSnapshot.child("groups").child(groupName).child(username).getValue().equals("23")) {
+                                            myRef.child("groups").child(groupName).child(name).setValue("03");
+                                        } else {
+                                            myRef.child("groups").child(groupName).child(name).setValue("0");
+                                        }
                                     }
-                                }
                                     dataSnapshot.child("groups").child(groupName2).child(name).getRef().setValue(null);
                                     createFail("blah");
+                                }
+                            } else {
+                                createFail("1");
                             }
-                        }
-                        else {
+                        } else {
                             createFail("1");
                         }
-                    }
-                    else {
-                        createFail("1");
+                    } else {
+                        createFail("2");
                     }
                 }
                 else {
-                    createFail("2");
+                    createFail("3");
                 }
             }
 
@@ -91,6 +92,9 @@ public class mergeGroupActivity extends AppCompatActivity {
         }
         else if (groupName.matches("2")) {
             errorMessage.setText("Error: Group names incorrectly input.");
+        }
+        else if (groupName.matches("3")) {
+            errorMessage.setText("Error: Group names cannot be the same.");
         }
         else {
             errorMessage.setText("Groups successfully merged.");
