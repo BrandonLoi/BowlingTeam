@@ -29,6 +29,7 @@ public class ScoreKeeping extends AppCompatActivity {
     boolean[] split = {false,false,false,false,false,false,false,false,false,false};
     String player;
     ArrayList<Player> players;
+    String[] usernameStrings;
 
     public DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
@@ -109,18 +110,26 @@ public class ScoreKeeping extends AppCompatActivity {
 
         String type = i.getStringExtra("type");
         if(type.equals("0")) {
-            player = i.getStringExtra("username");
+            usernameStrings = new String[1];
+            usernameStrings[0] = "username";
+            player = i.getStringExtra(usernameStrings[0]);
             players = new ArrayList<Player>();
-            for (int j = 0; j < 12; j++) {
+            for (int j = 0; j < 10; j++) {
                 players.add(new Player(player, null));
             }
         }
         else {
-            player = i.getStringExtra("username");
-            String player2 = i.getStringExtra("username2");
-            String player3 = i.getStringExtra("username3");
-            String player4 = i.getStringExtra("username4");
-            String player5 = i.getStringExtra("username5");
+            usernameStrings = new String[5];
+            usernameStrings[0] = "username";
+            usernameStrings[1] = "username2";
+            usernameStrings[2] = "username3";
+            usernameStrings[3] = "username4";
+            usernameStrings[4] = "username5";
+            player = i.getStringExtra(usernameStrings[0]);
+            String player2 = i.getStringExtra(usernameStrings[1]);
+            String player3 = i.getStringExtra(usernameStrings[2]);
+            String player4 = i.getStringExtra(usernameStrings[3]);
+            String player5 = i.getStringExtra(usernameStrings[4]);
             players = new ArrayList<Player>();
             Player p1 = new Player(player, null);
             Player p2 = new Player(player2, null);
@@ -142,34 +151,59 @@ public class ScoreKeeping extends AppCompatActivity {
 
 
 
+        if(type.equals("1")) {
+            for (int j = 0; j < 5; j++) {
+                DatabaseReference ref = mDatabase.child("data").child(getIntent().getStringExtra(usernameStrings[j]));
+                final int j2 = j;
+                ref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        players.get(j2).prevSingleMade = Integer.parseInt(dataSnapshot.child("singleMade").getValue().toString());
+                        players.get(j2).prevSingleLeft = Integer.parseInt(dataSnapshot.child("singleLeft").getValue().toString());
+                        players.get(j2).prevSplitMade = Integer.parseInt(dataSnapshot.child("splitMade").getValue().toString());
+                        players.get(j2).prevSplitLeft = Integer.parseInt(dataSnapshot.child("splitLeft").getValue().toString());
+                        players.get(j2).prevMultiMade = Integer.parseInt(dataSnapshot.child("multiMade").getValue().toString());
+                        players.get(j2).prevMultiLeft = Integer.parseInt(dataSnapshot.child("multiLeft").getValue().toString());
+                        players.get(j2).prevStrikes = Integer.parseInt(dataSnapshot.child("numStrikes").getValue().toString());
+                        players.get(j2).prevTotal = Integer.parseInt(dataSnapshot.child("cumulativeScore").getValue().toString());
+                        players.get(j2).numberGames = Integer.parseInt(dataSnapshot.child("numGames").getValue().toString());
+                        players.get(j2).ballsThrown = Integer.parseInt(dataSnapshot.child("ballsThrown").getValue().toString());
+                        players.get(j2).highestScore = Integer.parseInt(dataSnapshot.child("highScore").getValue().toString());
+                        players.get(j2).prevFilled = Integer.parseInt(dataSnapshot.child("filledFrames").getValue().toString());
+                    }
 
-        /**
-        DatabaseReference ref = mDatabase.child("data").child(getIntent().getStringExtra("username"));
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                prevSingleMade = Integer.parseInt(dataSnapshot.child("singleMade").getValue().toString());
-                prevSingleLeft = Integer.parseInt(dataSnapshot.child("singleLeft").getValue().toString());
-                prevSplitMade = Integer.parseInt(dataSnapshot.child("splitMade").getValue().toString());
-                prevSplitLeft = Integer.parseInt(dataSnapshot.child("splitLeft").getValue().toString());
-                prevMultiMade = Integer.parseInt(dataSnapshot.child("multiMade").getValue().toString());
-                prevMultiLeft = Integer.parseInt(dataSnapshot.child("multiLeft").getValue().toString());
-                prevStrikes = Integer.parseInt(dataSnapshot.child("numStrikes").getValue().toString());
-                prevTotal = Integer.parseInt(dataSnapshot.child("cumulativeScore").getValue().toString());
-                numGames = Integer.parseInt(dataSnapshot.child("numGames").getValue().toString());
-                ballsThrown = Integer.parseInt(dataSnapshot.child("ballsThrown").getValue().toString());
-                highScore = Integer.parseInt(dataSnapshot.child("highScore").getValue().toString());
-                prevFilled = Integer.parseInt(dataSnapshot.child("filledFrames").getValue().toString());
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
             }
+        }
+        else {
+                DatabaseReference ref = mDatabase.child("data").child(getIntent().getStringExtra(usernameStrings[0]));
+                ref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        players.get(0).prevSingleMade = Integer.parseInt(dataSnapshot.child("singleMade").getValue().toString());
+                        players.get(0).prevSingleLeft = Integer.parseInt(dataSnapshot.child("singleLeft").getValue().toString());
+                        players.get(0).prevSplitMade = Integer.parseInt(dataSnapshot.child("splitMade").getValue().toString());
+                        players.get(0).prevSplitLeft = Integer.parseInt(dataSnapshot.child("splitLeft").getValue().toString());
+                        players.get(0).prevMultiMade = Integer.parseInt(dataSnapshot.child("multiMade").getValue().toString());
+                        players.get(0).prevMultiLeft = Integer.parseInt(dataSnapshot.child("multiLeft").getValue().toString());
+                        players.get(0).prevStrikes = Integer.parseInt(dataSnapshot.child("numStrikes").getValue().toString());
+                        players.get(0).prevTotal = Integer.parseInt(dataSnapshot.child("cumulativeScore").getValue().toString());
+                        players.get(0).numberGames = Integer.parseInt(dataSnapshot.child("numGames").getValue().toString());
+                        players.get(0).ballsThrown = Integer.parseInt(dataSnapshot.child("ballsThrown").getValue().toString());
+                        players.get(0).highestScore = Integer.parseInt(dataSnapshot.child("highScore").getValue().toString());
+                        players.get(0).prevFilled = Integer.parseInt(dataSnapshot.child("filledFrames").getValue().toString());
+                    }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
 
-            }
-        });
-**/
-
-
+                    }
+                });
+        }
 
 
         //Access all TextViews in the scorekeeping activity
