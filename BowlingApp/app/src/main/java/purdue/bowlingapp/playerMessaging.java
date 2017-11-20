@@ -16,6 +16,8 @@ public class playerMessaging extends AppCompatActivity {
     Button inbox;
     Button sendMessage;
     Button coachMessaging;
+    Button groupMessaging;
+
 
 
     @Override
@@ -30,6 +32,8 @@ public class playerMessaging extends AppCompatActivity {
         inbox = (Button) findViewById(R.id.inbox);
         sendMessage = (Button) findViewById(R.id.sendMessage);
         coachMessaging = (Button) findViewById(R.id.coachMessage);
+        groupMessaging = (Button) findViewById(R.id.groupMessage);
+
 
 
         inbox.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +58,15 @@ public class playerMessaging extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(playerMessaging.this, coachMessageActivity.class);
+                i.putExtra("username", username);
+                startActivity(i);
+            }
+        });
+
+        groupMessaging.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(playerMessaging.this, groupMessageActivity.class);
                 i.putExtra("username", username);
                 startActivity(i);
             }
