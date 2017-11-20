@@ -22,6 +22,8 @@ public class EventHubActivity extends AppCompatActivity {
     Button editEventButton;
     Button requestButton;
     Button checkRequestButton;
+    Button viewEvents;
+
 
 
     @Override
@@ -35,6 +37,7 @@ public class EventHubActivity extends AppCompatActivity {
         editEventButton = (Button) findViewById(R.id.editEventButton);
         requestButton = (Button) findViewById(R.id.requestButton);
         checkRequestButton = (Button) findViewById(R.id.checkRequestsButton);
+        viewEvents = (Button) findViewById(R.id.viewEvents);
 
 
         createEventButton.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +71,15 @@ public class EventHubActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(EventHubActivity.this, requestEventResponseActivity.class);
+                i.putExtra("username", username);
+                startActivity(i);
+            }
+        });
+
+        viewEvents.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(EventHubActivity.this, eventViewerActivity.class);
                 i.putExtra("username", username);
                 startActivity(i);
             }
