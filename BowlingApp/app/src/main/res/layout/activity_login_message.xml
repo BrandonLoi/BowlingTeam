@@ -257,4 +257,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.498" />
 
+    <Button
+        android:id="@+id/emailButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Emails"
+        android:layout_marginBottom="6dp"
+        app:layout_constraintBottom_toTopOf="@+id/allowPlayerEditsButton"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline4"
+        app:layout_constraintHorizontal_bias="0.565" />
+
 </android.support.constraint.ConstraintLayout>

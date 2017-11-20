@@ -39,6 +39,8 @@
         <activity android:name=".groupStatisticsActivity" />
         <activity android:name=".AllowPlayerEditsActivity" />
         <activity android:name=".AllowPlayerEditsLookupActivity" />
+        <activity android:name=".CoachEmailActivity" />
+        <activity android:name=".PlayerEmailActivity" />
         <activity
             android:name=".groupRankActivity"
             android:label="@string/title_activity_group_rank"

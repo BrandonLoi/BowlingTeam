@@ -31,6 +31,7 @@ public class LoginMessageActivity extends AppCompatActivity {
     Button allowPlayerEditsButton;
     Button eventHubButton;
     Button messagesButton;
+    Button emailButton;
 
     Button annoucementButton;
 
@@ -57,6 +58,7 @@ public class LoginMessageActivity extends AppCompatActivity {
         allowPlayerEditsButton = (Button) findViewById(R.id.allowPlayerEditsButton);
         eventHubButton = (Button) findViewById(R.id.eventHubButton);
         messagesButton = (Button) findViewById(R.id.messagesButton);
+        emailButton = (Button) findViewById(R.id.emailButton);
 
         annoucementButton = (Button) findViewById(R.id.annouceButton);
 
@@ -258,11 +260,42 @@ public class LoginMessageActivity extends AppCompatActivity {
                 });
             }
         });
+
         annoucementButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(LoginMessageActivity.this, announcementActivity.class);
                 startActivity(i);
+            }
+        });
+
+        emailButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                final FirebaseDatabase database = FirebaseDatabase.getInstance();
+                String currDataPath = "coaches";
+                final DatabaseReference coach = database.getReference(currDataPath);
+
+                coach.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.hasChild(username)) {
+                            Intent i = new Intent(LoginMessageActivity.this, CoachEmailActivity.class);
+                            i.putExtra("username", username);
+                            startActivity(i);
+                        } else {
+                            Intent i = new Intent(LoginMessageActivity.this, PlayerEmailActivity.class);
+                            i.putExtra("username", username);
+                            startActivity(i);
+                        }
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        System.out.println("Retrieving coach status failed: " +
+                                databaseError.getCode());
+                    }
+                });
             }
         });
     }
