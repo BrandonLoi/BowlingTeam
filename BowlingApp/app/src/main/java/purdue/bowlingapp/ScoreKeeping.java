@@ -108,12 +108,12 @@ public class ScoreKeeping extends AppCompatActivity {
         String headerText = "New game for: " + i.getStringExtra("username");
         header.setText(headerText);
 
-        String type = i.getStringExtra("type");
+        final String type = i.getStringExtra("type");
         if(type.equals("0")) {
             usernameStrings = new String[1];
             usernameStrings[0] = "username";
             player = i.getStringExtra(usernameStrings[0]);
-            players = new ArrayList<Player>();
+            players = new ArrayList<>();
             for (int j = 0; j < 10; j++) {
                 players.add(new Player(player, null));
             }
@@ -130,7 +130,7 @@ public class ScoreKeeping extends AppCompatActivity {
             String player3 = i.getStringExtra(usernameStrings[2]);
             String player4 = i.getStringExtra(usernameStrings[3]);
             String player5 = i.getStringExtra(usernameStrings[4]);
-            players = new ArrayList<Player>();
+            players = new ArrayList<>();
             Player p1 = new Player(player, null);
             Player p2 = new Player(player2, null);
             Player p3 = new Player(player3, null);
@@ -607,7 +607,41 @@ public class ScoreKeeping extends AppCompatActivity {
                     score.setText(out);
                     return;
                 }
+                int i = 0;
+                for(; i < frames.size(); i++) {
+                    Frame f = frames.get(i);
+                    if(f.getFirstThrow() == '9') players.get(i).prevSingleLeft++;
+                    if(f.getFirstThrow() == '9' && f.getSecondThrow() == '/') players.get(i).prevSingleMade++;
+                    if(f.isSplit()) players.get(i).prevSplitLeft++;
+                    if(f.isSplit() && f.getSecondThrow() == '/') players.get(i).prevSplitMade++;
+                    if(f.isMakeable() && f.getFirstThrow() != 'X' && f.getFirstThrow() != '9') players.get(i).prevMultiLeft++;
+                    if(f.isMakeable() && f.getFirstThrow() != 'X' && f.getFirstThrow() != '9' && f.getSecondThrow() == '/') players.get(i).prevMultiMade++;
+                    if(f.getFirstThrow() == 'X' || f.getSecondThrow() == '/') players.get(i).prevFilled++;
+                    if(f.getFirstThrow() == 'X') players.get(i).prevStrikes++;
+                    players.get(i).ballsThrown++;
+                    if(f.getFirstThrow() != 'X') players.get(i).ballsThrown++;
+                    players.get(i).framesThrown++;
+                }
+                TenthFrame tenth = g.getTenth();
+                if(tenth.getFirstThrow() == '9' || tenth.getSecondThrow() == '9') players.get(i).prevSingleLeft++;
+                if(tenth.getFirstThrow() == '9' && tenth.getSecondThrow() == '/' || tenth.getSecondThrow() == '9' && tenth.getThirdThrow() == '/') players.get(i).prevSingleMade++;
+                if(tenth.isSplit()) players.get(i).prevSplitLeft++;
+                if(tenth.isSplit() && tenth.getSecondThrow() == '/' || tenth.getThirdThrow() == '/') players.get(i).prevSplitMade++;
+                if(tenth.isMakeable()) players.get(i).prevMultiLeft++;
+                if(tenth.isMakeable() && (tenth.getSecondThrow() != '/' || tenth.getThirdThrow() != '/') && (tenth.getFirstThrow() != '9' || tenth.getSecondThrow() != '9')) players.get(i).prevMultiMade++;
+                if(tenth.getFirstThrow() == 'X' || tenth.getSecondThrow() == '/') players.get(i).prevFilled++;
+                if(tenth.getFirstThrow() == 'X') players.get(i).prevStrikes++;
+                if(tenth.getSecondThrow() == 'X') players.get(i).prevStrikes++;
+                if(tenth.getThirdThrow() == 'X') players.get(i).prevStrikes++;
+                players.get(i).ballsThrown += 2;
+                if(tenth.getFirstThrow() == 'X' || tenth.getSecondThrow() == '/') players.get(i).ballsThrown++;
+                players.get(i).framesThrown++;
 
+                int scoreTemp = g.setScore();
+
+                if(type.equals("0")) {
+                    players.get(0).prevTotal += scoreTemp;
+                }
 
                 final int singleLeft = g.getSinglePinLeft();
                 final int singleMade = g.getSinglePinMade();
@@ -617,138 +651,58 @@ public class ScoreKeeping extends AppCompatActivity {
                 final int multiMade = g.getMultiMade();
                 final int newBallsThrown = g.getBallsThrown();
                 final int strike = g.getStrike();
-                final int scoreTemp = g.setScore();
+                final int scoreTemp2 = g.setScore();
                 final int filledFrames = g.getFilledFrame();
 
 
-
-                // ArrayList<Player> players = g.getPlayers();
-
-        //        for(int i = 0; i < singleLeft.length; i++) {
-          //          if(singleLeft[i] == 1) players.get(i).singlePinLeft++;
-            //    }
-        //        for(int i = 0; i < singleMade.length; i++) {
-         //           if(singleMade[i] == 1) players.get(i).singlePinMade++;
-         //       }
-         //       for(int i = 0; i < splitLeft.length; i++) {
-         //           if(splitLeft[i] == 1) players.get(i).splitsLeft++;
-         //       }
-         //       for(int i = 0; i < splitMade.length; i++) {
-         //           if(splitMade[i] == 1) players.get(i).splitsMade++;
-         //       }
-         //       for(int i = 0; i < splitMade.length; i++) {
-         //           if(splitMade[i] == 1) players.get(i).multiPinsMade++;
-         //       }
-         //       for(int i = 0; i < multiLeft.length; i++) {
-         //           if(multiLeft[i] == 1) players.get(i).multiPinsLeft++;
-         //       }
-         //       for(int i = 0; i < strike.length; i++) {
-         //           if(strike[i] == 1) players.get(i).strikes++;
-         //       }
-          //      for(int i = 0; i < filledFrames.length; i++) {
-         //           if(filledFrames[i] == 1) players.get(i).filledFramesCount++;
-         //       }
-          //      for(int i = 0; i < players.size(); i++) {
-         //           players.get(i).newBallsThrown++;
-         //       }
-         //       players.get(0).scoreTemp = scoreTemp;
-
-
-
-
-
-
-    /**            prevSingleLeft += singleLeft;
-                prevSingleMade += singleMade;
-                prevSplitLeft += splitLeft;
-                prevSplitMade += splitMade;
-                prevMultiLeft += multiLeft;
-                prevMultiMade += multiMade;
-                prevStrikes += strike;
-                prevTotal += scoreTemp;
-                prevFilled += filledFrames;
-                numGames++;
-                ballsThrown += newBallsThrown;
-                //update high score
-                if (scoreTemp > highScore)
-                    highScore = scoreTemp;
+                if (scoreTemp > players.get(0).highestScore && type.equals("0"))
+                    players.get(0).highestScore = scoreTemp;
                 //update average score
-                Integer avg = (int)((double)prevTotal/(double)numGames);
-                String avgTemp = avg.toString();
-                avgTemp = avgTemp.substring(0,Math.min(5,avgTemp.length()));
-                //update filled frame percentage
-                Double filledpct = (double)prevFilled/(double)(numGames*10);
-                filledpct *= 100;
-                String filledpctTemp = filledpct.toString();
-                filledpctTemp = filledpctTemp.substring(0,Math.min(5,filledpctTemp.length()));
-                //update single pin percentage
-                Double singlePct = (double)prevSingleMade/(double)prevSingleLeft;
-                singlePct *= 100;
-                String singleTemp = singlePct.toString();
-                singleTemp = singleTemp.substring(0,Math.min(5,singleTemp.length()));
-                if(prevSingleLeft == 0)
-                    singleTemp = "-1";
-                //update strike percentage
-                Double strikePct = (double)prevStrikes/(double)ballsThrown;
-                strikePct *= 100;
-                String strikeTemp = strikePct.toString();
-                strikeTemp = strikeTemp.substring(0,Math.min(5,strikeTemp.length()));
-
-                DatabaseReference ref = mDatabase.child("data").child(getIntent().getStringExtra("username"));
-          //      ArrayList<DatabaseReference> refs = new ArrayList<DatabaseReference>();
-         //       for(int i = 0; i < players.size(); i++) {
-         //           refs.add(mDatabase.child("data").child(players.get(i).getUsername()));
-          //      }
-         //       for(int i = 0; i < refs.size(); i++) {
-          //          DatabaseReference ref = refs.get(i);
-          //          ref.child("singleLeft").setValue(prevSingleLeft.toString());
-          //          ref.child("singleMade").setValue(prevSingleMade.toString());
-          //          ref.child("splitLeft").setValue(prevSplitLeft.toString());
-          //          ref.child("splitMade").setValue(prevSplitMade.toString());
-          //          ref.child("multiLeft").setValue(prevMultiLeft.toString());
-           //         ref.child("multiMade").setValue(prevMultiMade.toString());
-          //          ref.child("numStrikes").setValue(prevStrikes.toString());
-          //          ref.child("cumulativeScore").setValue(prevTotal.toString());
-          //          ref.child("numGames").setValue(numGames.toString());
-          //          ref.child("ballsThrown").setValue(ballsThrown.toString());
-         //           ref.child("filledFrames").setValue(prevFilled.toString());
-         //           ref.child("highScore").setValue(highScore.toString());
-          //          ref.child("avgScore").setValue(avgTemp);
-         //           ref.child("filledPercentage").setValue(filledpctTemp);
-         //           ref.child("singlePinPercentage").setValue(singleTemp);
-         //           ref.child("strikePercentage").setValue(strikeTemp);
-         //       }
-
-
-                ArrayList<String> truePlayers = new ArrayList<>();
-                for(String p : players) {
-                    if(!truePlayers.contains(p))
-                        truePlayers.add(p);
+                String avgTemp = null;
+                if(type.equals("0")) {
+                    Integer avg = (int) ((double) players.get(0).prevTotal / (double) players.get(0).numberGames);
+                    avgTemp = avg.toString();
+                    avgTemp = avgTemp.substring(0, Math.min(5, avgTemp.length()));
                 }
 
-                for(String p : truePlayers) {
-                    ref = mDatabase.child("data").child(p);
-                    ref.child("singleLeft").setValue(prevSingleLeft.toString());
-                    ref.child("singleMade").setValue(prevSingleMade.toString());
-                    ref.child("splitLeft").setValue(prevSplitLeft.toString());
-                    ref.child("splitMade").setValue(prevSplitMade.toString());
-                    ref.child("multiLeft").setValue(prevMultiLeft.toString());
-                    ref.child("multiMade").setValue(prevMultiMade.toString());
-                    ref.child("numStrikes").setValue(prevStrikes.toString());
-                    ref.child("cumulativeScore").setValue(prevTotal.toString());
-                    ref.child("numGames").setValue(numGames.toString());
-                    ref.child("ballsThrown").setValue(ballsThrown.toString());
-                    ref.child("filledFrames").setValue(prevFilled.toString());
-                    ref.child("highScore").setValue(highScore.toString());
-                    ref.child("avgScore").setValue(avgTemp);
+                int j = 0;
+                for(Player player : players) {
+                    //update filled frame percentage
+                    Double filledpct = (double) player.prevFilled / (double) (player.framesThrown);
+                    filledpct *= 100;
+                    String filledpctTemp = filledpct.toString();
+                    filledpctTemp = filledpctTemp.substring(0, Math.min(5, filledpctTemp.length()));
+                    //update single pin percentage
+                    Double singlePct = (double) player.prevSingleMade / (double) player.prevSingleLeft;
+                    singlePct *= 100;
+                    String singleTemp = singlePct.toString();
+                    singleTemp = singleTemp.substring(0, Math.min(5, singleTemp.length()));
+                    if (player.prevSingleLeft == 0)
+                        singleTemp = "-1";
+                    //update strike percentage
+                    Double strikePct = (double) player.prevStrikes / (double) player.ballsThrown;
+                    strikePct *= 100;
+                    String strikeTemp = strikePct.toString();
+                    strikeTemp = strikeTemp.substring(0, Math.min(5, strikeTemp.length()));
+                    DatabaseReference ref = mDatabase.child("data").child(getIntent().getStringExtra(usernameStrings[j]));
+                    ref.child("singleLeft").setValue(player.prevSingleLeft.toString());
+                    ref.child("singleMade").setValue(player.prevSingleMade.toString());
+                    ref.child("splitLeft").setValue(player.prevSplitLeft.toString());
+                    ref.child("splitMade").setValue(player.prevSplitMade.toString());
+                    ref.child("multiLeft").setValue(player.prevMultiLeft.toString());
+                    ref.child("multiMade").setValue(player.prevMultiMade.toString());
+                    ref.child("numStrikes").setValue(player.prevStrikes.toString());
+                    ref.child("cumulativeScore").setValue(player.prevTotal.toString());
+                    ref.child("numGames").setValue(player.numberGames.toString());
+                    ref.child("ballsThrown").setValue(player.ballsThrown.toString());
+                    ref.child("filledFrames").setValue(player.prevFilled.toString());
+                    ref.child("highScore").setValue(player.highestScore.toString());
+                    if(avgTemp != null) ref.child("avgScore").setValue(avgTemp);
                     ref.child("filledPercentage").setValue(filledpctTemp);
                     ref.child("singlePinPercentage").setValue(singleTemp);
                     ref.child("strikePercentage").setValue(strikeTemp);
+                    j++;
                 }
-
-
-     **/
-
 
                 /*
                    Update live tournament stats
@@ -769,13 +723,13 @@ public class ScoreKeeping extends AppCompatActivity {
                             tournamentPrevMultiLeft += multiLeft;
                             tournamentPrevMultiMade += multiMade;
                             tournamentPrevStrikes += strike;
-                            tournamentPrevTotal += scoreTemp;
+                            tournamentPrevTotal += scoreTemp2;
                             tournamentPrevFilled += filledFrames;
                             tournamentNumGames++;
                             tournamentBallsThrown += newBallsThrown;
                             //update high score
-                            if (scoreTemp > tournamentHighScore)
-                                tournamentHighScore = scoreTemp;
+                            if (scoreTemp2 > tournamentHighScore)
+                                tournamentHighScore = scoreTemp2;
                             //update average score
                             Integer tournamentAvg = (int)((double)tournamentPrevTotal/(double)tournamentNumGames);
                             String tournamentAvgTemp = tournamentAvg.toString();

@@ -238,7 +238,9 @@ public class BakerGame {
             return this.score;
         }
 
-        public static void main(String[] args) {
+    /**
+
+    public static void main(String[] args) {
             Frame f1 = new Frame('0','7');
             Frame f2 = new Frame('0','9');
             Frame f3 = new Frame('7','2');
@@ -272,4 +274,5 @@ public class BakerGame {
             System.out.println(g.getPlayers());
 
         }
+     **/
 }

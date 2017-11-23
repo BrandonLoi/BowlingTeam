@@ -40,6 +40,7 @@ public class Player {
     Integer ballsThrown;
     Integer highestScore;
     Integer prevFilled;
+    Integer framesThrown;
 
 //    public int multiPinsLeft;
  //   public int multiPinsMade;
