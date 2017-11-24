@@ -98,4 +98,5 @@
     <string name="title_activity_group_ranked_list">groupRankedList</string>
     <string name="title_activity_player_messaging">playerMessaging</string>
     <string name="title_activity_announcement">announcementActivity</string>
+    <string name="title_activity_scorekeeping_type_selection">ScorekeepingTypeSelection</string>
 </resources>

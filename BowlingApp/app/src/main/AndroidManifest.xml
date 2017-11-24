@@ -73,7 +73,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".coachMessageActivity" />
         <activity android:name=".groupMessageActivity" />
-        <activity android:name=".eventViewerActivity"></activity>
+        <activity android:name=".eventViewerActivity" />
+        <activity android:name=".PinInput" />
+        <activity android:name=".ScorekeepingTypeSelection"></activity>
     </application>
 
 </manifest>
