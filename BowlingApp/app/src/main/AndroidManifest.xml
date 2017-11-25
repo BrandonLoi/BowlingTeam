@@ -75,7 +75,11 @@
         <activity android:name=".groupMessageActivity" />
         <activity android:name=".eventViewerActivity" />
         <activity android:name=".PinInput" />
-        <activity android:name=".ScorekeepingTypeSelection"></activity>
+        <activity android:name=".ScorekeepingTypeSelection" />
+        <activity
+            android:name=".calendarAddEvent"
+            android:label="@string/title_activity_calendar_add_event"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

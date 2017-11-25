@@ -34,6 +34,7 @@ public class LoginMessageActivity extends AppCompatActivity {
     Button emailButton;
 
     Button annoucementButton;
+    Button testButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,7 @@ public class LoginMessageActivity extends AppCompatActivity {
         emailButton = (Button) findViewById(R.id.emailButton);
 
         annoucementButton = (Button) findViewById(R.id.annouceButton);
+        testButton = (Button) findViewById(R.id.testButton);
 
 
         compareStatsButton = (Button) findViewById(R.id.compareStatsButton);
@@ -265,6 +267,15 @@ public class LoginMessageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(LoginMessageActivity.this, announcementActivity.class);
+                startActivity(i);
+            }
+        });
+
+
+        testButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(LoginMessageActivity.this, calendarAddEvent.class);
                 startActivity(i);
             }
         });

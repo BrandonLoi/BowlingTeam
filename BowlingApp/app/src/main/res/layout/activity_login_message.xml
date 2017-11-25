@@ -4,49 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="purdue.bowlingapp.LoginMessageActivity">
+    tools:context="purdue.bowlingapp.LoginMessageActivity"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
 
     <TextView
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:text="Welcome"
         android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/textView2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.086"
-        android:layout_marginTop="8dp"
-        android:id="@+id/textView2" />
+        android:layout_marginTop="56dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/testButton"
+        app:layout_constraintHorizontal_bias="0.078" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="272dp"
         android:layout_height="45dp"
-        android:layout_marginTop="8dp"
         android:text="temp"
         android:textAlignment="center"
         android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.03"
-        app:layout_constraintHorizontal_bias="0.505" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
         android:id="@+id/continueButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:text="My Stats"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/compareStatsButton"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintLeft_toLeftOf="parent"
+        tools:layout_editor_absoluteY="339dp"
         app:layout_constraintRight_toLeftOf="@+id/guideline4"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp" />
 
@@ -54,15 +50,14 @@
         android:id="@+id/compareStatsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="72dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:text="Compare Stats"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/groupStatsButton"
-        app:layout_constraintHorizontal_bias="0.48"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/eventHubButton"
+        android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/guideline4"
+        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp" />
 
@@ -72,9 +67,8 @@
         android:layout_height="wrap_content"
         android:text="Create Group"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/guideline4" />
+        tools:layout_editor_absoluteY="511dp"
+        tools:layout_editor_absoluteX="90dp" />
 
     <Button
         android:id="@+id/groupStatsButton"
@@ -82,9 +76,8 @@
         android:layout_height="wrap_content"
         android:text="Group Statistics"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/createGroupButton"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/guideline4" />
+        tools:layout_editor_absoluteY="511dp"
+        tools:layout_editor_absoluteX="90dp" />
 
     <Button
         android:id="@+id/editGroupButton"
@@ -92,51 +85,49 @@
         android:layout_height="wrap_content"
         android:text="Edit Groups"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="@+id/guideline4"
-        app:layout_constraintRight_toRightOf="parent" />
+        tools:layout_editor_absoluteY="511dp"
+        tools:layout_editor_absoluteX="270dp" />
 
     <Button
         android:id="@+id/groupsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
         android:text="Groups"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="@+id/guideline4"
+        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ranking"
-        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp" />
 
     <Button
         android:id="@+id/editPlayerStats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:layout_marginRight="8dp"
         android:text="Edit a Player's Stats"
         android:visibility="visible"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/ranking"
-        app:layout_constraintHorizontal_bias="0.625"
+        android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="@+id/guideline4"
+        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp" />
 
     <Button
         android:id="@+id/ranking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="72dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:text="View rankings"
-        app:layout_constraintBottom_toTopOf="@+id/editGroupButton"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/groupsButton"
+        android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="@+id/guideline4"
+        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp" />
@@ -145,13 +136,13 @@
         android:id="@+id/scoreKeepingButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:text="Add a game"
-        app:layout_constraintBottom_toTopOf="@+id/editPlayerStats"
-        app:layout_constraintHorizontal_bias="0.491"
+        android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="@+id/guideline4"
+        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/editPlayerStats"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp" />
 
@@ -170,24 +161,24 @@
         android:layout_height="wrap_content"
         android:text="Merge Groups"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/continueButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.143"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteX="51dp" />
+        tools:layout_editor_absoluteX="180dp"
+        tools:layout_editor_absoluteY="339dp" />
 
     <Button
         android:id="@+id/liveTournamentButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:text="Live Tournament"
-        app:layout_constraintBottom_toTopOf="@+id/continueButton"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toRightOf="@+id/mergeGroupsButton"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginLeft="32dp" />
+        tools:layout_editor_absoluteY="291dp"
+        app:layout_constraintRight_toLeftOf="@+id/guideline4"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <Button
 
@@ -199,6 +190,7 @@
         app:layout_constraintLeft_toLeftOf="@+id/guideline4"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/scoreKeepingButton"
         android:layout_marginStart="8dp"
@@ -208,66 +200,73 @@
         android:id="@+id/eventHubButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
         android:text="Events"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/groupsButton"
-        app:layout_constraintHorizontal_bias="0.311"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/compareStatsButton"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="47dp" />
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/guideline4"
+        android:layout_marginRight="8dp"
+        app:layout_constraintHorizontal_bias="0.289"
+        app:layout_constraintBottom_toBottomOf="@+id/groupStatsButton"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <TextView
         android:id="@+id/annoucementText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:textSize="10sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        tools:layout_editor_absoluteY="169dp"
+        tools:layout_editor_absoluteX="180dp" />
 
     <Button
         android:id="@+id/annouceButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:text="Make Annoucement"
-        app:layout_constraintBottom_toTopOf="@+id/liveTournamentButton"
+        tools:layout_editor_absoluteY="235dp"
+        android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/guideline4" />
+        app:layout_constraintRight_toLeftOf="@+id/guideline4"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <Button
         android:id="@+id/messagesButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:text="messages"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/groupsButton"
-        app:layout_constraintHorizontal_bias="0.311"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/emailButton"
+        app:layout_constraintHorizontal_bias="0.325"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/annouceButton" />
 
     <Button
         android:id="@+id/emailButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Emails"
-        android:layout_marginBottom="6dp"
-        app:layout_constraintBottom_toTopOf="@+id/allowPlayerEditsButton"
-        android:layout_marginRight="8dp"
+        android:layout_marginRight="44dp"
         app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/allowPlayerEditsButton"
+        android:layout_marginEnd="44dp" />
+
+    <Button
+        android:id="@+id/testButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="@+id/guideline4"
-        app:layout_constraintHorizontal_bias="0.565" />
+        android:layout_marginTop="8dp"
+        android:text="Button"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="8dp" />
 
 </android.support.constraint.ConstraintLayout>
