@@ -16,24 +16,24 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginMessageActivity extends AppCompatActivity {
     String username;
-    Button button;
+    Button stats;
 
-    Button compareStatsButton;
-    Button editPlayerStats;
+    Button CommunicationButton;
+//    Button editPlayerStats;
 //    Button createGroupButton;
 //    Button editGroupButton;
-    Button rankingsButton;
+//    Button rankingsButton;
     Button scoreKeepingButton;
 //    Button groupStatsButton;
 //    Button mergeGroupsButton;
     Button liveTournamentButton;
     Button groupsButton;
-    Button allowPlayerEditsButton;
+//    Button allowPlayerEditsButton;
     Button eventHubButton;
-    Button messagesButton;
-    Button emailButton;
+//    Button messagesButton;
+//    Button emailButton;
 
-    Button annoucementButton;
+//    Button annoucementButton;
     Button testButton;
 
     @Override
@@ -47,8 +47,8 @@ public class LoginMessageActivity extends AppCompatActivity {
         username = textView.getText().toString();
         username = "" + username.substring(0, username.length() - 1);
 
-        button = (Button) findViewById(R.id.continueButton);
-        editPlayerStats = (Button) findViewById(R.id.editPlayerStats);
+        stats = (Button) findViewById(R.id.stats);
+//        editPlayerStats = (Button) findViewById(R.id.editPlayerStats);
 //        createGroupButton = (Button) findViewById(R.id.createGroupButton);
 //        editGroupButton = (Button) findViewById(R.id.editGroupButton);
         scoreKeepingButton = (Button) findViewById(R.id.scoreKeepingButton);
@@ -56,26 +56,27 @@ public class LoginMessageActivity extends AppCompatActivity {
 //        mergeGroupsButton = (Button) findViewById(R.id.mergeGroupsButton);
         liveTournamentButton = (Button) findViewById(R.id.liveTournamentButton);
         groupsButton = (Button) findViewById(R.id.groupsButton);
-        allowPlayerEditsButton = (Button) findViewById(R.id.allowPlayerEditsButton);
+//        allowPlayerEditsButton = (Button) findViewById(R.id.allowPlayerEditsButton);
         eventHubButton = (Button) findViewById(R.id.eventHubButton);
-        messagesButton = (Button) findViewById(R.id.messagesButton);
-        emailButton = (Button) findViewById(R.id.emailButton);
+//        messagesButton = (Button) findViewById(R.id.messagesButton);
+//        emailButton = (Button) findViewById(R.id.emailButton);
 
-        annoucementButton = (Button) findViewById(R.id.annouceButton);
+  //      annoucementButton = (Button) findViewById(R.id.annouceButton);
         testButton = (Button) findViewById(R.id.testButton);
 
 
-        compareStatsButton = (Button) findViewById(R.id.compareStatsButton);
-        rankingsButton = (Button) findViewById(R.id.ranking);
-        button.setOnClickListener(new View.OnClickListener() {
+        CommunicationButton = (Button) findViewById(R.id.communcationButton);
+    //    rankingsButton = (Button) findViewById(R.id.ranking);
+        stats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(LoginMessageActivity.this,
-                        StatisticsActivity.class);
+                        StatsHub.class);
                 i.putExtra("username", username);
                 startActivity(i);
             }
         });
+        /*
         rankingsButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -84,20 +85,12 @@ public class LoginMessageActivity extends AppCompatActivity {
                 i.putExtra("username", username);
                 startActivity(i);
             }
-        });
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(LoginMessageActivity.this, StatisticsActivity.class);
-                i.putExtra("username", username);
-                startActivity(i);
-            }
-        });
+        }); */
 
-        compareStatsButton.setOnClickListener(new View.OnClickListener() {
+        CommunicationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(LoginMessageActivity.this, CompareStatisticsLookupActivity.class);
+                Intent i = new Intent(LoginMessageActivity.this, CommunicationHub.class);
                 i.putExtra("username", username);
                 startActivity(i);
             }
@@ -111,7 +104,7 @@ public class LoginMessageActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
+/*
         messagesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -125,10 +118,7 @@ public class LoginMessageActivity extends AppCompatActivity {
         editPlayerStats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*
-                Intent i = new Intent(LoginMessageActivity.this, CoachChangeStatsLookupActivity.class);
-                startActivity(i);
-                */
+
 
                 final FirebaseDatabase database = FirebaseDatabase.getInstance();
                 String currDataPath = "coaches";
@@ -183,7 +173,7 @@ public class LoginMessageActivity extends AppCompatActivity {
                     }
                 });
             }
-        });
+        }); */
         groupsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -232,7 +222,7 @@ public class LoginMessageActivity extends AppCompatActivity {
                 });
             }
         });
-
+/*
         allowPlayerEditsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -271,7 +261,7 @@ public class LoginMessageActivity extends AppCompatActivity {
             }
         });
 
-
+*/
         testButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -279,7 +269,7 @@ public class LoginMessageActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
+/*
         emailButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -308,6 +298,6 @@ public class LoginMessageActivity extends AppCompatActivity {
                     }
                 });
             }
-        });
+        }); */
     }
 }

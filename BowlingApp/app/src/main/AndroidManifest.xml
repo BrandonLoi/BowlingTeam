@@ -79,7 +79,9 @@
         <activity
             android:name=".calendarAddEvent"
             android:label="@string/title_activity_calendar_add_event"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".StatsHub" />
+        <activity android:name=".CommunicationHub"></activity>
     </application>
 
 </manifest>
