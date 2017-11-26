@@ -38,13 +38,17 @@
         android:layout_height="wrap_content"
         android:text="My Stats"
         android:visibility="visible"
-        tools:layout_editor_absoluteY="339dp"
         app:layout_constraintRight_toLeftOf="@+id/guideline4"
         android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/liveTournamentButton"
+        app:layout_constraintHorizontal_bias="0.505"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/compareStatsButton" />
 
     <Button
         android:id="@+id/compareStatsButton"
@@ -172,13 +176,15 @@
         android:layout_height="wrap_content"
         android:text="Live Tournament"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="291dp"
         app:layout_constraintRight_toLeftOf="@+id/guideline4"
         android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/annouceButton"
+        app:layout_constraintHorizontal_bias="0.513" />
 
     <Button
 
@@ -243,9 +249,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/emailButton"
-        app:layout_constraintHorizontal_bias="0.325"
+        app:layout_constraintHorizontal_bias="0.322"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/annouceButton" />
+        app:layout_constraintBottom_toTopOf="@+id/annouceButton"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Button
         android:id="@+id/emailButton"
@@ -262,11 +270,13 @@
         android:id="@+id/testButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="2dp"
         android:layout_marginTop="8dp"
         android:text="Button"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="8dp" />
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView2" />
 
 </android.support.constraint.ConstraintLayout>
