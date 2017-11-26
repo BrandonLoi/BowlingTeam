@@ -60,6 +60,12 @@
             android:text="rankings"
             android:id="@+id/rankings"/>
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="graph"
+            android:id="@+id/graph"/>
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -27,6 +27,7 @@ public class StatsHub extends AppCompatActivity {
         Button compareStats = (Button) findViewById(R.id.compareStats);
         Button editStatsPermission = (Button) findViewById(R.id.editStatsPermission);
         Button rankingsButton = (Button) findViewById(R.id.rankings);
+        Button graph = (Button) findViewById(R.id.graph);
 
         myStats.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,6 +146,15 @@ public class StatsHub extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(StatsHub.this, RankingSelectionActivity.class);
                 i.putExtra("selection", "highScore");
+                i.putExtra("username", username);
+                startActivity(i);
+            }
+        });
+
+        graph.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(StatsHub.this, GraphDisplay.class);
                 i.putExtra("username", username);
                 startActivity(i);
             }
