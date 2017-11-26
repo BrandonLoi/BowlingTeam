@@ -39,6 +39,7 @@ public class eventCreateActivity extends AppCompatActivity {
         final String eventName = editText.getText().toString();
         final EditText editText2 = (EditText) findViewById(R.id.date);
         final String date = editText2.getText().toString();
+        final CheckBox checked = (CheckBox) findViewById(R.id.practice);
 
         final DatabaseReference myRef = mDatabase;
         ValueEventListener listen = new ValueEventListener() {
@@ -52,9 +53,19 @@ public class eventCreateActivity extends AppCompatActivity {
                 }
                 else {
                     //CREATE SUCCESS
+
                     if (dataSnapshot.child("coaches").hasChild(username)) {
-                        myRef.child("events").child(eventName).child("date").setValue(date);
-                        createFail("3");
+                        if (checked.isChecked()) {
+                            myRef.child("events").child(eventName).child("date").setValue(date);
+                            myRef.child("events").child(eventName).child("type").setValue("PRACTICE");
+                            createFail("3");
+                        }
+                        else {
+                            myRef.child("events").child(eventName).child("date").setValue(date);
+                            myRef.child("events").child(eventName).child("type").setValue("TOURNAMENT");
+                            createFail("3");
+                        }
+
                     }
                     else {
                             createFail("2");
