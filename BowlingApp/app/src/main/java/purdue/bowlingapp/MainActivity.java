@@ -31,13 +31,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void login(View view) {
-        clearError();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
         final EditText editText = (EditText) findViewById(R.id.usernameField);
         final EditText editText2 = (EditText) findViewById(R.id.passwordField);
-
         final String username = editText.getText().toString();
         final String password = editText2.getText().toString();
+        //for debugging without internet. remove later
+        if(username.equals("asdf") && password.equals("asdf")) {
+            login("asdf");
+        }
+
+        clearError();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
 
         DatabaseReference myRef = mDatabase.child("users");
         ValueEventListener listen = new ValueEventListener() {

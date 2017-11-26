@@ -8,11 +8,13 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.StringTokenizer;
 
 public class PinInput extends AppCompatActivity {
     private int frameCount = 0;
     private String[] pinsLeft = new String[21];
+    boolean[] splits = {false,false,false,false,false,false,false,false,false,false};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,16 +45,16 @@ public class PinInput extends AppCompatActivity {
 
         final TextView[] tvs = {f1b1,f1b2,f2b1,f2b2,f3b1,f3b2,f4b1,f4b2,f5b1,f5b2,f6b1,f6b2,f7b1,f7b2,f8b1,f8b2,f9b1,f9b2,f10b1,f10b2,f10b3};
 
-        CheckBox one = (CheckBox) findViewById(R.id.onePin);
-        CheckBox two = (CheckBox) findViewById(R.id.twoPin);
-        CheckBox three = (CheckBox) findViewById(R.id.threePin);
-        CheckBox four = (CheckBox) findViewById(R.id.fourPin);
-        CheckBox five = (CheckBox) findViewById(R.id.fivePin);
-        CheckBox six = (CheckBox) findViewById(R.id.sixPin);
-        CheckBox seven = (CheckBox) findViewById(R.id.sevenPin);
-        CheckBox eight = (CheckBox) findViewById(R.id.eightPin);
-        CheckBox nine = (CheckBox) findViewById(R.id.ninePin);
-        CheckBox ten = (CheckBox) findViewById(R.id.tenPin);
+        final CheckBox one = (CheckBox) findViewById(R.id.onePin);
+        final CheckBox two = (CheckBox) findViewById(R.id.twoPin);
+        final CheckBox three = (CheckBox) findViewById(R.id.threePin);
+        final CheckBox four = (CheckBox) findViewById(R.id.fourPin);
+        final CheckBox five = (CheckBox) findViewById(R.id.fivePin);
+        final CheckBox six = (CheckBox) findViewById(R.id.sixPin);
+        final CheckBox seven = (CheckBox) findViewById(R.id.sevenPin);
+        final CheckBox eight = (CheckBox) findViewById(R.id.eightPin);
+        final CheckBox nine = (CheckBox) findViewById(R.id.ninePin);
+        final CheckBox ten = (CheckBox) findViewById(R.id.tenPin);
 
         final CheckBox[] pins = {one,two,three,four,five,six,seven,eight,nine,ten};
 
@@ -64,7 +66,34 @@ public class PinInput extends AppCompatActivity {
             t.setText(" ");
         }
 
+        final Graph graph = new Graph(10);
+        graph.addEdge(0,1);
+        graph.addEdge(0,2);
+        graph.addEdge(0,4);
+        graph.addEdge(1,3);
+        graph.addEdge(1,4);
+        graph.addEdge(1,7);
+        graph.addEdge(2,4);
+        graph.addEdge(2,5);
+        graph.addEdge(2,8);
+        graph.addEdge(3,6);
+        graph.addEdge(3,7);
+        graph.addEdge(4,7);
+        graph.addEdge(4,8);
+        graph.addEdge(5,8);
+        graph.addEdge(5,9);
 
+        final HashMap<CheckBox,Integer> map = new HashMap<>(10);
+        map.put(one,0);
+        map.put(two,1);
+        map.put(three,2);
+        map.put(four,3);
+        map.put(five,4);
+        map.put(six,5);
+        map.put(seven,6);
+        map.put(eight,7);
+        map.put(nine,8);
+        map.put(ten,9);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +118,19 @@ public class PinInput extends AppCompatActivity {
                                 c.setChecked(false);
                         } else {
                             tvs[frameCount++].setText(""+count);
+                            if(!one.isChecked() && count != 9) {
+                                boolean split = false;
+                                DepthFirstSearch dfs = new DepthFirstSearch(graph,pins);
+                                for(CheckBox c : pins) {
+                                    if(c.isChecked() && !dfs.hasPathTo(map.get(c))) {
+                                        split = true;
+                                    }
+                                }
+                                if(split) {
+                                    tvs[frameCount - 1].setBackgroundColor(0xF2FF0000);
+                                    splits[(frameCount-1)/2] = true;
+                                }
+                            }
                         }
                     } else {
                         if(count == 10) {
@@ -187,6 +229,8 @@ public class PinInput extends AppCompatActivity {
                 } else {
                     tvs[--frameCount].setText(" ");
                 }
+                tvs[frameCount].setBackgroundColor(0x00FFFFFF);
+                score.setText("");
             }
         });
 
@@ -239,6 +283,7 @@ public class PinInput extends AppCompatActivity {
                     score.setText("Something went wrong... very wrong");
                     return;
                 }
+
                 Game g = new Game(frames, f10);
                 final int scoreTemp = g.setScore();
                 String out = scoreTemp + "";

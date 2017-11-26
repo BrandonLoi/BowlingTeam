@@ -1,5 +1,7 @@
 package purdue.bowlingapp;
 
+import android.widget.CheckBox;
+
 import java.util.ArrayList;
 
 /**
@@ -8,6 +10,7 @@ import java.util.ArrayList;
 
 public class Graph {
     //private ArrayList<ArrayList<Integer>> adj;
+    private ArrayList<CheckBox>[] checkAdj;
     private ArrayList<Integer>[] adj;
     private int E;
     private final int V;
