@@ -7,6 +7,12 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.StringTokenizer;
@@ -20,6 +26,35 @@ public class PinInput extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pin_input);
+
+        final String username = getIntent().getStringExtra("username");
+
+        final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+        final DatabaseReference ref1 = mDatabase.child("data").child(username);
+        ref1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(!dataSnapshot.hasChild("games")) {
+                    dataSnapshot.child("games").child("1").getRef().setValue("0");
+                    dataSnapshot.child("games").child("2").getRef().setValue("0");
+                    dataSnapshot.child("games").child("3").getRef().setValue("0");
+                    dataSnapshot.child("games").child("4").getRef().setValue("0");
+                    dataSnapshot.child("games").child("5").getRef().setValue("0");
+                    dataSnapshot.child("games").child("set").getRef().setValue("0");
+                } else {
+                    dataSnapshot.child("games").child("set").getRef().setValue("0");
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        final DatabaseReference ref = ref1.child("games");
+
+
         TextView f1b1 = (TextView) findViewById(R.id.f1FirstBall);
         TextView f1b2 = (TextView) findViewById(R.id.f1SecondBall);
         TextView f2b1 = (TextView) findViewById(R.id.f2FirstBall);
@@ -231,6 +266,7 @@ public class PinInput extends AppCompatActivity {
                 }
                 tvs[frameCount].setBackgroundColor(0x00FFFFFF);
                 score.setText("");
+                ref.child("set").setValue("0");
             }
         });
 
@@ -285,7 +321,30 @@ public class PinInput extends AppCompatActivity {
                 }
 
                 Game g = new Game(frames, f10);
-                final int scoreTemp = g.setScore();
+                final Integer scoreTemp = g.setScore();
+
+                ref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.child("set").getValue().toString().equals("0")) {
+                            ref.child("set").setValue("1");
+                            ref.child("1").setValue(dataSnapshot.child("2").getValue());
+                            ref.child("2").setValue(dataSnapshot.child("3").getValue());
+                            ref.child("3").setValue(dataSnapshot.child("4").getValue());
+                            ref.child("4").setValue(dataSnapshot.child("5").getValue());
+                            ref.child("5").setValue(scoreTemp.toString());
+                            ref.removeEventListener(this);
+                        } else {
+                            return;
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
                 String out = scoreTemp + "";
                 score.setText(out);
                 return;

@@ -196,6 +196,14 @@ public class ScoreKeeping extends AppCompatActivity {
                         players.get(0).ballsThrown = Integer.parseInt(dataSnapshot.child("ballsThrown").getValue().toString());
                         players.get(0).highestScore = Integer.parseInt(dataSnapshot.child("highScore").getValue().toString());
                         players.get(0).prevFilled = Integer.parseInt(dataSnapshot.child("filledFrames").getValue().toString());
+                        if(!dataSnapshot.hasChild("games")) {
+                            dataSnapshot.child("games").child("1").getRef().setValue("0");
+                            dataSnapshot.child("games").child("2").getRef().setValue("0");
+                            dataSnapshot.child("games").child("3").getRef().setValue("0");
+                            dataSnapshot.child("games").child("4").getRef().setValue("0");
+                            dataSnapshot.child("games").child("5").getRef().setValue("0");
+                            dataSnapshot.child("games").child("set").getRef().setValue("0");
+                        }
                     }
 
                     @Override
@@ -635,10 +643,17 @@ public class ScoreKeeping extends AppCompatActivity {
                 players.get(i).ballsThrown += 2;
                 if(tenth.getFirstThrow() == 'X' || tenth.getSecondThrow() == '/') players.get(i).ballsThrown++;
 
-                int scoreTemp = g.setScore();
+                Integer scoreTemp = g.setScore();
 
                 if(type.equals("0")) {
+                    //DatabaseReference ref = mDatabase.child("data").child(getIntent().getStringExtra(usernameStrings[0])).child("games");
+                    //ref.child("1").setValue(ref.child("2").toString());
+                    //ref.child("2").setValue(ref.child("3").toString());
+                    //ref.child("3").setValue(ref.child("4").toString());
+                    //ref.child("4").setValue(ref.child("5").toString());
+                    //ref.child("5").setValue(scoreTemp.toString());
                     players.get(0).prevTotal += scoreTemp;
+
                 }
 
                 final int singleLeft = g.getSinglePinLeft();
