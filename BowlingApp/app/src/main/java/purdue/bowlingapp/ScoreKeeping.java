@@ -32,7 +32,7 @@ public class ScoreKeeping extends AppCompatActivity {
     String[] usernameStrings;
 
     public DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-
+    final DatabaseReference mDatabase2 = mDatabase;
 
     // Variables used in updating live tournament stats
     String live = "0";
@@ -110,12 +110,15 @@ public class ScoreKeeping extends AppCompatActivity {
 
         final String type = i.getStringExtra("type");
         if(type.equals("0")) {
-            usernameStrings = new String[1];
-            usernameStrings[0] = "username";
+            usernameStrings = new String[10];
+            for(int j = 0; j < 10; j++) {
+                usernameStrings[j] = "username";
+            }
             player = i.getStringExtra(usernameStrings[0]);
+            Player p = new  Player(player, null);
             players = new ArrayList<>();
             for (int j = 0; j < 10; j++) {
-                players.add(new Player(player, null));
+                players.add(p);
             }
         }
         else {
@@ -125,6 +128,11 @@ public class ScoreKeeping extends AppCompatActivity {
             usernameStrings[2] = "username3";
             usernameStrings[3] = "username4";
             usernameStrings[4] = "username5";
+            usernameStrings[5] = "username";
+            usernameStrings[6] = "username2";
+            usernameStrings[7] = "username3";
+            usernameStrings[8] = "username4";
+            usernameStrings[9] = "username5";
             player = i.getStringExtra(usernameStrings[0]);
             String player2 = i.getStringExtra(usernameStrings[1]);
             String player3 = i.getStringExtra(usernameStrings[2]);
@@ -665,7 +673,6 @@ public class ScoreKeeping extends AppCompatActivity {
 
                 int j = 0;
                 for(Player player : players) {
-                    if(j < 5) {
                         //update filled frame percentage
                         int totalFrames = (player.prevStrikes + (player.prevSplitLeft + player.prevSingleLeft + player.prevMultiLeft));
                         Double filledpct = (double) player.prevFilled / (double) (totalFrames);
@@ -684,7 +691,8 @@ public class ScoreKeeping extends AppCompatActivity {
                         strikePct *= 100;
                         String strikeTemp = strikePct.toString();
                         strikeTemp = strikeTemp.substring(0, Math.min(5, strikeTemp.length()));
-                        DatabaseReference ref = mDatabase.child("data").child(getIntent().getStringExtra(usernameStrings[j]));
+                        String name = (getIntent().getStringExtra(usernameStrings[j]) != null) ? getIntent().getStringExtra(usernameStrings[j]) : usernameStrings[j];
+                        DatabaseReference ref = mDatabase.child("data").child(name);
                         ref.child("singleLeft").setValue(player.prevSingleLeft.toString());
                         ref.child("singleMade").setValue(player.prevSingleMade.toString());
                         ref.child("splitLeft").setValue(player.prevSplitLeft.toString());
@@ -697,12 +705,11 @@ public class ScoreKeeping extends AppCompatActivity {
                         ref.child("ballsThrown").setValue(player.ballsThrown.toString());
                         ref.child("filledFrames").setValue(player.prevFilled.toString());
                         ref.child("highScore").setValue(player.highestScore.toString());
-                        if (avgTemp != null) ref.child("avgScore").setValue(avgTemp);
+                        if (avgTemp != null && j == 0) ref.child("avgScore").setValue(avgTemp);
                         ref.child("filledPercentage").setValue(filledpctTemp);
                         ref.child("singlePinPercentage").setValue(singleTemp);
                         ref.child("strikePercentage").setValue(strikeTemp);
                         j++;
-                    }
                 }
 
                 /*
@@ -809,20 +816,41 @@ public class ScoreKeeping extends AppCompatActivity {
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             if (!dataSnapshot.hasChild(newusername)) {
                                 toast.show();
-                            }
-                            else {
+                            } else {
                                 TextView header = (TextView) findViewById(R.id.header);
                                 String headerText = "New game for: " + newusername;
                                 header.setText(headerText);
-                                System.out.println(players);
                                 player = newusername;
-                                for(int i = 0; i < 10 - (frameCount / 2); i++) {
-                              //      players[i] = player;
+                                Player newPlayer = new Player(player, null);
+                                for (int i = frameCount / 2; i < 10; i++) {
+                                    players.set(i, newPlayer);
+                                    usernameStrings[i] = newusername;
                                 }
-                                System.out.println(players);
+                                DatabaseReference ref = mDatabase2.child("data").child(getIntent().getStringExtra(usernameStrings[0]));
+                                ref.addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        players.get(frameCount / 2).prevSingleMade = Integer.parseInt(dataSnapshot.child("singleMade").getValue().toString());
+                                        players.get(frameCount / 2).prevSingleLeft = Integer.parseInt(dataSnapshot.child("singleLeft").getValue().toString());
+                                        players.get(frameCount / 2).prevSplitMade = Integer.parseInt(dataSnapshot.child("splitMade").getValue().toString());
+                                        players.get(frameCount / 2).prevSplitLeft = Integer.parseInt(dataSnapshot.child("splitLeft").getValue().toString());
+                                        players.get(frameCount / 2).prevMultiMade = Integer.parseInt(dataSnapshot.child("multiMade").getValue().toString());
+                                        players.get(frameCount / 2).prevMultiLeft = Integer.parseInt(dataSnapshot.child("multiLeft").getValue().toString());
+                                        players.get(frameCount / 2).prevStrikes = Integer.parseInt(dataSnapshot.child("numStrikes").getValue().toString());
+                                        players.get(frameCount / 2).prevTotal = Integer.parseInt(dataSnapshot.child("cumulativeScore").getValue().toString());
+                                        players.get(frameCount / 2).numberGames = Integer.parseInt(dataSnapshot.child("numGames").getValue().toString());
+                                        players.get(frameCount / 2).ballsThrown = Integer.parseInt(dataSnapshot.child("ballsThrown").getValue().toString());
+                                        players.get(frameCount / 2).highestScore = Integer.parseInt(dataSnapshot.child("highScore").getValue().toString());
+                                        players.get(frameCount / 2).prevFilled = Integer.parseInt(dataSnapshot.child("filledFrames").getValue().toString());
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+
+                                    }
+                                });
                             }
                         }
-
                         @Override
                       public void onCancelled(DatabaseError databaseError) {
                             //Required, but we don't use. Leave blank
