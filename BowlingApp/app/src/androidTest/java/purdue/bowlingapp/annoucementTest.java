@@ -26,6 +26,8 @@ public class annoucementTest {
         final DatabaseReference myRef = mDatabase.child("users");//.child(editText.toString());
 
 
+        //NOTE: created this following the guide of createUserTest. Need to redo in form of annoucement test
+
         ValueEventListener listen = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
