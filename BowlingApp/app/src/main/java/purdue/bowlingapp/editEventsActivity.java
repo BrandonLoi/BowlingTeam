@@ -193,6 +193,40 @@ public class editEventsActivity extends AppCompatActivity {
         myRef.addListenerForSingleValueEvent(listen);
     }
 
+    public void editType(View view) {
+        clearError();
+        final EditText editText = (EditText) findViewById(R.id.eventName);
+        final String eventName = editText.getText().toString();
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        final DatabaseReference myRef = mDatabase;
+        ValueEventListener listen = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.child("events").hasChild(eventName) && !(eventName.matches(""))) {
+                    if (dataSnapshot.child("events").child(eventName).child("type").equals("PRACTICE")) {
+                        myRef.child("events").child(eventName).child("type").setValue("TOURNAMENT");
+                        createFail("7");
+                    }
+                    else {
+                        myRef.child("events").child(eventName).child("type").setValue("PRACTICE");
+                        createFail("7");
+                    }
+                }
+                else {
+                    createFail("blah");
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                //Required, but we don't use. Leave blank
+            }
+        };
+        myRef.addListenerForSingleValueEvent(listen);
+    }
+
     public void createFail(String groupName) {
         TextView textView = (TextView) findViewById(R.id.errorMessage);
         if (groupName.matches("1")) {
@@ -212,6 +246,9 @@ public class editEventsActivity extends AppCompatActivity {
         }
         else if (groupName.matches("6")) {
             textView.setText("Error: No date input.");
+        }
+        else if (groupName.matches("7")) {
+            textView.setText("Type successfully changed.");
         }
         else {
             textView.setText("Error: Event does not exist.");
