@@ -50,10 +50,13 @@ public class CoachEmailActivity extends AppCompatActivity {
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             String listOfEmailAddresses = "";
                             for (DataSnapshot user : dataSnapshot.getChildren()) {
-                                if (user.hasChild("email")) {
-                                    String email = user.child("email").getValue().toString();
-                                    listOfEmailAddresses += email;
-                                    listOfEmailAddresses += "; ";
+                                if (user.hasChild("email") && user.hasChild("emailNotification")) {
+                                    String emailNotification = user.child("emailNotification").getValue().toString();
+                                    if (emailNotification.equals("1")) {
+                                        String email = user.child("email").getValue().toString();
+                                        listOfEmailAddresses += email;
+                                        listOfEmailAddresses += "; ";
+                                    }
                                 }
                             }
 
