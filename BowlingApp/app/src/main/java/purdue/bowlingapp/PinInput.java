@@ -23,7 +23,7 @@ public class PinInput extends AppCompatActivity {
     boolean[] splits = {false,false,false,false,false,false,false,false,false,false};
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pin_input);
 
