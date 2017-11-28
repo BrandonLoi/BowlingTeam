@@ -122,7 +122,7 @@ public class ScoreKeeping extends AppCompatActivity {
             }
         }
         else {
-            usernameStrings = new String[5];
+            usernameStrings = new String[10];
             usernameStrings[0] = "username";
             usernameStrings[1] = "username2";
             usernameStrings[2] = "username3";
