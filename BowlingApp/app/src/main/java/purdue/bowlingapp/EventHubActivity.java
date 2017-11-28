@@ -23,6 +23,8 @@ public class EventHubActivity extends AppCompatActivity {
     Button requestButton;
     Button checkRequestButton;
     Button viewEvents;
+    Button addCalendar;
+
 
 
 
@@ -38,6 +40,7 @@ public class EventHubActivity extends AppCompatActivity {
         requestButton = (Button) findViewById(R.id.requestButton);
         checkRequestButton = (Button) findViewById(R.id.checkRequestsButton);
         viewEvents = (Button) findViewById(R.id.viewEvents);
+        addCalendar = (Button) findViewById(R.id.calendarAdd);
 
 
         createEventButton.setOnClickListener(new View.OnClickListener() {
@@ -85,5 +88,13 @@ public class EventHubActivity extends AppCompatActivity {
             }
         });
 
+        addCalendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(EventHubActivity.this, calendarAddActivity.class);
+                i.putExtra("username", username);
+                startActivity(i);
+            }
+        });
     }
 }
