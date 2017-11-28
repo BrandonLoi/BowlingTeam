@@ -42,23 +42,48 @@ public class CommunicationHub extends AppCompatActivity {
                 String currDataPath = "coaches";
                 final DatabaseReference coach = database.getReference(currDataPath);
 
-                coach.addValueEventListener(new ValueEventListener() {
+                String currDataPath2 = "users";
+                DatabaseReference ref = database.getReference(currDataPath2);
+                final DatabaseReference userRef = ref.child(username);
+
+                userRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.hasChild(username)) {
-                            Intent i = new Intent(CommunicationHub.this, CoachEmailActivity.class);
-                            i.putExtra("username", username);
-                            startActivity(i);
+                    public void onDataChange(DataSnapshot dataSnapshot1) {
+
+                        String verified = dataSnapshot1.child("verification").getValue().toString();
+
+                        if (verified.equals("0")) {
+                            coach.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot2) {
+                                    if (dataSnapshot2.hasChild(username)) {
+                                        Intent i = new Intent(CommunicationHub.this, CoachEmailActivity.class);
+                                        i.putExtra("username", username);
+                                        startActivity(i);
+                                    } else {
+                                        Intent i = new Intent(CommunicationHub.this, PlayerEmailActivity.class);
+                                        i.putExtra("username", username);
+                                        startActivity(i);
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError2) {
+                                    System.out.println("Retrieving coach status failed: " +
+                                            databaseError2.getCode());
+                                }
+                            });
                         } else {
-                            Intent i = new Intent(CommunicationHub.this, PlayerEmailActivity.class);
+                            Intent i = new Intent(CommunicationHub.this, VerifyEmail.class);
                             i.putExtra("username", username);
                             startActivity(i);
                         }
                     }
+
                     @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        System.out.println("Retrieving coach status failed: " +
-                                databaseError.getCode());
+                    public void onCancelled(DatabaseError databaseError1) {
+                        System.out.println("Retrieving user status failed: " +
+                                databaseError1.getCode());
                     }
                 });
             }

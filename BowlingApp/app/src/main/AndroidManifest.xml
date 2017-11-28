@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="purdue.bowlingapp">
 
@@ -60,6 +61,7 @@
         <activity android:name=".GameTypeSelection" />
         <activity android:name=".SubstituteActivity" />
         <activity android:name=".BakerTeamSelection" />
+        <activity android:name=".VerifyEmail" />
         <activity
             android:name=".playerMessaging"
             android:label="@string/title_activity_player_messaging"
@@ -85,5 +87,5 @@
         <activity android:name=".GraphDisplay" />
         <activity android:name=".calendarAddActivity"></activity>
     </application>
-
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
