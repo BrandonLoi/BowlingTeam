@@ -16,6 +16,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     public DatabaseReference mDatabase;
@@ -119,6 +120,13 @@ public class MainActivity extends AppCompatActivity {
                     myRef2.child("ballsThrown").setValue("0");
                     myRef2.child("cumulativeScore").setValue("0");
                     myRef2.child("filledFrames").setValue("0");
+
+                    // For sending the verification email
+                    Random rand = new Random();
+                    int verificationNum = rand.nextInt(9999) + 1; // Random number from 1 to 9999
+                    myRef.child(username).child("verification").setValue(Integer.toString(verificationNum));
+                    sendEmail(email, verificationNum);
+
                     create(username);
                 }
             }
@@ -130,6 +138,21 @@ public class MainActivity extends AppCompatActivity {
         };
         myRef.addListenerForSingleValueEvent(listen);
 
+    }
+
+    // Sends verification email
+    private void sendEmail(String email, int verificationNum) {
+        //Getting content for email
+        String subject = "Verification Number";
+        String message = "Here is your verification number: " + verificationNum +
+                         "\nTo verify your email, please use the \"Email\" tab found in the \"Communication\" tab." +
+                         "\n\nThanks\n- Bowling Statistics Tracker\n";
+
+        //Creating SendMail object
+        SendMail sm = new SendMail(this, email, subject, message);
+
+        //Executing sendmail to send email
+        sm.execute();
     }
 
     public void login(String username) {

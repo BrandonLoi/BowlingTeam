@@ -18,7 +18,7 @@ public class createAccountSuccess extends AppCompatActivity {
         Intent intent = getIntent();
         String message = intent.getStringExtra(MainActivity.createSuccess);
         TextView textView = (TextView) findViewById(R.id.createMessage);
-        textView.setText(message + " was created!");
+        textView.setText(message + " was created! Please check your email for verification steps.");
     }
 
     public void returnToLogin(View view) {
