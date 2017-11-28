@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="purdue.bowlingapp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -67,9 +68,8 @@
             android:label="@string/title_activity_player_messaging"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".inboxActivity" />
-        <activity android:name=".sendMessagesActivity" /><![CDATA[
+        <activity android:name=".sendMessagesActivity" />
         android:theme="@style/AppTheme.NoActionBar" />
-        ]]>
         <activity android:name=".coachMessageActivity" />
         <activity android:name=".groupMessageActivity" />
         <activity android:name=".eventViewerActivity" />
@@ -82,7 +82,8 @@
         <activity android:name=".StatsHub" />
         <activity android:name=".CommunicationHub" />
         <activity android:name=".GraphDisplay" />
-        <activity android:name=".calendarAddActivity"></activity>
+        <activity android:name=".calendarAddActivity" />
+        <activity android:name=".announcementActivity"></activity>
     </application>
-    <uses-permission android:name="android.permission.INTERNET"/>
+
 </manifest>
