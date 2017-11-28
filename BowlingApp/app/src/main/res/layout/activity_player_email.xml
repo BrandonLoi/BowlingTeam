@@ -1,6 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/allowEmailNotificationsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Allow email Notifications?"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView23"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Currently receiving emails:"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/enableButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/emailNotificationText"
+        app:layout_constraintTop_toBottomOf="@+id/allowEmailNotificationsText" />
+
+    <TextView
+        android:id="@+id/emailNotificationText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="temp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/enableButton"
+        app:layout_constraintLeft_toRightOf="@+id/textView23"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/allowEmailNotificationsText" />
+
+    <TextView
+        android:id="@+id/errorText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="temp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/disableButton"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <Button
+        android:id="@+id/enableButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enable Email Notifications"
+        app:layout_constraintBottom_toTopOf="@+id/disableButton"
+        app:layout_constraintTop_toBottomOf="@+id/textView23"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <Button
+        android:id="@+id/disableButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Disable Email Notifications"
+        app:layout_constraintBottom_toTopOf="@+id/errorText"
+        app:layout_constraintTop_toBottomOf="@+id/enableButton"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+</android.support.constraint.ConstraintLayout>

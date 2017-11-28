@@ -82,7 +82,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".StatsHub" />
         <activity android:name=".CommunicationHub" />
-        <activity android:name=".GraphDisplay"></activity>
+        <activity android:name=".GraphDisplay" />
+        <activity android:name=".calendarAddActivity"></activity>
     </application>
 
 </manifest>

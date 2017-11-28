@@ -167,17 +167,18 @@ public class editEventsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.child("events").hasChild(eventName) && !(eventName.matches(""))) {
-                    if (date.matches("")) {
-                        createFail("6");
-                    }
-                    if (dataSnapshot.child("coaches").hasChild(username)) {
-                        myRef.child("events").child(eventName).child("date").setValue(date);
+                    if (!date.matches("")) {
+                        if (dataSnapshot.child("coaches").hasChild(username)) {
+                            myRef.child("events").child(eventName).child("date").setValue(date);
+                        }
+                        else {
+                            createFail("2");
+                        }
                     }
                     else {
-                        createFail("2");
+                        createFail("6");
+
                     }
-
-
                 }
                 else {
                     createFail("blah");
