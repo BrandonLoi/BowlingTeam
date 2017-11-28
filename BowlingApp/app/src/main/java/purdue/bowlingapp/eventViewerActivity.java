@@ -45,7 +45,7 @@ public class eventViewerActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot iterator : dataSnapshot.child("events").getChildren()) {
                     totalReqs++;
-                    reqs = reqs + (Integer.toString(totalReqs) + " " + iterator.getKey() + " " + iterator.child("date").getValue() + "\n");
+                    reqs = reqs + (Integer.toString(totalReqs) + " " + iterator.getKey() + " " + iterator.child("date").getValue() + " " + iterator.child("type").getValue() + "\n");
 
                     for (DataSnapshot iterator2 : iterator.child("players").getChildren()) {
                         String name = iterator2.getKey();
@@ -55,8 +55,8 @@ public class eventViewerActivity extends AppCompatActivity {
                         } else {
                             reqs = reqs + ("          " + name + "\n");
                         }
-                        output.setText(reqs);
                     }
+                    output.setText(reqs);
                 }
             }
 
@@ -84,7 +84,7 @@ public class eventViewerActivity extends AppCompatActivity {
                 for (DataSnapshot iterator : dataSnapshot.child("events").getChildren()) {
                     if (iterator.child("players").hasChild(username)) {
                         totalReqs++;
-                        reqs = reqs + (Integer.toString(totalReqs) + " " + iterator.getKey() + " " + iterator.child("date").getValue() + "\n");
+                        reqs = reqs + (Integer.toString(totalReqs) + " " + iterator.getKey() + " " + iterator.child("date").getValue() + " " + iterator.child("type").getValue() + "\n");
 
                         for (DataSnapshot iterator2 : iterator.child("players").getChildren()) {
                             String name = iterator2.getKey();
