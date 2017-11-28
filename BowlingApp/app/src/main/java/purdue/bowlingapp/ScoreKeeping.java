@@ -637,6 +637,8 @@ public class ScoreKeeping extends AppCompatActivity {
                     players.get(i).ballsThrown++;
                     if(f.getFirstThrow() != 'X') players.get(i).ballsThrown++;
                 }
+
+                //Problems here
                 TenthFrame tenth = g.getTenth();
                 if(tenth.getFirstThrow() == '9' || tenth.getSecondThrow() == '9') players.get(i).prevSingleLeft++;
                 if(tenth.getFirstThrow() == '9' && tenth.getSecondThrow() == '/' || tenth.getSecondThrow() == '9' && tenth.getThirdThrow() == '/') players.get(i).prevSingleMade++;
@@ -661,7 +663,7 @@ public class ScoreKeeping extends AppCompatActivity {
                     //ref.child("4").setValue(ref.child("5").toString());
                     //ref.child("5").setValue(scoreTemp.toString());
                     players.get(0).prevTotal += scoreTemp;
-
+                    players.get(0).numberGames++;
                 }
 
                 final int singleLeft = g.getSinglePinLeft();
