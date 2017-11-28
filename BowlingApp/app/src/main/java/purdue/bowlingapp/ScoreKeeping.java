@@ -640,28 +640,22 @@ public class ScoreKeeping extends AppCompatActivity {
 
                 //Problems here
                 TenthFrame tenth = g.getTenth();
-                if(tenth.getFirstThrow() == '9' || tenth.getSecondThrow() == '9') players.get(i).prevSingleLeft++;
-                if(tenth.getFirstThrow() == '9' && tenth.getSecondThrow() == '/' || tenth.getSecondThrow() == '9' && tenth.getThirdThrow() == '/') players.get(i).prevSingleMade++;
+                if(tenth.getFirstThrow() == 9 || tenth.getSecondThrow() == 9) players.get(i).prevSingleLeft++;
+                if(tenth.getFirstThrow() == 9 && tenth.getSecondThrow() == 11 || tenth.getSecondThrow() == 9 && tenth.getThirdThrow() == 11) players.get(i).prevSingleMade++;
                 if(tenth.isSplit()) players.get(i).prevSplitLeft++;
-                if(tenth.isSplit() && tenth.getSecondThrow() == '/' || tenth.getThirdThrow() == '/') players.get(i).prevSplitMade++;
+                if(tenth.isSplit() && tenth.getSecondThrow() == 11 || tenth.getThirdThrow() == 11) players.get(i).prevSplitMade++;
                 if(tenth.isMakeable()) players.get(i).prevMultiLeft++;
-                if(tenth.isMakeable() && (tenth.getSecondThrow() != '/' || tenth.getThirdThrow() != '/') && (tenth.getFirstThrow() != '9' || tenth.getSecondThrow() != '9')) players.get(i).prevMultiMade++;
-                if(tenth.getFirstThrow() == 'X' || tenth.getSecondThrow() == '/') players.get(i).prevFilled++;
-                if(tenth.getFirstThrow() == 'X') players.get(i).prevStrikes++;
-                if(tenth.getSecondThrow() == 'X') players.get(i).prevStrikes++;
-                if(tenth.getThirdThrow() == 'X') players.get(i).prevStrikes++;
+                if(tenth.isMakeable() && (tenth.getSecondThrow() == 11 || tenth.getThirdThrow() == 11) && (tenth.getFirstThrow() != 9 || tenth.getSecondThrow() != 9)) players.get(i).prevMultiMade++;
+                if(tenth.getFirstThrow() == 10 || tenth.getSecondThrow() == 11) players.get(i).prevFilled++;
+                if(tenth.getFirstThrow() == 10) players.get(i).prevStrikes++;
+                if(tenth.getSecondThrow() == 10) players.get(i).prevStrikes++;
+                if(tenth.getThirdThrow() == 10) players.get(i).prevStrikes++;
                 players.get(i).ballsThrown += 2;
-                if(tenth.getFirstThrow() == 'X' || tenth.getSecondThrow() == '/') players.get(i).ballsThrown++;
+                if(tenth.getFirstThrow() == 10 || tenth.getSecondThrow() == 11) players.get(i).ballsThrown++;
 
                 Integer scoreTemp = g.setScore();
 
                 if(type.equals("0")) {
-                    //DatabaseReference ref = mDatabase.child("data").child(getIntent().getStringExtra(usernameStrings[0])).child("games");
-                    //ref.child("1").setValue(ref.child("2").toString());
-                    //ref.child("2").setValue(ref.child("3").toString());
-                    //ref.child("3").setValue(ref.child("4").toString());
-                    //ref.child("4").setValue(ref.child("5").toString());
-                    //ref.child("5").setValue(scoreTemp.toString());
                     players.get(0).prevTotal += scoreTemp;
                     players.get(0).numberGames++;
                 }
@@ -808,6 +802,7 @@ public class ScoreKeeping extends AppCompatActivity {
                 final Toast toast2 = Toast.makeText(getApplicationContext(),"Statistics added",Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM,0,0);
                 toast2.show();
+
             }
         });
 
