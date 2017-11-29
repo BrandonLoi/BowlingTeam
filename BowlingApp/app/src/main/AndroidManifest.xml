@@ -84,6 +84,7 @@
         <activity android:name=".GraphDisplay" />
         <activity android:name=".calendarAddActivity" />
         <activity android:name=".announcementActivity"></activity>
+        <activity android:name=".NotificationsMenu"></activity>
     </application>
 
 </manifest>

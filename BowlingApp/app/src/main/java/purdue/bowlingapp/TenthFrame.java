@@ -10,7 +10,7 @@ public class TenthFrame {
     private char secondThrow;
     private char thirdThrow;
     private boolean split = false;
-    private boolean makeable = false;
+    private boolean makeable = true;
 
     public TenthFrame(char firstThrow, char secondThrow) {
         char first = validateInput(firstThrow);
