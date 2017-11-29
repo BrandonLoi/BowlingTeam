@@ -54,7 +54,26 @@ public class SendNotifications extends AppCompatActivity {
                                toast.show();
                            }
                            else {
-                                //Send Notification
+                                String note1 = mDatabase.child("messages").child(usernameString).child("notifications").child("note1").getKey();
+                                String note2 = mDatabase.child("messages").child(usernameString).child("notifications").child("note2").getKey();
+                                String note3 = mDatabase.child("messages").child(usernameString).child("notifications").child("note3").getKey();
+                                String note4 = mDatabase.child("messages").child(usernameString).child("notifications").child("note4").getKey();
+                                String note5 = mDatabase.child("messages").child(usernameString).child("notifications").child("note5").getKey();
+                                if(note1.equals("")) {
+                                    mDatabase.child("messages").child(usernameString).child("notifications").child("note1").setValue(message);
+                                }
+                                else if(note2.equals("")) {
+                                    mDatabase.child("messages").child(usernameString).child("notifications").child("note2").setValue(message);
+                                }
+                                else if(note3.equals("")) {
+                                    mDatabase.child("messages").child(usernameString).child("notifications").child("note3").setValue(message);
+                                }
+                                else if(note4.equals("")) {
+                                    mDatabase.child("messages").child(usernameString).child("notifications").child("note4").setValue(message);
+                                }
+                                else {
+                                    mDatabase.child("messages").child(usernameString).child("notifications").child("note5").setValue(message);
+                               }
                            }
                        }
 

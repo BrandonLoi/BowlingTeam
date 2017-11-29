@@ -121,7 +121,11 @@ public class MainActivity extends AppCompatActivity {
                     myRef2.child("filledFrames").setValue("0");
                     final DatabaseReference myRef3 = mDatabase.child("messages").child(username);
                 //Is this gonna break something?    myRef3.child("inbox").child("message").setValue("");
-                    myRef3.child("notifications").child("noteNull").setValue("");
+                    myRef3.child("notifications").child("note1").setValue("");
+                    myRef3.child("notifications").child("note2").setValue("");
+                    myRef3.child("notifications").child("note3").setValue("");
+                    myRef3.child("notifications").child("note4").setValue("");
+                    myRef3.child("notifications").child("note5").setValue("");
                     final DatabaseReference myRef4 = mDatabase.child("data").child(username);
 
                     // For sending the verification email

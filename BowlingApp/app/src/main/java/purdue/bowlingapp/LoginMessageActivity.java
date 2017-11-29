@@ -3,10 +3,12 @@ package purdue.bowlingapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -46,6 +48,22 @@ public class LoginMessageActivity extends AppCompatActivity {
         textView.setText(message);
         username = textView.getText().toString();
         username = "" + username.substring(0, username.length() - 1);
+
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();;
+
+        final Toast toast;
+
+        String note1 = mDatabase.child("messages").child(username).child("notifications").child("note1").getKey();
+        String note2 = mDatabase.child("messages").child(username).child("notifications").child("note2").getKey();
+        String note3 = mDatabase.child("messages").child(username).child("notifications").child("note3").getKey();
+        String note4 = mDatabase.child("messages").child(username).child("notifications").child("note4").getKey();
+        String note5 = mDatabase.child("messages").child(username).child("notifications").child("note5").getKey();
+
+        if(!note1.equals("")) {
+            toast = Toast.makeText(getApplicationContext(), note1 ,Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM,0,0);
+            toast.show();
+        }
 
         stats = (Button) findViewById(R.id.stats);
 //        editPlayerStats = (Button) findViewById(R.id.editPlayerStats);
