@@ -637,16 +637,14 @@ public class ScoreKeeping extends AppCompatActivity {
                     players.get(i).ballsThrown++;
                     if(f.getFirstThrow() != 'X') players.get(i).ballsThrown++;
                 }
-
-                //Problems here
                 TenthFrame tenth = g.getTenth();
                 if(tenth.getFirstThrow() == 9 || tenth.getSecondThrow() == 9) players.get(i).prevSingleLeft++;
                 if(tenth.getFirstThrow() == 9 && tenth.getSecondThrow() == 11 || tenth.getSecondThrow() == 9 && tenth.getThirdThrow() == 11) players.get(i).prevSingleMade++;
                 if(tenth.isSplit()) players.get(i).prevSplitLeft++;
                 if(tenth.isSplit() && tenth.getSecondThrow() == 11 || tenth.getThirdThrow() == 11) players.get(i).prevSplitMade++;
-                if(tenth.isMakeable()) players.get(i).prevMultiLeft++;
+                if(tenth.isMakeable() && (tenth.getSecondThrow() == 11 || tenth.getThirdThrow() == 11)) players.get(i).prevMultiLeft++;
                 if(tenth.isMakeable() && (tenth.getSecondThrow() == 11 || tenth.getThirdThrow() == 11) && (tenth.getFirstThrow() != 9 || tenth.getSecondThrow() != 9)) players.get(i).prevMultiMade++;
-                if(tenth.getFirstThrow() == 10 || tenth.getSecondThrow() == 11) players.get(i).prevFilled++;
+                if(tenth.getFirstThrowC() == 'X' || tenth.getSecondThrowC() == '/') players.get(i).prevFilled++;
                 if(tenth.getFirstThrow() == 10) players.get(i).prevStrikes++;
                 if(tenth.getSecondThrow() == 10) players.get(i).prevStrikes++;
                 if(tenth.getThirdThrow() == 10) players.get(i).prevStrikes++;

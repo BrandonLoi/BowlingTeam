@@ -24,7 +24,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp">
+        android:layout_marginRight="8dp"
+        android:weightSum="1">
 
         <Button
             android:layout_width="wrap_content"
@@ -45,6 +46,14 @@
             android:layout_height="wrap_content"
             android:text="announcements"
             android:id="@+id/announcementsBtn"/>
+
+        <Button
+            android:id="@+id/notificationsBtn"
+            android:layout_width="191dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="notifications"
+            android:layout_weight="0.01" />
 
     </LinearLayout>
 

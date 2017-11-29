@@ -25,14 +25,24 @@ public class CommunicationHub extends AppCompatActivity {
         Button messagesButton = (Button) findViewById(R.id.messagesBtn);
         Button emailButton = (Button) findViewById(R.id.emailBtn);
         Button announcementButton = (Button) findViewById(R.id.announcementsBtn);
+        Button notificationsButton = (Button) findViewById(R.id.notificationsBtn);
 
-  //      announcementButton.setOnClickListener(new View.OnClickListener() {
-  //          @Override
-   //         public void onClick(View view) {
-  //              Intent i = new Intent(CommunicationHub.this, announcementActivity.class);
-  //             startActivity(i);
-   //         }
-   //     });
+        notificationsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(CommunicationHub.this, NotificationsMenu.class);
+                i.putExtra("username", username);
+                startActivity(i);
+            }
+        });
+
+        announcementButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(CommunicationHub.this, announcementActivity.class);
+                startActivity(i);
+            }
+        });
 
         emailButton.setOnClickListener(new View.OnClickListener() {
             @Override

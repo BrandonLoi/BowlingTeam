@@ -23,15 +23,15 @@ public class PinInput extends AppCompatActivity {
     boolean[] splits = {false,false,false,false,false,false,false,false,false,false};
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pin_input);
 
         final String username = getIntent().getStringExtra("username");
 
         final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-        final DatabaseReference ref1 = mDatabase.child("data").child(username);
-        ref1.addValueEventListener(new ValueEventListener() {
+        final DatabaseReference userData = mDatabase.child("data").child(username);
+        userData.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(!dataSnapshot.hasChild("games")) {
@@ -52,7 +52,7 @@ public class PinInput extends AppCompatActivity {
             }
         });
 
-        final DatabaseReference ref = ref1.child("games");
+        final DatabaseReference userGames = userData.child("games");
 
 
         TextView f1b1 = (TextView) findViewById(R.id.f1FirstBall);
@@ -266,7 +266,7 @@ public class PinInput extends AppCompatActivity {
                 }
                 tvs[frameCount].setBackgroundColor(0x00FFFFFF);
                 score.setText("");
-                ref.child("set").setValue("0");
+                userGames.child("set").setValue("0");
             }
         });
 
@@ -321,19 +321,21 @@ public class PinInput extends AppCompatActivity {
                 }
 
                 Game g = new Game(frames, f10);
+
+
                 final Integer scoreTemp = g.setScore();
 
-                ref.addValueEventListener(new ValueEventListener() {
+                userGames.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if(dataSnapshot.child("set").getValue().toString().equals("0")) {
-                            ref.child("set").setValue("1");
-                            ref.child("1").setValue(dataSnapshot.child("2").getValue());
-                            ref.child("2").setValue(dataSnapshot.child("3").getValue());
-                            ref.child("3").setValue(dataSnapshot.child("4").getValue());
-                            ref.child("4").setValue(dataSnapshot.child("5").getValue());
-                            ref.child("5").setValue(scoreTemp.toString());
-                            ref.removeEventListener(this);
+                            userGames.child("set").setValue("1");
+                            userGames.child("1").setValue(dataSnapshot.child("2").getValue());
+                            userGames.child("2").setValue(dataSnapshot.child("3").getValue());
+                            userGames.child("3").setValue(dataSnapshot.child("4").getValue());
+                            userGames.child("4").setValue(dataSnapshot.child("5").getValue());
+                            userGames.child("5").setValue(scoreTemp.toString());
+                            userGames.removeEventListener(this);
                         } else {
                             return;
                         }
