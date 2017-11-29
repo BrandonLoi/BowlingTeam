@@ -37,9 +37,29 @@ public class NotificationsMenu extends AppCompatActivity {
         sendNotificationsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(NotificationsMenu.this, SendNotifications.class);
-                i.putExtra("username", username);
-                startActivity(i);
+                final FirebaseDatabase database = FirebaseDatabase.getInstance();
+                String currDataPath = "coaches";
+                final DatabaseReference coach = database.getReference(currDataPath);
+
+                coach.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.hasChild(username)) {
+                            Intent i = new Intent(NotificationsMenu.this, SendNotifications.class);
+                            i.putExtra("username", username);
+                            startActivity(i);
+                        } else {
+                            Intent i = new Intent(NotificationsMenu.this, NotCoachFailureActivity.class);
+                            i.putExtra("username", username);
+                            startActivity(i);
+                        }
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        System.out.println("Retrieving coach status failed: " +
+                                databaseError.getCode());
+                    }
+                });
             }
         });
     }

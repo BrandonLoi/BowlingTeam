@@ -32,7 +32,7 @@ public class announcementActivity extends AppCompatActivity {
         clear = (Button) findViewById(R.id.cButton);
         announce = (Button) findViewById(R.id.aButton);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("annoucement");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("announcement");
         ValueEventListener listen = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
