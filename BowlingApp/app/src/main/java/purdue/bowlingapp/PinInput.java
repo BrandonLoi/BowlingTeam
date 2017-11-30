@@ -41,6 +41,24 @@ public class PinInput extends AppCompatActivity {
                     dataSnapshot.child("games").child("4").getRef().setValue("0");
                     dataSnapshot.child("games").child("5").getRef().setValue("0");
                     dataSnapshot.child("games").child("set").getRef().setValue("0");
+                    dataSnapshot.child("strikeCount").child("1").getRef().setValue("0");
+                    dataSnapshot.child("strikeCount").child("2").getRef().setValue("0");
+                    dataSnapshot.child("strikeCount").child("3").getRef().setValue("0");
+                    dataSnapshot.child("strikeCount").child("4").getRef().setValue("0");
+                    dataSnapshot.child("strikeCount").child("5").getRef().setValue("0");
+                    dataSnapshot.child("strikeCount").child("set").getRef().setValue("0");
+                    dataSnapshot.child("filledCount").child("1").getRef().setValue("0");
+                    dataSnapshot.child("filledCount").child("2").getRef().setValue("0");
+                    dataSnapshot.child("filledCount").child("3").getRef().setValue("0");
+                    dataSnapshot.child("filledCount").child("4").getRef().setValue("0");
+                    dataSnapshot.child("filledCount").child("5").getRef().setValue("0");
+                    dataSnapshot.child("filledCount").child("set").getRef().setValue("0");
+                    dataSnapshot.child("singleCount").child("1").getRef().setValue("0");
+                    dataSnapshot.child("singleCount").child("2").getRef().setValue("0");
+                    dataSnapshot.child("singleCount").child("3").getRef().setValue("0");
+                    dataSnapshot.child("signleCount").child("4").getRef().setValue("0");
+                    dataSnapshot.child("singleCount").child("5").getRef().setValue("0");
+                    dataSnapshot.child("singleCount").child("set").getRef().setValue("0");
                 } else {
                     dataSnapshot.child("games").child("set").getRef().setValue("0");
                 }
