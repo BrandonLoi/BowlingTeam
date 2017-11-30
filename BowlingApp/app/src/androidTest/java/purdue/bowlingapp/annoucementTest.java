@@ -34,6 +34,15 @@ public class annoucementTest {
                     mDatabase.child("announcement").setValue("TEST ANNOUNCEMENT SYSTEM");
                     mDatabase.child("announcement").setValue(temp);
                 }
+                else {
+                    mDatabase.child("announcement").setValue("TEST ANNOUNCEMENT SYSTEM");
+                    try {
+                        Thread.sleep(1000);
+                    } catch (Exception e) {
+                        assertTrue("connection failure in test",false);
+                    }
+                    mDatabase.child("announcement").setValue("");
+                }
             }
 
             @Override
