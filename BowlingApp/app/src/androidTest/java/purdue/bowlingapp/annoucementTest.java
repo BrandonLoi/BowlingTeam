@@ -19,8 +19,10 @@ import static org.junit.Assert.*;
 /**
  * Created by bloi on 11/27/17.
  */
+@RunWith(AndroidJUnit4.class)
 
 public class annoucementTest {
+    @Test
     public void annoucementTest() {
         final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         ValueEventListener listen = new ValueEventListener() {
