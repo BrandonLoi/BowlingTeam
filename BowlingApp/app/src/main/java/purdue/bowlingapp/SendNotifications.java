@@ -28,7 +28,7 @@ public class SendNotifications extends AppCompatActivity {
         final String username = intent.getStringExtra("username");
 
         Button sendButton = (Button) findViewById(R.id.sendButton);
-        final EditText usernameField = (EditText) findViewById(R.id.userName);
+        final EditText usernameField = (EditText) findViewById(R.id.playerUsername);
         final EditText groupName = (EditText) findViewById(R.id.groupUsername);
         final EditText messageText = (EditText) findViewById(R.id.messageToSend);
 
@@ -41,12 +41,12 @@ public class SendNotifications extends AppCompatActivity {
                final String usernameString = usernameField.getText().toString();
                final String message = messageText.getText().toString();
 
-               if((groupString.equals("") && usernameString.equals("")) || message.equals("")) {
+               if((groupString.equals(null) && usernameString.equals(null)) || message.equals(null)) {
                    toast.show();
                }
                else {
-                   DatabaseReference userRef = mDatabase.child("users");
-                   DatabaseReference groupRef = mDatabase.child("groups");
+                   final DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("messages");
+                   DatabaseReference groupRef = FirebaseDatabase.getInstance().getReference("groups");
                    userRef.addValueEventListener(new ValueEventListener() {
                        @Override
                        public void onDataChange(DataSnapshot dataSnapshot) {
@@ -54,11 +54,11 @@ public class SendNotifications extends AppCompatActivity {
                                toast.show();
                            }
                            else {
-                                String note1 = mDatabase.child("messages").child(usernameString).child("notifications").child("note1").getKey();
-                                String note2 = mDatabase.child("messages").child(usernameString).child("notifications").child("note2").getKey();
-                                String note3 = mDatabase.child("messages").child(usernameString).child("notifications").child("note3").getKey();
-                                String note4 = mDatabase.child("messages").child(usernameString).child("notifications").child("note4").getKey();
-                                String note5 = mDatabase.child("messages").child(usernameString).child("notifications").child("note5").getKey();
+                                String note1 = dataSnapshot.child(usernameString).child("notifications").child("note1").getValue().toString();
+                                String note2 = dataSnapshot.child(usernameString).child("notifications").child("note2").getValue().toString();
+                                String note3 = dataSnapshot.child(usernameString).child("notifications").child("note3").getValue().toString();
+                                String note4 = dataSnapshot.child(usernameString).child("notifications").child("note4").getValue().toString();
+                                String note5 = dataSnapshot.child(usernameString).child("notifications").child("note5").getValue().toString();
                                 if(note1.equals("")) {
                                     mDatabase.child("messages").child(usernameString).child("notifications").child("note1").setValue(message);
                                 }
@@ -71,9 +71,15 @@ public class SendNotifications extends AppCompatActivity {
                                 else if(note4.equals("")) {
                                     mDatabase.child("messages").child(usernameString).child("notifications").child("note4").setValue(message);
                                 }
-                                else {
+                                else if(note5.equals("")) {
                                     mDatabase.child("messages").child(usernameString).child("notifications").child("note5").setValue(message);
-                               }
+                                }
+                                else {
+                                    final Toast toast2 = Toast.makeText(getApplicationContext(),"That user has too many pending notifications",Toast.LENGTH_SHORT);
+                                    toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM,0,0);
+                                    toast2.show();
+                                }
+                                userRef.removeEventListener(this);
                            }
                        }
 
@@ -87,7 +93,7 @@ public class SendNotifications extends AppCompatActivity {
                        @Override
                        public void onDataChange(DataSnapshot dataSnapshot) {
                            if (!dataSnapshot.hasChild(groupString)) {
-                               toast.show();
+                              // toast.show();
                            }
                            else {
 

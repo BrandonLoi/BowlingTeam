@@ -49,21 +49,59 @@ public class LoginMessageActivity extends AppCompatActivity {
         username = textView.getText().toString();
         username = "" + username.substring(0, username.length() - 1);
 
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();;
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        final Toast toast;
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String note1 = dataSnapshot.child("messages").child(username).child("notifications").child("note1").getValue().toString();
+                String note2 = dataSnapshot.child("messages").child(username).child("notifications").child("note2").getValue().toString();
+                String note3 = dataSnapshot.child("messages").child(username).child("notifications").child("note3").getValue().toString();
+                String note4 = dataSnapshot.child("messages").child(username).child("notifications").child("note4").getValue().toString();
+                String note5 = dataSnapshot.child("messages").child(username).child("notifications").child("note5").getValue().toString();
+                if(!note1.equals("")) {
+                   // String note = note5.toString();
+                    final Toast toast;
+                    toast = Toast.makeText(getApplicationContext(), note1 ,Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM,0,0);
+                    toast.show();
+                }
+                if(!note2.equals("")) {
+                   // String note = note5.toString();
+                    final Toast toast;
+                    toast = Toast.makeText(getApplicationContext(), note2 ,Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM,0,0);
+                    toast.show();
+                }
+                if(!note3.equals("")) {
+                   // String note = note5.toString();
+                    final Toast toast;
+                    toast = Toast.makeText(getApplicationContext(), note3 ,Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM,0,0);
+                    toast.show();
+                }
+                if(!note4.equals("")) {
+                   // String note = note5.toString();
+                    final Toast toast;
+                    toast = Toast.makeText(getApplicationContext(), note4 ,Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM,0,0);
+                    toast.show();
+                }
+                if(!note5.equals("")) {
+                  //  String note = note5.toString();
+                    final Toast toast;
+                    toast = Toast.makeText(getApplicationContext(), note5 ,Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM,0,0);
+                    toast.show();
+                }
+            }
 
-        String note1 = mDatabase.child("messages").child(username).child("notifications").child("note1").getKey();
-        String note2 = mDatabase.child("messages").child(username).child("notifications").child("note2").getKey();
-        String note3 = mDatabase.child("messages").child(username).child("notifications").child("note3").getKey();
-        String note4 = mDatabase.child("messages").child(username).child("notifications").child("note4").getKey();
-        String note5 = mDatabase.child("messages").child(username).child("notifications").child("note5").getKey();
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-        if(!note1.equals("")) {
-            toast = Toast.makeText(getApplicationContext(), note1 ,Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM,0,0);
-            toast.show();
-        }
+            }
+        });
+
 
         stats = (Button) findViewById(R.id.stats);
 //        editPlayerStats = (Button) findViewById(R.id.editPlayerStats);
