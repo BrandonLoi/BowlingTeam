@@ -154,7 +154,7 @@ public class StatsHub extends AppCompatActivity {
         graph.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(StatsHub.this, GraphDisplay.class);
+                Intent i = new Intent(StatsHub.this, GraphSelection.class);
                 i.putExtra("username", username);
                 startActivity(i);
             }

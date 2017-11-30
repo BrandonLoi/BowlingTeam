@@ -83,10 +83,11 @@
         <activity android:name=".CommunicationHub" />
         <activity android:name=".GraphDisplay" />
         <activity android:name=".calendarAddActivity" />
-        <activity android:name=".announcementActivity"></activity>
-        <activity android:name=".NotificationsMenu"></activity>
-        <activity android:name=".ViewNotifications"></activity>
-        <activity android:name=".SendNotifications"></activity>
+        <activity android:name=".announcementActivity" />
+        <activity android:name=".NotificationsMenu" />
+        <activity android:name=".ViewNotifications" />
+        <activity android:name=".SendNotifications" />
+        <activity android:name=".GraphSelection"></activity>
     </application>
 
 </manifest>

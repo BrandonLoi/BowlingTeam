@@ -20,20 +20,21 @@ public class GraphDisplay extends AppCompatActivity {
         setContentView(R.layout.activity_graph_display);
 
         String username = getIntent().getStringExtra("username");
+        final String selection = getIntent().getStringExtra("selection");
 
         final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         final DatabaseReference ref = mDatabase.child("data").child(username);
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(!dataSnapshot.hasChild("games"))
+                if(!dataSnapshot.hasChild(selection))
                     return;
                 GraphView graph = (GraphView) findViewById(R.id.graph);
-                int g1 = Integer.parseInt(dataSnapshot.child("games").child("1").getValue().toString());
-                int g2 = Integer.parseInt(dataSnapshot.child("games").child("2").getValue().toString());
-                int g3 = Integer.parseInt(dataSnapshot.child("games").child("3").getValue().toString());
-                int g4 = Integer.parseInt(dataSnapshot.child("games").child("4").getValue().toString());
-                int g5 = Integer.parseInt(dataSnapshot.child("games").child("5").getValue().toString());
+                int g1 = Integer.parseInt(dataSnapshot.child(selection).child("1").getValue().toString());
+                int g2 = Integer.parseInt(dataSnapshot.child(selection).child("2").getValue().toString());
+                int g3 = Integer.parseInt(dataSnapshot.child(selection).child("3").getValue().toString());
+                int g4 = Integer.parseInt(dataSnapshot.child(selection).child("4").getValue().toString());
+                int g5 = Integer.parseInt(dataSnapshot.child(selection).child("5").getValue().toString());
                 LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
                         new DataPoint(1, g1),
                         new DataPoint(2, g2),

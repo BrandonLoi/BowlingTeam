@@ -56,11 +56,14 @@ public class PinInput extends AppCompatActivity {
                     dataSnapshot.child("singleCount").child("1").getRef().setValue("0");
                     dataSnapshot.child("singleCount").child("2").getRef().setValue("0");
                     dataSnapshot.child("singleCount").child("3").getRef().setValue("0");
-                    dataSnapshot.child("signleCount").child("4").getRef().setValue("0");
+                    dataSnapshot.child("singleCount").child("4").getRef().setValue("0");
                     dataSnapshot.child("singleCount").child("5").getRef().setValue("0");
                     dataSnapshot.child("singleCount").child("set").getRef().setValue("0");
                 } else {
                     dataSnapshot.child("games").child("set").getRef().setValue("0");
+                    dataSnapshot.child("filledCount").child("set").getRef().setValue("0");
+                    dataSnapshot.child("strikeCount").child("set").getRef().setValue("0");
+                    dataSnapshot.child("singleCount").child("set").getRef().setValue("0");
                 }
             }
 
@@ -71,6 +74,9 @@ public class PinInput extends AppCompatActivity {
         });
 
         final DatabaseReference userGames = userData.child("games");
+        final DatabaseReference userStrike = userData.child("strikeCount");
+        final DatabaseReference userFilled = userData.child("filledCount");
+        final DatabaseReference userSingle = userData.child("singleCount");
 
 
         TextView f1b1 = (TextView) findViewById(R.id.f1FirstBall);
@@ -285,6 +291,9 @@ public class PinInput extends AppCompatActivity {
                 tvs[frameCount].setBackgroundColor(0x00FFFFFF);
                 score.setText("");
                 userGames.child("set").setValue("0");
+                userSingle.child("set").setValue("0");
+                userFilled.child("set").setValue("0");
+                userStrike.child("set").setValue("0");
             }
         });
 
@@ -342,6 +351,9 @@ public class PinInput extends AppCompatActivity {
 
 
                 final Integer scoreTemp = g.setScore();
+                final Integer strikeTemp = g.getStrike();
+                final Integer filledTemp = g.getFilledFrame();
+                final Integer singleTemp = g.getSinglePinMade();
 
                 userGames.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -364,6 +376,72 @@ public class PinInput extends AppCompatActivity {
 
                     }
                 });
+
+                userStrike.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.child("set").getValue().toString().equals("0")) {
+                            userStrike.child("set").setValue("1");
+                            userStrike.child("1").setValue(dataSnapshot.child("2").getValue());
+                            userStrike.child("2").setValue(dataSnapshot.child("3").getValue());
+                            userStrike.child("3").setValue(dataSnapshot.child("4").getValue());
+                            userStrike.child("4").setValue(dataSnapshot.child("5").getValue());
+                            userStrike.child("5").setValue(strikeTemp.toString());
+                            userStrike.removeEventListener(this);
+                        } else {
+                            return;
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+                userFilled.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.child("set").getValue().toString().equals("0")) {
+                            userFilled.child("set").setValue("1");
+                            userFilled.child("1").setValue(dataSnapshot.child("2").getValue());
+                            userFilled.child("2").setValue(dataSnapshot.child("3").getValue());
+                            userFilled.child("3").setValue(dataSnapshot.child("4").getValue());
+                            userFilled.child("4").setValue(dataSnapshot.child("5").getValue());
+                            userFilled.child("5").setValue(filledTemp.toString());
+                            userFilled.removeEventListener(this);
+                        } else {
+                            return;
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+                userSingle.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.child("set").getValue().toString().equals("0")) {
+                            userSingle.child("set").setValue("1");
+                            userSingle.child("1").setValue(dataSnapshot.child("2").getValue());
+                            userSingle.child("2").setValue(dataSnapshot.child("3").getValue());
+                            userSingle.child("3").setValue(dataSnapshot.child("4").getValue());
+                            userSingle.child("4").setValue(dataSnapshot.child("5").getValue());
+                            userSingle.child("5").setValue(singleTemp.toString());
+                            userSingle.removeEventListener(this);
+                        } else {
+                            return;
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
 
                 String out = scoreTemp + "";
                 score.setText(out);
