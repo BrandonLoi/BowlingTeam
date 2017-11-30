@@ -187,7 +187,7 @@ public class PinInput extends AppCompatActivity {
                                 }
                                 if(split) {
                                     tvs[frameCount - 1].setBackgroundColor(0xF2FF0000);
-                                    splits[(frameCount-1)/2] = true;
+                                    splits[frameCount/2] = true;
                                 }
                             }
                         }
@@ -213,6 +213,19 @@ public class PinInput extends AppCompatActivity {
                             tvs[frameCount++].setText("X");
                         } else {
                             tvs[frameCount++].setText(""+count);
+                            if(!one.isChecked() && count != 9) {
+                                boolean split = false;
+                                DepthFirstSearch dfs = new DepthFirstSearch(graph,pins);
+                                for(CheckBox c : pins) {
+                                    if(c.isChecked() && !dfs.hasPathTo(map.get(c))) {
+                                        split = true;
+                                    }
+                                }
+                                if(split) {
+                                    tvs[frameCount - 1].setBackgroundColor(0xF2FF0000);
+                                    splits[frameCount/2] = true;
+                                }
+                            }
                         }
                         return;
                     } else if (frameCount == 19) {
@@ -355,6 +368,22 @@ public class PinInput extends AppCompatActivity {
                 final Integer filledTemp = g.getFilledFrame();
                 final Integer singleTemp = g.getSinglePinMade();
 
+                int splitLeftTemp = 0;
+                int splitMadeTemp = 0;
+
+                for(int i = 0 ; i < splits.length; i++) {
+                    if(splits[i]) {
+                        splitLeftTemp++;
+                        if(tvs[(i*2)+1].getText().toString().equals("/")) {
+                            splitMadeTemp++;
+                        }
+                    }
+                }
+
+                final Integer splitLeft = splitLeftTemp;
+                final Integer splitMade = splitMadeTemp;
+
+
                 userGames.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -431,7 +460,9 @@ public class PinInput extends AppCompatActivity {
                             userSingle.child("4").setValue(dataSnapshot.child("5").getValue());
                             userSingle.child("5").setValue(singleTemp.toString());
                             userSingle.removeEventListener(this);
-                        } else {
+                            userData.child("splitLeft").setValue(splitLeft.toString());
+                            userData.child("splitMade").setValue(splitMade.toString());
+                        } else{
                             return;
                         }
                     }

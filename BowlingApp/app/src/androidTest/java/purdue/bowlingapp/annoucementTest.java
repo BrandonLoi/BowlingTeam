@@ -19,20 +19,30 @@ import static org.junit.Assert.*;
 /**
  * Created by bloi on 11/27/17.
  */
+@RunWith(AndroidJUnit4.class)
 
 public class annoucementTest {
+    @Test
     public void annoucementTest() {
         final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-        final DatabaseReference myRef = mDatabase.child("users");//.child(editText.toString());
-
-
-        //NOTE: created this following the guide of createUserTest. Need to redo in form of annoucement test
-
         ValueEventListener listen = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                boolean x = dataSnapshot.hasChild("testUser");
-                assertTrue("user not added to users directory correctly", dataSnapshot.hasChild("testUser"));
+                assertTrue("Announcement not in database", dataSnapshot.hasChild("announcement"));
+                if (!dataSnapshot.child("announcement").getValue().toString().equals("")) {
+                    String temp = dataSnapshot.child("announcement").getValue().toString();
+                    mDatabase.child("announcement").setValue("TEST ANNOUNCEMENT SYSTEM");
+                    mDatabase.child("announcement").setValue(temp);
+                }
+                else {
+                    mDatabase.child("announcement").setValue("TEST ANNOUNCEMENT SYSTEM");
+                    try {
+                        Thread.sleep(1000);
+                    } catch (Exception e) {
+                        assertTrue("connection failure in test",false);
+                    }
+                    mDatabase.child("announcement").setValue("");
+                }
             }
 
             @Override
@@ -41,6 +51,7 @@ public class annoucementTest {
             }
 
         };
+        mDatabase.addListenerForSingleValueEvent(listen);
 
     }
 }

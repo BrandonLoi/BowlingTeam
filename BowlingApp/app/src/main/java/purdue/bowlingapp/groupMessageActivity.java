@@ -47,6 +47,10 @@ public class groupMessageActivity extends AppCompatActivity {
                         for (DataSnapshot iterator : dataSnapshot.child("groups").child(sendGroup).getChildren()) {
                             String name = iterator.getKey();
                             long sum = dataSnapshot.child("messages").child(name).child("inbox").getChildrenCount() + 1;
+                            if (sum > 100) {
+                                dataSnapshot.child("messages").child(username).child("inbox").getRef().setValue(null);
+                                sum = 1;
+                            }
                             myRef.child("messages").child(name).child("inbox").child(Long.toString(sum)).child(username).setValue(message);
                             createFail("2");
 
