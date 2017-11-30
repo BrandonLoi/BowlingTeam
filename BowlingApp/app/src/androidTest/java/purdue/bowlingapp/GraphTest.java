@@ -20,7 +20,7 @@ public class GraphTest {
     }
 
     @Test
-    public void test_order() {
+    public void test_order(){
         addGame(6);
         assertEquals(arr[0],2);
         assertEquals(arr[1],3);
