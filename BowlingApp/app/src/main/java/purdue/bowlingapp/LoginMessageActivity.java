@@ -45,15 +45,17 @@ public class LoginMessageActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String message = intent.getStringExtra(MainActivity.welcome_message);
         TextView textView = (TextView) findViewById(R.id.textView3);
+        final TextView announcementText = (TextView) findViewById(R.id.announce);
         textView.setText(message);
         username = textView.getText().toString();
         username = "" + username.substring(0, username.length() - 1);
 
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+        final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                announcementText.setText(dataSnapshot.child("announcement").getValue().toString());
                 String note1 = dataSnapshot.child("messages").child(username).child("notifications").child("note1").getValue().toString();
                 String note2 = dataSnapshot.child("messages").child(username).child("notifications").child("note2").getValue().toString();
                 String note3 = dataSnapshot.child("messages").child(username).child("notifications").child("note3").getValue().toString();
