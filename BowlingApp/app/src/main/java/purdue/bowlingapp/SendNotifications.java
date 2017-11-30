@@ -78,7 +78,12 @@ public class SendNotifications extends AppCompatActivity {
                                     final Toast toast2 = Toast.makeText(getApplicationContext(),"That user has too many pending notifications",Toast.LENGTH_SHORT);
                                     toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM,0,0);
                                     toast2.show();
+                                    userRef.removeEventListener(this);
+                                    return;
                                 }
+                                final Toast toast2 = Toast.makeText(getApplicationContext(),"Success. User will see the notification when they log in.",Toast.LENGTH_SHORT);
+                                toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM,0,0);
+                                toast2.show();
                                 userRef.removeEventListener(this);
                            }
                        }

@@ -9,62 +9,67 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:orientation="vertical"
-        android:gravity="center"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="8dp"
-        tools:layout_constraintLeft_creator="1"
         android:layout_marginBottom="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp">
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1">
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="My Stats"
             android:id="@+id/myStats"
-            android:layout_marginBottom="20dp"/>
-
-        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Compare Stats"
+            android:layout_marginBottom="20dp"
+            android:text="My Stats"/>
+
+        <Button
             android:id="@+id/compareStats"
-            android:layout_marginBottom="20dp"/>
-
-        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Allow Player Edits"
+            android:layout_marginBottom="20dp"
+            android:text="Compare Stats"/>
+
+        <Button
             android:id="@+id/editStatsPermission"
-            android:layout_marginBottom="20dp"/>
-
-        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edit A Players Stats"
+            android:layout_marginBottom="20dp"
+            android:text="Allow Player Edits"/>
+
+        <Button
             android:id="@+id/editStats"
-            android:layout_marginBottom="20dp"/>
-
-        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="rankings"
-            android:id="@+id/rankings"/>
+            android:layout_marginBottom="20dp"
+            android:text="Edit A Players Stats"/>
 
         <Button
+            android:id="@+id/rankings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="graph"
-            android:id="@+id/graph"/>
+            android:text="rankings"/>
+
+        <Button
+            android:id="@+id/graph"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="graph"/>
+
+        <Button
+            android:id="@+id/futureButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Future Performance"/>
 
     </LinearLayout>
 

@@ -61,41 +61,41 @@ public class LoginMessageActivity extends AppCompatActivity {
                 String note3 = dataSnapshot.child("messages").child(username).child("notifications").child("note3").getValue().toString();
                 String note4 = dataSnapshot.child("messages").child(username).child("notifications").child("note4").getValue().toString();
                 String note5 = dataSnapshot.child("messages").child(username).child("notifications").child("note5").getValue().toString();
-                if(!note1.equals("")) {
-                   // String note = note5.toString();
-                    final Toast toast;
-                    toast = Toast.makeText(getApplicationContext(), note1 ,Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM,0,0);
-                    toast.show();
+                int flag = Integer.parseInt(dataSnapshot.child("messages").child(username).child("notifications").child("flag").getValue().toString());
+                if(flag == 0) {
+                    if (!note1.equals("")) {
+                        final Toast toast = Toast.makeText(getApplicationContext(), note1, Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, 0);
+                        toast.show();
+                    }
+                    if (!note2.equals("")) {
+                        final Toast toast = Toast.makeText(getApplicationContext(), note2, Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, 0);
+                        toast.show();
+                    }
+                    if (!note3.equals("")) {
+                        final Toast toast = Toast.makeText(getApplicationContext(), note3, Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, 0);
+                        toast.show();
+                    }
+                    if (!note4.equals("")) {
+                        final Toast toast = Toast.makeText(getApplicationContext(), note4, Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, 0);
+                        toast.show();
+                    }
+                    if (!note5.equals("")) {
+                        final Toast toast = Toast.makeText(getApplicationContext(), note5, Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, 0);
+                        toast.show();
+                    }
+                    if (!note1.equals("") || !note2.equals("") || !note3.equals("") || !note4.equals("") || !note5.equals("")) {
+                        mDatabase.child("messages").child(username).child("notifications").child("flag").setValue("1");
+                        final Toast toast = Toast.makeText(getApplicationContext(), "Open Communication -> Notifications to view and clear your notifications", Toast.LENGTH_LONG);
+                        toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, 0);
+                        toast.show();
+                    }
                 }
-                if(!note2.equals("")) {
-                   // String note = note5.toString();
-                    final Toast toast;
-                    toast = Toast.makeText(getApplicationContext(), note2 ,Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM,0,0);
-                    toast.show();
-                }
-                if(!note3.equals("")) {
-                   // String note = note5.toString();
-                    final Toast toast;
-                    toast = Toast.makeText(getApplicationContext(), note3 ,Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM,0,0);
-                    toast.show();
-                }
-                if(!note4.equals("")) {
-                   // String note = note5.toString();
-                    final Toast toast;
-                    toast = Toast.makeText(getApplicationContext(), note4 ,Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM,0,0);
-                    toast.show();
-                }
-                if(!note5.equals("")) {
-                  //  String note = note5.toString();
-                    final Toast toast;
-                    toast = Toast.makeText(getApplicationContext(), note5 ,Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM,0,0);
-                    toast.show();
-                }
+                mDatabase.removeEventListener(this);
             }
 
             @Override
