@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,6 +23,7 @@ public class ViewNotifications extends AppCompatActivity {
         Intent intent = getIntent();
         final String username = intent.getStringExtra("username");
 
+        TextView note1 = (TextView) findViewById(R.id.notification1);
 
     }
 
