@@ -28,6 +28,37 @@ public class StatsHub extends AppCompatActivity {
         Button editStatsPermission = (Button) findViewById(R.id.editStatsPermission);
         Button rankingsButton = (Button) findViewById(R.id.rankings);
         Button graph = (Button) findViewById(R.id.graph);
+        Button futureButton = (Button) findViewById(R.id.futureButton);
+
+        futureButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                final FirebaseDatabase database = FirebaseDatabase.getInstance();
+                String currDataPath = "coaches";
+                final DatabaseReference coach = database.getReference(currDataPath);
+
+                coach.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.hasChild(username)) {
+                            Intent i = new Intent(StatsHub.this, FuturePerformanceLookupActivity.class);
+                            i.putExtra("username", username);
+                            startActivity(i);
+                        } else {
+                            Intent i = new Intent(StatsHub.this, FuturePerformanceActivity.class);
+                            i.putExtra("username", username);
+                            startActivity(i);
+                        }
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        System.out.println("Retrieving coach status failed: " +
+                                databaseError.getCode());
+                    }
+                });
+            }
+        });
 
         myStats.setOnClickListener(new View.OnClickListener() {
             @Override
