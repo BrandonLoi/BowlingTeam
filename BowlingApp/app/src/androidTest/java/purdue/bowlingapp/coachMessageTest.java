@@ -22,16 +22,16 @@ import static org.junit.Assert.*;
 
 @RunWith(AndroidJUnit4.class)
 
-public class regularMessageTest {
+public class coachMessageTest {
     @Test
-    public void createRegMessageTest() {
+    public void createMessageTest() {
         final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         final DatabaseReference myRef = mDatabase.child("users");//.child(editText.toString());
 
         ValueEventListener listen = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                boolean x = dataSnapshot.hasChild("testUser2");
+                boolean x = dataSnapshot.hasChild("testCoach");
                 assertTrue("message not sent", x);
             }
 
@@ -41,25 +41,25 @@ public class regularMessageTest {
             }
         };
 
-        myRef.child("testUser").child("username").setValue("testUser");
-        myRef.child("testUser").child("password").setValue("123456789");
-        myRef.child("testUser").child("email").setValue("test@email.com");
+        myRef.child("testCoach").child("username").setValue("testCoach");
+        myRef.child("testCoach").child("password").setValue("123456789");
+        myRef.child("testCoach").child("email").setValue("test@email.com");
         myRef.child("testUser2").child("username").setValue("testUser2");
         myRef.child("testUser2").child("password").setValue("123456789");
         myRef.child("testUser2").child("email").setValue("test2@email.com");
 
-        DatabaseReference myRef2 = mDatabase.child("messages").child("testUser").child("inbox").child("1");
+        DatabaseReference myRef2 = mDatabase.child("messages").child("testUser2").child("inbox").child("1");
         myRef2.addListenerForSingleValueEvent(listen);
-        myRef2.child("testUser2").setValue("test");
+        myRef2.child("testCoach").setValue("test");
         try {
             Thread.sleep(1000);
         } catch (Exception e) {
             assertTrue("connection failure in test",false);
         }
         myRef2.removeEventListener(listen);
-        myRef.child("testUser").setValue(null);
+        myRef.child("testCoach").setValue(null);
         myRef.child("testUser2").setValue(null);
-        mDatabase.child("messages").child("testUser").setValue(null);
+        mDatabase.child("messages").child("testUser2").setValue(null);
 
     }
 }
