@@ -462,7 +462,7 @@ public class PinInput extends AppCompatActivity {
                             userSingle.removeEventListener(this);
                             userData.child("splitLeft").setValue(splitLeft.toString());
                             userData.child("splitMade").setValue(splitMade.toString());
-                        } else {
+                        } else{
                             return;
                         }
                     }
