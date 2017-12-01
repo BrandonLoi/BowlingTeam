@@ -114,14 +114,14 @@ public class eventCreateActivity extends AppCompatActivity {
         int day = Integer.parseInt(date.substring(0,2));
         int month = Integer.parseInt(date.substring(3,5));
         int year = Integer.parseInt(date.substring(6));
-        cal1.set(year, month, day);
+        cal1.set(year, month - 1, day);
 
         DateFormat df = new SimpleDateFormat("ddMMyyyy", Locale.US);
         Date date1 = new Date();
         String currentDate = df.format(date1);
-        cal2.set(Integer.parseInt(currentDate.substring(4)), Integer.parseInt(currentDate.substring(2,4)), Integer.parseInt(currentDate.substring(0,2)));
+        cal2.set(Integer.parseInt(currentDate.substring(4)), Integer.parseInt(currentDate.substring(2,4)) - 1, Integer.parseInt(currentDate.substring(0,2)));
 
-        return (int)( (cal2.getTime().getTime() - cal1.getTime().getTime()) / (1000 * 60 * 60 * 24));
+        return (int)( (cal2.getTime().getTime() - cal1.getTime().getTime()) / (1000 * 60 * 60 * 24)) + 1;
     }
 
     public void clearError() {
