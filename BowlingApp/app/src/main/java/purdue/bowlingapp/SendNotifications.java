@@ -41,7 +41,7 @@ public class SendNotifications extends AppCompatActivity {
                final String usernameString = usernameField.getText().toString();
                final String message = messageText.getText().toString();
 
-               if((groupString.equals(null) && usernameString.equals(null)) || message.equals(null)) {
+               if((groupString.equals("") && usernameString.equals("")) || message.equals("")) {
                    toast.show();
                }
                else {
@@ -81,6 +81,7 @@ public class SendNotifications extends AppCompatActivity {
                                     userRef.removeEventListener(this);
                                     return;
                                 }
+                                mDatabase.child("messages").child(usernameString).child("notifications").child("flag").setValue("0");
                                 final Toast toast2 = Toast.makeText(getApplicationContext(),"Success. User will see the notification when they log in.",Toast.LENGTH_SHORT);
                                 toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM,0,0);
                                 toast2.show();

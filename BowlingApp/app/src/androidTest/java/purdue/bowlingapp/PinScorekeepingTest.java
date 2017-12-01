@@ -125,7 +125,7 @@ public class PinScorekeepingTest {
 
         Game g = new Game(frames, t1);
 
-        assertEquals(g.getScore(), 300);
+        assertEquals(g.getScore(), -1);
     }
 
     @Test
