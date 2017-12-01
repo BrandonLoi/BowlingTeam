@@ -205,7 +205,7 @@ public class editEventsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.child("events").hasChild(eventName) && !(eventName.matches(""))) {
-                    if (dataSnapshot.child("events").child(eventName).child("type").equals("PRACTICE")) {
+                    if (dataSnapshot.child("events").child(eventName).child("type").getValue().toString().equals("PRACTICE")) {
                         myRef.child("events").child(eventName).child("type").setValue("TOURNAMENT");
                         createFail("7");
                     }
