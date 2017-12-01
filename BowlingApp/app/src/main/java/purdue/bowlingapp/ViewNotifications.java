@@ -3,9 +3,11 @@ package purdue.bowlingapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,11 +31,6 @@ public class ViewNotifications extends AppCompatActivity {
         final TextView tv3 = (TextView) findViewById(R.id.notification3);
         final TextView tv4 = (TextView) findViewById(R.id.notification4);
         final TextView tv5 = (TextView) findViewById(R.id.notification5);
-        String note1 = tv1.toString();
-        String note2 = tv2.toString();
-        String note3 = tv3.toString();
-        String note4 = tv4.toString();
-        String note5 = tv5.toString();
         final DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("messages");
         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -66,6 +63,9 @@ public class ViewNotifications extends AppCompatActivity {
                 mDatabase.child("messages").child(username).child("notifications").child("note4").setValue("");
                 mDatabase.child("messages").child(username).child("notifications").child("note5").setValue("");
                 mDatabase.child("messages").child(username).child("notifications").child("flag").setValue("0");
+                final Toast toast = Toast.makeText(getApplicationContext(),"Notifications deleted", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM,0,0);
+                toast.show();
             }
         });
 
