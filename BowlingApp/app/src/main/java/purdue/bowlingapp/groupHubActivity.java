@@ -25,6 +25,7 @@ public class groupHubActivity extends AppCompatActivity {
     Button requestButton;
     Button checkReqButton;
     Button groupRankingButton;
+    Button futureButton;
 
 
 
@@ -42,6 +43,16 @@ public class groupHubActivity extends AppCompatActivity {
         requestButton = (Button) findViewById(R.id.requestButton);
         checkReqButton = (Button) findViewById(R.id.checkReqsButton);
         groupRankingButton = (Button) findViewById(R.id.groupRankButton);
+        futureButton = (Button) findViewById(R.id.futureButton);
+
+        futureButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(groupHubActivity.this, GroupFuturePerformanceActivity.class);
+                i.putExtra("username", username);
+                startActivity(i);
+            }
+        });
 
         createGroupButton.setOnClickListener(new View.OnClickListener() {
             @Override
