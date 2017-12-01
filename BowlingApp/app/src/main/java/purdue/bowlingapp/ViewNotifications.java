@@ -63,6 +63,7 @@ public class ViewNotifications extends AppCompatActivity {
                 mDatabase.child("messages").child(username).child("notifications").child("note4").setValue("");
                 mDatabase.child("messages").child(username).child("notifications").child("note5").setValue("");
                 mDatabase.child("messages").child(username).child("notifications").child("flag").setValue("0");
+                mDatabase.child("messages").child(username).child("notifications").child("eventFlag").setValue("0");
                 final Toast toast = Toast.makeText(getApplicationContext(),"Notifications deleted", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM,0,0);
                 toast.show();
