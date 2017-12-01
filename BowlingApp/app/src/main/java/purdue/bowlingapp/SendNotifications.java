@@ -29,7 +29,6 @@ public class SendNotifications extends AppCompatActivity {
 
         Button sendButton = (Button) findViewById(R.id.sendButton);
         final EditText usernameField = (EditText) findViewById(R.id.playerUsername);
-        final EditText groupName = (EditText) findViewById(R.id.groupUsername);
         final EditText messageText = (EditText) findViewById(R.id.messageToSend);
 
         sendButton.setOnClickListener(new View.OnClickListener() {
@@ -37,16 +36,14 @@ public class SendNotifications extends AppCompatActivity {
            public void onClick(View view) {
                final Toast toast = Toast.makeText(getApplicationContext(),"Please enter a username or group name and a message",Toast.LENGTH_SHORT);
                toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM,0,0);
-               final String groupString = groupName.getText().toString();
                final String usernameString = usernameField.getText().toString();
                final String message = messageText.getText().toString();
 
-               if((groupString.equals("") && usernameString.equals("")) || message.equals("")) {
+               if(usernameString.equals("") || message.equals("")) {
                    toast.show();
                }
                else {
                    final DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("messages");
-                   DatabaseReference groupRef = FirebaseDatabase.getInstance().getReference("groups");
                    userRef.addValueEventListener(new ValueEventListener() {
                        @Override
                        public void onDataChange(DataSnapshot dataSnapshot) {
@@ -83,26 +80,9 @@ public class SendNotifications extends AppCompatActivity {
                                 }
                                 mDatabase.child("messages").child(usernameString).child("notifications").child("flag").setValue("0");
                                 final Toast toast2 = Toast.makeText(getApplicationContext(),"Success. User will see the notification when they log in.",Toast.LENGTH_SHORT);
-                                toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM,0,0);
+                                toast2.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM,0,0);
                                 toast2.show();
                                 userRef.removeEventListener(this);
-                           }
-                       }
-
-                       @Override
-                       public void onCancelled(DatabaseError databaseError) {
-
-                       }
-                   });
-
-                   groupRef.addValueEventListener(new ValueEventListener() {
-                       @Override
-                       public void onDataChange(DataSnapshot dataSnapshot) {
-                           if (!dataSnapshot.hasChild(groupString)) {
-                              // toast.show();
-                           }
-                           else {
-
                            }
                        }
 

@@ -64,27 +64,27 @@ public class LoginMessageActivity extends AppCompatActivity {
                 int flag = Integer.parseInt(dataSnapshot.child("messages").child(username).child("notifications").child("flag").getValue().toString());
                 if(flag == 0) {
                     if (!note1.equals("")) {
-                        final Toast toast = Toast.makeText(getApplicationContext(), note1, Toast.LENGTH_SHORT);
+                        final Toast toast = Toast.makeText(getApplicationContext(), note1, Toast.LENGTH_LONG);
                         toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, 0);
                         toast.show();
                     }
                     if (!note2.equals("")) {
-                        final Toast toast = Toast.makeText(getApplicationContext(), note2, Toast.LENGTH_SHORT);
+                        final Toast toast = Toast.makeText(getApplicationContext(), note2, Toast.LENGTH_LONG);
                         toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, 0);
                         toast.show();
                     }
                     if (!note3.equals("")) {
-                        final Toast toast = Toast.makeText(getApplicationContext(), note3, Toast.LENGTH_SHORT);
+                        final Toast toast = Toast.makeText(getApplicationContext(), note3, Toast.LENGTH_LONG);
                         toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, 0);
                         toast.show();
                     }
                     if (!note4.equals("")) {
-                        final Toast toast = Toast.makeText(getApplicationContext(), note4, Toast.LENGTH_SHORT);
+                        final Toast toast = Toast.makeText(getApplicationContext(), note4, Toast.LENGTH_LONG);
                         toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, 0);
                         toast.show();
                     }
                     if (!note5.equals("")) {
-                        final Toast toast = Toast.makeText(getApplicationContext(), note5, Toast.LENGTH_SHORT);
+                        final Toast toast = Toast.makeText(getApplicationContext(), note5, Toast.LENGTH_LONG);
                         toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, 0);
                         toast.show();
                     }

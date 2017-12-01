@@ -19,13 +19,6 @@
         android:hint="Player Username"
         android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/groupUsername"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Group Name"
-        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/messageToSend"
