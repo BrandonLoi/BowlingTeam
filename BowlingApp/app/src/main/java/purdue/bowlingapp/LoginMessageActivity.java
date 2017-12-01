@@ -50,7 +50,11 @@ public class LoginMessageActivity extends AppCompatActivity {
                         date = date.substring(6,16);
                         if(name.equals(username)) {
                             int num = eventCreateActivity.daysUntil(date);
-                            if(num < 8 && num >= 0) { //Aaron, in this if statement add the email reminder for events
+                            if(num < 8 && num >= 0) { // Aaron, in this if statement add the email reminder for events
+                                // Send email reminder
+                                String email = dataSnapshot.child("users").child(username).child("email").getValue().toString();
+                                sendEmail(email, date);
+
                                 final Toast toast = Toast.makeText(getApplicationContext(), "You have an upcoming event on " + date + ". Check your calendar for more information.", Toast.LENGTH_LONG);
                                 toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, 0);
                                 toast.show();
@@ -202,5 +206,18 @@ public class LoginMessageActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    // Sends email reminder
+    private void sendEmail(String email, String date) {
+        //Getting content for email
+        String subject = "Event Reminder";
+        String message = "You have an upcoming event on " + date + ". Check your calendar for more information.";
+
+        //Creating SendMail object
+        SendMail sm = new SendMail(this, email, subject, message);
+
+        //Executing sendmail to send email
+        sm.execute();
     }
 }
