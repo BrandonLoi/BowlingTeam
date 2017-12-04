@@ -2,6 +2,7 @@ package purdue.bowlingapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,6 +22,22 @@ public class GraphDisplay extends AppCompatActivity {
 
         String username = getIntent().getStringExtra("username");
         final String selection = getIntent().getStringExtra("selection");
+
+        TextView header = (TextView) findViewById(R.id.header);
+
+        String headString = "Currently Viewing graph for: ";
+
+        if(selection.equals("games")) {
+            headString += "last five games";
+        } else if (selection.equals("filledCount")) {
+            headString += "filled frames in last 5 games";
+        } else if (selection.equals("singleCount")) {
+            headString += "single pins made in last five games";
+        } else if (selection.equals("strikeCount")) {
+            headString += "number of strikes in past five games";
+        }
+
+        header.setText(headString);
 
         final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         final DatabaseReference ref = mDatabase.child("data").child(username);
