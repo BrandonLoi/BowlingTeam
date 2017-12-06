@@ -22,6 +22,7 @@
 
     <style name="Bowling_App_temp" parent="Theme.AppCompat.NoActionBar" >
         <item name="colorAccent">@android:color/holo_orange_light</item>
+        <item name="android:textColorPrimary">@android:color/holo_orange_light</item>
     </style>
 
 </resources>
