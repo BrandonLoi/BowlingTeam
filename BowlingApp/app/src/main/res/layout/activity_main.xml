@@ -138,7 +138,7 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/purdueBowling"
+        app:srcCompat="@drawable/purduebowling"
         app:layout_constraintTop_toTopOf="@+id/errorMessage"
         android:layout_marginTop="-15dp"
         android:layout_marginLeft="8dp"
