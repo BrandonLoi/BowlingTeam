@@ -134,4 +134,17 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginEnd="55dp" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/purdueBowling"
+        app:layout_constraintTop_toTopOf="@+id/errorMessage"
+        android:layout_marginTop="-15dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.444" />
+
 </android.support.constraint.ConstraintLayout>
