@@ -4,69 +4,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="purdue.bowlingapp.createGroupActivity">
+    tools:context="purdue.bowlingapp.createGroupActivity"
+    tools:layout_editor_absoluteY="25dp"
+    tools:layout_editor_absoluteX="0dp">
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="232dp"
+        android:layout_height="45dp"
+        android:text="Create Groups"
+        android:textSize="36sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/errorMessage"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/createGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
         android:onClick="createUserGroup"
         android:text="Create Group"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.657" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/publicCheck" />
 
     <TextView
         android:id="@+id/errorMessage"
         android:layout_width="270dp"
         android:layout_height="74dp"
-        android:layout_marginRight="57dp"
-        android:layout_marginTop="1dp"
         android:textAlignment="center"
         android:textColor="@android:color/holo_red_light"
         android:textSize="24sp"
         android:visibility="visible"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/groupNameField"
+        app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
     <EditText
         android:id="@+id/groupNameField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Group Name"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.371" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/publicCheck"
+        app:layout_constraintTop_toBottomOf="@+id/errorMessage" />
 
     <CheckBox
         android:id="@+id/publicCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
         android:text="Allow added users to add other users"
-        app:layout_constraintBottom_toTopOf="@+id/createGroup"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/groupNameField"
-        app:layout_constraintVertical_bias="0.342" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/createGroup"
+        app:layout_constraintTop_toBottomOf="@+id/groupNameField" />
 
 </android.support.constraint.ConstraintLayout>
