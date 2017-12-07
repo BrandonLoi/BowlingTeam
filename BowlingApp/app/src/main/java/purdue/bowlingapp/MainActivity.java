@@ -119,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
                     myRef2.child("ballsThrown").setValue("0");
                     myRef2.child("cumulativeScore").setValue("0");
                     myRef2.child("filledFrames").setValue("0");
+                    myRef2.child("sparePercentage").setValue("-1");
                     final DatabaseReference myRef3 = mDatabase.child("messages").child(username);
                     myRef3.child("notifications").child("eventFlag").setValue("0");
                     myRef3.child("notifications").child("flag").setValue("0");
