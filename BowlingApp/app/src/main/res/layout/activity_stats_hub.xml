@@ -16,6 +16,7 @@
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -27,49 +28,49 @@
 
         <Button
             android:id="@+id/myStats"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
             android:layout_marginBottom="20dp"
-            android:text="My Stats"/>
+            android:text="My Stats" />
 
         <Button
             android:id="@+id/compareStats"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
             android:layout_marginBottom="20dp"
-            android:text="Compare Stats"/>
+            android:text="Compare Stats" />
 
         <Button
             android:id="@+id/editStatsPermission"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
             android:layout_marginBottom="20dp"
-            android:text="Allow Player Edits"/>
+            android:text="Allow Player Edits" />
 
         <Button
             android:id="@+id/editStats"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
             android:layout_marginBottom="20dp"
-            android:text="Edit A Players Stats"/>
+            android:text="Edit A Players Stats" />
 
         <Button
             android:id="@+id/rankings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="rankings"/>
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="rankings" />
 
         <Button
             android:id="@+id/graph"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="graph"/>
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="graph" />
 
         <Button
             android:id="@+id/futureButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Future Performance"/>
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="Future Performance" />
 
     </LinearLayout>
 

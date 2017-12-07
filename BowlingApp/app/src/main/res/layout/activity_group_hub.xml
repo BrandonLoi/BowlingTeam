@@ -5,139 +5,99 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="purdue.bowlingapp.groupHubActivity"
-    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteY="25dp"
     tools:layout_editor_absoluteX="0dp">
 
     <TextView
         android:id="@+id/groupsStat"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:text="Groups"
         android:textAlignment="center"
         android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_constraintRight_creator="1"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        tools:layout_constraintLeft_creator="1"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/createGroupButton" />
 
     <Button
         android:id="@+id/createGroupButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         android:text="Create Group"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/editGroupButton"
-        android:layout_marginLeft="128dp"
-        tools:layout_constraintTop_creator="1"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="138dp"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/checkReqsButton"
+        app:layout_constraintTop_toBottomOf="@+id/groupsStat" />
 
     <Button
         android:id="@+id/editGroupButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="9dp"
-        android:layout_marginStart="9dp"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         android:text="Edit Group"
-        app:layout_constraintBottom_toTopOf="@+id/groupStatsButton"
-        app:layout_constraintEnd_toStartOf="@+id/mergeGroupsButton"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintRight_toLeftOf="@+id/createGroupButton"
+        app:layout_constraintTop_toBottomOf="@+id/groupsStat"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintLeft_creator="1" />
+        app:layout_constraintBottom_toTopOf="@+id/groupStatsButton" />
 
     <Button
         android:id="@+id/groupStatsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         android:text="Group Statistics"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toBottomOf="@+id/requestButton"
-        app:layout_constraintTop_toBottomOf="@+id/createGroupButton"
-        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintRight_toLeftOf="@+id/checkReqsButton"
+        app:layout_constraintTop_toBottomOf="@+id/editGroupButton"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintBottom_toTopOf="@+id/mergeGroupsButton" />
 
     <Button
         android:id="@+id/mergeGroupsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         android:text="Merge Group"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.066"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/requestButton"
         app:layout_constraintTop_toBottomOf="@+id/groupStatsButton"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1"
-        android:layout_marginTop="8dp" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/groupRankButton" />
 
     <Button
         android:id="@+id/requestButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         android:text="Requests"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/groupStatsButton"
-        android:layout_marginLeft="125dp"
-        tools:layout_constraintTop_creator="1"
-        android:layout_marginStart="125dp"
-        app:layout_constraintTop_toBottomOf="@+id/createGroupButton" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkReqsButton"
+        app:layout_constraintLeft_toRightOf="@+id/mergeGroupsButton"
+        app:layout_constraintBottom_toTopOf="@+id/futureButton" />
 
     <Button
         android:id="@+id/checkReqsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         android:text="Check Requests"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.752"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/requestButton"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createGroupButton"
+        app:layout_constraintLeft_toRightOf="@+id/groupStatsButton"
+        app:layout_constraintBottom_toTopOf="@+id/requestButton" />
 
     <Button
         android:id="@+id/groupRankButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         android:text="Group Rankings"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mergeGroupsButton" />
+        app:layout_constraintRight_toLeftOf="@+id/futureButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mergeGroupsButton"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <Button
         android:id="@+id/futureButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         android:text="Future Performance"
-        app:layout_constraintHorizontal_bias="0.282"
-        app:layout_constraintLeft_toRightOf="@+id/groupRankButton"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkReqsButton" />
+        app:layout_constraintTop_toBottomOf="@+id/requestButton"
+        app:layout_constraintLeft_toRightOf="@+id/groupRankButton" />
 
 </android.support.constraint.ConstraintLayout>
